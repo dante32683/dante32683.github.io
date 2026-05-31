@@ -95,6 +95,18 @@
             display: flex; align-items: center; gap: 0.5rem;
         }
         .skill-item .cat { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); margin-left: auto; }
+        .ap-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .ap-item {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.35rem 0.75rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .ap-item .score {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 1.6rem; height: 1.6rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 700; color: #fff;
+        }
+        .score-5 { background: #16a34a; }
+        .score-4 { background: #ca8a04; }
         footer { text-align: center; padding: 2rem 0 3rem; font-size: 0.85rem; color: var(--text-muted); }
         footer a { color: var(--accent); text-decoration: none; }
         @media (max-width: 600px) { .hero h1 { font-size: 2rem; } nav a:not(.brand) { margin-left: 0.75rem; font-size: 0.8rem; } }
@@ -134,7 +146,7 @@
     <div class="stats">
       <div class="stat"><div class="num">4.0</div><div class="label">GPA</div></div>
       <div class="stat"><div class="num">8</div><div class="label">AP Exams</div></div>
-      <div class="stat"><div class="num">$11k+</div><div class="label">Club Funds Managed</div></div>
+      <div class="stat"><div class="num">$10k+</div><div class="label">Club Funds Managed</div></div>
       <div class="stat"><div class="num">2</div><div class="label">Engineering Clubs</div></div>
     </div>
     <div class="card">
@@ -152,8 +164,17 @@
     </div>
     <div class="card">
       <h3>AP Scholar with Distinction &bull; National Merit Commended</h3>
-      <div class="meta">Tech High School &bull; Graduated Top 10</div>
-      <p>8 AP exams taken: Calculus AB (5), English Lit (5), Macroeconomics (5), US Gov &amp; Politics (5), Biology (5), English Lang (4), Statistics (4), CS Principles (4). Golden State Seal Merit Diploma. Scholar Athlete.</p>
+      <div class="meta">Tech High School &bull; Graduated Top 10 &bull; Golden State Seal Merit Diploma</div>
+      <div class="ap-grid">
+        <div class="ap-item">Calculus AB <span class="score score-5">5</span></div>
+        <div class="ap-item">English Lit <span class="score score-5">5</span></div>
+        <div class="ap-item">Macroeconomics <span class="score score-5">5</span></div>
+        <div class="ap-item">US Gov &amp; Politics <span class="score score-5">5</span></div>
+        <div class="ap-item">Biology <span class="score score-5">5</span></div>
+        <div class="ap-item">English Lang <span class="score score-4">4</span></div>
+        <div class="ap-item">Statistics <span class="score score-4">4</span></div>
+        <div class="ap-item">CS Principles <span class="score score-4">4</span></div>
+      </div>
     </div>
   </div>
 </section>
