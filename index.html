@@ -32,6 +32,24 @@
                 --border: #334155;
             }
         }
+        html.dark {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #60a5fa;
+            --accent-light: #1e3a5f;
+            --border: #334155;
+        }
+        html.light {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #555;
+            --accent: #2563eb;
+            --accent-light: #dbeafe;
+            --border: #e5e7eb;
+        }
         body { padding: 0; }
         .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
         nav {
@@ -42,9 +60,16 @@
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         nav .brand { font-weight: 700; color: var(--text); font-size: 1rem; text-decoration: none; }
         nav .brand:hover { color: var(--accent); }
+        .nav-right { display: flex; align-items: center; gap: 0.5rem; }
         nav a:not(.brand) { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; margin-left: 1.25rem; transition: color 0.2s; }
         nav a:not(.brand):hover { color: var(--accent); }
-        .hero { padding: 5rem 0 3rem; text-align: center; }
+        .theme-toggle {
+            background: none; border: 1px solid var(--border); border-radius: 8px;
+            cursor: pointer; padding: 0.35rem 0.65rem; font-size: 1rem; line-height: 1;
+            color: var(--text-muted); transition: all 0.2s; margin-left: 1rem;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .hero { padding: 5rem 0 2.5rem; text-align: center; }
         .hero h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
         .hero .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem; }
         .hero .tagline {
@@ -80,6 +105,14 @@
         .card .links a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
         .card .links a:hover { text-decoration: underline; }
         .card .links a + a { margin-left: 1rem; }
+        .currently-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+        .currently-item {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+            padding: 1rem; text-align: center;
+        }
+        .currently-item .emoji { font-size: 1.5rem; margin-bottom: 0.35rem; }
+        .currently-item .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem; }
+        .currently-item .value { font-size: 0.95rem; font-weight: 600; }
         .edu-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.5rem; }
         .edu-table th, .edu-table td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
         .edu-table th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); }
@@ -107,20 +140,27 @@
         }
         .score-5 { background: #16a34a; }
         .score-4 { background: #ca8a04; }
-        footer { text-align: center; padding: 2rem 0 3rem; font-size: 0.85rem; color: var(--text-muted); }
+        footer {
+            text-align: center; padding: 2.5rem 0 3rem;
+            font-size: 0.85rem; color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+        footer p { margin-bottom: 0.35rem; }
         footer a { color: var(--accent); text-decoration: none; }
-        @media (max-width: 600px) { .hero h1 { font-size: 2rem; } nav a:not(.brand) { margin-left: 0.75rem; font-size: 0.8rem; } }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .hero h1 { font-size: 2rem; } .nav-right a { margin-left: 0.5rem; font-size: 0.8rem; } .currently-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 <nav>
   <div class="container">
     <a href="#" class="brand">Dante</a>
-    <div>
+    <div class="nav-right">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
     </div>
   </div>
 </nav>
@@ -136,6 +176,34 @@
     <div class="hero-links">
       <a href="https://github.com/dante32683" class="primary">GitHub Profile</a>
       <a href="https://www.linkedin.com/in/dante-martin-722763279/" class="secondary">LinkedIn</a>
+      <a href="mailto:dziadymartin@gmail.com" class="secondary">Email</a>
+    </div>
+  </div>
+</section>
+<section id="currently">
+  <div class="container">
+    <h2>Currently</h2>
+    <div class="currently-grid">
+      <div class="currently-item">
+        <div class="emoji">📚</div>
+        <div class="label">This Summer</div>
+        <div class="value">Phys 40 (Mechanics) &bull; Ethst 20</div>
+      </div>
+      <div class="currently-item">
+        <div class="emoji">🏎️</div>
+        <div class="label">Joining</div>
+        <div class="value">Baja SAE — Simulations</div>
+      </div>
+      <div class="currently-item">
+        <div class="emoji">🐍</div>
+        <div class="label">Learning</div>
+        <div class="value">Python for CE</div>
+      </div>
+      <div class="currently-item">
+        <div class="emoji">💰</div>
+        <div class="label">Leading</div>
+        <div class="value">TEC Treasurer</div>
+      </div>
     </div>
   </div>
 </section>
@@ -255,8 +323,36 @@
 </section>
 <footer>
   <div class="container">
+    <p>&copy; 2026 Dante Martin</p>
     <p>Built with &lsaquo;/&rsaquo; by <a href="https://github.com/dante32683">Dante Martin</a> &bull; <a href="https://dante-martin.com">dante-martin.com</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Santa Rosa, CA &bull; Civil Engineering &bull; Computational Design</p>
   </div>
 </footer>
+<script>
+  (function() {
+    const stored = localStorage.getItem('theme');
+    const html = document.documentElement;
+    if (stored === 'dark') { html.classList.add('dark'); }
+    else if (stored === 'light') { html.classList.add('light'); }
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) { html.classList.add('dark'); }
+    const btn = document.getElementById('themeToggle');
+    function updateBtn() {
+      btn.textContent = html.classList.contains('dark') ? '☀️' : '🌙';
+    }
+    updateBtn();
+    btn.addEventListener('click', function() {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateBtn();
+    });
+  })();
+</script>
 </body>
 </html>
