@@ -1,357 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dante Martin | Civil Engineering Portfolio</title>
-    <meta name="description" content="Civil engineering student at SRJC, TEC Treasurer, Baja SAE, and computational engineering.">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #fafafa;
-            --surface: #ffffff;
-            --text: #1a1a2e;
-            --text-muted: #555;
-            --accent: #2563eb;
-            --accent-light: #dbeafe;
-            --border: #e5e7eb;
-            --max-w: 800px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f172a;
-                --surface: #1e293b;
-                --text: #e2e8f0;
-                --text-muted: #94a3b8;
-                --accent: #60a5fa;
-                --accent-light: #1e3a5f;
-                --border: #334155;
-            }
-        }
-        html.dark {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent: #60a5fa;
-            --accent-light: #1e3a5f;
-            --border: #334155;
-        }
-        html.light {
-            --bg: #fafafa;
-            --surface: #ffffff;
-            --text: #1a1a2e;
-            --text-muted: #555;
-            --accent: #2563eb;
-            --accent-light: #dbeafe;
-            --border: #e5e7eb;
-        }
-        body { padding: 0; }
-        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
-        nav {
-            position: sticky; top: 0; z-index: 50;
-            background: var(--surface); border-bottom: 1px solid var(--border);
-            padding: 0.75rem 0; backdrop-filter: blur(8px);
-        }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        nav .brand { font-weight: 700; color: var(--text); font-size: 1rem; text-decoration: none; }
-        nav .brand:hover { color: var(--accent); }
-        .nav-right { display: flex; align-items: center; gap: 0.5rem; }
-        nav a:not(.brand) { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; margin-left: 1.25rem; transition: color 0.2s; }
-        nav a:not(.brand):hover { color: var(--accent); }
-        .theme-toggle {
-            background: none; border: 1px solid var(--border); border-radius: 8px;
-            cursor: pointer; padding: 0.35rem 0.65rem; font-size: 1rem; line-height: 1;
-            color: var(--text-muted); transition: all 0.2s; margin-left: 1rem;
-        }
-        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-        .hero { padding: 5rem 0 2.5rem; text-align: center; }
-        .hero h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .hero .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem; }
-        .hero .tagline {
-            display: inline-block; background: var(--accent-light); color: var(--accent);
-            padding: 0.35rem 1rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;
-        }
-        .hero-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        .hero-links a {
-            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.25rem;
-            border-radius: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s;
-        }
-        .hero-links .primary { background: var(--accent); color: #fff; }
-        .hero-links .primary:hover { opacity: 0.9; }
-        .hero-links .secondary { border: 1px solid var(--border); color: var(--text); }
-        .hero-links .secondary:hover { border-color: var(--accent); color: var(--accent); }
-        section { padding: 3rem 0; }
-        section:not(:last-child) { border-bottom: 1px solid var(--border); }
-        section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; }
-        .card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-            padding: 1.5rem; margin-bottom: 1.25rem; transition: box-shadow 0.2s;
-        }
-        .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-        .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
-        .card .meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-        .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
-        .card .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
-        .card .tags span {
-            background: var(--accent-light); color: var(--accent);
-            font-size: 0.75rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 6px;
-        }
-        .card .links { margin-top: 0.75rem; }
-        .card .links a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        .card .links a:hover { text-decoration: underline; }
-        .card .links a + a { margin-left: 1rem; }
-        .currently-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
-        .currently-item {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-            padding: 1rem; text-align: center;
-        }
-        .currently-item .emoji { font-size: 1.5rem; margin-bottom: 0.35rem; }
-        .currently-item .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem; }
-        .currently-item .value { font-size: 0.95rem; font-weight: 600; }
-        .edu-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.5rem; }
-        .edu-table th, .edu-table td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
-        .edu-table th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); }
-        .edu-table td:last-child { text-align: right; }
-        .stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
-        .stat { flex: 1; min-width: 120px; text-align: center; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
-        .stat .num { font-size: 1.75rem; font-weight: 800; color: var(--accent); }
-        .stat .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
-        .skill-item {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-            padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 500;
-            display: flex; align-items: center; gap: 0.5rem;
-        }
-        .skill-item .cat { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); margin-left: auto; }
-        .ap-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-        .ap-item {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-            padding: 0.35rem 0.75rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;
-        }
-        .ap-item .score {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 1.6rem; height: 1.6rem; border-radius: 6px;
-            font-size: 0.75rem; font-weight: 700; color: #fff;
-        }
-        .score-5 { background: #16a34a; }
-        .score-4 { background: #ca8a04; }
-        footer {
-            text-align: center; padding: 2.5rem 0 3rem;
-            font-size: 0.85rem; color: var(--text-muted);
-            border-top: 1px solid var(--border);
-        }
-        footer p { margin-bottom: 0.35rem; }
-        footer a { color: var(--accent); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        @media (max-width: 600px) { .hero h1 { font-size: 2rem; } .nav-right a { margin-left: 0.5rem; font-size: 0.8rem; } .currently-grid { grid-template-columns: repeat(2, 1fr); } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Page title and description are set from data.js at load time. -->
+  <title>Dante Martin</title>
+  <meta name="description" content="Dante Martin — civil engineering student at Santa Rosa Junior College.">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav>
-  <div class="container">
-    <a href="#" class="brand">Dante</a>
-    <div class="nav-right">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </div>
-</nav>
-<section class="hero">
-  <div class="container">
-    <span class="tagline">Civil Engineering &bull; Computational Design &bull; Santa Rosa, CA</span>
-    <h1>Dante Martin</h1>
-    <p class="subtitle">
-      Civil engineering student at SRJC. Treasurer of The Engineering Club.
-      I like the intersection of structural analysis and software.
-    </p>
-    <div class="hero-links">
-      <a href="https://github.com/dante32683" class="primary">GitHub Profile</a>
-      <a href="https://www.linkedin.com/in/dante-martin-722763279/" class="secondary">LinkedIn</a>
-      <a href="mailto:dziadymartin@gmail.com" class="secondary">Email</a>
-    </div>
-  </div>
-</section>
-<section id="currently">
-  <div class="container">
-    <h2>Currently</h2>
-    <div class="currently-grid">
-      <div class="currently-item">
-        <div class="emoji">📚</div>
-        <div class="label">This Summer</div>
-        <div class="value">Phys 40 (Mechanics) + Ethst 20</div>
-      </div>
-      <div class="currently-item">
-        <div class="emoji">🏎️</div>
-        <div class="label">Joining</div>
-        <div class="value">Baja SAE, Simulations</div>
-      </div>
-      <div class="currently-item">
-        <div class="emoji">🐍</div>
-        <div class="label">Learning</div>
-        <div class="value">Python for Civil Eng</div>
-      </div>
-      <div class="currently-item">
-        <div class="emoji">💰</div>
-        <div class="label">Leading</div>
-        <div class="value">TEC Treasurer</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="about">
-  <div class="container">
-    <h2>Education &amp; Academics</h2>
-    <div class="stats">
-      <div class="stat"><div class="num">4.0</div><div class="label">GPA</div></div>
-      <div class="stat"><div class="num">8</div><div class="label">AP Exams</div></div>
-      <div class="stat"><div class="num">$10k+</div><div class="label">Club Funds Managed</div></div>
-      <div class="stat"><div class="num">2</div><div class="label">Engineering Clubs</div></div>
-    </div>
-    <div class="card">
-      <h3>Santa Rosa Junior College</h3>
-      <div class="meta">Civil Engineering &bull; Transfer Track &bull; Fall 2025 &ndash; Spring 2027</div>
-      <p>4.0 GPA, Dean's Highest Honors (Fall 2025). Planning to transfer Fall 2027. Target: UC Berkeley. Safe: UC Davis (TAG). Reach: Stanford.</p>
-      <table class="edu-table">
-        <tr><th>Semester</th><th>Key Courses</th><th>GPA</th></tr>
-        <tr><td>Fall 2025</td><td>Chem 3A, Math 1B, Comm C1000</td><td>4.0</td></tr>
-        <tr><td>Spring 2026</td><td>Chem 3B, Math 1C, CS 10A (C++), ENGL C1001</td><td>4.0</td></tr>
-        <tr><td>Summer 2026</td><td>Phys 40 (Mechanics), Ethst 20</td><td>&mdash;</td></tr>
-        <tr><td>Fall 2026</td><td>Phys 42, Math 2 (DiffEq), Engr 6 (MATLAB), Engr 34 (Statics)</td><td>&mdash;</td></tr>
-        <tr><td>Spring 2027</td><td>Math 5 (LinAlg), Phys 41, CS 10B or Engr 45</td><td>&mdash;</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>AP Scholar with Distinction &bull; National Merit Commended</h3>
-      <div class="meta">Tech High School &bull; Graduated Top 10 &bull; Golden State Seal Merit Diploma</div>
-      <div class="ap-grid">
-        <div class="ap-item">Calculus AB <span class="score score-5">5</span></div>
-        <div class="ap-item">English Lit <span class="score score-5">5</span></div>
-        <div class="ap-item">Macroeconomics <span class="score score-5">5</span></div>
-        <div class="ap-item">US Gov &amp; Politics <span class="score score-5">5</span></div>
-        <div class="ap-item">Biology <span class="score score-5">5</span></div>
-        <div class="ap-item">English Lang <span class="score score-4">4</span></div>
-        <div class="ap-item">Statistics <span class="score score-4">4</span></div>
-        <div class="ap-item">CS Principles <span class="score score-4">4</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="projects">
-  <div class="container">
-    <h2>Projects</h2>
-    <div class="card">
-      <h3>Baja SAE &bull; Simulations Interest</h3>
-      <div class="meta">SRJC Baja SAE Club &bull; Joining Summer 2026</div>
-      <p>Getting involved with the SRJC Baja SAE team. They design, build, and race an off-road vehicle each year. I'm aiming for the Simulations subteam, working with FEA and CFD tools to validate designs before anything gets cut or welded.</p>
-      <div class="tags"><span>FEA</span><span>CFD</span><span>ANSYS</span><span>Altair</span></div>
-      <div class="links"><a href="https://srjcsaeclub.org">Team Site &nearr;</a></div>
-    </div>
-    <div class="card">
-      <h3>Project Pigeon &bull; Wildfire Detection UAV</h3>
-      <div class="meta">The Engineering Club (TEC), SRJC &bull; Sep 2025 &ndash; Spring 2026</div>
-      <p>Built a fixed-wing UAV for wildfire detection. 1.5m wingspan, NACA4412 airfoil, V-tail, ArduPilot flight controller. Airframe is LW-PLA with carbon spars. I handled design docs, BOM management, and ArduPlane tuning.</p>
-      <div class="tags"><span>UAV Design</span><span>Mission Planner</span><span>3D Printing</span></div>
-    </div>
-    <div class="card">
-      <h3>TEC Treasurer &bull; Club Finance Management</h3>
-      <div class="meta">The Engineering Club at SRJC &bull; Spring 2026 &ndash; Present</div>
-      <p>Co-treasurer with Kai Montalbano. We manage two accounts: the Club Trust Account ($1,004) and the Engineering Student Enrichment Fund ($10,000). Handle reimbursements, purchase approvals, and work with SRJC Student Life and the SRJC Foundation.</p>
-      <div class="tags"><span>Budget Mgmt</span><span>Reimbursement</span><span>Student Gov</span></div>
-    </div>
-    <div class="card">
-      <h3>CmdPal Extension Suite</h3>
-      <div class="meta">github.com/dante32683/cmdpal-extension-suite &bull; C# / .NET</div>
-      <p>15+ PowerToys Command Palette extensions ported from my old Raycast suite. ActionCenter, TimeDateDock, MediaControls, ImageEditor, TextTools, Notes, Clipboard, DevToolbox, and more. Uses a fork of Microsoft/PowerToys for the SDK.</p>
-      <div class="tags"><span>C#</span><span>.NET</span><span>WinUI</span><span>PowerToys</span></div>
-      <div class="links"><a href="https://github.com/dante32683/cmdpal-extension-suite">View on GitHub &nearr;</a></div>
-    </div>
-    <div class="card">
-      <h3>AHK Scripting &bull; Windows Automation</h3>
-      <div class="meta">github.com/dante32683/ahk-scripting &bull; AutoHotkey v2</div>
-      <p>Daily-driver AHK suite: CapsLock hotkey layer, window tiling (native and PowerToys), virtual desktop manager, camera toggle, autocorrect. Runs on both my laptop and desktop.</p>
-      <div class="tags"><span>AutoHotkey v2</span><span>Windows Automation</span><span>Desktop Mgmt</span></div>
-      <div class="links"><a href="https://github.com/dante32683/ahk-scripting">View on GitHub &nearr;</a></div>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="container">
-    <h2>Experience</h2>
-    <div class="card">
-      <h3>STEM Lab Assistant</h3>
-      <div class="meta">SRJC STEM Success Center &bull; Oct 2025 &ndash; Present</div>
-      <p>Tutoring and lab support in chemistry, math, physics, and intro programming. Run by Ann Schott, the STEM Center coordinator.</p>
-    </div>
-  </div>
-</section>
-<section id="skills">
-  <div class="container">
-    <h2>Skills &amp; Tools</h2>
-    <div class="skills-grid">
-      <div class="skill-item">C++ <span class="cat">Programming</span></div>
-      <div class="skill-item">C# / .NET <span class="cat">Development</span></div>
-      <div class="skill-item">HTML/CSS/JS <span class="cat">Web</span></div>
-      <div class="skill-item">AutoHotkey v2 <span class="cat">Automation</span></div>
-      <div class="skill-item">Microsoft Excel <span class="cat">Analysis</span></div>
-      <div class="skill-item">Git / GitHub <span class="cat">Version Control</span></div>
-    </div>
-    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);"><strong>Learning:</strong> Python, MATLAB, ANSYS, AutoCAD, 3D Printing, Revit, Rhino+Grasshopper, Parsec for remote workstation access.</p>
-  </div>
-</section>
-<section id="contact">
-  <div class="container">
-    <h2>Connect</h2>
-    <div class="card" style="text-align: center;">
-      <p style="margin-bottom: 1rem;">Always happy to connect with other engineering students, industry folks, or anyone into computational civil engineering and student projects.</p>
-      <div class="hero-links" style="justify-content: center;">
-        <a href="https://github.com/dante32683" class="secondary">GitHub</a>
-        <a href="https://www.linkedin.com/in/dante-martin-722763279/" class="secondary">LinkedIn</a>
-        <a href="mailto:dziadymartin@gmail.com" class="secondary">Email</a>
-      </div>
-      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">Santa Rosa, CA &bull; Looking for Summer 2027 internships</p>
-    </div>
-  </div>
-</section>
-<footer>
-  <div class="container">
-    <p>&copy; 2026 Dante Martin</p>
-    <p><a href="https://github.com/dante32683">Dante Martin</a> &bull; <a href="https://dante-martin.com">dante-martin.com</a></p>
-    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Santa Rosa, CA</p>
-  </div>
-</footer>
-<script>
-  (function() {
-    const stored = localStorage.getItem('theme');
-    const html = document.documentElement;
-    if (stored === 'dark') { html.classList.add('dark'); }
-    else if (stored === 'light') { html.classList.add('light'); }
-    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) { html.classList.add('dark'); }
-    const btn = document.getElementById('themeToggle');
-    function updateBtn() {
-      btn.textContent = html.classList.contains('dark') ? '☀️' : '🌙';
+  <!-- The page is rendered by the script below from the DATA object in
+       data.js. You should not need to edit this file to change content —
+       edit data.js. Edit here only to change page STRUCTURE. -->
+  <header id="header"></header>
+  <main id="main"></main>
+  <footer id="footer"></footer>
+
+  <script src="data.js"></script>
+  <script>
+  /* ---------------------------------------------------------------------
+     Renderer. Small on purpose. It turns the DATA object into HTML.
+     Helpers:
+       el(tag, className, html)  -> create an element
+       esc(text)                 -> escape text so it is safe to insert
+     Each section function appends to its container. A missing or empty
+     field is simply skipped, so a half-filled entry never breaks the page.
+     --------------------------------------------------------------------- */
+
+  const esc = (s) => String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  function el(tag, className, html) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (html != null) node.innerHTML = html;
+    return node;
+  }
+
+  // Build an <a> from a {label, href} link object, or return null.
+  function linkEl(link, className) {
+    if (!link || !link.href || !link.label) return null;
+    const a = el("a", null, esc(link.label));
+    a.href = link.href;
+    if (/^https?:/.test(link.href)) { a.target = "_blank"; a.rel = "noopener"; }
+    const wrap = el("span", className);
+    wrap.appendChild(a);
+    return wrap;
+  }
+
+  // One project/experience entry.
+  function entryEl(item) {
+    const wrap = el("article", "entry");
+    if (item.title) wrap.appendChild(el("h3", null, esc(item.title)));
+    const metaBits = [item.org, item.dates].filter(Boolean).map(esc);
+    if (metaBits.length) wrap.appendChild(el("div", "meta", metaBits.join(" · ")));
+    if (item.body) wrap.appendChild(el("p", null, esc(item.body)));
+    const more = linkEl(item.link, "more");
+    if (more) wrap.appendChild(more);
+    return wrap;
+  }
+
+  // A titled section wrapping a list of entries; skipped if the list is empty.
+  function entrySection(title, items) {
+    if (!items || !items.length) return null;
+    const sec = el("section");
+    sec.appendChild(el("h2", null, esc(title)));
+    items.forEach((it) => sec.appendChild(entryEl(it)));
+    return sec;
+  }
+
+  function render(data) {
+    document.title = data.name;
+
+    /* Header */
+    const h = document.getElementById("header");
+    h.appendChild(el("h1", null, esc(data.name)));
+    if (data.tagline)  h.appendChild(el("p", "tagline", esc(data.tagline)));
+    if (data.location) h.appendChild(el("p", "location", esc(data.location)));
+    if (data.intro)    h.appendChild(el("p", "intro", esc(data.intro)));
+    if (data.links && data.links.length) {
+      const links = el("nav", "links");
+      data.links.forEach((l) => {
+        if (!l.href || !l.label) return;
+        const a = el("a", null, esc(l.label));
+        a.href = l.href;
+        if (/^https?:/.test(l.href)) { a.target = "_blank"; a.rel = "noopener"; }
+        links.appendChild(a);
+      });
+      h.appendChild(links);
     }
-    updateBtn();
-    btn.addEventListener('click', function() {
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        html.classList.add('light');
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.classList.remove('light');
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+
+    /* Main sections, in display order. */
+    const main = document.getElementById("main");
+    const append = (node) => { if (node) main.appendChild(node); };
+
+    append(entrySection("Projects", data.projects));
+    append(entrySection("Experience", data.experience));
+
+    /* Education */
+    if (data.education && data.education.school) {
+      const edu = data.education;
+      const sec = el("section", "edu");
+      sec.appendChild(el("h2", null, "Education"));
+      sec.appendChild(el("h3", null, esc(edu.school)));
+      if (edu.detail) sec.appendChild(el("p", null, esc(edu.detail)));
+      if (edu.coursework && edu.coursework.length) {
+        const table = el("table", "coursework");
+        edu.coursework.forEach((row) => {
+          const tr = el("tr");
+          tr.appendChild(el("th", null, esc(row.term)));
+          tr.appendChild(el("td", null, esc(row.courses)));
+          table.appendChild(tr);
+        });
+        sec.appendChild(table);
       }
-      updateBtn();
-    });
-  })();
-</script>
+      main.appendChild(sec);
+    }
+
+    /* Honors */
+    if (data.honors && data.honors.length) {
+      const sec = el("section");
+      sec.appendChild(el("h2", null, "Honors"));
+      const ul = el("ul", "plainlist");
+      data.honors.forEach((line) => ul.appendChild(el("li", null, esc(line))));
+      sec.appendChild(ul);
+      main.appendChild(sec);
+    }
+
+    /* Skills */
+    if (data.skills) {
+      const sec = el("section");
+      sec.appendChild(el("h2", null, "Skills"));
+      const groups = [
+        ["Working with", data.skills.working],
+        ["Learning",     data.skills.learning],
+      ];
+      groups.forEach(([label, items]) => {
+        if (!items || !items.length) return;
+        const g = el("div", "skillset");
+        g.appendChild(el("div", "label", esc(label)));
+        g.appendChild(el("div", "items", esc(items.join(", "))));
+        sec.appendChild(g);
+      });
+      main.appendChild(sec);
+    }
+
+    /* Footer */
+    const year = new Date().getFullYear();
+    document.getElementById("footer").appendChild(
+      el("p", null, "© " + year + " " + esc(data.name)));
+  }
+
+  render(DATA);
+  </script>
 </body>
 </html>

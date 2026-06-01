@@ -1,131 +1,113 @@
-# dante-martin.com — Standards
+# Standards — dante-martin.com
 
-This file describes the conventions, structure, and patterns used on dante-martin.com. Any AI agent editing the site should follow these rules.
+Read this whole file before you change anything. It is short on purpose.
 
----
-
-## Structure
-
-Single-page HTML site. Everything lives in `index.html` — no build step, no framework, no separate CSS/JS files.
-
-### Page sections (in order)
-
-1. **Nav** — sticky bar, "Dante" brand on left, section links on right
-2. **Hero** — tagline, h1 name, subtitle, CTA links
-3. **About / Education** — stats row, SRJC course table, AP exam badges
-4. **Projects** — card grid, each with h3, meta line, description, tags, optional links
-5. **Experience** — card section for jobs/roles
-6. **Skills** — alphabetized grid of skill pills with category labels
-7. **Contact** — centered card with GitHub, LinkedIn, Email links
-8. **Footer** — minimal credit line
+This site is a single static page hosted on GitHub Pages. There is **no build
+step**: the files in this repo are exactly what the browser loads. If you edit a
+file and push, the live site changes.
 
 ---
 
-## Visual conventions
+## The one rule that matters most
 
-### Colors (CSS variables, light & dark mode)
+**To change what the site SAYS, edit `data.js` and nothing else.**
 
-| Variable | Light | Dark |
-|----------|-------|------|
-| `--bg` | #fafafa | #0f172a |
-| `--surface` | #ffffff | #1e293b |
-| `--text` | #1a1a2e | #e2e8f0 |
-| `--text-muted` | #555 | #94a3b8 |
-| `--accent` | #2563eb | #60a5fa |
-| `--accent-light` | #dbeafe | #1e3a5f |
-| `--border` | #e5e7eb | #334155 |
+`data.js` holds all the content as one object called `DATA`. The page builds
+itself from that object. You almost never need to open the other files.
 
-### Typography
+To add an item (a project, a course, a skill):
 
-- Font stack: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`
-- h1 hero: 2.75rem, 800 weight, -0.02em letter-spacing
-- Section h2: 1.5rem, 700 weight
-- Card h3: 1.1rem, 600 weight
-- Body: 0.95rem, 1.6 line-height
-- Meta / muted text: 0.85rem, `--text-muted`
+1. Open `data.js`.
+2. Find the right list.
+3. Copy an entry that is already there.
+4. Paste it directly below the one you copied. **Newest goes first.**
+5. Edit the text in your pasted copy.
+6. Make sure it still ends with a comma.
 
-### Spacing
-
-- Section padding: 3rem 0 (5rem top for hero)
-- Card padding: 1.5rem
-- Max content width: 800px
-- Gap between cards: 1.25rem
-- Tagline pill: 0.35rem 1rem, rounded-full (9999px)
-
-### Dark mode
-
-Dark mode is handled via `@media (prefers-color-scheme: dark)` — no toggle, respects system preference.
+If a field does not apply to your new item, **delete that whole line**. Empty
+fields are skipped — they will not show a blank label or break the layout.
 
 ---
 
-## Adding projects
+## The files, and when to touch each
 
-Each project is a `.card` div inside `#projects`. Template:
+| File | What it is | Touch it when… |
+|------|------------|----------------|
+| `data.js` | All content. | You change any words, add/remove an entry. **This is the normal one.** |
+| `styles.css` | All styling. | You want to change colours, spacing, fonts. |
+| `index.html` | Page shell + the renderer that turns `DATA` into HTML. | You add a brand-new *kind* of section. Rare. |
+| `STANDARDS.md` | This file. | The rules change. |
+| `CNAME` | The custom domain. | **Never**, unless the domain changes. |
 
-```html
-<div class="card">
-  <h3>Project Name &mdash; Subtitle</h3>
-  <div class="meta">Organization &bull; Date Range</div>
-  <p>1–2 sentence description covering what, why, and your role.</p>
-  <div class="tags">
-    <span>Tag1</span><span>Tag2</span><span>Tag3</span>
-  </div>
-  <div class="links">
-    <a href="https://...">Link Text &nearr;</a>
-  </div>
-</div>
+Do not move content into `index.html`. Do not add a second stylesheet. Do not
+add a framework, a CDN link, a font import, or a build tool. The whole point is
+that one person with a text editor can maintain this.
+
+---
+
+## Recipes
+
+**Add a project** — in `data.js`, copy the first entry of `projects` and edit:
+
+```js
+{
+  title: "Short name — what it is",
+  org: "Where it happened",
+  dates: "Sep 2026 – present",
+  body: "One paragraph. What it is, the concrete details, what YOU did.",
+  link: { label: "Source", href: "https://..." },   // delete this line if none
+},
 ```
 
-Rules:
-- Use `&mdash;` between project name and subtitle
-- Use `&bull;` between items in the meta line
-- Tags are lowercase, single words where possible
-- External links get `&nearr;` after the text
-- No more than 4 tags per project
+**Add experience** — same shape, in the `experience` list (no `link` needed).
 
----
+**Add a course** — add a row to `education.coursework`. Oldest stays at the top,
+newest at the bottom, so it reads as a timeline:
 
-## Adding skills
-
-Add to the `.skills-grid` inside `#skills`. Each skill:
-
-```html
-<div class="skill-item">Skill Name <span class="cat">Category</span></div>
+```js
+{ term: "Fall 2026", courses: "Phys 42, Math 2, Engr 34" },
 ```
 
-Categories are single-word, uppercase in the UI. Keep skills alphabetized. Tools being learned go in the "Learning" paragraph below the grid, not in the grid itself.
+**Add an honor** — add one plain string to the `honors` list.
+
+**Add a skill** — add a string to `skills.working` (things you actually use) or
+`skills.learning` (things you are picking up). Be honest about which list.
+
+**Re-colour the site** — in `styles.css`, change the variables in the `:root`
+block at the top. You should not need to edit anything below that block for a
+palette change. Dark-mode colours are in the `@media (prefers-color-scheme:
+dark)` block right under it — update both.
 
 ---
 
-## Adding AP exams
+## Writing style — this is what keeps the site from sounding AI-generated
 
-Add to the `.ap-grid` inside the AP card. Each entry:
+The fastest way to make this site look fake is to write like a chatbot. Don't.
 
-```html
-<div class="ap-item">Exam Name <span class="score score-5">5</span></div>
-```
+- **Be specific. Use numbers and names.** "1.5 m wingspan, NACA 4412 airfoil"
+  beats "an innovative aerodynamic design." "$10,000 enrichment fund" beats
+  "significant club funds."
+- **Say what YOU did**, not what the team or the field does in general.
+- **No emoji. Anywhere.** Not in content, not in headings.
+- **Ban these words and their cousins:** passionate, innovative, cutting-edge,
+  leverage, synergy, seamless, robust, dynamic, "the intersection of",
+  "I'm excited to", "always eager to learn", "wearing many hats."
+- **One paragraph per entry.** If you need two, the entry is doing too much.
+- **Plain verbs.** "I wrote the design docs." "We run two accounts." Not
+  "spearheaded" or "orchestrated."
+- **No exclamation marks.** No rhetorical questions.
 
-Use `score-5` (green) for score 5, `score-4` (yellow) for score 4. Scores below 4 are not shown. Exams are sorted alphabetically.
-
----
-
-## Stats row
-
-The stats row has exactly 4 items. Format:
-
-```html
-<div class="stat"><div class="num">Value</div><div class="label">Label</div></div>
-```
-
-Values should be short (under 6 chars). Labels are lowercase single words. Avoid "$" in numbers where possible. Keep to 4 items max — any more dilutes the visual impact.
+If a sentence could appear on anyone's portfolio, it is too vague. Cut it or
+make it concrete.
 
 ---
 
-## General rules
+## Hard limits
 
-- **No external dependencies** — no CDN links, no JS libraries, no fonts. Everything is inline.
-- **No build step** — the file served is the file in the repo. No preprocessing.
-- **Always validate dark mode** — any new element must look right in both themes.
-- **Keep index.html under 25KB** — this is a portfolio, not a web app.
-- **No tracking, analytics, or cookies.**
-- **AI agents editing this file should load STANDARDS.md first** before making changes to index.html.
+- No external requests: no CDNs, no web fonts, no analytics, no trackers.
+- No JavaScript libraries. The renderer in `index.html` is plain JS and stays
+  that way.
+- Keep each entry's `body` to roughly 45 words or less.
+- Test before you push: open `index.html` in a browser and confirm it renders
+  in both light and dark mode (toggle your OS theme), with no blank labels and
+  no console errors.
