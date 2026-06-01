@@ -7,6 +7,14 @@
   <title>Dante Martin</title>
   <meta name="description" content="Dante Martin - civil engineering student at Santa Rosa Junior College.">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Apply a saved theme choice before paint, to avoid a flash. No saved
+    // value means follow the operating system (handled in CSS).
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
 </head>
 <body>
   <!-- The page is rendered by the script below from the DATA object in
@@ -166,6 +174,10 @@
       sidebar.appendChild(contact);
     }
 
+    // Theme toggle. Defaults to the OS setting; clicking sets an explicit
+    // choice and remembers it. The label names what the click will do.
+    buildThemeToggle(sidebar);
+
     /* Footer */
     const year = new Date().getFullYear();
     document.getElementById("footer").appendChild(
@@ -173,6 +185,30 @@
 
     /* ---- Scroll-spy: highlight the nav item for the visible section. -- */
     setupScrollSpy(navTargets);
+  }
+
+  // Current theme: an explicit choice if set, otherwise the OS preference.
+  function effectiveTheme() {
+    const explicit = document.documentElement.getAttribute("data-theme");
+    if (explicit) return explicit;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark" : "light";
+  }
+
+  function buildThemeToggle(sidebar) {
+    const btn = el("button", "theme-toggle");
+    btn.type = "button";
+    const relabel = () => {
+      btn.textContent = effectiveTheme() === "dark" ? "Use light theme" : "Use dark theme";
+    };
+    relabel();
+    btn.addEventListener("click", () => {
+      const next = effectiveTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      relabel();
+    });
+    sidebar.appendChild(btn);
   }
 
   function setupScrollSpy(targets) {
