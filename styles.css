@@ -19,7 +19,7 @@
   --ink:     #17191c;   /* 30% - body text                */
   --muted:   #5b6066;   /* secondary text                 */
   --faint:   #d9d9d4;   /* hairlines                      */
-  --accent:  #c0322c;   /* 10% - links, rules, active nav (blue alt: #1f5fbf) */
+  --accent:  #227c4b;   /* 10% - links, rules, active nav (green) */
 
   --sidebar: 15rem;     /* width of the left column       */
   --page:    66rem;     /* total content width            */
@@ -31,11 +31,11 @@
    the toggle. Keep the two value lists below identical. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #e35d57;
+    --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #e35d57;  /* blue alt: #6aa3ff */
+  --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788;
 }
 
 /* --- RESET ------------------------------------------------------------- */
@@ -62,6 +62,7 @@ a { color: var(--accent); text-decoration: none; }
   grid-template-columns: var(--sidebar) 1fr;
   gap: 4rem;
   align-items: start;
+  position: relative;
 }
 
 /* --- SIDEBAR (sticky) -------------------------------------------------- */
@@ -75,23 +76,43 @@ a { color: var(--accent); text-decoration: none; }
 .nav { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.1rem; }
 .nav a {
   color: var(--muted); font-size: 0.9rem; font-weight: 500;
-  padding: 0.3rem 0; border-left: 2px solid transparent; padding-left: 0.75rem;
-  margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s;
+  padding: 0.3rem 0.75rem; border-left: 2px solid transparent;
+  margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+  border-radius: 4px;
 }
-.nav a:hover { color: var(--ink); }
-.nav a.active { color: var(--accent); border-left-color: var(--accent); }
+.nav a:hover { color: var(--accent); background-color: var(--faint); }
+.nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
 
 /* Contact */
 .contact { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-size: 0.9rem; }
-.contact a { border-bottom: 1px solid var(--faint); width: fit-content; padding-bottom: 1px; }
+.contact a { border-bottom: 1px solid var(--faint); width: fit-content; padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s; }
 .contact a:hover { border-bottom-color: var(--accent); }
 
-/* Theme toggle: a plain text button, styled like the contact links. */
-.theme-toggle { margin-top: 1.75rem; padding: 0 0 1px; background: none; border: none;
-  border-bottom: 1px solid var(--faint); cursor: pointer; font: inherit; font-size: 0.85rem;
-  color: var(--muted); width: fit-content; }
-.theme-toggle:hover { color: var(--accent); border-bottom-color: var(--accent); }
+/* Theme toggle: a clean, minimal icon button in the top right. */
+.theme-toggle {
+  position: absolute;
+  top: 3.5rem;
+  right: 2rem;
+  background: none;
+  border: 1px solid var(--faint);
+  border-radius: 4px;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  color: var(--muted);
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--faint);
+}
 
 /* --- CONTENT ----------------------------------------------------------- */
 .content { padding: 3.5rem 0 4rem; max-width: 42rem; }
@@ -114,7 +135,8 @@ h2 {
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 .entry p { margin-top: 0.55rem; color: var(--ink); }
 .entry .more { font-size: 0.85rem; margin-top: 0.5rem; }
-.entry .more a { border-bottom: 1px solid var(--faint); }
+.entry .more a { border-bottom: 1px solid var(--faint);
+  transition: color 0.15s, border-color 0.15s; }
 .entry .more a:hover { border-bottom-color: var(--accent); }
 
 /* --- EDUCATION --------------------------------------------------------- */
@@ -146,8 +168,20 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
   .sidebar { position: static; padding: 3rem 0 0; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
-  .nav a { border-left: none; padding-left: 0; margin-left: 0; }
-  .nav a.active { border-left: none; }
+  .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
+  .nav a.active { border-left: none; background-color: var(--faint); font-weight: 600; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
+  .theme-toggle { top: 3rem; right: 1.5rem; }
+}
+
+/* --- PRINT STYLES ------------------------------------------------------ */
+@media print {
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .layout { display: block; padding: 0; position: static; }
+  .sidebar { position: static; padding: 0 0 2rem; border-bottom: 1px solid var(--faint); }
+  .nav, .theme-toggle { display: none; }
+  .content { padding: 2rem 0 0; max-width: none; }
+  section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
+  section:first-of-type { border-top: none; }
 }

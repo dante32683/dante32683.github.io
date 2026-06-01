@@ -175,8 +175,8 @@
     }
 
     // Theme toggle. Defaults to the OS setting; clicking sets an explicit
-    // choice and remembers it. The label names what the click will do.
-    buildThemeToggle(sidebar);
+    // choice and remembers it.
+    buildThemeToggle(document.querySelector(".layout"));
 
     /* Footer */
     const year = new Date().getFullYear();
@@ -195,11 +195,15 @@
       ? "dark" : "light";
   }
 
-  function buildThemeToggle(sidebar) {
+  function buildThemeToggle(container) {
     const btn = el("button", "theme-toggle");
     btn.type = "button";
     const relabel = () => {
-      btn.textContent = effectiveTheme() === "dark" ? "Use light theme" : "Use dark theme";
+      const isDark = effectiveTheme() === "dark";
+      btn.innerHTML = isDark ? "&#9738;" : "&#9789;"; // ☼ and ☾
+      const nextTheme = isDark ? "light" : "dark";
+      btn.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
+      btn.title = "Switch to " + nextTheme + " theme";
     };
     relabel();
     btn.addEventListener("click", () => {
@@ -208,7 +212,14 @@
       localStorage.setItem("theme", next);
       relabel();
     });
-    sidebar.appendChild(btn);
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (!localStorage.getItem("theme")) {
+          relabel();
+        }
+      });
+    }
+    container.appendChild(btn);
   }
 
   function setupScrollSpy(targets) {
