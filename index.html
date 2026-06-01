@@ -176,7 +176,7 @@
 
     // Theme toggle. Defaults to the OS setting; clicking sets an explicit
     // choice and remembers it.
-    buildThemeToggle(document.querySelector(".layout"));
+    buildThemeToggle(sidebar);
 
     /* Footer */
     const year = new Date().getFullYear();
@@ -200,7 +200,7 @@
     btn.type = "button";
     const relabel = () => {
       const isDark = effectiveTheme() === "dark";
-      btn.innerHTML = isDark ? "&#9738;" : "&#9789;"; // ☼ and ☾
+      btn.textContent = isDark ? "\u263C" : "\u263E"; // ☼ and ☾
       const nextTheme = isDark ? "light" : "dark";
       btn.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
       btn.title = "Switch to " + nextTheme + " theme";
@@ -219,7 +219,7 @@
         }
       });
     }
-    container.appendChild(btn);
+    container.insertBefore(btn, container.firstChild);
   }
 
   function setupScrollSpy(targets) {
