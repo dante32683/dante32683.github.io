@@ -19,7 +19,7 @@
   --ink:     #17191c;   /* 30% - body text                */
   --muted:   #5b6066;   /* secondary text                 */
   --faint:   #d9d9d4;   /* hairlines                      */
-  --accent:  #1f6f43;   /* 10% - links, rules, active nav */
+  --accent:  #c0322c;   /* 10% - links, rules, active nav (blue alt: #1f5fbf) */
 
   --sidebar: 15rem;     /* width of the left column       */
   --page:    66rem;     /* total content width            */
@@ -32,7 +32,7 @@
     --ink:    #e8e9ea;
     --muted:  #9aa0a6;
     --faint:  #2c2f34;
-    --accent: #5bbd86;
+    --accent: #e35d57;   /* blue alt: #6aa3ff */
   }
 }
 
