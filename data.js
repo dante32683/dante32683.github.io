@@ -60,6 +60,7 @@ const DATA = {
       body: "SRJC's Baja team designs, builds, and races an off-road car every " +
         "year. I am joining the simulations subteam to run FEA and CFD on parts " +
         "before anyone cuts or welds them.",
+      link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
     },
     {
       title: "TEC Treasurer",
