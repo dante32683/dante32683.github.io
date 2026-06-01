@@ -44,42 +44,44 @@ const DATA = {
       title: "Project Pigeon",
       subtitle: "Wildfire-detection UAV",   // optional; shown lighter after the title
       org: "The Engineering Club, SRJC",
-      dates: "Sep 2025 to present",
+      dates: "Sep 2025 to May 2026",
       // One paragraph. What it is, the concrete specs, what you did.
-      body: "A fixed-wing UAV meant to spot wildfires early. 1.5 m wingspan, " +
-        "NACA 4412 airfoil, V-tail, ArduPilot flight controller. Airframe is " +
-        "LW-PLA with carbon spars. I wrote the design docs, ran the bill of " +
-        "materials, and tuned ArduPlane.",
+      body: "A fixed-wing UAV designed to spot wildfires. 1.5 m wingspan, " +
+        "NACA 4412 airfoil, V-tail, ArduPilot flight controller. Project " +
+        "concluded in the prototype phase. I co-wrote the design documents " +
+        "and compiled the bill of materials.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
     {
       title: "Baja SAE",
-      subtitle: "Simulations subteam",
+      subtitle: "Management & Optimization",
       org: "SRJC Baja SAE",
       dates: "joining summer 2026",
-      body: "SRJC's Baja team designs, builds, and races an off-road car every " +
-        "year. I am joining the simulations subteam to run FEA and CFD on parts " +
-        "before anyone cuts or welds them.",
+      body: "Joining the off-road racing team to analyze workflow organization " +
+        "and member allocation. I will focus on optimizing team operations " +
+        "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
+        "alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
     },
     {
       title: "TEC Treasurer",
       subtitle: "Club finances",
       org: "The Engineering Club, SRJC",
-      dates: "spring 2026 to present",
-      body: "Co-treasurer with Kai Montalbano. We run two accounts, a $1,004 " +
-        "trust account and a $10,000 enrichment fund, handling reimbursements " +
-        "and purchase approvals through SRJC Student Life and the Foundation.",
+      dates: "Jan 2026 to May 2026",
+      body: "Served as co-treasurer with Kai Montalbano for the spring 2026 " +
+        "term. We managed two club accounts, a $1,004 trust account and a " +
+        "$10,000 enrichment fund, handling reimbursements and purchase " +
+        "approvals through the SRJC Student Life department.",
     },
     {
       title: "CmdPal Extension Suite",
       subtitle: "C# / .NET",
       org: "Personal project",
       dates: "2026",
-      body: "Fifteen-plus extensions for the PowerToys Command Palette, ported " +
-        "from an older Raycast set: an action center, a clock and timer dock, " +
-        "media controls, image and text tools, notes, clipboard history, and a " +
-        "developer toolbox. Built against a fork of Microsoft's PowerToys SDK.",
+      body: "Ten extensions for the PowerToys Command Palette, ported " +
+        "from an older Raycast set: an action center, media controls, notes, " +
+        "and a developer toolbox. The projects are hosted on GitHub and " +
+        "built manually against Microsoft's PowerToys SDK.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
     },
     {
@@ -123,6 +125,7 @@ const DATA = {
 
   /* HONORS - plain lines, no scores or badges, no em dashes. ------------- */
   honors: [
+    "Selected as a recipient of the 2025-2026 SRJC Civil Engineering Transfer Scholarship by the ASCE Redwood Empire Branch",
     "AP Scholar with Distinction, and National Merit Commended",
     "Graduated top ten of class with a Golden State Seal Merit Diploma, Tech High School",
     "Eight AP exams, six scored 5",
@@ -131,7 +134,7 @@ const DATA = {
   /* SKILLS - grouped. Put what you actually use under "working"; put what
      you are picking up under "learning". Be honest about the split. ------ */
   skills: {
-    working:  ["C++", "C# / .NET", "HTML, CSS, JavaScript", "AutoHotkey v2", "Excel", "Git"],
-    learning: ["Python", "MATLAB", "ANSYS", "AutoCAD", "Revit", "Rhino + Grasshopper", "3D printing"],
+    working:  ["C++", "C# / .NET", "HTML / CSS", "AutoHotkey v2", "Excel", "Git"],
+    learning: ["JavaScript", "Python", "MATLAB", "ANSYS", "AutoCAD", "Revit", "3D printing"],
   },
 };
