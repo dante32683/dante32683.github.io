@@ -155,14 +155,71 @@ h2 {
 
 /* --- HONORS & SKILLS --------------------------------------------------- */
 .plainlist { list-style: none; }
-.plainlist li { padding-left: 1.1rem; position: relative; margin-bottom: 0.4rem; }
-.plainlist li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.plainlist li {
+  padding-left: 1rem;
+  border-left: 2px solid var(--faint);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  transition: border-color 0.15s;
+}
+.plainlist li:hover {
+  border-left-color: var(--accent);
+}
 
-.skillset { margin-bottom: 1.1rem; }
+.skillset { margin-bottom: 1.5rem; }
 .skillset:last-child { margin-bottom: 0; }
 .skillset .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
   text-transform: uppercase; color: var(--muted); }
-.skillset .items { margin-top: 0.3rem; }
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+.skill-tag {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* "Working with" tags (active accent tint) */
+.skill-tag.working {
+  background-color: rgba(34, 124, 75, 0.08);
+  border-color: rgba(34, 124, 75, 0.15);
+  color: var(--accent);
+}
+.skill-tag.working:hover {
+  background-color: rgba(34, 124, 75, 0.12);
+  border-color: var(--accent);
+}
+
+/* "Learning" tags (neutral gray tint) */
+.skill-tag.learning {
+  background-color: var(--faint);
+  border-color: var(--faint);
+  color: var(--muted);
+}
+.skill-tag.learning:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+
+/* Dark theme overrides for tags */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .skill-tag.working {
+    background-color: rgba(82, 183, 136, 0.1);
+    border-color: rgba(82, 183, 136, 0.2);
+  }
+  :root:not([data-theme="light"]) .skill-tag.working:hover {
+    background-color: rgba(82, 183, 136, 0.15);
+  }
+}
+:root[data-theme="dark"] .skill-tag.working {
+  background-color: rgba(82, 183, 136, 0.1);
+  border-color: rgba(82, 183, 136, 0.2);
+}
+:root[data-theme="dark"] .skill-tag.working:hover {
+  background-color: rgba(82, 183, 136, 0.15);
+}
 
 /* --- FOOTER ------------------------------------------------------------ */
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);

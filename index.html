@@ -152,12 +152,16 @@
     if (data.skills) {
       const sec = openSection("skills", "Skills");
       sec.appendChild(el("h2", null, "Skills"));
-      [["Working with", data.skills.working], ["Learning", data.skills.learning]]
-        .forEach(([label, items]) => {
+      [["Working with", data.skills.working, "working"], ["Learning", data.skills.learning, "learning"]]
+        .forEach(([label, items, key]) => {
           if (!items || !items.length) return;
           const g = el("div", "skillset");
           g.appendChild(el("div", "label", esc(label)));
-          g.appendChild(el("div", "items", esc(items.join(", "))));
+          const list = el("div", "skills-list");
+          items.forEach((item) => {
+            list.appendChild(el("span", "skill-tag " + key, esc(item)));
+          });
+          g.appendChild(list);
           sec.appendChild(g);
         });
       content.appendChild(sec);
