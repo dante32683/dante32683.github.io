@@ -7,6 +7,14 @@
   <title>Dante Martin</title>
   <meta name="description" content="Dante Martin - civil engineering student at Santa Rosa Junior College.">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
+  
+  <!-- SEO & Open Graph Preview Tags -->
+  <meta property="og:title" content="Dante Martin - Civil Engineering Portfolio">
+  <meta property="og:description" content="Civil engineering student at Santa Rosa Junior College. Student projects, automation tools, and academic coursework.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dante-martin.com">
+
   <script>
     // Apply a saved theme choice before paint, to avoid a flash. No saved
     // value means follow the operating system (handled in CSS).
@@ -49,7 +57,7 @@
   function anchor(href, text, opts) {
     const a = el("a", null, esc(text));
     a.href = href;
-    if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener"; }
+    if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
     if (opts && opts.className) a.className = opts.className;
     return a;
   }
