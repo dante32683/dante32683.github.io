@@ -36,7 +36,10 @@ fields are skipped - they will not show a blank label or break the layout.
 | `data.js` | All content. | You change any words, add/remove an entry. **This is the normal one.** |
 | `styles.css` | All styling. | You want to change colours, spacing, fonts. |
 | `index.html` | Page shell + the renderer that turns `DATA` into HTML. | You add a brand-new *kind* of section. Rare. |
-| `STANDARDS.md` | This file. | The rules change. |
+| `STANDARDS.md` | General project rules & standards. | The rules change. |
+| `README.md` | Public repository documentation. | You want to update repo guidelines or project overview. |
+| `.gitignore` | Git file exclusions. | You need to exclude new temp or IDE files. |
+| `AGENTS.md` | Rules and prompts for AI coding assistants. | You want to adjust instructions for AI agents. |
 | `CNAME` | The custom domain. | **Never**, unless the domain changes. |
 
 Do not move content into `index.html`. Do not add a second stylesheet. Do not
