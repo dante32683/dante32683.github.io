@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Page title and description are set from data.js at load time. -->
+  <!-- Title and description are set from data.js at load time. -->
   <title>Dante Martin</title>
-  <meta name="description" content="Dante Martin — civil engineering student at Santa Rosa Junior College.">
+  <meta name="description" content="Dante Martin - civil engineering student at Santa Rosa Junior College.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- The page is rendered by the script below from the DATA object in
-       data.js. You should not need to edit this file to change content —
-       edit data.js. Edit here only to change page STRUCTURE. -->
-  <header id="header"></header>
-  <main id="main"></main>
-  <footer id="footer"></footer>
+       data.js. To change content, edit data.js, NOT this file. Edit here only
+       to change page STRUCTURE. -->
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content" id="content"></main>
+    <footer id="footer"></footer>
+  </div>
 
   <script src="data.js"></script>
   <script>
   /* ---------------------------------------------------------------------
-     Renderer. Small on purpose. It turns the DATA object into HTML.
-     Helpers:
-       el(tag, className, html)  -> create an element
-       esc(text)                 -> escape text so it is safe to insert
-     Each section function appends to its container. A missing or empty
-     field is simply skipped, so a half-filled entry never breaks the page.
+     Renderer. Small on purpose. It turns the DATA object into HTML, builds
+     the sidebar nav from whichever sections actually have content, and
+     highlights the nav item for the section you are looking at.
+     Helpers: el(tag, class, html) and esc(text). A missing/empty field is
+     skipped, so a half-filled entry never breaks the page.
      --------------------------------------------------------------------- */
 
   const esc = (s) => String(s == null ? "" : s)
@@ -37,70 +38,74 @@
     return node;
   }
 
-  // Build an <a> from a {label, href} link object, or return null.
-  function linkEl(link, className) {
-    if (!link || !link.href || !link.label) return null;
-    const a = el("a", null, esc(link.label));
-    a.href = link.href;
-    if (/^https?:/.test(link.href)) { a.target = "_blank"; a.rel = "noopener"; }
-    const wrap = el("span", className);
-    wrap.appendChild(a);
-    return wrap;
+  function anchor(href, text, opts) {
+    const a = el("a", null, esc(text));
+    a.href = href;
+    if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener"; }
+    if (opts && opts.className) a.className = opts.className;
+    return a;
   }
 
   // One project/experience entry.
   function entryEl(item) {
     const wrap = el("article", "entry");
-    if (item.title) wrap.appendChild(el("h3", null, esc(item.title)));
+    if (item.title) {
+      const h = el("h3", null, esc(item.title));
+      if (item.subtitle) h.appendChild(el("span", "subtitle", esc(item.subtitle)));
+      wrap.appendChild(h);
+    }
     const metaBits = [item.org, item.dates].filter(Boolean).map(esc);
     if (metaBits.length) wrap.appendChild(el("div", "meta", metaBits.join(" · ")));
     if (item.body) wrap.appendChild(el("p", null, esc(item.body)));
-    const more = linkEl(item.link, "more");
-    if (more) wrap.appendChild(more);
+    if (item.link && item.link.href && item.link.label) {
+      const more = el("div", "more");
+      more.appendChild(anchor(item.link.href, item.link.label));
+      wrap.appendChild(more);
+    }
     return wrap;
-  }
-
-  // A titled section wrapping a list of entries; skipped if the list is empty.
-  function entrySection(title, items) {
-    if (!items || !items.length) return null;
-    const sec = el("section");
-    sec.appendChild(el("h2", null, esc(title)));
-    items.forEach((it) => sec.appendChild(entryEl(it)));
-    return sec;
   }
 
   function render(data) {
     document.title = data.name;
 
-    /* Header */
-    const h = document.getElementById("header");
-    h.appendChild(el("h1", null, esc(data.name)));
-    if (data.tagline)  h.appendChild(el("p", "tagline", esc(data.tagline)));
-    if (data.location) h.appendChild(el("p", "location", esc(data.location)));
-    if (data.intro)    h.appendChild(el("p", "intro", esc(data.intro)));
-    if (data.links && data.links.length) {
-      const links = el("nav", "links");
-      data.links.forEach((l) => {
-        if (!l.href || !l.label) return;
-        const a = el("a", null, esc(l.label));
-        a.href = l.href;
-        if (/^https?:/.test(l.href)) { a.target = "_blank"; a.rel = "noopener"; }
-        links.appendChild(a);
-      });
-      h.appendChild(links);
+    const sidebar = document.getElementById("sidebar");
+    const content = document.getElementById("content");
+    const navTargets = []; // {id, label} for the in-page nav
+
+    /* ---- Build content sections first, collecting nav targets. -------- */
+
+    // Helper: start a <section id> and register it in the nav.
+    function openSection(id, navLabel) {
+      const sec = el("section");
+      sec.id = id;
+      navTargets.push({ id: id, label: navLabel });
+      return sec;
     }
 
-    /* Main sections, in display order. */
-    const main = document.getElementById("main");
-    const append = (node) => { if (node) main.appendChild(node); };
+    // Intro paragraph (not a nav target).
+    if (data.intro) content.appendChild(el("p", "intro", esc(data.intro)));
 
-    append(entrySection("Projects", data.projects));
-    append(entrySection("Experience", data.experience));
+    // Projects
+    if (data.projects && data.projects.length) {
+      const sec = openSection("projects", "Projects");
+      sec.appendChild(el("h2", null, "Projects"));
+      data.projects.forEach((p) => sec.appendChild(entryEl(p)));
+      content.appendChild(sec);
+    }
 
-    /* Education */
+    // Experience
+    if (data.experience && data.experience.length) {
+      const sec = openSection("experience", "Experience");
+      sec.appendChild(el("h2", null, "Experience"));
+      data.experience.forEach((p) => sec.appendChild(entryEl(p)));
+      content.appendChild(sec);
+    }
+
+    // Education
     if (data.education && data.education.school) {
       const edu = data.education;
-      const sec = el("section", "edu");
+      const sec = openSection("education", "Education");
+      sec.className = "edu";
       sec.appendChild(el("h2", null, "Education"));
       sec.appendChild(el("h3", null, esc(edu.school)));
       if (edu.detail) sec.appendChild(el("p", null, esc(edu.detail)));
@@ -114,41 +119,81 @@
         });
         sec.appendChild(table);
       }
-      main.appendChild(sec);
+      content.appendChild(sec);
     }
 
-    /* Honors */
+    // Honors
     if (data.honors && data.honors.length) {
-      const sec = el("section");
+      const sec = openSection("honors", "Honors");
       sec.appendChild(el("h2", null, "Honors"));
       const ul = el("ul", "plainlist");
       data.honors.forEach((line) => ul.appendChild(el("li", null, esc(line))));
       sec.appendChild(ul);
-      main.appendChild(sec);
+      content.appendChild(sec);
     }
 
-    /* Skills */
+    // Skills
     if (data.skills) {
-      const sec = el("section");
+      const sec = openSection("skills", "Skills");
       sec.appendChild(el("h2", null, "Skills"));
-      const groups = [
-        ["Working with", data.skills.working],
-        ["Learning",     data.skills.learning],
-      ];
-      groups.forEach(([label, items]) => {
-        if (!items || !items.length) return;
-        const g = el("div", "skillset");
-        g.appendChild(el("div", "label", esc(label)));
-        g.appendChild(el("div", "items", esc(items.join(", "))));
-        sec.appendChild(g);
+      [["Working with", data.skills.working], ["Learning", data.skills.learning]]
+        .forEach(([label, items]) => {
+          if (!items || !items.length) return;
+          const g = el("div", "skillset");
+          g.appendChild(el("div", "label", esc(label)));
+          g.appendChild(el("div", "items", esc(items.join(", "))));
+          sec.appendChild(g);
+        });
+      content.appendChild(sec);
+    }
+
+    /* ---- Sidebar: identity, nav (from collected targets), contact. ---- */
+    sidebar.appendChild(el("h1", null, esc(data.name)));
+    if (data.tagline)  sidebar.appendChild(el("p", "tagline", esc(data.tagline)));
+    if (data.location) sidebar.appendChild(el("p", "location", esc(data.location)));
+
+    if (navTargets.length) {
+      const nav = el("nav", "nav");
+      navTargets.forEach((t) => nav.appendChild(anchor("#" + t.id, t.label)));
+      sidebar.appendChild(nav);
+    }
+
+    if (data.links && data.links.length) {
+      const contact = el("div", "contact");
+      data.links.forEach((l) => {
+        if (l.href && l.label) contact.appendChild(anchor(l.href, l.label));
       });
-      main.appendChild(sec);
+      sidebar.appendChild(contact);
     }
 
     /* Footer */
     const year = new Date().getFullYear();
     document.getElementById("footer").appendChild(
       el("p", null, "© " + year + " " + esc(data.name)));
+
+    /* ---- Scroll-spy: highlight the nav item for the visible section. -- */
+    setupScrollSpy(navTargets);
+  }
+
+  function setupScrollSpy(targets) {
+    if (!("IntersectionObserver" in window) || !targets.length) return;
+    const links = {};
+    document.querySelectorAll(".nav a").forEach((a) => {
+      links[a.getAttribute("href").slice(1)] = a;
+    });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          Object.values(links).forEach((a) => a.classList.remove("active"));
+          const link = links[entry.target.id];
+          if (link) link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    targets.forEach((t) => {
+      const sec = document.getElementById(t.id);
+      if (sec) obs.observe(sec);
+    });
   }
 
   render(DATA);

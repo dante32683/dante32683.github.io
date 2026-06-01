@@ -1,4 +1,4 @@
-# Standards — dante-martin.com
+# Standards - dante-martin.com
 
 Read this whole file before you change anything. It is short on purpose.
 
@@ -25,7 +25,7 @@ To add an item (a project, a course, a skill):
 6. Make sure it still ends with a comma.
 
 If a field does not apply to your new item, **delete that whole line**. Empty
-fields are skipped — they will not show a blank label or break the layout.
+fields are skipped - they will not show a blank label or break the layout.
 
 ---
 
@@ -47,40 +47,45 @@ that one person with a text editor can maintain this.
 
 ## Recipes
 
-**Add a project** — in `data.js`, copy the first entry of `projects` and edit:
+**Add a project** - in `data.js`, copy the first entry of `projects` and edit:
 
 ```js
 {
-  title: "Short name — what it is",
+  title: "Short name",
+  subtitle: "What it is",                            // optional, shown lighter
   org: "Where it happened",
-  dates: "Sep 2026 – present",
+  dates: "Sep 2026 to present",
   body: "One paragraph. What it is, the concrete details, what YOU did.",
   link: { label: "Source", href: "https://..." },   // delete this line if none
 },
 ```
 
-**Add experience** — same shape, in the `experience` list (no `link` needed).
+The sidebar navigation builds itself from whichever sections have content, so
+you do not add nav links by hand. Add a project and "Projects" stays in the
+nav; remove every entry in a list and that section and its nav link disappear.
 
-**Add a course** — add a row to `education.coursework`. Oldest stays at the top,
+**Add experience** - same shape, in the `experience` list (no `link` needed).
+
+**Add a course** - add a row to `education.coursework`. Oldest stays at the top,
 newest at the bottom, so it reads as a timeline:
 
 ```js
 { term: "Fall 2026", courses: "Phys 42, Math 2, Engr 34" },
 ```
 
-**Add an honor** — add one plain string to the `honors` list.
+**Add an honor** - add one plain string to the `honors` list.
 
-**Add a skill** — add a string to `skills.working` (things you actually use) or
+**Add a skill** - add a string to `skills.working` (things you actually use) or
 `skills.learning` (things you are picking up). Be honest about which list.
 
-**Re-colour the site** — in `styles.css`, change the variables in the `:root`
+**Re-colour the site** - in `styles.css`, change the variables in the `:root`
 block at the top. You should not need to edit anything below that block for a
 palette change. Dark-mode colours are in the `@media (prefers-color-scheme:
-dark)` block right under it — update both.
+dark)` block right under it - update both.
 
 ---
 
-## Writing style — this is what keeps the site from sounding AI-generated
+## Writing style - this is what keeps the site from sounding AI-generated
 
 The fastest way to make this site look fake is to write like a chatbot. Don't.
 
@@ -89,6 +94,8 @@ The fastest way to make this site look fake is to write like a chatbot. Don't.
   "significant club funds."
 - **Say what YOU did**, not what the team or the field does in general.
 - **No emoji. Anywhere.** Not in content, not in headings.
+- **No em dashes ( - ).** They are a strong AI tell. Use a comma, a period, a
+  colon, or parentheses instead. Rephrase the sentence if you have to.
 - **Ban these words and their cousins:** passionate, innovative, cutting-edge,
   leverage, synergy, seamless, robust, dynamic, "the intersection of",
   "I'm excited to", "always eager to learn", "wearing many hats."
