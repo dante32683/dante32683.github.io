@@ -44,218 +44,254 @@
      skipped, so a half-filled entry never breaks the page.
      --------------------------------------------------------------------- */
 
-  const esc = (s) => String(s == null ? "" : s)
+  const escapeHtml = (unsafeString) => String(unsafeString == null ? "" : unsafeString)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-  function el(tag, className, html) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (html != null) node.innerHTML = html;
-    return node;
+  function createHtmlElement(tagName, className, innerHtml) {
+    const htmlElementNode = document.createElement(tagName);
+    if (className) htmlElementNode.className = className;
+    if (innerHtml != null) htmlElementNode.innerHTML = innerHtml;
+    return htmlElementNode;
   }
 
-  function anchor(href, text, opts) {
-    const a = el("a", null, esc(text));
-    a.href = href;
-    if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
-    if (opts && opts.className) a.className = opts.className;
-    return a;
+  function createAnchorElement(hyperlinkReference, linkText, renderingOptions) {
+    const anchorElement = createHtmlElement("a", null, escapeHtml(linkText));
+    anchorElement.href = hyperlinkReference;
+    if (/^https?:/.test(hyperlinkReference)) { 
+      anchorElement.target = "_blank"; 
+      anchorElement.rel = "noopener noreferrer"; 
+    }
+    if (renderingOptions && renderingOptions.className) {
+      anchorElement.className = renderingOptions.className;
+    }
+    return anchorElement;
   }
 
   // One project/experience entry.
-  function entryEl(item) {
-    const wrap = el("article", "entry");
-    if (item.title) {
-      const h = el("h3", null, esc(item.title));
-      if (item.subtitle) h.appendChild(el("span", "subtitle", esc(item.subtitle)));
-      wrap.appendChild(h);
+  function createPortfolioEntryElement(portfolioEntry) {
+    const entryContainerElement = createHtmlElement("article", "entry");
+    if (portfolioEntry.title) {
+      const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
+      if (portfolioEntry.subtitle) {
+        headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioEntry.subtitle)));
+      }
+      entryContainerElement.appendChild(headingElement);
     }
-    const metaBits = [item.org, item.dates].filter(Boolean).map(esc);
-    if (metaBits.length) wrap.appendChild(el("div", "meta", metaBits.join(" · ")));
-    if (item.body) wrap.appendChild(el("p", null, esc(item.body)));
-    if (item.link && item.link.href && item.link.label) {
-      const more = el("div", "more");
-      more.appendChild(anchor(item.link.href, item.link.label));
-      wrap.appendChild(more);
+    const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
+    if (metadataSegments.length) {
+      entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
     }
-    return wrap;
+    if (portfolioEntry.body) {
+      entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
+    }
+    if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
+      const moreLinkContainer = createHtmlElement("div", "more");
+      moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
+      entryContainerElement.appendChild(moreLinkContainer);
+    }
+    return entryContainerElement;
   }
 
-  function render(data) {
-    document.title = data.name;
+  function renderPortfolio(portfolioData) {
+    document.title = portfolioData.name;
 
-    const sidebar = document.getElementById("sidebar");
-    const content = document.getElementById("content");
-    const navTargets = []; // {id, label} for the in-page nav
+    const sidebarElement = document.getElementById("sidebar");
+    const contentElement = document.getElementById("content");
+    const navigationTargetSections = []; // {id, label} for the in-page nav
 
     /* ---- Build content sections first, collecting nav targets. -------- */
 
     // Helper: start a <section id> and register it in the nav.
-    function openSection(id, navLabel) {
-      const sec = el("section");
-      sec.id = id;
-      navTargets.push({ id: id, label: navLabel });
-      return sec;
+    function openSection(sectionId, navigationLabel) {
+      const sectionElement = createHtmlElement("section");
+      sectionElement.id = sectionId;
+      navigationTargetSections.push({ id: sectionId, label: navigationLabel });
+      return sectionElement;
     }
 
     // Intro paragraph (not a nav target).
-    if (data.intro) content.appendChild(el("p", "intro", esc(data.intro)));
+    if (portfolioData.intro) {
+      contentElement.appendChild(createHtmlElement("p", "intro", escapeHtml(portfolioData.intro)));
+    }
 
     // Projects
-    if (data.projects && data.projects.length) {
-      const sec = openSection("projects", "Projects");
-      sec.appendChild(el("h2", null, "Projects"));
-      data.projects.forEach((p) => sec.appendChild(entryEl(p)));
-      content.appendChild(sec);
+    if (portfolioData.projects && portfolioData.projects.length) {
+      const sectionElement = openSection("projects", "Projects");
+      sectionElement.appendChild(createHtmlElement("h2", null, "Projects"));
+      portfolioData.projects.forEach((projectEntry) => {
+        sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
+      });
+      const galleryLinkWrapper = createHtmlElement("div", "more gallery-link");
+      galleryLinkWrapper.appendChild(createAnchorElement("projects/", "View Projects with Photos →"));
+      sectionElement.appendChild(galleryLinkWrapper);
+      contentElement.appendChild(sectionElement);
     }
 
     // Experience
-    if (data.experience && data.experience.length) {
-      const sec = openSection("experience", "Experience");
-      sec.appendChild(el("h2", null, "Experience"));
-      data.experience.forEach((p) => sec.appendChild(entryEl(p)));
-      content.appendChild(sec);
+    if (portfolioData.experience && portfolioData.experience.length) {
+      const sectionElement = openSection("experience", "Experience");
+      sectionElement.appendChild(createHtmlElement("h2", null, "Experience"));
+      portfolioData.experience.forEach((experienceEntry) => {
+        sectionElement.appendChild(createPortfolioEntryElement(experienceEntry));
+      });
+      contentElement.appendChild(sectionElement);
     }
 
     // Education
-    if (data.education && data.education.school) {
-      const edu = data.education;
-      const sec = openSection("education", "Education");
-      sec.className = "edu";
-      sec.appendChild(el("h2", null, "Education"));
-      sec.appendChild(el("h3", null, esc(edu.school)));
-      if (edu.detail) sec.appendChild(el("p", null, esc(edu.detail)));
-      if (edu.coursework && edu.coursework.length) {
-        const table = el("table", "coursework");
-        edu.coursework.forEach((row) => {
-          const tr = el("tr");
-          tr.appendChild(el("th", null, esc(row.term)));
-          tr.appendChild(el("td", null, esc(row.courses)));
-          table.appendChild(tr);
-        });
-        sec.appendChild(table);
+    if (portfolioData.education && portfolioData.education.school) {
+      const educationSectionData = portfolioData.education;
+      const educationSectionElement = openSection("education", "Education");
+      educationSectionElement.className = "edu";
+      educationSectionElement.appendChild(createHtmlElement("h2", null, "Education"));
+      educationSectionElement.appendChild(createHtmlElement("h3", null, escapeHtml(educationSectionData.school)));
+      if (educationSectionData.detail) {
+        educationSectionElement.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
       }
-      content.appendChild(sec);
+      if (educationSectionData.coursework && educationSectionData.coursework.length) {
+        const courseworkTableElement = createHtmlElement("table", "coursework");
+        educationSectionData.coursework.forEach((courseworkRowData) => {
+          const tableRowElement = createHtmlElement("tr");
+          tableRowElement.appendChild(createHtmlElement("th", null, escapeHtml(courseworkRowData.term)));
+          tableRowElement.appendChild(createHtmlElement("td", null, escapeHtml(courseworkRowData.courses)));
+          courseworkTableElement.appendChild(tableRowElement);
+        });
+        educationSectionElement.appendChild(courseworkTableElement);
+      }
+      contentElement.appendChild(educationSectionElement);
     }
 
     // Honors
-    if (data.honors && data.honors.length) {
-      const sec = openSection("honors", "Honors");
-      sec.appendChild(el("h2", null, "Honors"));
-      const ul = el("ul", "plainlist");
-      data.honors.forEach((line) => ul.appendChild(el("li", null, esc(line))));
-      sec.appendChild(ul);
-      content.appendChild(sec);
+    if (portfolioData.honors && portfolioData.honors.length) {
+      const honorsSectionElement = openSection("honors", "Honors");
+      honorsSectionElement.appendChild(createHtmlElement("h2", null, "Honors"));
+      const honorsUnorderedListElement = createHtmlElement("ul", "plainlist");
+      portfolioData.honors.forEach((honorTextLine) => {
+        honorsUnorderedListElement.appendChild(createHtmlElement("li", null, escapeHtml(honorTextLine)));
+      });
+      honorsSectionElement.appendChild(honorsUnorderedListElement);
+      contentElement.appendChild(honorsSectionElement);
     }
 
     // Skills
-    if (data.skills) {
-      const sec = openSection("skills", "Skills");
-      sec.appendChild(el("h2", null, "Skills"));
-      [["Working with", data.skills.working, "working"], ["Learning", data.skills.learning, "learning"]]
-        .forEach(([label, items, key]) => {
-          if (!items || !items.length) return;
-          const g = el("div", "skillset");
-          g.appendChild(el("div", "label", esc(label)));
-          const list = el("div", "skills-list");
-          items.forEach((item) => {
-            list.appendChild(el("span", "skill-tag " + key, esc(item)));
-          });
-          g.appendChild(list);
-          sec.appendChild(g);
+    if (portfolioData.skills) {
+      const skillsSectionElement = openSection("skills", "Skills");
+      skillsSectionElement.appendChild(createHtmlElement("h2", null, "Skills"));
+      [
+        ["Working with", portfolioData.skills.working, "working"], 
+        ["Learning", portfolioData.skills.learning, "learning"]
+      ].forEach(([groupLabel, skillItems, skillCategoryKey]) => {
+        if (!skillItems || !skillItems.length) return;
+        const skillsetGroupElement = createHtmlElement("div", "skillset");
+        skillsetGroupElement.appendChild(createHtmlElement("div", "label", escapeHtml(groupLabel)));
+        const skillsListElement = createHtmlElement("div", "skills-list");
+        skillItems.forEach((skillName) => {
+          skillsListElement.appendChild(createHtmlElement("span", "skill-tag " + skillCategoryKey, escapeHtml(skillName)));
         });
-      content.appendChild(sec);
+        skillsetGroupElement.appendChild(skillsListElement);
+        skillsSectionElement.appendChild(skillsetGroupElement);
+      });
+      contentElement.appendChild(skillsSectionElement);
     }
 
     /* ---- Sidebar: identity, nav (from collected targets), contact. ---- */
-    sidebar.appendChild(el("h1", null, esc(data.name)));
-    if (data.tagline)  sidebar.appendChild(el("p", "tagline", esc(data.tagline)));
-    if (data.location) sidebar.appendChild(el("p", "location", esc(data.location)));
-
-    if (navTargets.length) {
-      const nav = el("nav", "nav");
-      navTargets.forEach((t) => nav.appendChild(anchor("#" + t.id, t.label)));
-      sidebar.appendChild(nav);
+    sidebarElement.appendChild(createHtmlElement("h1", null, escapeHtml(portfolioData.name)));
+    if (portfolioData.tagline) {
+      sidebarElement.appendChild(createHtmlElement("p", "tagline", escapeHtml(portfolioData.tagline)));
+    }
+    if (portfolioData.location) {
+      sidebarElement.appendChild(createHtmlElement("p", "location", escapeHtml(portfolioData.location)));
     }
 
-    if (data.links && data.links.length) {
-      const contact = el("div", "contact");
-      data.links.forEach((l) => {
-        if (l.href && l.label) contact.appendChild(anchor(l.href, l.label));
+    if (navigationTargetSections.length) {
+      const navigationElement = createHtmlElement("nav", "nav");
+      navigationTargetSections.forEach((navigationTarget) => {
+        navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
       });
-      sidebar.appendChild(contact);
+      sidebarElement.appendChild(navigationElement);
+    }
+
+    if (portfolioData.links && portfolioData.links.length) {
+      const contactInfoContainer = createHtmlElement("div", "contact");
+      portfolioData.links.forEach((linkData) => {
+        if (linkData.href && linkData.label) {
+          contactInfoContainer.appendChild(createAnchorElement(linkData.href, linkData.label));
+        }
+      });
+      sidebarElement.appendChild(contactInfoContainer);
     }
 
     // Theme toggle. Pinned to the top-right of the viewport (see CSS); it
     // defaults to the OS setting, and clicking remembers an explicit choice.
-    buildThemeToggle(document.body);
+    createThemeToggleButton(document.body);
 
     /* Footer */
-    const year = new Date().getFullYear();
+    const currentCalendarYear = new Date().getFullYear();
     document.getElementById("footer").appendChild(
-      el("p", null, "© " + year + " " + esc(data.name)));
+      createHtmlElement("p", null, "© " + currentCalendarYear + " " + escapeHtml(portfolioData.name)));
 
     /* ---- Scroll-spy: highlight the nav item for the visible section. -- */
-    setupScrollSpy(navTargets);
+    setupNavigationScrollSpy(navigationTargetSections);
   }
 
   // Current theme: an explicit choice if set, otherwise the OS preference.
-  function effectiveTheme() {
-    const explicit = document.documentElement.getAttribute("data-theme");
-    if (explicit) return explicit;
+  function determineEffectiveTheme() {
+    const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
+    if (explicitlySavedTheme) return explicitlySavedTheme;
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark" : "light";
   }
 
-  function buildThemeToggle(container) {
-    const btn = el("button", "theme-toggle");
-    btn.type = "button";
-    const relabel = () => {
-      const isDark = effectiveTheme() === "dark";
-      btn.textContent = isDark ? "\u263C" : "\u263E"; // ☼ and ☾
-      const nextTheme = isDark ? "light" : "dark";
-      btn.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
-      btn.title = "Switch to " + nextTheme + " theme";
+  function createThemeToggleButton(toggleContainerElement) {
+    const themeToggleButton = createHtmlElement("button", "theme-toggle");
+    themeToggleButton.type = "button";
+    const updateToggleButtonLabelAndTitle = () => {
+      const isCurrentThemeDark = determineEffectiveTheme() === "dark";
+      themeToggleButton.textContent = isCurrentThemeDark ? "\u263C" : "\u263E"; // ☼ and ☾
+      const upcomingTheme = isCurrentThemeDark ? "light" : "dark";
+      themeToggleButton.setAttribute("aria-label", "Switch to " + upcomingTheme + " theme");
+      themeToggleButton.title = "Switch to " + upcomingTheme + " theme";
     };
-    relabel();
-    btn.addEventListener("click", () => {
-      const next = effectiveTheme() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-      relabel();
+    updateToggleButtonLabelAndTitle();
+    themeToggleButton.addEventListener("click", () => {
+      const selectedNextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", selectedNextTheme);
+      localStorage.setItem("theme", selectedNextTheme);
+      updateToggleButtonLabelAndTitle();
     });
     if (window.matchMedia) {
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
         if (!localStorage.getItem("theme")) {
-          relabel();
+          updateToggleButtonLabelAndTitle();
         }
       });
     }
-    container.appendChild(btn);
+    toggleContainerElement.appendChild(themeToggleButton);
   }
 
-  function setupScrollSpy(targets) {
-    if (!("IntersectionObserver" in window) || !targets.length) return;
-    const links = {};
-    document.querySelectorAll(".nav a").forEach((a) => {
-      links[a.getAttribute("href").slice(1)] = a;
+  function setupNavigationScrollSpy(spyTargetSections) {
+    if (!("IntersectionObserver" in window) || !spyTargetSections.length) return;
+    const navigationAnchorLinksMap = {};
+    document.querySelectorAll(".nav a").forEach((anchorLinkElement) => {
+      navigationAnchorLinksMap[anchorLinkElement.getAttribute("href").slice(1)] = anchorLinkElement;
     });
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          Object.values(links).forEach((a) => a.classList.remove("active"));
-          const link = links[entry.target.id];
-          if (link) link.classList.add("active");
+    const scrollSpyIntersectionObserver = new IntersectionObserver((observerIntersectionEntries) => {
+      observerIntersectionEntries.forEach((observerIntersectionEntry) => {
+        if (observerIntersectionEntry.isIntersecting) {
+          Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
+            anchorLinkElement.classList.remove("active");
+          });
+          const correspondingNavLink = navigationAnchorLinksMap[observerIntersectionEntry.target.id];
+          if (correspondingNavLink) correspondingNavLink.classList.add("active");
         }
       });
     }, { rootMargin: "-20% 0px -70% 0px" });
-    targets.forEach((t) => {
-      const sec = document.getElementById(t.id);
-      if (sec) obs.observe(sec);
+    spyTargetSections.forEach((targetSection) => {
+      const sectionElementToObserve = document.getElementById(targetSection.id);
+      if (sectionElementToObserve) scrollSpyIntersectionObserver.observe(sectionElementToObserve);
     });
   }
 
-  render(DATA);
+  renderPortfolio(DATA);
   </script>
 </body>
 </html>
