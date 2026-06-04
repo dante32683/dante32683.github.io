@@ -52,12 +52,12 @@ const DATA = {
         "Result: Maintained open-source codebase on GitHub to improve developer automation on Windows.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
-        { src: "images/cmdpal-image-editor.jpg", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
-        { src: "images/cmdpal-organize.jpg", alt: "NPU Organize screenshot utility in PowerToys Run" },
-        { src: "images/cmdpal-obsidian.jpg", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
-        { src: "images/cmdpal-code.jpg", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
-        { src: "images/cmdpal-settings-1.jpg", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
-        { src: "images/cmdpal-settings-2.jpg", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
+        { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
+        { src: "images/cmdpal-organize.webp", alt: "NPU Organize screenshot utility in PowerToys Run" },
+        { src: "images/cmdpal-obsidian.webp", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
+        { src: "images/cmdpal-code.webp", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
+        { src: "images/cmdpal-settings-1.webp", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
+        { src: "images/cmdpal-settings-2.webp", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
       ],
     },
     {
@@ -82,8 +82,8 @@ const DATA = {
         "Result: Establishing streamlined design cycles starting June 2026.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
-        { src: "images/baja-highlights.jpg", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
+        { src: "images/baja-chassis.webp", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
+        { src: "images/baja-highlights.webp", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
       ],
     },
     {
@@ -108,9 +108,9 @@ const DATA = {
         "Result: Prototyped a 1.5 m wingspan UAV featuring a NACA 4412 airfoil, V-tail, and ArduPilot integration.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/pigeon-uav.jpg", alt: "UAV fuselage 3D CAD modeling view" },
-        { src: "images/pigeon-tail.jpg", alt: "UAV V-tail and landing gear mount CAD close-up view" },
-        { src: "images/pigeon-motor.jpg", alt: "Testing brushless motor weight on digital scale (118.6g)" }
+        { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
+        { src: "images/pigeon-tail.webp", alt: "UAV V-tail and landing gear mount CAD close-up view" },
+        { src: "images/pigeon-motor.webp", alt: "Testing brushless motor weight on digital scale (118.6g)" }
       ],
     },
     {
@@ -122,9 +122,9 @@ const DATA = {
       tools: ["CAD", "3D Printing"],
       body: "Prototyped a protective mesh face guard to shield dogs from foxtail injuries, iterating adjustments, airflow metrics, and veterinary safety fits in a high school capstone.",
       images: [
-        { src: "images/foxtail-microscope.jpg", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
-        { src: "images/foxtail-prototype-final.jpg", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
-        { src: "images/foxtail-prototype-initial.jpg", alt: "Initial mesh face guard prototype detailing the elastic opening and edge stitching" }
+        { src: "images/foxtail-microscope.webp", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
+        { src: "images/foxtail-prototype-final.webp", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
+        { src: "images/foxtail-prototype-initial.webp", alt: "Initial mesh face guard prototype detailing the elastic opening and edge stitching" }
       ],
     },
   ],
