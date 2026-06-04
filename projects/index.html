@@ -179,7 +179,26 @@
     }
     
     if (portfolioProject.body) {
-      projectCardContainer.appendChild(createHtmlElement("p", null, escapeHtml(portfolioProject.body)));
+      const bodyText = portfolioProject.body;
+      if (bodyText.includes("Problem:") && bodyText.includes("Action:") && bodyText.includes("Result:")) {
+        const starContainer = createHtmlElement("div", "star-body");
+        const regex = /(Problem|Action|Result):\s*(.*?)(?=\s*(?:Problem|Action|Result):|$)/g;
+        let match;
+        while ((match = regex.exec(bodyText)) !== null) {
+          const label = match[1];
+          const content = match[2];
+          const row = createHtmlElement("div", "star-row");
+          const labelSpan = createHtmlElement("strong", "star-label", escapeHtml(label));
+          const textSpan = document.createElement("span");
+          textSpan.textContent = content;
+          row.appendChild(labelSpan);
+          row.appendChild(textSpan);
+          starContainer.appendChild(row);
+        }
+        projectCardContainer.appendChild(starContainer);
+      } else {
+        projectCardContainer.appendChild(createHtmlElement("p", null, escapeHtml(bodyText)));
+      }
     }
     
     if (portfolioProject.link && portfolioProject.link.href && portfolioProject.link.label) {
