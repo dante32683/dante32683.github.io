@@ -497,30 +497,6 @@ a:hover .arrow {
   transform: translate(2px, -2px);
 }
 
-.star-body {
-  margin-top: 0.65rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.star-row {
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--ink);
-}
-.star-label {
-  font-weight: 700;
-  color: var(--ink);
-}
-.star-label::after {
-  content: ": ";
-}
-.star-row span {
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--ink);
-}
-
 /* --- PRINT STYLES ------------------------------------------------------ */
 @media print {
   body { background: #fff; color: #000; font-size: 11pt; }
@@ -530,7 +506,4 @@ a:hover .arrow {
   .content { padding: 2rem 0 0; max-width: none; }
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
   section:first-of-type { border-top: none; }
-  .star-row { display: block; margin-bottom: 0.4rem; }
-  .star-label { background: none; padding: 0; font-size: inherit; color: #000; font-weight: bold; text-transform: none; letter-spacing: normal; }
-  .star-label::after { content: ": "; }
 }

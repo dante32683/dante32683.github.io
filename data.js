@@ -47,9 +47,9 @@ const DATA = {
       dates: "ongoing",
       featured: true,
       tools: ["C#", ".NET", "Git"],
-      body: "Problem: Porting utility extensions from Raycast to Windows PowerToys Run palette. " +
-        "Action: Built ten extensions manually against the Microsoft PowerToys SDK, covering action centers, developer toolboxes, and media controls. " +
-        "Result: Maintained open-source codebase on GitHub to improve developer automation on Windows.",
+      body: "To utilize local NPU processing and add missing utility tools to Windows PowerToys Run, " +
+        "I built ten automation extensions against the SDK. These include an NPU-powered image editor, " +
+        "clipboard tools, and developer toolboxes, published as open source on GitHub.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -77,9 +77,9 @@ const DATA = {
       dates: "starts June 2026",
       featured: true,
       tools: ["SolidWorks", "FEA", "Excel"],
-      body: "Problem: Disorganized member workflow and allocation across technical subteams. " +
-        "Action: Joining the structural team to analyze operations, learn advanced spaceframe CAD modeling, and run Finite Element Analysis simulations. " +
-        "Result: Establishing streamlined design cycles starting June 2026.",
+      body: "Joining the off-road racing team to analyze workflow organization and member allocation. " +
+        "I will focus on optimizing team operations while learning advanced CAD modeling and Finite Element " +
+        "Analysis (FEA) alongside the spaceframe design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.webp", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
@@ -103,9 +103,9 @@ const DATA = {
       dates: "Sep 2025 to May 2026",
       featured: true,
       tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
-      body: "Problem: Aerial wildfire detection in high-risk zones. " +
-        "Action: Co-wrote design documents, compiled the bill of materials, and designed the tail components. " +
-        "Result: Prototyped a 1.5 m wingspan UAV featuring a NACA 4412 airfoil, V-tail, and ArduPilot integration.",
+      body: "Co-designed a 1.5 m wingspan wildfire-detection UAV featuring a NACA 4412 airfoil, V-tail, " +
+        "and ArduPilot integration. I co-wrote the design documentation, compiled the bill of materials, " +
+        "and designed the tail components during the prototyping phase.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
