@@ -73,7 +73,7 @@ const DATA = {
       title: "Baja SAE",
       subtitle: "Management & Optimization",
       org: "SRJC Baja SAE",
-      dates: "joining summer 2026",
+      dates: "ongoing",
       body: "Joining the off-road racing team to analyze workflow organization " +
         "and member allocation. I will focus on optimizing team operations " +
         "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
@@ -122,6 +122,7 @@ const DATA = {
       dates: "Oct 2025 to present",
       body: "Tutoring and lab support in chemistry, math, physics, and intro " +
         "programming, under coordinator Ann Schott.",
+      link: { label: "STEM Success Center", href: "https://stem.santarosa.edu/stem-success-center" },
     },
   ],
 

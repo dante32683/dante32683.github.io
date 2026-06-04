@@ -83,6 +83,8 @@
           }, 1200);
         });
       });
+    } else if (/^https?:/.test(hyperlinkReference)) {
+      anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197"; // ↗ external link arrow symbol
     }
     if (renderingOptions && renderingOptions.className) {
       anchorElement.className = renderingOptions.className;

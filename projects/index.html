@@ -95,6 +95,8 @@
           }, 1200);
         });
       });
+    } else if (/^https?:/.test(hyperlinkReference)) {
+      anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197"; // ↗ external link arrow symbol
     }
     if (renderingOptions && renderingOptions.className) {
       anchorElement.className = renderingOptions.className;
@@ -123,7 +125,7 @@
     lightboxCaptionElement.textContent = imageAlternativeText;
     lightboxModalElement.classList.add("active");
     lightboxCloseButtonElement.focus();
-    document.addEventListener("keydown", handleLightboxKeyDownEscape);
+    document.addEventListener("keydown", handleLightboxKeyDown);
   }
 
   function closeLightbox() {
@@ -131,16 +133,19 @@
     lightboxImageElement.src = "";
     lightboxImageElement.alt = "";
     lightboxCaptionElement.textContent = "";
-    document.removeEventListener("keydown", handleLightboxKeyDownEscape);
+    document.removeEventListener("keydown", handleLightboxKeyDown);
     if (elementToFocusOnClose) {
       elementToFocusOnClose.focus();
       elementToFocusOnClose = null;
     }
   }
 
-  function handleLightboxKeyDownEscape(keyboardEvent) {
+  function handleLightboxKeyDown(keyboardEvent) {
     if (keyboardEvent.key === "Escape") {
       closeLightbox();
+    } else if (keyboardEvent.key === "Tab") {
+      keyboardEvent.preventDefault();
+      lightboxCloseButtonElement.focus();
     }
   }
 

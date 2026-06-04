@@ -51,6 +51,7 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -147,7 +148,7 @@ a:focus-visible, button:focus-visible {
 .content { padding: 3.5rem 0; max-width: 42rem; }
 .content .intro { font-size: 1.15rem; line-height: 1.55; color: var(--ink); margin-bottom: 2.5rem; }
 
-section { padding: 0; padding-top: 2.5rem; border-top: 1px solid var(--faint); margin-top: 2.5rem; }
+section { padding: 0; padding-top: 2.5rem; border-top: 1px solid var(--faint); margin-top: 2.5rem; transition: border-color 0.3s ease; }
 section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 
 h2 {
@@ -408,7 +409,7 @@ h2 {
 }
 /* --- FOOTER ------------------------------------------------------------ */
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
-  padding: 1.5rem 0 2.5rem; font-size: 0.8rem; color: var(--muted); }
+  padding: 1.5rem 0 2.5rem; font-size: 0.8rem; color: var(--muted); transition: border-color 0.3s ease; }
 
 /* --- SMALL SCREENS: collapse to one column, nav goes horizontal -------- */
 @media (max-width: 50rem) {
