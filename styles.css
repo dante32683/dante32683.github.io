@@ -91,6 +91,11 @@ a:focus-visible, button:focus-visible {
 .nav a:hover { color: var(--accent); background-color: var(--accent-tint); }
 .nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
+.nav a.nav-photos-sublink {
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+}
+
 /* Contact */
 .contact { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-size: 0.9rem; }
@@ -412,6 +417,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
   .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }
+  .nav a.nav-photos-sublink { padding-left: 0.6rem; font-size: 0.9rem; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
 }

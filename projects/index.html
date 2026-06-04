@@ -235,14 +235,23 @@
       sidebarElement.appendChild(createHtmlElement("p", "location", escapeHtml(portfolioData.location)));
     }
 
-    // Sidebar navigation (custom for gallery page)
+    // Sidebar navigation (matching homepage structure)
     const navigationContainer = createHtmlElement("nav", "nav");
-    const backToHomeLink = createAnchorElement("../index.html", "← Back to Resume");
-    const activeGalleryLink = createAnchorElement("#", "Projects Gallery");
-    activeGalleryLink.className = "active";
-    
-    navigationContainer.appendChild(backToHomeLink);
-    navigationContainer.appendChild(activeGalleryLink);
+    const navigationTargetSections = [];
+    if (portfolioData.projects && portfolioData.projects.length) navigationTargetSections.push({ id: "projects", label: "Projects" });
+    if (portfolioData.experience && portfolioData.experience.length) navigationTargetSections.push({ id: "experience", label: "Experience" });
+    if (portfolioData.education && portfolioData.education.school) navigationTargetSections.push({ id: "education", label: "Education" });
+    if (portfolioData.honors && portfolioData.honors.length) navigationTargetSections.push({ id: "honors", label: "Honors" });
+    if (portfolioData.skills) navigationTargetSections.push({ id: "skills", label: "Skills" });
+
+    navigationTargetSections.forEach((navigationTarget) => {
+      const homeLinkReference = "../index.html#" + navigationTarget.id;
+      navigationContainer.appendChild(createAnchorElement(homeLinkReference, navigationTarget.label));
+      if (navigationTarget.id === "projects") {
+        const photosLinkElement = createAnchorElement("#", "Photos", { className: "nav-photos-sublink active" });
+        navigationContainer.appendChild(photosLinkElement);
+      }
+    });
     sidebarElement.appendChild(navigationContainer);
 
     if (portfolioData.links && portfolioData.links.length) {

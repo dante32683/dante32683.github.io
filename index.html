@@ -229,6 +229,10 @@
       const navigationElement = createHtmlElement("nav", "nav");
       navigationTargetSections.forEach((navigationTarget) => {
         navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
+        if (navigationTarget.id === "projects") {
+          const photosLinkElement = createAnchorElement("projects/", "Photos", { className: "nav-photos-sublink" });
+          navigationElement.appendChild(photosLinkElement);
+        }
       });
       sidebarElement.appendChild(navigationElement);
     }
