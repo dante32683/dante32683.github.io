@@ -166,10 +166,12 @@
       const educationSectionElement = openSection("education", "Education");
       educationSectionElement.className = "edu";
       educationSectionElement.appendChild(createHtmlElement("h2", null, "Education"));
-      educationSectionElement.appendChild(createHtmlElement("h3", null, escapeHtml(educationSectionData.school)));
+      const detailsContainer = createHtmlElement("div", "edu-details");
+      detailsContainer.appendChild(createHtmlElement("h3", null, escapeHtml(educationSectionData.school)));
       if (educationSectionData.detail) {
-        educationSectionElement.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
+        detailsContainer.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
       }
+      educationSectionElement.appendChild(detailsContainer);
       if (educationSectionData.coursework && educationSectionData.coursework.length) {
         const courseworkTableElement = createHtmlElement("table", "coursework");
         educationSectionData.coursework.forEach((courseworkRowData) => {
@@ -290,58 +292,55 @@
   }
 
   function setupNavigationScrollSpy(spyTargetSections) {
-    if (!("IntersectionObserver" in window) || !spyTargetSections.length) return;
+    if (!spyTargetSections.length) return;
     const navigationAnchorLinksMap = {};
     document.querySelectorAll(".nav a").forEach((anchorLinkElement) => {
       navigationAnchorLinksMap[anchorLinkElement.getAttribute("href").slice(1)] = anchorLinkElement;
     });
-    
-    const scrollSpyIntersectionObserver = new IntersectionObserver((observerIntersectionEntries) => {
-      // If we are already at the bottom of the page, let the scroll listener handle the active section
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (documentHeight > 0 && window.scrollY >= documentHeight - 10) return;
 
-      observerIntersectionEntries.forEach((observerIntersectionEntry) => {
-        if (observerIntersectionEntry.isIntersecting) {
-          Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
-            anchorLinkElement.classList.remove("active");
-          });
-          const correspondingNavLink = navigationAnchorLinksMap[observerIntersectionEntry.target.id];
-          if (correspondingNavLink) correspondingNavLink.classList.add("active");
-        }
-      });
-    }, { rootMargin: "-15% 0px -55% 0px" });
+    const sectionElements = spyTargetSections.map((targetSection) => {
+      return document.getElementById(targetSection.id);
+    }).filter(Boolean);
 
-    spyTargetSections.forEach((targetSection) => {
-      const sectionElementToObserve = document.getElementById(targetSection.id);
-      if (sectionElementToObserve) scrollSpyIntersectionObserver.observe(sectionElementToObserve);
-    });
-
-    // Handle highlighting when scrolled to the absolute bottom of the viewport
     window.addEventListener("scroll", () => {
+      // 1. Update Scroll Progress Bar
+      const scrollPosition = window.scrollY;
       const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (documentHeight > 0 && window.scrollY >= documentHeight - 10) {
+      const scrollPercentage = documentHeight > 0 ? (scrollPosition / documentHeight) * 100 : 0;
+      const scrollProgressBar = document.getElementById("scroll-progress-bar");
+      if (scrollProgressBar) {
+        scrollProgressBar.style.width = scrollPercentage + "%";
+      }
+
+      // 2. Determine Active Section Symmetrically
+      let activeSectionId = "";
+      
+      if (documentHeight > 0 && scrollPosition >= documentHeight - 10) {
+        activeSectionId = spyTargetSections[spyTargetSections.length - 1].id;
+      } else {
+        const detectionThreshold = window.innerHeight * 0.25;
+        sectionElements.forEach((sectionElement) => {
+          const clientBoundingRect = sectionElement.getBoundingClientRect();
+          if (clientBoundingRect.top <= detectionThreshold) {
+            activeSectionId = sectionElement.id;
+          }
+        });
+        if (!activeSectionId && sectionElements.length > 0) {
+          activeSectionId = sectionElements[0].id;
+        }
+      }
+
+      if (activeSectionId) {
         Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
           anchorLinkElement.classList.remove("active");
         });
-        const lastSectionId = spyTargetSections[spyTargetSections.length - 1].id;
-        const correspondingNavLink = navigationAnchorLinksMap[lastSectionId];
+        const correspondingNavLink = navigationAnchorLinksMap[activeSectionId];
         if (correspondingNavLink) correspondingNavLink.classList.add("active");
       }
     });
   }
 
   renderPortfolio(DATA);
-
-  window.addEventListener("scroll", () => {
-    const scrollPosition = window.scrollY;
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercentage = documentHeight > 0 ? (scrollPosition / documentHeight) * 100 : 0;
-    const scrollProgressBar = document.getElementById("scroll-progress-bar");
-    if (scrollProgressBar) {
-      scrollProgressBar.style.width = scrollPercentage + "%";
-    }
-  });
   </script>
 </body>
 </html>

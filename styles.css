@@ -181,7 +181,9 @@ h2 {
 .coursework { font-size: 0.9rem; margin-top: 1.2rem; border-collapse: collapse; width: 100%; }
 .coursework th, .coursework td { text-align: left; vertical-align: top;
   padding: 0.55rem 0; border-top: 1px solid var(--faint); }
-.coursework th { color: var(--muted); font-weight: 600; white-space: nowrap; padding-right: 1.75rem; }
+.coursework th { color: var(--muted); font-weight: 600; white-space: nowrap; padding-right: 1.75rem;
+  transition: color 0.15s ease; }
+.coursework tr:hover th { color: var(--accent); }
 .coursework tr:first-child th, .coursework tr:first-child td { border-top: none; }
 
 /* --- HONORS & SKILLS --------------------------------------------------- */
@@ -197,12 +199,16 @@ h2 {
   border-left-color: var(--accent);
 }
 
-#honors .entry {
+#experience .entry,
+#honors .entry,
+.edu-details {
   padding-left: 1rem;
   border-left: 2px solid var(--faint);
   transition: border-left-color 0.15s;
 }
-#honors .entry:hover {
+#experience .entry:hover,
+#honors .entry:hover,
+.edu-details:hover {
   border-left-color: var(--accent);
 }
 
