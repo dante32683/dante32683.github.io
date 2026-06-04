@@ -142,14 +142,18 @@ const DATA = {
   education: [
     {
       school: "Santa Rosa Junior College",
-      dates: "2025 to present",
-      detail: "Civil engineering, transfer track. 4.0 GPA, Dean's Highest Honors " +
-        "in Fall 2025. Conducted materials tests on a UTM (Universal Testing Machine) " +
-        "and analyzed chemical trials. Transferring Fall 2027, with Berkeley as the first " +
-        "choice, Davis as the TAG safety, and Stanford the reach.",
+      dates: "2023 to present (Dual Enrollment 2023 to 2024)",
+      detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. " +
+        "Earned a Web & Mobile Front-End Dev certificate in 2024. Conducted materials " +
+        "tests on a UTM and chemical reaction trials. Transferring Fall 2027 to UC Berkeley, " +
+        "UC Davis (TAG), or Stanford.",
       // Coursework table, newest at the bottom so it reads as a timeline.
       coursework: [
-        { term: "Fall 2025",   courses: "Chem 3A, Math 1B, Comm C1000" },
+        { term: "Summer 2023", courses: "CS 50A (Web Dev 1)" },
+        { term: "Fall 2023",   courses: "CS 50B (Web Dev 2), Psych 1A" },
+        { term: "Spring 2024", courses: "CS 50C (Web Dev 3)" },
+        { term: "Summer 2025", courses: "Engr 10, Art 1.2" },
+        { term: "Fall 2025",   courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
         { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
         { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
         { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
