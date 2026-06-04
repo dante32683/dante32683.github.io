@@ -93,7 +93,7 @@
         }
       });
     } else if (/^https?:/.test(hyperlinkReference)) {
-      anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197";
+      anchorElement.innerHTML = escapeHtml(linkText) + '&nbsp;<span class="arrow">\u2197</span>';
     }
     if (renderingOptions && renderingOptions.className) {
       anchorElement.className = renderingOptions.className;
@@ -168,6 +168,14 @@
     const metadataSegments = [portfolioProject.org, portfolioProject.dates].filter(Boolean).map(escapeHtml);
     if (metadataSegments.length) {
       projectCardContainer.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+    }
+    
+    if (portfolioProject.tools && portfolioProject.tools.length) {
+      const toolsContainer = createHtmlElement("div", "tools-list");
+      portfolioProject.tools.forEach((toolName) => {
+        toolsContainer.appendChild(createHtmlElement("span", "tool-tag", escapeHtml(toolName)));
+      });
+      projectCardContainer.appendChild(toolsContainer);
     }
     
     if (portfolioProject.body) {

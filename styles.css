@@ -433,6 +433,70 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   100% { opacity: 0; transform: translateY(-50%) scale(0.9); }
 }
 
+/* --- REDESIGN ADDITIONS ------------------------------------------------ */
+.tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+.tool-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  background-color: var(--faint);
+  color: var(--muted);
+  border: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tool-tag:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+
+.other-projects-heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px dashed var(--faint);
+  padding-top: 2rem;
+}
+
+.entry.compact-entry {
+  margin-bottom: 1.25rem;
+}
+.entry.compact-entry h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.entry.compact-entry .tools-list {
+  margin-top: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+.entry.compact-entry p {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+/* Arrow micro-interaction */
+a .arrow {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+a:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
 /* --- PRINT STYLES ------------------------------------------------------ */
 @media print {
   body { background: #fff; color: #000; font-size: 11pt; }

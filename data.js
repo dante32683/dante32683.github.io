@@ -42,13 +42,14 @@ const DATA = {
   projects: [
     {
       title: "CmdPal Extension Suite",
-      subtitle: "C# / .NET",
+      subtitle: "PowerToys command palette extensions",
       org: "Personal project",
       dates: "ongoing",
-      body: "Ten extensions for the PowerToys Command Palette, ported " +
-        "from an older Raycast set: an action center, media controls, notes, " +
-        "and a developer toolbox. The projects are hosted on GitHub and " +
-        "built manually against Microsoft's PowerToys SDK.",
+      featured: true,
+      tools: ["C#", ".NET", "Git"],
+      body: "Problem: Porting utility extensions from Raycast to Windows PowerToys Run palette. " +
+        "Action: Built ten extensions manually against the Microsoft PowerToys SDK, covering action centers, developer toolboxes, and media controls. " +
+        "Result: Maintained open-source codebase on GitHub to improve developer automation on Windows.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.jpg", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -61,23 +62,24 @@ const DATA = {
     },
     {
       title: "AHK Scripting",
-      subtitle: "Windows automation",
+      subtitle: "Keyboard hotkeys and desktop layout automation",
       org: "Personal project",
       dates: "ongoing",
-      body: "My daily-driver automation set: a CapsLock hotkey layer, window " +
-        "tiling, a virtual-desktop manager, a camera toggle, and autocorrect. " +
-        "Runs the same on my laptop and desktop.",
+      featured: false,
+      tools: ["AutoHotkey", "Windows"],
+      body: "Daily-driver automation scripting featuring a CapsLock hotkey layer, multi-monitor window tiling, custom virtual-desktop management, and autocorrect profiles.",
       link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
       title: "Baja SAE",
-      subtitle: "Management & Optimization",
+      subtitle: "Operations analysis and member allocation",
       org: "SRJC Baja SAE",
       dates: "starts June 2026",
-      body: "Joining the off-road racing team to analyze workflow organization " +
-        "and member allocation. I will focus on optimizing team operations " +
-        "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
-        "alongside the design and simulation subteams.",
+      featured: true,
+      tools: ["SolidWorks", "FEA", "Excel"],
+      body: "Problem: Disorganized member workflow and allocation across technical subteams. " +
+        "Action: Joining the structural team to analyze operations, learn advanced spaceframe CAD modeling, and run Finite Element Analysis simulations. " +
+        "Result: Establishing streamlined design cycles starting June 2026.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
@@ -86,25 +88,24 @@ const DATA = {
     },
     {
       title: "TEC Treasurer",
-      subtitle: "Club finances",
+      subtitle: "Club finances and asset management",
       org: "The Engineering Club, SRJC",
       dates: "Jan 2026 to May 2026",
-      body: "Served as co-treasurer with Kai Montalbano for the spring 2026 " +
-        "term. We managed two club accounts, a $1,004 trust account and a " +
-        "$10,000 enrichment fund, handling reimbursements and purchase " +
-        "approvals through the SRJC Student Life department.",
+      featured: false,
+      tools: ["Excel", "Accounting"],
+      body: "Managed two club accounts representing a $1,004 trust account and a $10,000 enrichment fund, coordinating purchasing approvals through the SRJC Student Life department.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
     {
       title: "Project Pigeon",
-      subtitle: "Wildfire-detection UAV",   // optional; shown lighter after the title
+      subtitle: "Wildfire-detection fixed-wing UAV",
       org: "The Engineering Club, SRJC",
       dates: "Sep 2025 to May 2026",
-      // One paragraph. What it is, the concrete specs, what you did.
-      body: "A fixed-wing UAV designed to spot wildfires. 1.5 m wingspan, " +
-        "NACA 4412 airfoil, V-tail, ArduPilot flight controller. Project " +
-        "concluded in the prototype phase. I co-wrote the design documents " +
-        "and compiled the bill of materials.",
+      featured: true,
+      tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
+      body: "Problem: Aerial wildfire detection in high-risk zones. " +
+        "Action: Co-wrote design documents, compiled the bill of materials, and designed the tail components. " +
+        "Result: Prototyped a 1.5 m wingspan UAV featuring a NACA 4412 airfoil, V-tail, and ArduPilot integration.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.jpg", alt: "UAV fuselage 3D CAD modeling view" },
@@ -114,10 +115,12 @@ const DATA = {
     },
     {
       title: "Dog Protection Device",
-      subtitle: "High school capstone project",
+      subtitle: "Foxtail grass seed canine face guard",
       org: "Technology High School",
       dates: "Jan 2024 to May 2024",
-      body: "Prototyped a protective mesh face guard to shield dogs from foxtail grass seed injuries. Iterated through multiple designs in a two-week cycle to refine strap adjustment, mesh airflow, and veterinary fit safety.",
+      featured: false,
+      tools: ["CAD", "3D Printing"],
+      body: "Prototyped a protective mesh face guard to shield dogs from foxtail injuries, iterating adjustments, airflow metrics, and veterinary safety fits in a high school capstone.",
       images: [
         { src: "images/foxtail-microscope.jpg", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
         { src: "images/foxtail-prototype-final.jpg", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
