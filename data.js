@@ -92,6 +92,12 @@ const DATA = {
         "and a developer toolbox. The projects are hosted on GitHub and " +
         "built manually against Microsoft's PowerToys SDK.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
+      images: [
+        { src: "images/cmdpal-image-editor.png", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
+        { src: "images/cmdpal-organize.png", alt: "NPU Organize screenshot utility in PowerToys Run" },
+        { src: "images/cmdpal-settings-1.png", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
+        { src: "images/cmdpal-settings-2.png", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
+      ],
     },
     {
       title: "AHK Scripting",
