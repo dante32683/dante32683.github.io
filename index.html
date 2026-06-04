@@ -186,9 +186,9 @@
       sidebar.appendChild(contact);
     }
 
-    // Theme toggle. Defaults to the OS setting; clicking sets an explicit
-    // choice and remembers it.
-    buildThemeToggle(sidebar);
+    // Theme toggle. Pinned to the top-right of the viewport (see CSS); it
+    // defaults to the OS setting, and clicking remembers an explicit choice.
+    buildThemeToggle(document.body);
 
     /* Footer */
     const year = new Date().getFullYear();
@@ -231,7 +231,7 @@
         }
       });
     }
-    container.insertBefore(btn, container.firstChild);
+    container.appendChild(btn);
   }
 
   function setupScrollSpy(targets) {

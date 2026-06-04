@@ -97,10 +97,15 @@ a:focus-visible, button:focus-visible {
   transition: color 0.15s, border-color 0.15s; }
 .contact a:hover { border-bottom-color: var(--accent); }
 
-/* Theme toggle: a clean, minimal icon button at the top of the sidebar. */
+/* Theme toggle: a clean, minimal icon button pinned to the top-right of the
+   viewport, so it stays put while scrolling and never crowds the identity
+   block. The page background tint keeps it legible over any content. */
 .theme-toggle {
-  margin-bottom: 1.5rem;
-  background: none;
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10;
+  background: var(--bg);
   border: 1px solid var(--faint);
   border-radius: 4px;
   width: 2.2rem;
