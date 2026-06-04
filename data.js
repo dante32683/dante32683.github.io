@@ -151,7 +151,7 @@ const DATA = {
       coursework: [
         { term: "Spring 2027 (Planned)",         courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
         { term: "Fall 2026 (Planned)",           courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
-        { term: "Summer 2026 (Planned)",         courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
+        { term: "Summer 2026",                   courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
         { term: "Spring 2026",                   courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
         { term: "Fall 2025",                     courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
         { term: "Summer 2025",                   courses: "Engr 10, Art 1.2" },
