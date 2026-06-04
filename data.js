@@ -68,7 +68,8 @@ const DATA = {
         "alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" }
+        { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
+        { src: "images/baja-highlights.jpg", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
       ],
     },
     {
