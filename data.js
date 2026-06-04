@@ -147,17 +147,17 @@ const DATA = {
         "Earned a Web & Mobile Front-End Dev certificate in 2024. Conducted materials " +
         "tests on a UTM and chemical reaction trials. Transferring Fall 2027 to UC Berkeley, " +
         "UC Davis (TAG), or Stanford.",
-      // Coursework table, newest at the bottom so it reads as a timeline.
+      // Coursework table, reverse chronological order.
       coursework: [
-        { term: "Summer 2023", courses: "CS 50A (Web Dev 1)" },
-        { term: "Fall 2023",   courses: "CS 50B (Web Dev 2), Psych 1A" },
-        { term: "Spring 2024", courses: "CS 50C (Web Dev 3)" },
-        { term: "Summer 2025", courses: "Engr 10, Art 1.2" },
-        { term: "Fall 2025",   courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
-        { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
-        { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
-        { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
         { term: "Spring 2027", courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
+        { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
+        { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
+        { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
+        { term: "Fall 2025",   courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
+        { term: "Summer 2025", courses: "Engr 10, Art 1.2" },
+        { term: "Spring 2024", courses: "CS 50C (Web Dev 3)" },
+        { term: "Fall 2023",   courses: "CS 50B (Web Dev 2), Psych 1A" },
+        { term: "Summer 2023", courses: "CS 50A (Web Dev 1)" },
       ],
     },
     {
