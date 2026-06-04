@@ -163,27 +163,39 @@
     }
 
     // Education
-    if (portfolioData.education && portfolioData.education.school) {
-      const educationSectionData = portfolioData.education;
+    if (portfolioData.education && portfolioData.education.length) {
       const educationSectionElement = openSection("education", "Education");
       educationSectionElement.className = "edu";
       educationSectionElement.appendChild(createHtmlElement("h2", null, "Education"));
-      const detailsContainer = createHtmlElement("div", "edu-details");
-      detailsContainer.appendChild(createHtmlElement("h3", null, escapeHtml(educationSectionData.school)));
-      if (educationSectionData.detail) {
-        detailsContainer.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
-      }
-      educationSectionElement.appendChild(detailsContainer);
-      if (educationSectionData.coursework && educationSectionData.coursework.length) {
-        const courseworkTableElement = createHtmlElement("table", "coursework");
-        educationSectionData.coursework.forEach((courseworkRowData) => {
-          const tableRowElement = createHtmlElement("tr");
-          tableRowElement.appendChild(createHtmlElement("th", null, escapeHtml(courseworkRowData.term)));
-          tableRowElement.appendChild(createHtmlElement("td", null, escapeHtml(courseworkRowData.courses)));
-          courseworkTableElement.appendChild(tableRowElement);
-        });
-        educationSectionElement.appendChild(courseworkTableElement);
-      }
+      
+      portfolioData.education.forEach((educationSectionData) => {
+        const educationBlockElement = createHtmlElement("div", "edu-block");
+        
+        const detailsContainer = createHtmlElement("div", "edu-details");
+        const schoolHeading = createHtmlElement("h3", null, escapeHtml(educationSectionData.school));
+        if (educationSectionData.dates) {
+          schoolHeading.appendChild(createHtmlElement("span", "subtitle", escapeHtml(educationSectionData.dates)));
+        }
+        detailsContainer.appendChild(schoolHeading);
+        
+        if (educationSectionData.detail) {
+          detailsContainer.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
+        }
+        educationBlockElement.appendChild(detailsContainer);
+        
+        if (educationSectionData.coursework && educationSectionData.coursework.length) {
+          const courseworkTableElement = createHtmlElement("table", "coursework");
+          educationSectionData.coursework.forEach((courseworkRowData) => {
+            const tableRowElement = createHtmlElement("tr");
+            tableRowElement.appendChild(createHtmlElement("th", null, escapeHtml(courseworkRowData.term)));
+            tableRowElement.appendChild(createHtmlElement("td", null, escapeHtml(courseworkRowData.courses)));
+            courseworkTableElement.appendChild(tableRowElement);
+          });
+          educationBlockElement.appendChild(courseworkTableElement);
+        }
+        
+        educationSectionElement.appendChild(educationBlockElement);
+      });
       contentElement.appendChild(educationSectionElement);
     }
 

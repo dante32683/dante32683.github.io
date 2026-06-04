@@ -158,11 +158,14 @@ h2 {
 
 /* --- ENTRIES (projects, experience) ------------------------------------ */
 .entry,
-.edu-details {
-  margin-bottom: 1.5rem;
+.edu-block {
+  margin-bottom: 2rem;
 }
 .entry:last-child,
 .entry:last-of-type,
+.edu-block:last-child {
+  margin-bottom: 0;
+}
 .edu-details {
   margin-bottom: 0;
 }

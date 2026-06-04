@@ -127,20 +127,28 @@ const DATA = {
   ],
 
   /* EDUCATION ------------------------------------------------------------ */
-  education: {
-    school: "Santa Rosa Junior College",
-    detail: "Civil engineering, transfer track. 4.0 GPA, Dean's Highest Honors " +
-      "in Fall 2025. Transferring Fall 2027, with Berkeley as the first choice, " +
-      "Davis as the TAG safety, and Stanford the reach.",
-    // Coursework table, newest at the bottom so it reads as a timeline.
-    coursework: [
-      { term: "Fall 2025",   courses: "Chem 3A, Math 1B, Comm C1000" },
-      { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
-      { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
-      { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
-      { term: "Spring 2027", courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
-    ],
-  },
+  education: [
+    {
+      school: "Santa Rosa Junior College",
+      dates: "2025 to present",
+      detail: "Civil engineering, transfer track. 4.0 GPA, Dean's Highest Honors " +
+        "in Fall 2025. Transferring Fall 2027, with Berkeley as the first choice, " +
+        "Davis as the TAG safety, and Stanford the reach.",
+      // Coursework table, newest at the bottom so it reads as a timeline.
+      coursework: [
+        { term: "Fall 2025",   courses: "Chem 3A, Math 1B, Comm C1000" },
+        { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
+        { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
+        { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
+        { term: "Spring 2027", courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
+      ],
+    },
+    {
+      school: "Technology High School",
+      dates: "Graduated 2025",
+      detail: "Graduated in the top ten of the class. Honors curriculum with focus on science, engineering, and mathematics.",
+    },
+  ],
 
   /* HONORS - structured entries, no emoji, no em dashes. ----------------- */
   honors: [
