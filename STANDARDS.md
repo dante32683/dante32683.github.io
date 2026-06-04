@@ -121,3 +121,58 @@ make it concrete.
 - Test before you push: open `index.html` in a browser and confirm it renders
   in both light and dark mode (toggle your OS theme), with no blank labels and
   no console errors.
+
+---
+
+## Code conventions
+
+You rarely touch `index.html` or `styles.css`, but when you do, match what is
+already there. These are not new rules; they describe how the existing code is
+written.
+
+**JavaScript (the renderer in `index.html`)**
+
+- **Escape every value that comes from `data.js`.** Wrap it in `esc(...)` before
+  it reaches the DOM. The only exception is text you wrote literally in the
+  renderer itself.
+- **Build DOM with the helpers**, not raw HTML strings: `el(tag, class, html)`
+  for elements, `anchor(href, text)` for links. Do not reach for a templating
+  library or `innerHTML +=`.
+- **Skip empty fields, never render blanks.** Guard every optional field with
+  `if (item.field)` so a half-filled entry can never show an empty label. This
+  is what lets `data.js` editors delete any line that does not apply.
+- **External links get `target="_blank"` and `rel="noopener noreferrer"`.**
+  `anchor()` already does this for `http(s)` links; rely on it.
+- Plain ES5/ES6, no transpiler. `const`/`let`, arrow functions, and
+  `addEventListener` are fine; anything needing a build step is not.
+
+**CSS (`styles.css`)**
+
+- **All colour, sizing, and font choices come from the `:root` variables.** Use
+  `var(--accent)` and friends; do not hard-code a hex value in a rule.
+- **Dark mode is defined twice** (the `prefers-color-scheme` block and the
+  `[data-theme="dark"]` block) and the two value lists must stay identical. If
+  you add a variable or a dark override, update both.
+- **One accent colour, used sparingly** (links, rules, active nav). Keep the
+  high-contrast, near-white/near-black look and the rough 60-30-10 split.
+- Group related rules under the existing `/* --- SECTION --- */` banners.
+  Use `rem` units and the `0.15s` transition timing the rest of the file uses.
+- Anything interactive needs a visible `:focus-visible` outline. Keep the print
+  block working: it hides the nav and toggle and prints in black on white.
+
+---
+
+## Commit messages
+
+One change per commit. Write the subject as a **capitalized, imperative phrase**
+that says what the commit does, with **no prefix and no trailing period**:
+
+```
+Move theme toggle to a fixed top-right position
+Add SRJC Baja SAE website link to Baja project entry
+Fix theme toggle placement and resolve Unicode icon mapping bug
+```
+
+Not `fixed the toggle`, not `chore: toggle`, not `Update stuff.`. If you need
+the word "and" twice, the commit is probably doing too much; split it. A body
+is optional and only earns its place when the subject cannot explain the why.
