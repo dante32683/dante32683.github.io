@@ -17,9 +17,9 @@
 :root {
   --bg:      #fbfbfa;   /* 60% - page background          */
   --ink:     #17191c;   /* 30% - body text                */
-  --muted:   #5b6066;   /* secondary text                 */
+  --muted:   #52565c;   /* secondary text (optimized contrast) */
   --faint:   #d9d9d4;   /* hairlines                      */
-  --accent:  #227c4b;   /* 10% - links, rules, active nav (green) */
+  --accent:  #196a3c;   /* 10% - links, rules, active nav (green - optimized contrast) */
 
   --sidebar: 15rem;     /* width of the left column       */
   --page:    66rem;     /* total content width            */
@@ -93,9 +93,22 @@ a:focus-visible, button:focus-visible {
 /* Contact */
 .contact { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-size: 0.9rem; }
-.contact a { border-bottom: 1px solid var(--faint); width: fit-content; padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s; }
-.contact a:hover { border-bottom-color: var(--accent); }
+.contact a { position: relative; width: fit-content; padding-bottom: 2px;
+  transition: color 0.15s; }
+.contact a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent);
+  transition: width 0.15s ease, left 0.15s ease;
+}
+.contact a:hover::after {
+  width: 100%;
+  left: 0;
+}
 
 /* Theme toggle: a clean, minimal icon button pinned to the top-right of the
    viewport, so it stays put while scrolling and never crowds the identity
@@ -145,9 +158,22 @@ h2 {
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 .entry p { margin-top: 0.55rem; color: var(--ink); }
 .entry .more { font-size: 0.85rem; margin-top: 0.5rem; }
-.entry .more a { border-bottom: 1px solid var(--faint);
-  transition: color 0.15s, border-color 0.15s; }
-.entry .more a:hover { border-bottom-color: var(--accent); }
+.entry .more a { position: relative; padding-bottom: 2px;
+  transition: color 0.15s; }
+.entry .more a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent);
+  transition: width 0.15s ease, left 0.15s ease;
+}
+.entry .more a:hover::after {
+  width: 100%;
+  left: 0;
+}
 
 /* --- EDUCATION --------------------------------------------------------- */
 .edu h3 { font-weight: 600; font-size: 1.15rem; }
@@ -230,12 +256,24 @@ h2 {
   margin-top: 1.5rem;
 }
 .gallery-link a {
+  position: relative;
   font-weight: 600;
-  border-bottom: 2px solid var(--faint);
-  transition: color 0.15s, border-color 0.15s;
+  padding-bottom: 2px;
+  transition: color 0.15s;
 }
-.gallery-link a:hover {
-  border-bottom-color: var(--accent);
+.gallery-link a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.15s ease, left 0.15s ease;
+}
+.gallery-link a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .project-images-grid {
@@ -259,6 +297,11 @@ h2 {
 .project-image-container:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
+}
+
+.project-image-container:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .project-image-container img {
@@ -286,12 +329,14 @@ h2 {
   align-items: center;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .lightbox-modal.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -352,6 +397,32 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .nav a.active { border-left: none; background-color: var(--faint); font-weight: 600; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
+}
+
+/* --- POLISH EFFECTS ---------------------------------------------------- */
+.copy-tooltip {
+  position: absolute;
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: fadeInOutTooltip 1.2s ease forwards;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+@keyframes fadeInOutTooltip {
+  0% { opacity: 0; transform: translateY(-50%) scale(0.9); }
+  15% { opacity: 1; transform: translateY(-50%) scale(1); }
+  85% { opacity: 1; transform: translateY(-50%) scale(1); }
+  100% { opacity: 0; transform: translateY(-50%) scale(0.9); }
 }
 
 /* --- PRINT STYLES ------------------------------------------------------ */
