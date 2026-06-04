@@ -20,6 +20,7 @@
   --muted:   #52565c;   /* secondary text (optimized contrast) */
   --faint:   #d9d9d4;   /* hairlines                      */
   --accent:  #196a3c;   /* 10% - links, rules, active nav (green - optimized contrast) */
+  --accent-tint: rgba(25, 106, 60, 0.06); /* soft green capsule highlight */
 
   --sidebar: 15rem;     /* width of the left column       */
   --page:    66rem;     /* total content width            */
@@ -31,11 +32,11 @@
    the toggle. Keep the two value lists below identical. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788;
+    --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788; --accent-tint: rgba(82, 183, 136, 0.08);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788;
+  --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788; --accent-tint: rgba(82, 183, 136, 0.08);
 }
 
 /* --- RESET ------------------------------------------------------------- */
@@ -87,8 +88,8 @@ a:focus-visible, button:focus-visible {
   margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s, background-color 0.15s;
   border-radius: 4px;
 }
-.nav a:hover { color: var(--accent); }
-.nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.nav a:hover { color: var(--accent); background-color: var(--accent-tint); }
+.nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
 /* Contact */
 .contact { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.35rem;
@@ -409,7 +410,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .sidebar { position: static; padding: 3rem 0 0; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
-  .nav a.active { border-left: none; color: var(--accent); font-weight: 600; }
+  .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
 }
