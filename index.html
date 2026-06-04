@@ -73,15 +73,18 @@
       anchorElement.innerHTML = envelopeIconSvg + escapeHtml(linkText);
       const emailAddressString = hyperlinkReference.slice(7);
       anchorElement.addEventListener("click", (clickEvent) => {
-        clickEvent.preventDefault();
-        navigator.clipboard.writeText(emailAddressString).then(() => {
-          if (anchorElement.querySelector(".copy-tooltip")) return;
-          const tooltipElement = createHtmlElement("span", "copy-tooltip", "Copied!");
-          anchorElement.appendChild(tooltipElement);
-          setTimeout(() => {
-            tooltipElement.remove();
-          }, 1200);
-        });
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(emailAddressString).then(() => {
+            if (anchorElement.querySelector(".copy-tooltip")) return;
+            const tooltipElement = createHtmlElement("span", "copy-tooltip", "Copied!");
+            anchorElement.appendChild(tooltipElement);
+            setTimeout(() => {
+              tooltipElement.remove();
+            }, 1200);
+          }).catch(() => {
+            // Silently ignore clipboard write failures (e.g. user blocked permission)
+          });
+        }
       });
     } else if (/^https?:/.test(hyperlinkReference)) {
       anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197"; // ↗ external link arrow symbol
@@ -147,7 +150,7 @@
         sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
       });
       const galleryLinkWrapper = createHtmlElement("div", "more gallery-link");
-      galleryLinkWrapper.appendChild(createAnchorElement("projects/", "View Projects with Photos →"));
+      galleryLinkWrapper.appendChild(createAnchorElement("projects/index.html", "View Projects with Photos →"));
       sectionElement.appendChild(galleryLinkWrapper);
       contentElement.appendChild(sectionElement);
     }
@@ -244,7 +247,7 @@
       navigationTargetSections.forEach((navigationTarget) => {
         navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
         if (navigationTarget.id === "projects") {
-          const photosLinkElement = createAnchorElement("projects/", "Photos", { className: "nav-photos-sublink" });
+          const photosLinkElement = createAnchorElement("projects/index.html", "Photos", { className: "nav-photos-sublink" });
           navigationElement.appendChild(photosLinkElement);
         }
       });
@@ -306,8 +309,11 @@
 
       // 3. Toggle active class on navigation links
       navigationLinks.forEach((navigationLinkElement) => {
-        const anchorReferenceId = navigationLinkElement.getAttribute("href").slice(1);
-        navigationLinkElement.classList.toggle("active", anchorReferenceId === activeSectionId);
+        const href = navigationLinkElement.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          const anchorReferenceId = href.slice(1);
+          navigationLinkElement.classList.toggle("active", anchorReferenceId === activeSectionId);
+        }
       });
     });
   }

@@ -85,15 +85,18 @@
       anchorElement.innerHTML = envelopeIconSvg + escapeHtml(linkText);
       const emailAddressString = hyperlinkReference.slice(7);
       anchorElement.addEventListener("click", (clickEvent) => {
-        clickEvent.preventDefault();
-        navigator.clipboard.writeText(emailAddressString).then(() => {
-          if (anchorElement.querySelector(".copy-tooltip")) return;
-          const tooltipElement = createHtmlElement("span", "copy-tooltip", "Copied!");
-          anchorElement.appendChild(tooltipElement);
-          setTimeout(() => {
-            tooltipElement.remove();
-          }, 1200);
-        });
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(emailAddressString).then(() => {
+            if (anchorElement.querySelector(".copy-tooltip")) return;
+            const tooltipElement = createHtmlElement("span", "copy-tooltip", "Copied!");
+            anchorElement.appendChild(tooltipElement);
+            setTimeout(() => {
+              tooltipElement.remove();
+            }, 1200);
+          }).catch(() => {
+            // Silently ignore clipboard write failures (e.g. user blocked permission)
+          });
+        }
       });
     } else if (/^https?:/.test(hyperlinkReference)) {
       anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197"; // ↗ external link arrow symbol
