@@ -16,8 +16,6 @@
   <meta property="og:url" content="https://dante-martin.com">
 
   <script>
-    // Apply a saved theme choice before paint, to avoid a flash. No saved
-    // value means follow the operating system (handled in CSS).
     (function () {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -26,9 +24,7 @@
 </head>
 <body>
   <div id="scroll-progress-bar" style="position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 1000; transition: width 0.05s ease;"></div>
-  <!-- The page is rendered by the script below from the DATA object in
-       data.js. To change content, edit data.js, NOT this file. Edit here only
-       to change page STRUCTURE. -->
+  <!-- Shell layout -->
   <div class="layout">
     <aside class="sidebar" id="sidebar"></aside>
     <main class="content" id="content"></main>
@@ -37,13 +33,7 @@
 
   <script src="data.js"></script>
   <script>
-  /* ---------------------------------------------------------------------
-     Renderer. Small on purpose. It turns the DATA object into HTML, builds
-     the sidebar nav from whichever sections actually have content, and
-     highlights the nav item for the section you are looking at.
-     Helpers: el(tag, class, html) and esc(text). A missing/empty field is
-     skipped, so a half-filled entry never breaks the page.
-     --------------------------------------------------------------------- */
+  // HTML renderer
 
   const escapeHtml = (unsafeString) => String(unsafeString == null ? "" : unsafeString)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -87,7 +77,7 @@
         }
       });
     } else if (/^https?:/.test(hyperlinkReference)) {
-      anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197"; // ↗ external link arrow symbol
+      anchorElement.innerHTML = escapeHtml(linkText) + "&nbsp;\u2197";
     }
     if (renderingOptions && renderingOptions.className) {
       anchorElement.className = renderingOptions.className;
@@ -125,11 +115,9 @@
 
     const sidebarElement = document.getElementById("sidebar");
     const contentElement = document.getElementById("content");
-    const navigationTargetSections = []; // {id, label} for the in-page nav
+    const navigationTargetSections = [];
 
-    /* ---- Build content sections first, collecting nav targets. -------- */
-
-    // Helper: start a <section id> and register it in the nav.
+    // Helper to open new page sections and register them in the nav
     function openSection(sectionId, navigationLabel) {
       const sectionElement = createHtmlElement("section");
       sectionElement.id = sectionId;
@@ -137,7 +125,7 @@
       return sectionElement;
     }
 
-    // Intro paragraph (not a nav target).
+    // Intro
     if (portfolioData.intro) {
       contentElement.appendChild(createHtmlElement("p", "intro", escapeHtml(portfolioData.intro)));
     }
@@ -233,7 +221,7 @@
       contentElement.appendChild(skillsSectionElement);
     }
 
-    /* ---- Sidebar: identity, nav (from collected targets), contact. ---- */
+    // Sidebar
     sidebarElement.appendChild(createHtmlElement("h1", null, escapeHtml(portfolioData.name)));
     if (portfolioData.tagline) {
       sidebarElement.appendChild(createHtmlElement("p", "tagline", escapeHtml(portfolioData.tagline)));
@@ -264,8 +252,7 @@
       sidebarElement.appendChild(contactInfoContainer);
     }
 
-    // Theme toggle. Pinned to the top-right of the viewport (see CSS); it
-    // defaults to the OS setting, and clicking remembers an explicit choice.
+    // Theme toggle
     createThemeToggleButton(document.body);
 
     /* Footer */
@@ -273,7 +260,7 @@
     document.getElementById("footer").appendChild(
       createHtmlElement("p", null, "© " + currentCalendarYear + " " + escapeHtml(portfolioData.name)));
 
-    /* ---- Scroll-spy: highlight the nav item for the visible section. -- */
+    // Scroll-spy
     const navigationLinks = document.querySelectorAll(".nav a");
     const sectionElements = navigationTargetSections.map((targetSection) => {
       return document.getElementById(targetSection.id);
@@ -283,7 +270,6 @@
       const scrollPosition = window.scrollY;
       const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       
-      // 1. Update scroll progress bar
       const scrollProgressBar = document.getElementById("scroll-progress-bar");
       if (scrollProgressBar) {
         scrollProgressBar.style.width = (maximumScrollableHeight > 0 
@@ -291,7 +277,6 @@
           : 0) + "%";
       }
 
-      // 2. Determine active section symmetrically
       let activeSectionId = "";
       if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 10) {
         activeSectionId = sectionElements[sectionElements.length - 1].id;
@@ -307,7 +292,7 @@
         }
       }
 
-      // 3. Toggle active class on navigation links
+      // Set active link
       navigationLinks.forEach((navigationLinkElement) => {
         const href = navigationLinkElement.getAttribute("href");
         if (href && href.startsWith("#")) {
@@ -318,7 +303,7 @@
     });
   }
 
-  // Current theme: an explicit choice if set, otherwise the OS preference.
+  // Get active theme
   function determineEffectiveTheme() {
     const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
     if (explicitlySavedTheme) return explicitlySavedTheme;
