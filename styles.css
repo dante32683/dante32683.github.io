@@ -152,7 +152,7 @@ section { padding: 0; padding-top: 2.5rem; border-top: 1px solid var(--faint); m
 section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 
 h2 {
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem;
 }
 
@@ -459,7 +459,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
 }
 
 .other-projects-heading {
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
