@@ -67,6 +67,9 @@ const DATA = {
         "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
         "alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
+      images: [
+        { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" }
+      ],
     },
     {
       title: "TEC Treasurer",
