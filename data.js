@@ -51,12 +51,12 @@ const DATA = {
         "built manually against Microsoft's PowerToys SDK.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
-        { src: "images/cmdpal-image-editor.png", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
-        { src: "images/cmdpal-organize.png", alt: "NPU Organize screenshot utility in PowerToys Run" },
-        { src: "images/cmdpal-obsidian.png", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
-        { src: "images/cmdpal-code.png", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
-        { src: "images/cmdpal-settings-1.png", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
-        { src: "images/cmdpal-settings-2.png", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
+        { src: "images/cmdpal-image-editor.jpg", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
+        { src: "images/cmdpal-organize.jpg", alt: "NPU Organize screenshot utility in PowerToys Run" },
+        { src: "images/cmdpal-obsidian.jpg", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
+        { src: "images/cmdpal-code.jpg", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
+        { src: "images/cmdpal-settings-1.jpg", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
+        { src: "images/cmdpal-settings-2.jpg", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
       ],
     },
     {
@@ -73,15 +73,15 @@ const DATA = {
       title: "Baja SAE",
       subtitle: "Management & Optimization",
       org: "SRJC Baja SAE",
-      dates: "ongoing",
+      dates: "starts June 2026",
       body: "Joining the off-road racing team to analyze workflow organization " +
         "and member allocation. I will focus on optimizing team operations " +
         "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
         "alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/baja-chassis.png", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
-        { src: "images/baja-highlights.png", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
+        { src: "images/baja-chassis.jpg", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
+        { src: "images/baja-highlights.jpg", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
       ],
     },
     {
@@ -107,9 +107,9 @@ const DATA = {
         "and compiled the bill of materials.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/pigeon-uav.png", alt: "UAV fuselage 3D CAD modeling view" },
-        { src: "images/pigeon-tail.png", alt: "UAV V-tail and landing gear mount CAD close-up view" },
-        { src: "images/pigeon-motor.png", alt: "Testing brushless motor weight on digital scale (118g)" }
+        { src: "images/pigeon-uav.jpg", alt: "UAV fuselage 3D CAD modeling view" },
+        { src: "images/pigeon-tail.jpg", alt: "UAV V-tail and landing gear mount CAD close-up view" },
+        { src: "images/pigeon-motor.jpg", alt: "Testing brushless motor weight on digital scale (118g)" }
       ],
     },
     {
@@ -145,19 +145,17 @@ const DATA = {
       dates: "2023 to present (Dual Enrollment 2023 to 2024)",
       detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. " +
         "Earned a Web & Mobile Front-End Dev certificate in 2024. Conducted materials " +
-        "tests on a UTM and chemical reaction trials. Transferring Fall 2027 to UC Berkeley, " +
-        "UC Davis (TAG), or Stanford.",
+        "tests on a UTM and chemical reaction trials. Targeting transfer in Fall 2027 to " +
+        "UC Berkeley, UC Davis (TAG), or Stanford.",
       // Coursework table, reverse chronological order.
       coursework: [
-        { term: "Spring 2027", courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
-        { term: "Fall 2026",   courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
-        { term: "Summer 2026", courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
-        { term: "Spring 2026", courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
-        { term: "Fall 2025",   courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
-        { term: "Summer 2025", courses: "Engr 10, Art 1.2" },
-        { term: "Spring 2024", courses: "CS 50C (Web Dev 3)" },
-        { term: "Fall 2023",   courses: "CS 50B (Web Dev 2), Psych 1A" },
-        { term: "Summer 2023", courses: "CS 50A (Web Dev 1)" },
+        { term: "Spring 2027 (Planned)",         courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
+        { term: "Fall 2026 (Planned)",           courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
+        { term: "Summer 2026 (Planned)",         courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
+        { term: "Spring 2026",                   courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
+        { term: "Fall 2025",                     courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
+        { term: "Summer 2025",                   courses: "Engr 10, Art 1.2" },
+        { term: "Dual Enrollment (2023 - 2024)", courses: "CS 50A (Web Dev 1), CS 50B (Web Dev 2), CS 50C (Web Dev 3), Psych 1A" },
       ],
     },
     {
@@ -198,7 +196,7 @@ const DATA = {
   /* SKILLS - grouped. Put what you actually use under "working"; put what
      you are picking up under "learning". Be honest about the split. ------ */
   skills: {
-    working:  ["C++", "C# / .NET", "HTML / CSS", "AutoHotkey v2", "Excel", "Git"],
-    learning: ["JavaScript", "Python", "MATLAB", "ANSYS", "AutoCAD", "Revit", "3D printing"],
+    working:  ["JavaScript", "C++", "C# / .NET", "HTML / CSS", "AutoHotkey v2", "Excel", "Git"],
+    learning: ["Python", "MATLAB", "ANSYS", "AutoCAD", "Revit", "3D printing"],
   },
 };
