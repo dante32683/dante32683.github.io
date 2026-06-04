@@ -95,6 +95,8 @@ const DATA = {
       images: [
         { src: "images/cmdpal-image-editor.png", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
         { src: "images/cmdpal-organize.png", alt: "NPU Organize screenshot utility in PowerToys Run" },
+        { src: "images/cmdpal-obsidian.png", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
+        { src: "images/cmdpal-code.png", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
         { src: "images/cmdpal-settings-1.png", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
         { src: "images/cmdpal-settings-2.png", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
       ],
