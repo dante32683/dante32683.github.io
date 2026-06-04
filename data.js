@@ -108,7 +108,7 @@ const DATA = {
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
         { src: "images/pigeon-tail.webp", alt: "UAV V-tail and landing gear mount CAD close-up view" },
-        { src: "images/pigeon-motor.webp", alt: "Testing brushless motor weight on digital scale (118.6g)" }
+        { src: "images/pigeon-motor.webp", alt: "Testing brushless motor weight on digital scale (1186g)" }
       ],
     },
     {
