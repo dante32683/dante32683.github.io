@@ -205,9 +205,7 @@ h2 {
 .coursework { font-size: 0.9rem; margin-top: 1.2rem; border-collapse: collapse; width: 100%; }
 .coursework th, .coursework td { text-align: left; vertical-align: top;
   padding: 0.55rem 0; border-top: 1px solid var(--faint); }
-.coursework th { color: var(--muted); font-weight: 600; white-space: nowrap; padding-right: 1.75rem;
-  transition: color 0.15s ease; }
-.coursework tr:hover th { color: var(--accent); }
+.coursework th { color: var(--muted); font-weight: 600; white-space: nowrap; padding-right: 1.75rem; }
 .coursework tr:first-child th, .coursework tr:first-child td { border-top: none; }
 
 /* --- HONORS & SKILLS --------------------------------------------------- */
@@ -217,10 +215,6 @@ h2 {
   border-left: 2px solid var(--faint);
   margin-bottom: 0.75rem;
   font-size: 0.95rem;
-  transition: border-color 0.15s;
-}
-.plainlist li:hover {
-  border-left-color: var(--accent);
 }
 
 
@@ -237,7 +231,6 @@ h2 {
   border-radius: 4px;
   font-weight: 500;
   border: 1px solid transparent;
-  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 /* "Working with" tags (active accent tint) */
@@ -246,20 +239,12 @@ h2 {
   border-color: rgba(34, 124, 75, 0.15);
   color: var(--accent);
 }
-.skill-tag.working:hover {
-  background-color: rgba(34, 124, 75, 0.12);
-  border-color: var(--accent);
-}
 
 /* "Learning" tags (neutral gray tint) */
 .skill-tag.learning {
   background-color: var(--faint);
   border-color: var(--faint);
   color: var(--muted);
-}
-.skill-tag.learning:hover {
-  border-color: var(--muted);
-  color: var(--ink);
 }
 
 /* Dark theme overrides for tags */
@@ -268,16 +253,10 @@ h2 {
     background-color: rgba(82, 183, 136, 0.1);
     border-color: rgba(82, 183, 136, 0.2);
   }
-  :root:not([data-theme="light"]) .skill-tag.working:hover {
-    background-color: rgba(82, 183, 136, 0.15);
-  }
 }
 :root[data-theme="dark"] .skill-tag.working {
   background-color: rgba(82, 183, 136, 0.1);
   border-color: rgba(82, 183, 136, 0.2);
-}
-:root[data-theme="dark"] .skill-tag.working:hover {
-  background-color: rgba(82, 183, 136, 0.15);
 }
 /* --- PROJECTS GALLERY -------------------------------------------------- */
 .gallery-link {
