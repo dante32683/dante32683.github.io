@@ -297,7 +297,12 @@
     document.querySelectorAll(".nav a").forEach((anchorLinkElement) => {
       navigationAnchorLinksMap[anchorLinkElement.getAttribute("href").slice(1)] = anchorLinkElement;
     });
+    
     const scrollSpyIntersectionObserver = new IntersectionObserver((observerIntersectionEntries) => {
+      // If we are already at the bottom of the page, let the scroll listener handle the active section
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (documentHeight > 0 && window.scrollY >= documentHeight - 10) return;
+
       observerIntersectionEntries.forEach((observerIntersectionEntry) => {
         if (observerIntersectionEntry.isIntersecting) {
           Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
@@ -308,9 +313,23 @@
         }
       });
     }, { rootMargin: "-20% 0px -70% 0px" });
+
     spyTargetSections.forEach((targetSection) => {
       const sectionElementToObserve = document.getElementById(targetSection.id);
       if (sectionElementToObserve) scrollSpyIntersectionObserver.observe(sectionElementToObserve);
+    });
+
+    // Handle highlighting when scrolled to the absolute bottom of the viewport
+    window.addEventListener("scroll", () => {
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (documentHeight > 0 && window.scrollY >= documentHeight - 10) {
+        Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
+          anchorLinkElement.classList.remove("active");
+        });
+        const lastSectionId = spyTargetSections[spyTargetSections.length - 1].id;
+        const correspondingNavLink = navigationAnchorLinksMap[lastSectionId];
+        if (correspondingNavLink) correspondingNavLink.classList.add("active");
+      }
     });
   }
 
