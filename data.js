@@ -27,7 +27,7 @@ const DATA = {
   intro: "I study civil engineering at Santa Rosa Junior College and plan to " +
     "transfer in 2027. Most of my time goes to student engineering projects: a " +
     "wildfire-detection UAV, a Baja race car, and the club's books. When a " +
-    "project needs a tool that does not exist yet, I write it.",
+    "project needs a custom tool, I write it, utilizing AI-assisted development to speed up prototyping and automation.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
