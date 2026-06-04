@@ -175,8 +175,10 @@ h2 {
   font-size: 1.15rem;
   line-height: 1.3;
 }
-.entry h3 .subtitle { color: var(--muted); font-weight: 400; }
-.entry h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
+.entry h3 .subtitle,
+.edu-block h3 .subtitle { color: var(--muted); font-weight: 400; }
+.entry h3 .subtitle::before,
+.edu-block h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 .entry p { margin-top: 0.55rem; color: var(--ink); }
 .entry .more { font-size: 0.85rem; margin-top: 0.5rem; }
