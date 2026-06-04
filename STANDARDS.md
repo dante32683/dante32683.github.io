@@ -132,17 +132,18 @@ written.
 
 **JavaScript (the renderer in `index.html`)**
 
-- **Escape every value that comes from `data.js`.** Wrap it in `esc(...)` before
+- **Escape every value that comes from `data.js`.** Wrap it in `escapeHtml(...)` before
   it reaches the DOM. The only exception is text you wrote literally in the
   renderer itself.
-- **Build DOM with the helpers**, not raw HTML strings: `el(tag, class, html)`
-  for elements, `anchor(href, text)` for links. Do not reach for a templating
+- **Build DOM with the helpers**, not raw HTML strings: `createHtmlElement(tagName, className, innerHtml)`
+  for elements, `createAnchorElement(hyperlinkReference, linkText)` for links. Do not reach for a templating
   library or `innerHTML +=`.
+- **Use self-documenting variable and function names.** All variable, parameter, and function names must be fully descriptive of their purpose and role (e.g. `escapeHtml` instead of `esc`, `createHtmlElement` instead of `el`, `createAnchorElement` instead of `anchor`, `portfolioEntry` instead of `item`). Do not abbreviate names for memory or typing convenience.
 - **Skip empty fields, never render blanks.** Guard every optional field with
-  `if (item.field)` so a half-filled entry can never show an empty label. This
+  `if (portfolioEntry.field)` so a half-filled entry can never show an empty label. This
   is what lets `data.js` editors delete any line that does not apply.
 - **External links get `target="_blank"` and `rel="noopener noreferrer"`.**
-  `anchor()` already does this for `http(s)` links; rely on it.
+  `createAnchorElement()` already does this for `http(s)` links; rely on it.
 - Plain ES5/ES6, no transpiler. `const`/`let`, arrow functions, and
   `addEventListener` are fine; anything needing a build step is not.
 
