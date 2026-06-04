@@ -153,21 +153,24 @@ h2 {
 /* --- ENTRIES (projects, experience) ------------------------------------ */
 .entry,
 .edu-details {
-  padding-left: 1rem;
-  border-left: 2px solid var(--faint);
   margin-bottom: 1.5rem;
-  transition: border-left-color 0.15s;
 }
 .entry:last-child,
 .entry:last-of-type,
 .edu-details {
   margin-bottom: 0;
 }
-.entry:hover,
-.edu-details:hover {
-  border-left-color: var(--accent);
+.entry h3,
+.edu-details h3 {
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  transition: color 0.15s ease;
 }
-.entry h3 { font-weight: 600; font-size: 1.15rem; line-height: 1.3; }
+.entry:hover h3,
+.edu-details:hover h3 {
+  color: var(--accent);
+}
 .entry h3 .subtitle { color: var(--muted); font-weight: 400; }
 .entry h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
