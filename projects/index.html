@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Gallery - Dante Martin</title>
+  <meta name="description" content="Detailed project gallery and portfolio for Dante Martin, featuring wildfire-detection UAV, Baja SAE race car optimization, and automation tools.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
+  
+  <meta property="og:title" content="Projects Gallery - Dante Martin">
+  <meta property="og:description" content="Detailed engineering and automation student projects gallery with visual blueprints, CAD designs, and codebase structures.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dante-martin.com/projects/">
+
+  <script>
+    // Apply a saved theme choice before paint, to avoid a flash.
+    (function () {
+      const savedThemePreference = localStorage.getItem("theme");
+      if (savedThemePreference === "light" || savedThemePreference === "dark") {
+        document.documentElement.setAttribute("data-theme", savedThemePreference);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content" id="content">
+      <section id="gallery-header-section">
+        <h2 id="gallery-header-title">Projects Gallery</h2>
+        <p class="intro">
+          This gallery displays the designs, schematics, and UI layouts for the engineering and automation projects I have built or optimized.
+        </p>
+      </section>
+      <section id="projects-list-section">
+        <div id="projects-gallery-container"></div>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </div>
+
+  <!-- Lightbox Modal container for full-screen image inspection -->
+  <div id="lightbox-overlay-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image preview lightbox">
+    <button id="lightbox-close-control-button" class="lightbox-close-button" aria-label="Close image preview">&times;</button>
+    <img id="lightbox-enlarged-image-display" class="lightbox-image-element" src="" alt="">
+    <div id="lightbox-image-caption-text" class="lightbox-caption-text"></div>
+  </div>
+
+  <script src="../data.js"></script>
+  <script>
+  /* ---------------------------------------------------------------------
+     Projects Gallery Renderer.
+     Loads the project items from data.js, renders their descriptions,
+     generates grids of project images, and handles interactive full-screen
+     lightbox view modal toggling.
+     --------------------------------------------------------------------- */
+
+  const escapeHtml = (unsafeString) => String(unsafeString == null ? "" : unsafeString)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  function createHtmlElement(tagName, className, innerHtml) {
+    const htmlElementNode = document.createElement(tagName);
+    if (className) htmlElementNode.className = className;
+    if (innerHtml != null) htmlElementNode.innerHTML = innerHtml;
+    return htmlElementNode;
+  }
+
+  function createAnchorElement(hyperlinkReference, linkText, renderingOptions) {
+    const anchorElement = createHtmlElement("a", null, escapeHtml(linkText));
+    anchorElement.href = hyperlinkReference;
+    if (/^https?:/.test(hyperlinkReference)) { 
+      anchorElement.target = "_blank"; 
+      anchorElement.rel = "noopener noreferrer"; 
+    }
+    if (renderingOptions && renderingOptions.className) {
+      anchorElement.className = renderingOptions.className;
+    }
+    return anchorElement;
+  }
+
+  function resolveImagePath(imageRelativePath) {
+    if (/^https?:/.test(imageRelativePath) || imageRelativePath.startsWith("/")) {
+      return imageRelativePath;
+    }
+    return "../" + imageRelativePath;
+  }
+
+  // Lightbox Modal open/close logic
+  const lightboxModalElement = document.getElementById("lightbox-overlay-modal");
+  const lightboxImageElement = document.getElementById("lightbox-enlarged-image-display");
+  const lightboxCaptionElement = document.getElementById("lightbox-image-caption-text");
+  const lightboxCloseButtonElement = document.getElementById("lightbox-close-control-button");
+
+  function openLightbox(imageSource, imageAlternativeText) {
+    lightboxImageElement.src = imageSource;
+    lightboxImageElement.alt = imageAlternativeText;
+    lightboxCaptionElement.textContent = imageAlternativeText;
+    lightboxModalElement.classList.add("active");
+    lightboxCloseButtonElement.focus();
+    document.addEventListener("keydown", handleLightboxKeyDownEscape);
+  }
+
+  function closeLightbox() {
+    lightboxModalElement.classList.remove("active");
+    lightboxImageElement.src = "";
+    lightboxImageElement.alt = "";
+    lightboxCaptionElement.textContent = "";
+    document.removeEventListener("keydown", handleLightboxKeyDownEscape);
+  }
+
+  function handleLightboxKeyDownEscape(keyboardEvent) {
+    if (keyboardEvent.key === "Escape") {
+      closeLightbox();
+    }
+  }
+
+  lightboxCloseButtonElement.addEventListener("click", closeLightbox);
+  lightboxModalElement.addEventListener("click", (mouseEvent) => {
+    if (mouseEvent.target === lightboxModalElement) {
+      closeLightbox();
+    }
+  });
+
+  // Create markup for a single project card with image gallery
+  function createPortfolioProjectCardElement(portfolioProject) {
+    const projectCardContainer = createHtmlElement("article", "entry");
+    
+    if (portfolioProject.title) {
+      const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioProject.title));
+      if (portfolioProject.subtitle) {
+        headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioProject.subtitle)));
+      }
+      projectCardContainer.appendChild(headingElement);
+    }
+    
+    const metadataSegments = [portfolioProject.org, portfolioProject.dates].filter(Boolean).map(escapeHtml);
+    if (metadataSegments.length) {
+      projectCardContainer.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+    }
+    
+    if (portfolioProject.body) {
+      projectCardContainer.appendChild(createHtmlElement("p", null, escapeHtml(portfolioProject.body)));
+    }
+    
+    if (portfolioProject.link && portfolioProject.link.href && portfolioProject.link.label) {
+      const moreLinkContainer = createHtmlElement("div", "more");
+      moreLinkContainer.appendChild(createAnchorElement(portfolioProject.link.href, portfolioProject.link.label));
+      projectCardContainer.appendChild(moreLinkContainer);
+    }
+
+    // Render image gallery grid if images exist
+    if (portfolioProject.images && portfolioProject.images.length) {
+      const imagesGridContainer = createHtmlElement("div", "project-images-grid");
+      portfolioProject.images.forEach((imageMetadata) => {
+        const resolvedImagePath = resolveImagePath(imageMetadata.src);
+        
+        const imageCardWrapper = createHtmlElement("div", "project-image-container");
+        imageCardWrapper.setAttribute("role", "button");
+        imageCardWrapper.setAttribute("tabindex", "0");
+        imageCardWrapper.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
+        
+        const imageTag = document.createElement("img");
+        imageTag.src = resolvedImagePath;
+        imageTag.alt = imageMetadata.alt;
+        imageTag.loading = "lazy";
+        
+        imageCardWrapper.appendChild(imageTag);
+        
+        // Modal zoom event listeners
+        imageCardWrapper.addEventListener("click", () => {
+          openLightbox(resolvedImagePath, imageMetadata.alt);
+        });
+        imageCardWrapper.addEventListener("keydown", (keyboardEvent) => {
+          if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+            keyboardEvent.preventDefault();
+            openLightbox(resolvedImagePath, imageMetadata.alt);
+          }
+        });
+        
+        imagesGridContainer.appendChild(imageCardWrapper);
+      });
+      projectCardContainer.appendChild(imagesGridContainer);
+    }
+    
+    return projectCardContainer;
+  }
+
+  function renderProjectsGallery(portfolioData) {
+    const sidebarElement = document.getElementById("sidebar");
+    const projectsContainerElement = document.getElementById("projects-gallery-container");
+
+    // Render projects list
+    if (portfolioData.projects && portfolioData.projects.length) {
+      portfolioData.projects.forEach((projectItem) => {
+        projectsContainerElement.appendChild(createPortfolioProjectCardElement(projectItem));
+      });
+    }
+
+    /* ---- Sidebar: identity, back to home nav, contact info. ----------- */
+    sidebarElement.appendChild(createHtmlElement("h1", null, escapeHtml(portfolioData.name)));
+    if (portfolioData.tagline) {
+      sidebarElement.appendChild(createHtmlElement("p", "tagline", escapeHtml(portfolioData.tagline)));
+    }
+    if (portfolioData.location) {
+      sidebarElement.appendChild(createHtmlElement("p", "location", escapeHtml(portfolioData.location)));
+    }
+
+    // Sidebar navigation (custom for gallery page)
+    const navigationContainer = createHtmlElement("nav", "nav");
+    const backToHomeLink = createAnchorElement("../index.html", "← Back to Resume");
+    const activeGalleryLink = createAnchorElement("#", "Projects Gallery");
+    activeGalleryLink.className = "active";
+    
+    navigationContainer.appendChild(backToHomeLink);
+    navigationContainer.appendChild(activeGalleryLink);
+    sidebarElement.appendChild(navigationContainer);
+
+    if (portfolioData.links && portfolioData.links.length) {
+      const contactInfoContainer = createHtmlElement("div", "contact");
+      portfolioData.links.forEach((linkData) => {
+        if (linkData.href && linkData.label) {
+          // Adjust relative mailto or absolute URLs appropriately
+          const adjustedLinkReference = linkData.href.startsWith("mailto:") ? linkData.href : linkData.href;
+          contactInfoContainer.appendChild(createAnchorElement(adjustedLinkReference, linkData.label));
+        }
+      });
+      sidebarElement.appendChild(contactInfoContainer);
+    }
+
+    // Theme toggle button
+    createThemeToggleButton(document.body);
+
+    /* Footer */
+    const currentCalendarYear = new Date().getFullYear();
+    document.getElementById("footer").appendChild(
+      createHtmlElement("p", null, "© " + currentCalendarYear + " " + escapeHtml(portfolioData.name)));
+  }
+
+  // Theme matching functions
+  function determineEffectiveTheme() {
+    const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
+    if (explicitlySavedTheme) return explicitlySavedTheme;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark" : "light";
+  }
+
+  function createThemeToggleButton(toggleContainerElement) {
+    const themeToggleButton = createHtmlElement("button", "theme-toggle");
+    themeToggleButton.type = "button";
+    const updateToggleButtonLabelAndTitle = () => {
+      const isCurrentThemeDark = determineEffectiveTheme() === "dark";
+      themeToggleButton.textContent = isCurrentThemeDark ? "\u263C" : "\u263E"; // ☼ and ☾
+      const upcomingTheme = isCurrentThemeDark ? "light" : "dark";
+      themeToggleButton.setAttribute("aria-label", "Switch to " + upcomingTheme + " theme");
+      themeToggleButton.title = "Switch to " + upcomingTheme + " theme";
+    };
+    updateToggleButtonLabelAndTitle();
+    themeToggleButton.addEventListener("click", () => {
+      const selectedNextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", selectedNextTheme);
+      localStorage.setItem("theme", selectedNextTheme);
+      updateToggleButtonLabelAndTitle();
+    });
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (!localStorage.getItem("theme")) {
+          updateToggleButtonLabelAndTitle();
+        }
+      });
+    }
+    toggleContainerElement.appendChild(themeToggleButton);
+  }
+
+  renderProjectsGallery(DATA);
+  </script>
+</body>
+</html>

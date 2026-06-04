@@ -225,7 +225,120 @@ h2 {
 :root[data-theme="dark"] .skill-tag.working:hover {
   background-color: rgba(82, 183, 136, 0.15);
 }
+/* --- PROJECTS GALLERY -------------------------------------------------- */
+.gallery-link {
+  margin-top: 1.5rem;
+}
+.gallery-link a {
+  font-weight: 600;
+  border-bottom: 2px solid var(--faint);
+  transition: color 0.15s, border-color 0.15s;
+}
+.gallery-link a:hover {
+  border-bottom-color: var(--accent);
+}
 
+.project-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-image-container {
+  position: relative;
+  border: 1px solid var(--faint);
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  cursor: zoom-in;
+  background: var(--faint);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.project-image-container:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.project-image-container:hover img {
+  transform: scale(1.03);
+}
+
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 19, 22, 0.95);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-image-element {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+}
+
+.lightbox-modal.active .lightbox-image-element {
+  transform: scale(1);
+}
+
+.lightbox-caption-text {
+  color: #9aa0a6;
+  font-size: 0.92rem;
+  margin-top: 1.25rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+.lightbox-close-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: #e8e9ea;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.lightbox-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
 /* --- FOOTER ------------------------------------------------------------ */
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   padding: 1.5rem 0 2.5rem; font-size: 0.8rem; color: var(--muted); }
