@@ -41,21 +41,33 @@ const DATA = {
   /* PROJECTS ------------------------------------------------------------- */
   projects: [
     {
-      title: "Project Pigeon",
-      subtitle: "Wildfire-detection UAV",   // optional; shown lighter after the title
-      org: "The Engineering Club, SRJC",
-      dates: "Sep 2025 to May 2026",
-      // One paragraph. What it is, the concrete specs, what you did.
-      body: "A fixed-wing UAV designed to spot wildfires. 1.5 m wingspan, " +
-        "NACA 4412 airfoil, V-tail, ArduPilot flight controller. Project " +
-        "concluded in the prototype phase. I co-wrote the design documents " +
-        "and compiled the bill of materials.",
-      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
+      title: "CmdPal Extension Suite",
+      subtitle: "C# / .NET",
+      org: "Personal project",
+      dates: "ongoing",
+      body: "Ten extensions for the PowerToys Command Palette, ported " +
+        "from an older Raycast set: an action center, media controls, notes, " +
+        "and a developer toolbox. The projects are hosted on GitHub and " +
+        "built manually against Microsoft's PowerToys SDK.",
+      link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
-        { src: "images/pigeon-uav.png", alt: "UAV fuselage 3D CAD modeling view" },
-        { src: "images/pigeon-tail.png", alt: "UAV V-tail and landing gear mount CAD close-up view" },
-        { src: "images/pigeon-motor.png", alt: "Testing brushless motor weight on digital scale (118g)" }
+        { src: "images/cmdpal-image-editor.png", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
+        { src: "images/cmdpal-organize.png", alt: "NPU Organize screenshot utility in PowerToys Run" },
+        { src: "images/cmdpal-obsidian.png", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
+        { src: "images/cmdpal-code.png", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
+        { src: "images/cmdpal-settings-1.png", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
+        { src: "images/cmdpal-settings-2.png", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
       ],
+    },
+    {
+      title: "AHK Scripting",
+      subtitle: "Windows automation",
+      org: "Personal project",
+      dates: "ongoing",
+      body: "My daily-driver automation set: a CapsLock hotkey layer, window " +
+        "tiling, a virtual-desktop manager, a camera toggle, and autocorrect. " +
+        "Runs the same on my laptop and desktop.",
+      link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
       title: "Baja SAE",
@@ -83,33 +95,21 @@ const DATA = {
         "approvals through the SRJC Student Life department.",
     },
     {
-      title: "CmdPal Extension Suite",
-      subtitle: "C# / .NET",
-      org: "Personal project",
-      dates: "2026",
-      body: "Ten extensions for the PowerToys Command Palette, ported " +
-        "from an older Raycast set: an action center, media controls, notes, " +
-        "and a developer toolbox. The projects are hosted on GitHub and " +
-        "built manually against Microsoft's PowerToys SDK.",
-      link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
+      title: "Project Pigeon",
+      subtitle: "Wildfire-detection UAV",   // optional; shown lighter after the title
+      org: "The Engineering Club, SRJC",
+      dates: "Sep 2025 to May 2026",
+      // One paragraph. What it is, the concrete specs, what you did.
+      body: "A fixed-wing UAV designed to spot wildfires. 1.5 m wingspan, " +
+        "NACA 4412 airfoil, V-tail, ArduPilot flight controller. Project " +
+        "concluded in the prototype phase. I co-wrote the design documents " +
+        "and compiled the bill of materials.",
+      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/cmdpal-image-editor.png", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
-        { src: "images/cmdpal-organize.png", alt: "NPU Organize screenshot utility in PowerToys Run" },
-        { src: "images/cmdpal-obsidian.png", alt: "NPU Obsidian notebook vault tools in PowerToys Run" },
-        { src: "images/cmdpal-code.png", alt: "NPU Developer Dev Toolbox code utility in PowerToys Run" },
-        { src: "images/cmdpal-settings-1.png", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
-        { src: "images/cmdpal-settings-2.png", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
+        { src: "images/pigeon-uav.png", alt: "UAV fuselage 3D CAD modeling view" },
+        { src: "images/pigeon-tail.png", alt: "UAV V-tail and landing gear mount CAD close-up view" },
+        { src: "images/pigeon-motor.png", alt: "Testing brushless motor weight on digital scale (118g)" }
       ],
-    },
-    {
-      title: "AHK Scripting",
-      subtitle: "Windows automation",
-      org: "Personal project",
-      dates: "ongoing",
-      body: "My daily-driver automation set: a CapsLock hotkey layer, window " +
-        "tiling, a virtual-desktop manager, a camera toggle, and autocorrect. " +
-        "Runs the same on my laptop and desktop.",
-      link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
   ],
 
