@@ -510,7 +510,7 @@ a:hover .arrow {
 }
 .star-label {
   font-weight: 700;
-  color: var(--accent);
+  color: var(--ink);
 }
 .star-label::after {
   content: ": ";
