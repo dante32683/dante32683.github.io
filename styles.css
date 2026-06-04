@@ -87,7 +87,7 @@ a:focus-visible, button:focus-visible {
   margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s, background-color 0.15s;
   border-radius: 4px;
 }
-.nav a:hover { color: var(--accent); background-color: var(--faint); }
+.nav a:hover { color: var(--accent); }
 .nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
 
 /* Contact */
@@ -409,7 +409,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .sidebar { position: static; padding: 3rem 0 0; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
-  .nav a.active { border-left: none; background-color: var(--faint); font-weight: 600; }
+  .nav a.active { border-left: none; color: var(--accent); font-weight: 600; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
 }
