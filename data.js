@@ -47,9 +47,8 @@ const DATA = {
       dates: "ongoing",
       featured: true,
       tools: ["C#", ".NET", "Git"],
-      body: "To utilize local NPU processing and add missing utility tools to Windows PowerToys Run, " +
-        "I built ten automation extensions against the SDK. These include an NPU-powered image editor, " +
-        "clipboard tools, and developer toolboxes, published as open source on GitHub.",
+      body: "Built ten Windows PowerToys Run automation extensions against the Microsoft SDK to add missing utilities and utilize local NPU hardware. " +
+        "Tools include an NPU-powered image editor, clipboard controls, and developer utilities, published as open source on GitHub.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -78,8 +77,8 @@ const DATA = {
       featured: true,
       tools: ["SolidWorks", "FEA", "Excel"],
       body: "Joining the off-road racing team to analyze workflow organization and member allocation. " +
-        "I will focus on optimizing team operations while learning advanced CAD modeling and Finite Element " +
-        "Analysis (FEA) alongside the spaceframe design and simulation subteams.",
+        "Focus areas include optimizing team operations while learning advanced spaceframe CAD modeling and Finite Element " +
+        "Analysis (FEA) alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.webp", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
@@ -104,8 +103,8 @@ const DATA = {
       featured: true,
       tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
       body: "Co-designed a 1.5 m wingspan wildfire-detection UAV featuring a NACA 4412 airfoil, V-tail, " +
-        "and ArduPilot integration. I co-wrote the design documentation, compiled the bill of materials, " +
-        "and designed the tail components during the prototyping phase.",
+        "and ArduPilot integration. Co-wrote design documentation, compiled the bill of materials, " +
+        "and modeled the tail components during the prototyping phase.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
