@@ -93,6 +93,7 @@ const DATA = {
         "term. We managed two club accounts, a $1,004 trust account and a " +
         "$10,000 enrichment fund, handling reimbursements and purchase " +
         "approvals through the SRJC Student Life department.",
+      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
     {
       title: "Project Pigeon",
