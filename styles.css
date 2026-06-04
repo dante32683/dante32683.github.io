@@ -509,12 +509,11 @@ a:hover .arrow {
   color: var(--ink);
 }
 .star-label {
-  display: inline-block;
   font-weight: 700;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  margin-right: 0.4rem;
-  padding-bottom: 1px;
+  color: var(--accent);
+}
+.star-label::after {
+  content: ": ";
 }
 .star-row span {
   font-size: 0.92rem;
@@ -532,6 +531,6 @@ a:hover .arrow {
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
   section:first-of-type { border-top: none; }
   .star-row { display: block; margin-bottom: 0.4rem; }
-  .star-label { background: none; padding: 0; font-size: inherit; color: #000; font-weight: bold; text-transform: none; letter-spacing: normal; border-bottom: none; }
-  .star-label::after { content: ":"; }
+  .star-label { background: none; padding: 0; font-size: inherit; color: #000; font-weight: bold; text-transform: none; letter-spacing: normal; }
+  .star-label::after { content: ": "; }
 }
