@@ -52,7 +52,9 @@ const DATA = {
         "and compiled the bill of materials.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/pigeon.svg", alt: "Project Pigeon fixed-wing wildfire-detection UAV schematic diagram" }
+        { src: "images/pigeon-uav.png", alt: "UAV fuselage 3D CAD modeling view" },
+        { src: "images/pigeon-tail.png", alt: "UAV V-tail and landing gear mount CAD close-up view" },
+        { src: "images/pigeon-motor.png", alt: "Testing brushless motor weight on digital scale (118g)" }
       ],
     },
     {
@@ -65,9 +67,6 @@ const DATA = {
         "while learning advanced CAD modeling and Finite Element Analysis (FEA) " +
         "alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
-      images: [
-        { src: "images/baja.svg", alt: "Baja SAE off-road race car chassis FEA wireframe simulation illustration" }
-      ],
     },
     {
       title: "TEC Treasurer",
@@ -89,9 +88,6 @@ const DATA = {
         "and a developer toolbox. The projects are hosted on GitHub and " +
         "built manually against Microsoft's PowerToys SDK.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
-      images: [
-        { src: "images/cmdpal.svg", alt: "CmdPal extension suite interface dashboard overlay design" }
-      ],
     },
     {
       title: "AHK Scripting",
@@ -102,9 +98,6 @@ const DATA = {
         "tiling, a virtual-desktop manager, a camera toggle, and autocorrect. " +
         "Runs the same on my laptop and desktop.",
       link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
-      images: [
-        { src: "images/ahk.svg", alt: "AutoHotkey custom modifier layer triggers flow diagram" }
-      ],
     },
   ],
 
