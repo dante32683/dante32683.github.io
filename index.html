@@ -253,7 +253,45 @@
       createHtmlElement("p", null, "© " + currentCalendarYear + " " + escapeHtml(portfolioData.name)));
 
     /* ---- Scroll-spy: highlight the nav item for the visible section. -- */
-    setupNavigationScrollSpy(navigationTargetSections);
+    const navigationLinks = document.querySelectorAll(".nav a");
+    const sectionElements = navigationTargetSections.map((targetSection) => {
+      return document.getElementById(targetSection.id);
+    }).filter(Boolean);
+
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+      const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // 1. Update scroll progress bar
+      const scrollProgressBar = document.getElementById("scroll-progress-bar");
+      if (scrollProgressBar) {
+        scrollProgressBar.style.width = (maximumScrollableHeight > 0 
+          ? (scrollPosition / maximumScrollableHeight) * 100 
+          : 0) + "%";
+      }
+
+      // 2. Determine active section symmetrically
+      let activeSectionId = "";
+      if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 10) {
+        activeSectionId = sectionElements[sectionElements.length - 1].id;
+      } else {
+        const detectionThreshold = window.innerHeight * 0.25;
+        sectionElements.forEach((sectionElement) => {
+          if (sectionElement.getBoundingClientRect().top <= detectionThreshold) {
+            activeSectionId = sectionElement.id;
+          }
+        });
+        if (!activeSectionId && sectionElements.length > 0) {
+          activeSectionId = sectionElements[0].id;
+        }
+      }
+
+      // 3. Toggle active class on navigation links
+      navigationLinks.forEach((navigationLinkElement) => {
+        const anchorReferenceId = navigationLinkElement.getAttribute("href").slice(1);
+        navigationLinkElement.classList.toggle("active", anchorReferenceId === activeSectionId);
+      });
+    });
   }
 
   // Current theme: an explicit choice if set, otherwise the OS preference.
@@ -291,54 +329,7 @@
     toggleContainerElement.appendChild(themeToggleButton);
   }
 
-  function setupNavigationScrollSpy(spyTargetSections) {
-    if (!spyTargetSections.length) return;
-    const navigationAnchorLinksMap = {};
-    document.querySelectorAll(".nav a").forEach((anchorLinkElement) => {
-      navigationAnchorLinksMap[anchorLinkElement.getAttribute("href").slice(1)] = anchorLinkElement;
-    });
 
-    const sectionElements = spyTargetSections.map((targetSection) => {
-      return document.getElementById(targetSection.id);
-    }).filter(Boolean);
-
-    window.addEventListener("scroll", () => {
-      // 1. Update Scroll Progress Bar
-      const scrollPosition = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercentage = documentHeight > 0 ? (scrollPosition / documentHeight) * 100 : 0;
-      const scrollProgressBar = document.getElementById("scroll-progress-bar");
-      if (scrollProgressBar) {
-        scrollProgressBar.style.width = scrollPercentage + "%";
-      }
-
-      // 2. Determine Active Section Symmetrically
-      let activeSectionId = "";
-      
-      if (documentHeight > 0 && scrollPosition >= documentHeight - 10) {
-        activeSectionId = spyTargetSections[spyTargetSections.length - 1].id;
-      } else {
-        const detectionThreshold = window.innerHeight * 0.25;
-        sectionElements.forEach((sectionElement) => {
-          const clientBoundingRect = sectionElement.getBoundingClientRect();
-          if (clientBoundingRect.top <= detectionThreshold) {
-            activeSectionId = sectionElement.id;
-          }
-        });
-        if (!activeSectionId && sectionElements.length > 0) {
-          activeSectionId = sectionElements[0].id;
-        }
-      }
-
-      if (activeSectionId) {
-        Object.values(navigationAnchorLinksMap).forEach((anchorLinkElement) => {
-          anchorLinkElement.classList.remove("active");
-        });
-        const correspondingNavLink = navigationAnchorLinksMap[activeSectionId];
-        if (correspondingNavLink) correspondingNavLink.classList.add("active");
-      }
-    });
-  }
 
   renderPortfolio(DATA);
   </script>
