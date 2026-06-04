@@ -112,6 +112,18 @@ const DATA = {
         { src: "images/pigeon-motor.png", alt: "Testing brushless motor weight on digital scale (118g)" }
       ],
     },
+    {
+      title: "Dog Protection Device",
+      subtitle: "High school capstone project",
+      org: "Technology High School",
+      dates: "Jan 2024 to May 2024",
+      body: "Prototyped a protective mesh face guard to shield dogs from foxtail grass seed injuries. Iterated through multiple designs in a two-week cycle to refine strap adjustment, mesh airflow, and veterinary fit safety.",
+      images: [
+        { src: "images/foxtail-microscope.jpg", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
+        { src: "images/foxtail-prototype-final.jpg", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
+        { src: "images/foxtail-prototype-initial.jpg", alt: "Initial mesh face guard prototype detailing the elastic opening and edge stitching" }
+      ],
+    },
   ],
 
   /* EXPERIENCE ----------------------------------------------------------- */
@@ -132,8 +144,9 @@ const DATA = {
       school: "Santa Rosa Junior College",
       dates: "2025 to present",
       detail: "Civil engineering, transfer track. 4.0 GPA, Dean's Highest Honors " +
-        "in Fall 2025. Transferring Fall 2027, with Berkeley as the first choice, " +
-        "Davis as the TAG safety, and Stanford the reach.",
+        "in Fall 2025. Conducted materials tests on a UTM (Universal Testing Machine) " +
+        "and analyzed chemical trials. Transferring Fall 2027, with Berkeley as the first " +
+        "choice, Davis as the TAG safety, and Stanford the reach.",
       // Coursework table, newest at the bottom so it reads as a timeline.
       coursework: [
         { term: "Fall 2025",   courses: "Chem 3A, Math 1B, Comm C1000" },
@@ -146,7 +159,7 @@ const DATA = {
     {
       school: "Technology High School",
       dates: "Graduated 2025",
-      detail: "Graduated in the top ten of the class. Honors curriculum with focus on science, engineering, and mathematics.",
+      detail: "GPA: 4.37. Graduated in the top ten of the class. STEM magnet school with a project-based, cross-curricular engineering focus (PLTW) and team design projects.",
     },
   ],
 
