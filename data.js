@@ -102,9 +102,8 @@ const DATA = {
       dates: "Sep 2025 to May 2026",
       featured: true,
       tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
-      body: "Co-designed a 1.5 m wingspan wildfire-detection UAV featuring a NACA 4412 airfoil, V-tail, " +
-        "and ArduPilot integration. Co-wrote design documentation, compiled the bill of materials, " +
-        "and modeled the tail components during the prototyping phase.",
+      body: "Co-designed a 1.5 m wingspan wildfire-detection UAV to replace manned helicopter utility inspections for PG&E hotspots. " +
+        "Co-wrote design documentation, compiled the bill of materials, and modeled the tail components for the ArduPilot-controlled prototype.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
