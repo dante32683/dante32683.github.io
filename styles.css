@@ -197,6 +197,15 @@ h2 {
   border-left-color: var(--accent);
 }
 
+#honors .entry {
+  padding-left: 1rem;
+  border-left: 2px solid var(--faint);
+  transition: border-left-color 0.15s;
+}
+#honors .entry:hover {
+  border-left-color: var(--accent);
+}
+
 .skillset { margin-bottom: 1.5rem; }
 .skillset:last-child { margin-bottom: 0; }
 .skillset .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
