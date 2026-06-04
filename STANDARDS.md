@@ -76,7 +76,16 @@ newest at the bottom, so it reads as a timeline:
 { term: "Fall 2026", courses: "Phys 42, Math 2, Engr 34" },
 ```
 
-**Add an honor** - add one plain string to the `honors` list.
+**Add an honor** - in `data.js`, copy the first entry of `honors` and edit:
+
+```js
+{
+  title: "Honor name",
+  org: "Awarding organization",
+  dates: "Year",
+  body: "One sentence describing the honor.",
+},
+```
 
 **Add a skill** - add a string to `skills.working` (things you actually use) or
 `skills.learning` (things you are picking up). Be honest about which list.

@@ -187,11 +187,9 @@
     if (portfolioData.honors && portfolioData.honors.length) {
       const honorsSectionElement = openSection("honors", "Honors");
       honorsSectionElement.appendChild(createHtmlElement("h2", null, "Honors"));
-      const honorsUnorderedListElement = createHtmlElement("ul", "plainlist");
-      portfolioData.honors.forEach((honorTextLine) => {
-        honorsUnorderedListElement.appendChild(createHtmlElement("li", null, escapeHtml(honorTextLine)));
+      portfolioData.honors.forEach((honorEntry) => {
+        honorsSectionElement.appendChild(createPortfolioEntryElement(honorEntry));
       });
-      honorsSectionElement.appendChild(honorsUnorderedListElement);
       contentElement.appendChild(honorsSectionElement);
     }
 
@@ -312,7 +310,7 @@
           if (correspondingNavLink) correspondingNavLink.classList.add("active");
         }
       });
-    }, { rootMargin: "-20% 0px -70% 0px" });
+    }, { rootMargin: "-15% 0px -55% 0px" });
 
     spyTargetSections.forEach((targetSection) => {
       const sectionElementToObserve = document.getElementById(targetSection.id);

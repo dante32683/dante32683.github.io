@@ -140,12 +140,32 @@ const DATA = {
     ],
   },
 
-  /* HONORS - plain lines, no scores or badges, no em dashes. ------------- */
+  /* HONORS - structured entries, no emoji, no em dashes. ----------------- */
   honors: [
-    "Selected as a recipient of the 2025-2026 SRJC Civil Engineering Transfer Scholarship by the ASCE Redwood Empire Branch",
-    "AP Scholar with Distinction, and National Merit Commended",
-    "Graduated top ten of class with a Golden State Seal Merit Diploma, Tech High School",
-    "Eight AP exams, six scored 5",
+    {
+      title: "Civil Engineering Transfer Scholarship",
+      org: "ASCE Redwood Empire Branch",
+      dates: "2025 to 2026",
+      body: "Selected as a scholarship recipient to support civil engineering transfer studies at Santa Rosa Junior College.",
+    },
+    {
+      title: "AP Scholar with Distinction",
+      org: "College Board",
+      dates: "2025",
+      body: "Awarded for scoring an average of at least 3.5 on all AP exams taken, with scores of 3 or higher on five or more exams. Scored 5 on six out of eight exams.",
+    },
+    {
+      title: "National Merit Commended Scholar",
+      org: "National Merit Scholarship Corporation",
+      dates: "2025",
+      body: "Recognized for placing in the top fifty thousand scorers nationwide out of over one million students taking the qualifying PSAT/NMSQT exam.",
+    },
+    {
+      title: "Golden State Seal Merit Diploma",
+      org: "Tech High School",
+      dates: "2025",
+      body: "Graduated in the top ten of the class, earning the merit diploma for high performance on state assessments in science, history, and mathematics.",
+    },
   ],
 
   /* SKILLS - grouped. Put what you actually use under "working"; put what
