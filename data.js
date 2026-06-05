@@ -27,7 +27,7 @@ const DATA = {
   intro: "I study civil engineering at Santa Rosa Junior College and plan to " +
     "transfer in 2027. Most of my time goes to student engineering projects: a " +
     "wildfire-detection UAV, a Baja race car, and the club's books. When a " +
-    "project needs a custom tool, I write it, utilizing AI-assisted development to speed up prototyping and automation.",
+    "project needs a custom tool, I write it, using AI to prototype and automate software quickly.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
@@ -47,8 +47,8 @@ const DATA = {
       dates: "ongoing",
       featured: true,
       tools: ["C#", ".NET", "Git"],
-      body: "Built ten Windows PowerToys Run automation extensions against the Microsoft SDK to add missing utilities and utilize local NPU hardware. " +
-        "Tools include an NPU-powered image editor, clipboard controls, and developer utilities, published as open source on GitHub.",
+      body: "Built ten Windows PowerToys Run automation extensions against the Microsoft SDK to add missing utilities and use local NPU hardware. " +
+        "These include an NPU-powered image editor, clipboard controls, and developer utilities, published as open source on GitHub.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -77,8 +77,8 @@ const DATA = {
       featured: true,
       tools: ["SolidWorks", "FEA", "Excel"],
       body: "Joining the off-road racing team to analyze workflow organization and member allocation. " +
-        "Focus areas include optimizing team operations while learning advanced spaceframe CAD modeling and Finite Element " +
-        "Analysis (FEA) alongside the design and simulation subteams.",
+        "I will map out team workflows to improve assembly speed, while learning spaceframe CAD modeling and Finite Element " +
+        "Analysis (FEA) simulations alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.webp", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
@@ -118,7 +118,7 @@ const DATA = {
       dates: "Jan 2024 to May 2024",
       featured: false,
       tools: ["CAD", "3D Printing"],
-      body: "Prototyped a protective mesh face guard to shield dogs from foxtail injuries, iterating adjustments, airflow metrics, and veterinary safety fits in a high school capstone.",
+      body: "Prototyped a protective mesh face guard to shield dogs from foxtail injuries. I tested airflow metrics and refined the fit with local veterinarians for my high school capstone project.",
       images: [
         { src: "images/foxtail-microscope.webp", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
         { src: "images/foxtail-prototype-final.webp", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
@@ -172,25 +172,25 @@ const DATA = {
       title: "Civil Engineering Transfer Scholarship",
       org: "ASCE Redwood Empire Branch",
       dates: "2025 to 2026",
-      body: "Selected as a scholarship recipient to support civil engineering transfer studies at Santa Rosa Junior College.",
+      body: "Won the Redwood Empire branch scholarship to fund my civil engineering transfer track.",
     },
     {
       title: "AP Scholar with Distinction",
       org: "College Board",
       dates: "2025",
-      body: "Awarded for scoring an average of at least 3.5 on all AP exams taken, with scores of 3 or higher on five or more exams. Scored 5 on six out of eight exams.",
+      body: "Scored 5 on six of eight AP exams, maintaining a score average above 3.5 across all subjects.",
     },
     {
       title: "National Merit Commended Scholar",
       org: "National Merit Scholarship Corporation",
       dates: "2025",
-      body: "Recognized for placing in the top fifty thousand scorers nationwide out of over one million students taking the qualifying PSAT/NMSQT exam.",
+      body: "Placed in the top 50,000 scorers nationwide out of 1.5 million students on the qualifying PSAT/NMSQT exam.",
     },
     {
       title: "Golden State Seal Merit Diploma",
       org: "Tech High School",
       dates: "2025",
-      body: "Graduated in the top ten of the class, earning the merit diploma for high performance on state assessments in science, history, and mathematics.",
+      body: "Graduated in the top ten of my class, qualifying with high scores on California state math, science, and history exams.",
     },
   ],
 
