@@ -126,7 +126,7 @@
       const techList = portfolioEntry.tech || portfolioEntry.tools;
       if (techList && techList.length) {
         const techRowElement = createHtmlElement("div", "detail-row");
-        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Tech: "));
+        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project technology: "));
         const techText = Array.isArray(techList) ? techList.join(", ") : techList;
         techRowElement.appendChild(document.createTextNode(techText));
         detailsContainer.appendChild(techRowElement);
