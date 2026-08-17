@@ -222,27 +222,64 @@ h2 {
 .coursework-line { margin-top: 0; font-size: 0.9rem; line-height: 1.6; color: var(--ink); }
 .coursework-label { font-weight: 600; color: var(--muted); margin-right: 0.35rem; }
 
-/* --- HONORS & SKILLS --------------------------------------------------- */
-.honors-list {
+/* --- HONORS (Approach B Table) ----------------------------------------- */
+.honors-table {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
-.honor-item h3 {
+.honor-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--faint);
+  gap: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+.honor-row:first-child {
+  padding-top: 0;
+}
+.honor-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.honor-main {
+  flex: 1;
+  min-width: 0;
+}
+.honor-title {
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.35;
+  color: var(--ink);
 }
-.honor-item .meta {
+.honor-org {
   font-size: 0.83rem;
   color: var(--muted);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
-.honor-item p {
-  font-size: 0.92rem;
+.honor-desc {
+  font-size: 0.9rem;
   color: var(--ink);
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
   line-height: 1.6;
+}
+.honor-date {
+  font-size: 0.83rem;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+@media (max-width: 32rem) {
+  .honor-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .honor-date {
+    text-align: left;
+    margin-top: 0.1rem;
+  }
 }
 
 .skillset { margin-bottom: 1.75rem; }

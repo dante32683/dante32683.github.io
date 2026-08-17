@@ -347,20 +347,31 @@
     if (portfolioData.honors && portfolioData.honors.length) {
       const honorsSectionElement = openSection("honors", "Honors");
       honorsSectionElement.appendChild(createHtmlElement("h2", null, "Honors"));
-      const honorsListElement = createHtmlElement("div", "honors-list");
+      const honorsTableElement = createHtmlElement("div", "honors-table");
       portfolioData.honors.forEach((honorEntry) => {
-        const honorItemElement = createHtmlElement("div", "honor-item");
-        honorItemElement.appendChild(createHtmlElement("h3", null, escapeHtml(honorEntry.title)));
-        const metaSegments = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
-        if (metaSegments.length) {
-          honorItemElement.appendChild(createHtmlElement("div", "meta", metaSegments.join(" · ")));
+        const honorRowElement = createHtmlElement("div", "honor-row");
+        
+        const honorMainElement = createHtmlElement("div", "honor-main");
+        const headingElement = createHtmlElement("h3", "honor-title", escapeHtml(honorEntry.title));
+        honorMainElement.appendChild(headingElement);
+        
+        if (honorEntry.org) {
+          honorMainElement.appendChild(createHtmlElement("div", "honor-org", escapeHtml(honorEntry.org)));
         }
         if (honorEntry.body) {
-          honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
+          honorMainElement.appendChild(createHtmlElement("p", "honor-desc", escapeHtml(honorEntry.body)));
         }
-        honorsListElement.appendChild(honorItemElement);
+        
+        honorRowElement.appendChild(honorMainElement);
+        
+        if (honorEntry.dates) {
+          const honorDateElement = createHtmlElement("div", "honor-date", escapeHtml(honorEntry.dates));
+          honorRowElement.appendChild(honorDateElement);
+        }
+        
+        honorsTableElement.appendChild(honorRowElement);
       });
-      honorsSectionElement.appendChild(honorsListElement);
+      honorsSectionElement.appendChild(honorsTableElement);
       contentElement.appendChild(honorsSectionElement);
     }
 
