@@ -49,7 +49,7 @@ const DATA = {
       org: "Personal project",
       dates: "ongoing",
       featured: true,
-      role: ["Product direction", "Architecture", "API research", "Testing & maintenance"],
+      role: ["Product direction", "Architecture", "Testing & maintenance"],
       tech: ["C#", ".NET", "PowerToys Command Palette SDK"],
       method: "AI-assisted development",
       body: "Designed a suite of Windows PowerToys Command Palette extensions to add missing system controls and local NPU utilities, including an image editor and developer tools, published as open source on GitHub.",
