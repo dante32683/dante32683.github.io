@@ -25,10 +25,9 @@ const DATA = {
   /* Intro: two or three plain sentences. Say what you do and what you are
      after. No metaphors, no "passionate about", no em dashes. */
   intro: "I study civil engineering at Santa Rosa Junior College and build " +
-    "software and engineering projects alongside my coursework. I use AI " +
-    "coding agents extensively for software implementation while focusing on " +
-    "project direction, architecture, behavior, technical research, testing, " +
-    "and iteration.",
+    "software and engineering projects alongside my coursework. I use coding " +
+    "agents for most software implementation, then guide the design, research " +
+    "the technical details, and test and revise the result until it works.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
@@ -53,12 +52,26 @@ const DATA = {
       body: "Designed a suite of Windows PowerToys Command Palette extensions to add missing system controls and local NPU utilities, including an image editor and developer tools, published as open source on GitHub.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
-        { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Command Palette" },
-        { src: "images/cmdpal-organize.webp", alt: "NPU Organize screenshot utility in PowerToys Command Palette" },
-        { src: "images/cmdpal-obsidian.webp", alt: "NPU Obsidian notebook vault tools in PowerToys Command Palette" },
-        { src: "images/cmdpal-code.webp", alt: "NPU Developer Dev Toolbox code utility in PowerToys Command Palette" },
-        { src: "images/cmdpal-settings-1.webp", alt: "Action Center, Awake, and Clipboard extension settings toggles" },
-        { src: "images/cmdpal-settings-2.webp", alt: "Obsidian, Time Date, Media Controls, and Dev Toolbox extension settings" }
+        {
+          src: "images/cmdpal-image-editor.webp",
+          alt: "NPU Image Editor extension tool actions in PowerToys Command Palette",
+          caption: "NPU Image Editor extension in PowerToys Command Palette",
+        },
+        {
+          src: "images/cmdpal-organize.webp",
+          alt: "NPU Organize screenshot utility in PowerToys Command Palette",
+          caption: "NPU Organize screenshot utility and file actions",
+        },
+        {
+          src: "images/cmdpal-code.webp",
+          alt: "NPU Developer Dev Toolbox code utility in PowerToys Command Palette",
+          caption: "Developer Dev Toolbox utility in Command Palette",
+        },
+        {
+          src: "images/cmdpal-settings-1.webp",
+          alt: "Action Center, Awake, and Clipboard extension settings toggles",
+          caption: "Extension suite configuration and toggle settings",
+        },
       ],
     },
     {
@@ -85,8 +98,21 @@ const DATA = {
         "Built a centralized Canvas training system with study guides, quiz pools, and practical qualification checkoffs to streamline member manufacturing training.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/baja-chassis.webp", alt: "SRJC Baja SAE steel spaceframe chassis" },
-        { src: "images/baja-highlights.webp", alt: "SRJC Baja SAE spaceframe with highlighted members" }
+        {
+          src: "images/baja-canvas-modules.webp",
+          alt: "Canvas module structure showing the sequence of manufacturing study guides, quizzes, and practical qualifications",
+          caption: "Manufacturing training sequence organized in Canvas",
+        },
+        {
+          src: "images/baja-canvas-quiz.webp",
+          alt: "Canvas shop safety qualification quiz with randomized question pools",
+          caption: "Shop safety qualification quiz interface in Canvas",
+        },
+        {
+          src: "images/baja-chassis.webp",
+          alt: "SRJC Baja SAE steel spaceframe chassis",
+          caption: "SRJC Baja SAE competition chassis shown for team context",
+        },
       ],
     },
     {
@@ -104,9 +130,21 @@ const DATA = {
       body: "Contributed to the tail design, compiled the bill of materials, researched wing configuration and thrust requirements, and helped lead the student team through the early design process.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/pigeon-uav.webp", alt: "Fixed-wing UAV fuselage design overview" },
-        { src: "images/pigeon-tail.webp", alt: "UAV V-tail and landing gear mount design detail" },
-        { src: "images/pigeon-motor.webp", alt: "Testing brushless motor weight on digital scale (1186g)" }
+        {
+          src: "images/pigeon-uav.webp",
+          alt: "Fixed-wing UAV fuselage design overview",
+          caption: "Team design render shown for project context",
+        },
+        {
+          src: "images/pigeon-tail.webp",
+          alt: "UAV V-tail and landing gear mount design detail",
+          caption: "V-tail and landing gear mount concept detail",
+        },
+        {
+          src: "images/pigeon-motor.webp",
+          alt: "Testing brushless motor weight on digital scale (1186g)",
+          caption: "Digital scale bench testing of brushless motor (1186g)",
+        },
       ],
     },
     {
@@ -119,9 +157,21 @@ const DATA = {
       tech: ["CAD", "3D Printing"],
       body: "Prototyped a breathable mesh face guard to protect dogs from foxtail grass seed injuries. Conducted airflow testing, gathered veterinarian feedback, and iterated 3D-printed collar attachment mechanisms.",
       images: [
-        { src: "images/foxtail-microscope.webp", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
-        { src: "images/foxtail-prototype-final.webp", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
-        { src: "images/foxtail-prototype-initial.webp", alt: "Initial mesh face guard prototype detailing the elastic opening and edge stitching" }
+        {
+          src: "images/foxtail-microscope.webp",
+          alt: "Microscope view of a foxtail seed highlighting backward-pointing barbs",
+          caption: "Microscope view of barbed foxtail seed structure",
+        },
+        {
+          src: "images/foxtail-prototype-final.webp",
+          alt: "Final prototype canine protective face guard with mesh enclosure and buckle",
+          caption: "Final prototype canine protective face guard",
+        },
+        {
+          src: "images/foxtail-prototype-initial.webp",
+          alt: "Initial mesh face guard prototype with elastic opening",
+          caption: "Initial prototype showing mesh and elastic fitting",
+        },
       ],
     },
   ],
@@ -197,34 +247,43 @@ const DATA = {
     },
   ],
 
-  /* SKILLS - categorized with explicit type indicators. ------------------ */
+  /* SKILLS - plain, interview-defensible categories. --------------------- */
   skills: [
     {
-      category: "Practical Tools & Environments",
-      type: "working",
-      items: ["Git & GitHub fundamentals", "Linux CLI & navigation", "Windows setup & troubleshooting", "Excel"],
-    },
-    {
-      category: "Foundational Programming",
-      type: "foundational",
-      items: ["Python (Basic)", "C++ (Basic)", "Prior HTML/CSS coursework", "Prior JavaScript coursework"],
-    },
-    {
-      category: "AI-Assisted Development",
-      type: "workflow",
+      category: "Practical tools and environments",
       items: [
-        "Problem definition",
-        "Architecture & task breakdown",
-        "AI coding-agent workflows",
-        "Technical API research",
-        "Testing & debugging",
-        "Implementation review & maintenance",
+        "Git and GitHub fundamentals",
+        "Linux command line",
+        "Windows setup and troubleshooting",
+        "Excel",
       ],
     },
     {
-      category: "Currently Learning",
-      type: "learning",
-      items: ["MATLAB", "FEA / ANSYS"],
+      category: "Foundational programming knowledge",
+      items: [
+        "Basic Python",
+        "Basic C++",
+        "Prior HTML/CSS coursework",
+        "Prior JavaScript coursework",
+      ],
+    },
+    {
+      category: "AI-assisted development",
+      items: [
+        "Defining project behavior",
+        "Breaking work into tasks",
+        "Directing coding agents",
+        "Researching APIs and constraints",
+        "Testing and debugging",
+        "Reviewing and maintaining generated code",
+      ],
+    },
+    {
+      category: "Currently learning",
+      items: [
+        "MATLAB",
+        "FEA / ANSYS",
+      ],
     },
   ],
 };

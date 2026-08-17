@@ -177,14 +177,14 @@ h2 {
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 
 .entry-details {
-  margin-top: 0.45rem;
-  margin-bottom: 0.55rem;
-  font-size: 0.84rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   color: var(--muted);
 }
 .entry-details .detail-row {
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
 }
 .entry-details .detail-label {
   font-weight: 600;
@@ -192,7 +192,7 @@ h2 {
 }
 .entry-details .method-tag {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 0.1rem 0.45rem;
   border-radius: 3px;
@@ -242,6 +242,12 @@ h2 {
 .skillset:last-child { margin-bottom: 0; }
 .skillset .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
   text-transform: uppercase; color: var(--muted); }
+.skills-inline {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
 
 .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
 .skill-tag {
@@ -325,6 +331,12 @@ h2 {
   margin-top: 1rem;
 }
 
+.project-image-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .project-image-container {
   position: relative;
   border: 1px solid var(--faint);
@@ -333,12 +345,11 @@ h2 {
   aspect-ratio: 16 / 9;
   cursor: zoom-in;
   background: var(--faint);
-  transition: border-color 0.15s, transform 0.15s;
+  transition: border-color 0.15s;
 }
 
 .project-image-container:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
 }
 
 .project-image-container:focus-visible {
@@ -351,11 +362,27 @@ h2 {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.2s ease;
 }
 
-.project-image-container:hover img {
-  transform: scale(1.03);
+.project-image-caption {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.35;
+  margin-top: 0.35rem;
+}
+
+@media (min-width: 24rem) and (max-width: 50rem) {
+  .project-images-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 23.99rem) {
+  .project-images-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 }
 
 .lightbox-modal {
@@ -426,6 +453,11 @@ h2 {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
+
+.lightbox-close-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 /* --- FOOTER ------------------------------------------------------------ */
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   padding: 1.5rem 0 2.5rem; font-size: 0.8rem; color: var(--muted); transition: border-color 0.3s ease; }
@@ -441,33 +473,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .content { padding-top: 2.5rem; max-width: none; }
 }
 
-/* --- POLISH EFFECTS ---------------------------------------------------- */
-.copy-tooltip {
-  position: absolute;
-  left: 105%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  pointer-events: none;
-  white-space: nowrap;
-  animation: fadeInOutTooltip 1.2s ease forwards;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  z-index: 100;
-}
-
-@keyframes fadeInOutTooltip {
-  0% { opacity: 0; transform: translateY(-50%) scale(0.9); }
-  15% { opacity: 1; transform: translateY(-50%) scale(1); }
-  85% { opacity: 1; transform: translateY(-50%) scale(1); }
-  100% { opacity: 0; transform: translateY(-50%) scale(0.9); }
-}
-
-/* --- REDESIGN ADDITIONS ------------------------------------------------ */
+/* --- OTHER WORK -------------------------------------------------------- */
 .tools-list {
   display: flex;
   flex-wrap: wrap;

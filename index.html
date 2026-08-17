@@ -68,21 +68,6 @@
     } else if (hyperlinkReference.startsWith("mailto:")) {
       const envelopeIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>';
       anchorElement.innerHTML = envelopeIconSvg + escapeHtml(linkText);
-      const emailAddressString = hyperlinkReference.slice(7);
-      anchorElement.addEventListener("click", (clickEvent) => {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(emailAddressString).then(() => {
-            if (anchorElement.querySelector(".copy-tooltip")) return;
-            const tooltipElement = createHtmlElement("span", "copy-tooltip", "Copied!");
-            anchorElement.appendChild(tooltipElement);
-            setTimeout(() => {
-              tooltipElement.remove();
-            }, 1200);
-          }).catch(() => {
-            // Silently ignore clipboard write failures (e.g. user blocked permission)
-          });
-        }
-      });
     } else if (/^https?:/.test(hyperlinkReference)) {
       anchorElement.innerHTML = escapeHtml(linkText) + '&nbsp;<span class="arrow">\u2197</span>';
     }
@@ -117,7 +102,7 @@
       
       if (portfolioEntry.role) {
         const roleRowElement = createHtmlElement("div", "detail-row");
-        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "Role: "));
+        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
         const roleText = Array.isArray(portfolioEntry.role) ? portfolioEntry.role.join(", ") : portfolioEntry.role;
         roleRowElement.appendChild(document.createTextNode(roleText));
         detailsContainer.appendChild(roleRowElement);
@@ -126,7 +111,7 @@
       const techList = portfolioEntry.tech || portfolioEntry.tools;
       if (techList && techList.length) {
         const techRowElement = createHtmlElement("div", "detail-row");
-        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project technology: "));
+        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
         const techText = Array.isArray(techList) ? techList.join(", ") : techList;
         techRowElement.appendChild(document.createTextNode(techText));
         detailsContainer.appendChild(techRowElement);
@@ -134,7 +119,7 @@
       
       if (portfolioEntry.method) {
         const methodRowElement = createHtmlElement("div", "detail-row");
-        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
+        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Development method: "));
         methodRowElement.appendChild(createHtmlElement("span", "method-tag", escapeHtml(portfolioEntry.method)));
         detailsContainer.appendChild(methodRowElement);
       }
@@ -156,25 +141,32 @@
     if (portfolioEntry.images && portfolioEntry.images.length) {
       const imagesGridContainer = createHtmlElement("div", "project-images-grid");
       portfolioEntry.images.forEach((imageMetadata) => {
-        const imageCardWrapper = createHtmlElement("div", "project-image-container");
-        imageCardWrapper.setAttribute("role", "button");
-        imageCardWrapper.setAttribute("tabindex", "0");
-        imageCardWrapper.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
+        const imageCardWrapper = createHtmlElement("figure", "project-image-card");
+        const imageContainerElement = createHtmlElement("div", "project-image-container");
+        imageContainerElement.setAttribute("role", "button");
+        imageContainerElement.setAttribute("tabindex", "0");
+        imageContainerElement.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
         
         const imageTag = document.createElement("img");
         imageTag.src = imageMetadata.src;
         imageTag.alt = imageMetadata.alt;
         imageTag.loading = "lazy";
         
-        imageCardWrapper.appendChild(imageTag);
+        imageContainerElement.appendChild(imageTag);
+        imageCardWrapper.appendChild(imageContainerElement);
+
+        if (imageMetadata.caption) {
+          const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
+          imageCardWrapper.appendChild(captionElement);
+        }
         
-        imageCardWrapper.addEventListener("click", () => {
-          openLightbox(imageMetadata.src, imageMetadata.alt);
+        imageContainerElement.addEventListener("click", () => {
+          openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
         });
-        imageCardWrapper.addEventListener("keydown", (keyboardEvent) => {
+        imageContainerElement.addEventListener("keydown", (keyboardEvent) => {
           if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
             keyboardEvent.preventDefault();
-            openLightbox(imageMetadata.src, imageMetadata.alt);
+            openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
           }
         });
         
@@ -293,21 +285,17 @@
       const skillGroups = Array.isArray(portfolioData.skills)
         ? portfolioData.skills
         : [
-            { category: "Working with", type: "working", items: portfolioData.skills.working },
-            { category: "Learning", type: "learning", items: portfolioData.skills.learning }
+            { category: "Working with", items: portfolioData.skills.working },
+            { category: "Learning", items: portfolioData.skills.learning }
           ];
 
       skillGroups.forEach((skillGroup) => {
         if (!skillGroup.items || !skillGroup.items.length) return;
         const skillsetGroupElement = createHtmlElement("div", "skillset");
         skillsetGroupElement.appendChild(createHtmlElement("div", "label", escapeHtml(skillGroup.category)));
-        const skillsListElement = createHtmlElement("div", "skills-list");
-        const categoryType = skillGroup.type || (skillGroup.category.toLowerCase().includes("learning") ? "learning" : "working");
-        const skillClassString = "skill-tag " + categoryType;
-        skillGroup.items.forEach((skillName) => {
-          skillsListElement.appendChild(createHtmlElement("span", skillClassString, escapeHtml(skillName)));
-        });
-        skillsetGroupElement.appendChild(skillsListElement);
+        const itemsJoinedString = skillGroup.items.map(escapeHtml).join(" · ");
+        const skillsInlineElement = createHtmlElement("p", "skills-inline", itemsJoinedString);
+        skillsetGroupElement.appendChild(skillsInlineElement);
         skillsSectionElement.appendChild(skillsetGroupElement);
       });
       contentElement.appendChild(skillsSectionElement);
@@ -433,12 +421,13 @@
   const lightboxCloseButtonElement = document.getElementById("lightbox-close-control-button");
   let elementToFocusOnClose = null;
 
-  function openLightbox(imageSource, imageAlternativeText) {
+  function openLightbox(imageSource, imageAlternativeText, imageCaptionText) {
     elementToFocusOnClose = document.activeElement;
     lightboxImageElement.src = imageSource;
     lightboxImageElement.alt = imageAlternativeText;
-    lightboxCaptionElement.textContent = imageAlternativeText;
+    lightboxCaptionElement.textContent = imageCaptionText || imageAlternativeText;
     lightboxModalElement.classList.add("active");
+    document.body.style.overflow = "hidden";
     lightboxCloseButtonElement.focus();
     document.addEventListener("keydown", handleLightboxKeyDown);
   }
@@ -448,6 +437,7 @@
     lightboxImageElement.src = "";
     lightboxImageElement.alt = "";
     lightboxCaptionElement.textContent = "";
+    document.body.style.overflow = "";
     document.removeEventListener("keydown", handleLightboxKeyDown);
     if (elementToFocusOnClose) {
       elementToFocusOnClose.focus();
