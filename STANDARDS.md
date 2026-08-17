@@ -61,14 +61,14 @@ that one person with a text editor can maintain this.
   featured: true,                                    // true for full featured cards
   role: ["Product direction", "Architecture"],       // what you personally did and decided
   tech: ["C#", ".NET", "PowerToys Command Palette SDK"], // project dependencies, not personal skill claims
-  method: "AI-assisted development",                 // optional, e.g. "AI-assisted development"
+  method: "AI-assisted development",                 // optional, rendered inline quietly
   body: "One paragraph. Concrete details, what the system does, and what YOU did.",
   link: { label: "Source", href: "https://..." },   // delete this line if none
   images: [                                          // optional image gallery
     {
       src: "images/example.webp",
-      alt: "Descriptive alt text for accessibility",
-      caption: "Short explanatory caption shown below thumbnail and in lightbox",
+      alt: "Descriptive alt text for accessibility and lightbox",
+      caption: "Optional context or attribution caption shown below thumbnail",
     },
   ],
 },

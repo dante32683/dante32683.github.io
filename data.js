@@ -36,6 +36,9 @@ const DATA = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/dante-martin-722763279/" },
   ],
 
+  /* Colophon: quiet static-site note in footer. */
+  colophon: "Designed and maintained by Dante Martin · Dependency-free static site",
+
   /* --- Sections render in the order listed below. ----------------------- */
 
   /* PROJECTS ------------------------------------------------------------- */
@@ -55,22 +58,18 @@ const DATA = {
         {
           src: "images/cmdpal-image-editor.webp",
           alt: "NPU Image Editor extension tool actions in PowerToys Command Palette",
-          caption: "NPU Image Editor extension in PowerToys Command Palette",
         },
         {
           src: "images/cmdpal-organize.webp",
           alt: "NPU Organize screenshot utility in PowerToys Command Palette",
-          caption: "NPU Organize screenshot utility and file actions",
         },
         {
           src: "images/cmdpal-code.webp",
           alt: "NPU Developer Dev Toolbox code utility in PowerToys Command Palette",
-          caption: "Developer Dev Toolbox utility in Command Palette",
         },
         {
           src: "images/cmdpal-settings-1.webp",
           alt: "Action Center, Awake, and Clipboard extension settings toggles",
-          caption: "Extension suite configuration and toggle settings",
         },
       ],
     },
@@ -104,7 +103,6 @@ const DATA = {
         {
           src: "images/baja-canvas-quiz.webp",
           alt: "Canvas shop safety qualification quiz with randomized question pools",
-          caption: "Shop safety qualification quiz interface in Canvas",
         },
         {
           src: "images/baja-chassis.webp",

@@ -176,27 +176,27 @@
       const detailsContainer = createHtmlElement("div", "entry-details");
       
       if (portfolioEntry.role) {
-        const roleRowElement = createHtmlElement("div", "detail-row");
-        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
+        const roleSegmentElement = createHtmlElement("span", "detail-segment");
+        roleSegmentElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
         const roleText = Array.isArray(portfolioEntry.role) ? portfolioEntry.role.join(", ") : portfolioEntry.role;
-        roleRowElement.appendChild(document.createTextNode(roleText));
-        detailsContainer.appendChild(roleRowElement);
+        roleSegmentElement.appendChild(document.createTextNode(roleText));
+        detailsContainer.appendChild(roleSegmentElement);
       }
       
       const techList = portfolioEntry.tech || portfolioEntry.tools;
       if (techList && techList.length) {
-        const techRowElement = createHtmlElement("div", "detail-row");
-        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
+        const techSegmentElement = createHtmlElement("span", "detail-segment");
+        techSegmentElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
         const techText = Array.isArray(techList) ? techList.join(", ") : techList;
-        techRowElement.appendChild(document.createTextNode(techText));
-        detailsContainer.appendChild(techRowElement);
+        techSegmentElement.appendChild(document.createTextNode(techText));
+        detailsContainer.appendChild(techSegmentElement);
       }
       
       if (portfolioEntry.method) {
-        const methodRowElement = createHtmlElement("div", "detail-row");
-        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Development method: "));
-        methodRowElement.appendChild(createHtmlElement("span", "method-tag", escapeHtml(portfolioEntry.method)));
-        detailsContainer.appendChild(methodRowElement);
+        const methodSegmentElement = createHtmlElement("span", "detail-segment");
+        methodSegmentElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
+        methodSegmentElement.appendChild(document.createTextNode(portfolioEntry.method));
+        detailsContainer.appendChild(methodSegmentElement);
       }
       
       entryContainerElement.appendChild(detailsContainer);
@@ -420,9 +420,9 @@
     createThemeToggleButton(document.body);
 
     /* Footer */
-    const currentCalendarYear = new Date().getFullYear();
-    document.getElementById("footer").appendChild(
-      createHtmlElement("p", null, "© " + currentCalendarYear + " " + escapeHtml(portfolioData.name)));
+    const footerElement = document.getElementById("footer");
+    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name + " · Dependency-free static site");
+    footerElement.appendChild(createHtmlElement("p", "colophon", escapeHtml(colophonText)));
 
     // Scroll-spy
     const navigationLinks = document.querySelectorAll(".nav a");
