@@ -261,67 +261,16 @@ h2 {
   color: var(--ink);
 }
 
-.skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
-.skill-tag {
-  font-size: 0.85rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: 4px;
-  font-weight: 500;
-  border: 1px solid transparent;
-}
-
-/* "Working with" and "Workflow" tags (active accent tint) */
-.skill-tag.working,
-.skill-tag.workflow {
-  background-color: rgba(34, 124, 75, 0.08);
-  border-color: rgba(34, 124, 75, 0.15);
-  color: var(--accent);
-}
-
-/* "Foundational" tags (subtle contrast tint) */
-.skill-tag.foundational {
-  background-color: var(--faint);
-  border-color: rgba(0, 0, 0, 0.06);
-  color: var(--ink);
-}
-
-/* "Learning" tags (neutral gray tint) */
-.skill-tag.learning {
-  background-color: var(--faint);
-  border-color: var(--faint);
-  color: var(--muted);
-}
-
-/* Dark theme overrides for tags and method */
+/* Dark theme overrides for method tag */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .entry-details .method-tag {
     background-color: rgba(82, 183, 136, 0.1);
     border-color: rgba(82, 183, 136, 0.2);
   }
-  :root:not([data-theme="light"]) .skill-tag.working,
-  :root:not([data-theme="light"]) .skill-tag.workflow {
-    background-color: rgba(82, 183, 136, 0.1);
-    border-color: rgba(82, 183, 136, 0.2);
-  }
-  :root:not([data-theme="light"]) .skill-tag.foundational {
-    background-color: var(--faint);
-    border-color: rgba(255, 255, 255, 0.08);
-    color: var(--ink);
-  }
 }
 :root[data-theme="dark"] .entry-details .method-tag {
   background-color: rgba(82, 183, 136, 0.1);
   border-color: rgba(82, 183, 136, 0.2);
-}
-:root[data-theme="dark"] .skill-tag.working,
-:root[data-theme="dark"] .skill-tag.workflow {
-  background-color: rgba(82, 183, 136, 0.1);
-  border-color: rgba(82, 183, 136, 0.2);
-}
-:root[data-theme="dark"] .skill-tag.foundational {
-  background-color: var(--faint);
-  border-color: rgba(255, 255, 255, 0.08);
-  color: var(--ink);
 }
 /* --- SCROLL PROGRESS BAR ----------------------------------------------- */
 .scroll-progress-bar {
