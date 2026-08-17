@@ -211,6 +211,11 @@ written.
 
 - **All colour, sizing, and font choices come from the `:root` variables.** Use
   `var(--accent)` and friends; do not hard-code a hex value in a rule.
+- **Use the semantic typography scale.** Primary project, experience, education,
+  and honor titles use `--text-title`; primary descriptions use `--text-body`;
+  metadata uses `--text-meta`; coursework and skills use `--text-supporting`.
+  Compact Other Work intentionally uses the smaller `--text-title-compact` and
+  `--text-body-compact` roles. Do not introduce one-off font sizes per section.
 - **Dark mode is defined twice** (the `prefers-color-scheme` block and the
   `[data-theme="dark"]` block) and the two value lists must stay identical. If
   you add a variable or a dark override, update both.
