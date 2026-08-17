@@ -350,10 +350,15 @@
       const honorsListElement = createHtmlElement("div", "honors-list");
       portfolioData.honors.forEach((honorEntry) => {
         const honorItemElement = createHtmlElement("div", "honor-item");
-        honorItemElement.appendChild(createHtmlElement("h3", null, escapeHtml(honorEntry.title)));
-        const metadataSegments = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
-        if (metadataSegments.length) {
-          honorItemElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+        
+        const headingElement = createHtmlElement("h3", null, escapeHtml(honorEntry.title));
+        if (honorEntry.dates) {
+          headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(honorEntry.dates)));
+        }
+        honorItemElement.appendChild(headingElement);
+        
+        if (honorEntry.org) {
+          honorItemElement.appendChild(createHtmlElement("div", "meta", escapeHtml(honorEntry.org)));
         }
         if (honorEntry.body) {
           honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));

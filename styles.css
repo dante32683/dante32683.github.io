@@ -171,9 +171,11 @@ h2 {
   line-height: 1.35;
 }
 .entry h3 .subtitle,
-.edu-block h3 .subtitle { color: var(--muted); font-weight: 400; }
+.edu-block h3 .subtitle,
+.honor-item h3 .subtitle { color: var(--muted); font-weight: 400; }
 .entry h3 .subtitle::before,
-.edu-block h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
+.edu-block h3 .subtitle::before,
+.honor-item h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
 
 .entry-details {

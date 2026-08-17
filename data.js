@@ -217,10 +217,17 @@ const DATA = {
     },
     {
       title: "National Merit Commended Scholar",
+      org: "National Merit Scholarship Corporation",
       dates: "2025",
     },
     {
       title: "AP Scholar with Distinction",
+      org: "College Board",
+      dates: "2025",
+    },
+    {
+      title: "Golden State Seal Merit Diploma",
+      org: "Tech High School",
       dates: "2025",
     },
   ],
