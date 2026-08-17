@@ -430,7 +430,9 @@
     lightboxModalElement.classList.add("active");
     document.body.style.overflow = "hidden";
     requestAnimationFrame(() => {
-      lightboxCloseButtonElement.focus();
+      requestAnimationFrame(() => {
+        lightboxCloseButtonElement.focus();
+      });
     });
     document.addEventListener("keydown", handleLightboxKeyDown);
   }
