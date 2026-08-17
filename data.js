@@ -71,18 +71,17 @@ const DATA = {
     },
     {
       title: "Baja SAE",
-      subtitle: "Operations analysis and member allocation",
+      subtitle: "Member assignment and training",
       org: "SRJC Baja SAE",
       dates: "June 2026 to present",
       featured: true,
       tools: ["SolidWorks", "FEA", "Excel"],
-      body: "Joined the off-road racing team to analyze workflow organization and member allocation. " +
-        "Mapping out team workflows to improve assembly speed, while learning spaceframe CAD modeling and Finite Element " +
-        "Analysis (FEA) simulations alongside the design and simulation subteams.",
+      body: "I work on member assignment and assembly workflow for the team. " +
+        "I moved training material into Canvas so new members have one place to start. I am learning SolidWorks and FEA with the design and simulation groups.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
-        { src: "images/baja-chassis.webp", alt: "Baja SAE steel spaceframe chassis CAD modeling render" },
-        { src: "images/baja-highlights.webp", alt: "Baja SAE spaceframe CAD modeling highlighted members view" }
+        { src: "images/baja-chassis.webp", alt: "SRJC Baja SAE steel spaceframe chassis" },
+        { src: "images/baja-highlights.webp", alt: "SRJC Baja SAE spaceframe with highlighted members" }
       ],
     },
     {
