@@ -172,17 +172,28 @@ written.
 
 ---
 
-## Commit messages
+## Git workflow and commit messages
 
-One change per commit. Write the subject as a **capitalized, imperative phrase**
-that says what the commit does, with **no prefix and no trailing period**:
-
-```
-Move theme toggle to a fixed top-right position
-Add SRJC Baja SAE website link to Baja project entry
-Fix theme toggle placement and resolve Unicode icon mapping bug
+### 1. Branching
+**Always create a new branch before doing any substantial work.** Do not commit substantial changes directly to `main`.
+```bash
+git checkout -b <branch-name>
 ```
 
-Not `fixed the toggle`, not `chore: toggle`, not `Update stuff.`. If you need
-the word "and" twice, the commit is probably doing too much; split it. A body
-is optional and only earns its place when the subject cannot explain the why.
+### 2. Conventional commits
+Always use **Conventional Commits** format for commit messages (`type: short description` or `type(scope): short description`):
+- `feat:` new feature or content section
+- `fix:` bug fix or correction
+- `docs:` documentation or standards updates
+- `style:` visual styling, CSS adjustments, or theme changes
+- `refactor:` code restructuring without changing behavior
+- `chore:` maintenance, repo configuration, or cleanup
+
+Examples:
+```
+feat(content): update project entries to reflect AI-assisted workflow
+style(theme): adjust accent contrast ratio for dark mode
+docs(standards): document conventional commits and branching rules
+fix(nav): correct active section highlight on mobile viewport
+```
+Keep commits atomic (one logical change per commit). Provide an optional body only when additional context or rationale is needed.

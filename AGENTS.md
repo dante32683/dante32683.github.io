@@ -23,7 +23,12 @@ Be specific - numbers, names, what *you* did. No emoji. No hype words
 (passionate, innovative, leverage, "the intersection of", …). One short
 paragraph per entry. Full list and rationale are in STANDARDS.md.
 
+## Git and branching workflow
+
+- **Always create a new branch before doing any substantial work.** Do not work directly on `main`.
+- **Always use Conventional Commits** for commit messages (e.g. `feat: ...`, `fix: ...`, `docs: ...`, `style: ...`, `refactor: ...`, `chore: ...`).
+
 ## Before you finish
 
 Open `index.html` in a browser. Confirm it renders in light and dark mode with
-no blank labels and no console errors. Then commit and push.
+no blank labels and no console errors. Then commit using Conventional Commits and push.

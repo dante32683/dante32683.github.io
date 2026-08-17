@@ -20,8 +20,9 @@ The source code for Dante Martin's personal website and portfolio. It is a light
 
 Before editing anything, please read **[STANDARDS.md](STANDARDS.md)** in full to maintain the specific, hype-free writing style and structural limits.
 
-1. Edit your content in `data.js`.
-2. Open `index.html` in a web browser to test locally.
-3. Confirm the page renders correctly in both **light and dark modes** (using the theme toggle).
-4. Run standard print-to-PDF previews to ensure layout prints cleanly.
-5. Commit and push to `main` to trigger the automated GitHub Pages deployment.
+1. Create a dedicated branch for substantial changes (`git checkout -b <branch-name>`).
+2. Edit your content in `data.js`.
+3. Open `index.html` in a web browser to test locally.
+4. Confirm the page renders correctly in both **light and dark modes** (using the theme toggle).
+5. Run standard print-to-PDF previews to ensure layout prints cleanly.
+6. Commit using **Conventional Commits** (`feat:`, `fix:`, `docs:`, `style:`, etc.) and push.
