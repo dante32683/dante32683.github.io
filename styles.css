@@ -177,18 +177,17 @@ h2 {
 .entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 
 .entry-details {
-  margin-top: 0.35rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.55rem;
   font-size: 0.83rem;
   line-height: 1.5;
   color: var(--muted);
 }
-.entry-details .detail-segment {
-  display: inline;
+.entry-details .detail-row {
+  margin-top: 0.15rem;
 }
-.entry-details .detail-segment + .detail-segment::before {
-  content: "  ·  ";
-  color: var(--faint);
+.entry-details .detail-row:first-child {
+  margin-top: 0;
 }
 .entry-details .detail-label {
   font-weight: 600;

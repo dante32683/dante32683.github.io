@@ -176,27 +176,27 @@
       const detailsContainer = createHtmlElement("div", "entry-details");
       
       if (portfolioEntry.role) {
-        const roleSegmentElement = createHtmlElement("span", "detail-segment");
-        roleSegmentElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
+        const roleRowElement = createHtmlElement("div", "detail-row");
+        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
         const roleText = Array.isArray(portfolioEntry.role) ? portfolioEntry.role.join(", ") : portfolioEntry.role;
-        roleSegmentElement.appendChild(document.createTextNode(roleText));
-        detailsContainer.appendChild(roleSegmentElement);
+        roleRowElement.appendChild(document.createTextNode(roleText));
+        detailsContainer.appendChild(roleRowElement);
       }
       
       const techList = portfolioEntry.tech || portfolioEntry.tools;
       if (techList && techList.length) {
-        const techSegmentElement = createHtmlElement("span", "detail-segment");
-        techSegmentElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
+        const techRowElement = createHtmlElement("div", "detail-row");
+        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
         const techText = Array.isArray(techList) ? techList.join(", ") : techList;
-        techSegmentElement.appendChild(document.createTextNode(techText));
-        detailsContainer.appendChild(techSegmentElement);
+        techRowElement.appendChild(document.createTextNode(techText));
+        detailsContainer.appendChild(techRowElement);
       }
       
       if (portfolioEntry.method) {
-        const methodSegmentElement = createHtmlElement("span", "detail-segment");
-        methodSegmentElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
-        methodSegmentElement.appendChild(document.createTextNode(portfolioEntry.method));
-        detailsContainer.appendChild(methodSegmentElement);
+        const methodRowElement = createHtmlElement("div", "detail-row");
+        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
+        methodRowElement.appendChild(document.createTextNode(portfolioEntry.method));
+        detailsContainer.appendChild(methodRowElement);
       }
       
       entryContainerElement.appendChild(detailsContainer);
