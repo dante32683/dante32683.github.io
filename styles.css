@@ -225,7 +225,7 @@ h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 .honors-list {
   display: flex;
   flex-direction: column;
-  gap: 1.85rem;
+  gap: 1.35rem;
 }
 .honor-item h3 {
   font-size: 1.15rem;
@@ -235,7 +235,7 @@ h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 .honor-item .meta {
   font-size: 0.82rem;
   color: var(--muted);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 .honor-item p {
   font-size: 0.92rem;
