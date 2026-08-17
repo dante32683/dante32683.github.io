@@ -92,11 +92,6 @@ a:focus-visible, button:focus-visible {
 .nav a:hover { color: var(--accent); background-color: var(--accent-tint); }
 .nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
-.nav a.nav-photos-sublink {
-  padding-left: 1.5rem;
-  font-size: 0.85rem;
-}
-
 /* Contact */
 .contact { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-size: 0.9rem; }
@@ -258,31 +253,19 @@ h2 {
   background-color: rgba(82, 183, 136, 0.1);
   border-color: rgba(82, 183, 136, 0.2);
 }
-/* --- PROJECTS GALLERY -------------------------------------------------- */
-.gallery-link {
-  margin-top: 1.5rem;
-}
-.gallery-link a {
-  position: relative;
-  font-weight: 600;
-  padding-bottom: 2px;
-  transition: color 0.15s;
-}
-.gallery-link a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width 0.15s ease, left 0.15s ease;
-}
-.gallery-link a:hover::after {
-  width: 100%;
+/* --- SCROLL PROGRESS BAR ----------------------------------------------- */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
   left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 1000;
+  transition: width 0.05s ease;
 }
 
+/* --- PROJECTS GALLERY -------------------------------------------------- */
 .project-images-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -402,7 +385,6 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
   .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }
-  .nav a.nav-photos-sublink { padding-left: 0.6rem; font-size: 0.9rem; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
 }

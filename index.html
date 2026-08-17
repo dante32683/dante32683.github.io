@@ -23,7 +23,7 @@
   </script>
 </head>
 <body>
-  <div id="scroll-progress-bar" style="position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; z-index: 1000; transition: width 0.05s ease;"></div>
+  <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
   <!-- Shell layout -->
   <div class="layout">
     <aside class="sidebar" id="sidebar"></aside>
@@ -128,8 +128,8 @@
       entryContainerElement.appendChild(moreLinkContainer);
     }
 
-    // Inline image gallery grid if images exist (and is featured)
-    if (isFeatured && portfolioEntry.images && portfolioEntry.images.length) {
+    // Inline image gallery grid if images exist
+    if (portfolioEntry.images && portfolioEntry.images.length) {
       const imagesGridContainer = createHtmlElement("div", "project-images-grid");
       portfolioEntry.images.forEach((imageMetadata) => {
         const imageCardWrapper = createHtmlElement("div", "project-image-container");
