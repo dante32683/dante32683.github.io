@@ -164,19 +164,16 @@ h2 {
 .edu-details {
   margin-bottom: 0;
 }
-.entry h3,
+h3,
 .edu-details h3 {
   font-weight: 600;
   font-size: 1.15rem;
   line-height: 1.35;
 }
-.entry h3 .subtitle,
-.edu-block h3 .subtitle,
-.honor-item h3 .subtitle { color: var(--muted); font-weight: 400; }
-.entry h3 .subtitle::before,
-.edu-block h3 .subtitle::before,
-.honor-item h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
-.entry .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
+h3 .subtitle { color: var(--muted); font-weight: 400; }
+h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
+.entry .meta,
+.honor-item .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
 
 .entry-details {
   margin-top: 0.45rem;

@@ -214,21 +214,25 @@ const DATA = {
       title: "Civil Engineering Transfer Scholarship",
       org: "ASCE Redwood Empire Branch",
       dates: "2025–26",
+      body: "Won the Redwood Empire branch scholarship to fund my civil engineering transfer track.",
     },
     {
       title: "National Merit Commended Scholar",
       org: "National Merit Scholarship Corporation",
       dates: "2025",
+      body: "Placed in the top 50,000 scorers nationwide out of 1.5 million students on the qualifying PSAT/NMSQT exam.",
     },
     {
       title: "AP Scholar with Distinction",
       org: "College Board",
       dates: "2025",
+      body: "Scored 5 on six of eight AP exams, maintaining a score average above 3.5 across all subjects.",
     },
     {
       title: "Golden State Seal Merit Diploma",
       org: "Tech High School",
       dates: "2025",
+      body: "Graduated in the top ten of my class, qualifying with high scores on California state math, science, and history exams.",
     },
   ],
 
