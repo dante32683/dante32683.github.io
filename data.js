@@ -73,11 +73,11 @@ const DATA = {
       title: "Baja SAE",
       subtitle: "Operations analysis and member allocation",
       org: "SRJC Baja SAE",
-      dates: "starts June 2026",
+      dates: "June 2026 to present",
       featured: true,
       tools: ["SolidWorks", "FEA", "Excel"],
-      body: "Joining the off-road racing team to analyze workflow organization and member allocation. " +
-        "I will map out team workflows to improve assembly speed, while learning spaceframe CAD modeling and Finite Element " +
+      body: "Joined the off-road racing team to analyze workflow organization and member allocation. " +
+        "Mapping out team workflows to improve assembly speed, while learning spaceframe CAD modeling and Finite Element " +
         "Analysis (FEA) simulations alongside the design and simulation subteams.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
@@ -156,7 +156,7 @@ const DATA = {
         { term: "Spring 2026",                   courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
         { term: "Fall 2025",                     courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
         { term: "Summer 2025",                   courses: "Engr 10, Art 1.2" },
-        { term: "Dual Enrollment (2023 - 2024)", courses: "CS 50A (Web Dev 1), CS 50B (Web Dev 2), CS 50C (Web Dev 3), Psych 1A" },
+        { term: "Dual Enrollment (2023 to 2024)", courses: "CS 50A (Web Dev 1), CS 50B (Web Dev 2), CS 50C (Web Dev 3), Psych 1A" },
       ],
     },
     {
