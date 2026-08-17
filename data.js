@@ -76,14 +76,12 @@ const DATA = {
     },
     {
       title: "AHK Scripting",
-      subtitle: "Personal desktop layout and hotkey automation",
+      subtitle: "Personal desktop automation",
       org: "Personal project",
       dates: "ongoing",
       featured: false,
-      role: ["Workflow design", "Custom keybindings", "Iteration"],
-      tech: ["AutoHotkey v2", "Windows"],
-      method: "AI-assisted scripting",
-      body: "Designed a daily-driver desktop automation workflow featuring a CapsLock navigation layer, multi-monitor window tiling, and virtual desktop management.",
+      compactMeta: ["AutoHotkey v2", "Windows"],
+      body: "Designed and maintain a daily-use automation system for hotkeys, window tiling, and virtual desktops using AI-assisted implementation.",
       link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
@@ -150,27 +148,21 @@ const DATA = {
     {
       title: "Dog Protection Device",
       subtitle: "Foxtail grass seed canine face guard",
-      org: "Technology High School",
-      dates: "Jan 2024 to May 2024",
+      org: "High-school capstone",
+      dates: "2024",
       featured: false,
-      role: ["CAD modeling", "Rapid prototyping", "Airflow testing", "Veterinarian outreach"],
-      tech: ["CAD", "3D Printing"],
-      body: "Prototyped a breathable mesh face guard to protect dogs from foxtail grass seed injuries. Conducted airflow testing, gathered veterinarian feedback, and iterated 3D-printed collar attachment mechanisms.",
+      compactMeta: ["CAD", "3D printing"],
+      body: "Prototyped a breathable mesh face guard, tested airflow, and revised the design using veterinarian feedback.",
       images: [
-        {
-          src: "images/foxtail-microscope.webp",
-          alt: "Microscope view of a foxtail seed highlighting backward-pointing barbs",
-          caption: "Microscope view of barbed foxtail seed structure",
-        },
         {
           src: "images/foxtail-prototype-final.webp",
           alt: "Final prototype canine protective face guard with mesh enclosure and buckle",
-          caption: "Final prototype canine protective face guard",
+          caption: "Final prototype",
         },
         {
           src: "images/foxtail-prototype-initial.webp",
           alt: "Initial mesh face guard prototype with elastic opening",
-          caption: "Initial prototype showing mesh and elastic fitting",
+          caption: "Initial prototype",
         },
       ],
     },
@@ -198,52 +190,40 @@ const DATA = {
   education: [
     {
       school: "Santa Rosa Junior College",
-      dates: "2023 to present (Dual Enrollment 2023 to 2024)",
-      detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. Earned Web & Mobile Front-End Development certificate in 2024. Planned transfer in Fall 2027.",
-      // Selected coursework
+      dates: "2023–present",
+      detail: "Civil Engineering transfer track · 4.0 GPA · Dean’s Highest Honors · Front-End Development certificate · Transfer planned Fall 2027",
       coursework: [
         {
-          term: "In Progress (Fall 2026)",
-          courses: "Differential Equations (Math 2), Electricity & Magnetism (Phys 42), Engineering Mechanics: Statics (Engr 34), MATLAB for Engineers (Engr 6)",
+          label: "Current coursework",
+          courses: "Differential Equations, Electricity & Magnetism, Statics, MATLAB for Engineers",
         },
         {
-          term: "Completed Coursework",
-          courses: "Calculus I–III (Math 1A, 1B, 1C), Classical Mechanics (Phys 40), C++ Programming (CS 10A), General Chemistry I & II with Lab (Chem 3A/AL, Chem 3B), Web & Mobile Development Sequence (CS 50A/B/C)",
+          label: "Selected completed coursework",
+          courses: "Calculus I–III, Classical Mechanics, C++ Programming, General Chemistry, Web Development",
         },
       ],
     },
     {
       school: "Technology High School",
       dates: "Graduated 2025",
-      detail: "GPA: 4.37. Graduated in top ten of class. STEM magnet school with project-based engineering curriculum (PLTW) and team design capstones.",
+      detail: "4.37 GPA · Top 10 in class · STEM project-based curriculum",
     },
   ],
 
-  /* HONORS - structured entries, no emoji, no em dashes. ----------------- */
+  /* HONORS --------------------------------------------------------------- */
   honors: [
     {
       title: "Civil Engineering Transfer Scholarship",
       org: "ASCE Redwood Empire Branch",
-      dates: "2025 to 2026",
-      body: "Won the Redwood Empire branch scholarship to fund my civil engineering transfer track.",
+      dates: "2025–26",
     },
     {
       title: "National Merit Commended Scholar",
-      org: "National Merit Scholarship Corporation",
       dates: "2025",
-      body: "Placed in the top 50,000 scorers nationwide out of 1.5 million students on the qualifying PSAT/NMSQT exam.",
     },
     {
       title: "AP Scholar with Distinction",
-      org: "College Board",
       dates: "2025",
-      body: "Scored 5 on six of eight AP exams, maintaining a score average above 3.5 across all subjects.",
-    },
-    {
-      title: "Golden State Seal Merit Diploma",
-      org: "Tech High School",
-      dates: "2025",
-      body: "Graduated in the top ten of my class, qualifying with high scores on California state math, science, and history exams.",
     },
   ],
 

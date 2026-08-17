@@ -80,7 +80,82 @@
   // One project/experience entry.
   function createPortfolioEntryElement(portfolioEntry) {
     const isFeatured = portfolioEntry.featured !== false;
-    const entryContainerElement = createHtmlElement("article", isFeatured ? "entry" : "entry compact-entry");
+    
+    // Dedicated compact rendering path for Other Work
+    if (!isFeatured) {
+      const entryContainerElement = createHtmlElement("article", "entry compact-entry");
+      
+      if (portfolioEntry.title) {
+        const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
+        if (portfolioEntry.subtitle) {
+          headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioEntry.subtitle)));
+        }
+        entryContainerElement.appendChild(headingElement);
+      }
+      
+      const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
+      if (metadataSegments.length) {
+        entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+      }
+
+      const compactTools = portfolioEntry.compactMeta || portfolioEntry.tech || portfolioEntry.tools;
+      if (compactTools && compactTools.length) {
+        const toolsText = Array.isArray(compactTools) ? compactTools.join(" · ") : compactTools;
+        entryContainerElement.appendChild(createHtmlElement("div", "compact-meta", escapeHtml(toolsText)));
+      }
+      
+      if (portfolioEntry.body) {
+        entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
+      }
+      
+      if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
+        const moreLinkContainer = createHtmlElement("div", "more");
+        moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
+        entryContainerElement.appendChild(moreLinkContainer);
+      }
+
+      if (portfolioEntry.images && portfolioEntry.images.length) {
+        const imagesGridContainer = createHtmlElement("div", "project-images-grid");
+        portfolioEntry.images.slice(0, 2).forEach((imageMetadata) => {
+          const imageCardWrapper = createHtmlElement("figure", "project-image-card");
+          const imageContainerElement = createHtmlElement("div", "project-image-container");
+          imageContainerElement.setAttribute("role", "button");
+          imageContainerElement.setAttribute("tabindex", "0");
+          imageContainerElement.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
+          
+          const imageTag = document.createElement("img");
+          imageTag.src = imageMetadata.src;
+          imageTag.alt = imageMetadata.alt;
+          imageTag.loading = "lazy";
+          
+          imageContainerElement.appendChild(imageTag);
+          imageCardWrapper.appendChild(imageContainerElement);
+
+          if (imageMetadata.caption) {
+            const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
+            imageCardWrapper.appendChild(captionElement);
+          }
+          
+          imageContainerElement.addEventListener("click", () => {
+            openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
+          });
+          imageContainerElement.addEventListener("keydown", (keyboardEvent) => {
+            if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+              keyboardEvent.preventDefault();
+              openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
+            }
+          });
+          
+          imagesGridContainer.appendChild(imageCardWrapper);
+        });
+        entryContainerElement.appendChild(imagesGridContainer);
+      }
+      
+      return entryContainerElement;
+    }
+
+    // Featured / standard entry
+    const entryContainerElement = createHtmlElement("article", "entry");
     
     if (portfolioEntry.title) {
       const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
@@ -217,7 +292,6 @@
         });
       }
 
-
       contentElement.appendChild(sectionElement);
     }
 
@@ -248,21 +322,22 @@
         detailsContainer.appendChild(schoolHeading);
         
         if (educationSectionData.detail) {
-          detailsContainer.appendChild(createHtmlElement("p", null, escapeHtml(educationSectionData.detail)));
+          detailsContainer.appendChild(createHtmlElement("p", "edu-detail", escapeHtml(educationSectionData.detail)));
         }
-        educationBlockElement.appendChild(detailsContainer);
         
         if (educationSectionData.coursework && educationSectionData.coursework.length) {
-          const courseworkTableElement = createHtmlElement("table", "coursework");
+          const courseworkContainer = createHtmlElement("div", "coursework-block");
           educationSectionData.coursework.forEach((courseworkRowData) => {
-            const tableRowElement = createHtmlElement("tr");
-            tableRowElement.appendChild(createHtmlElement("th", null, escapeHtml(courseworkRowData.term)));
-            tableRowElement.appendChild(createHtmlElement("td", null, escapeHtml(courseworkRowData.courses)));
-            courseworkTableElement.appendChild(tableRowElement);
+            const courseworkLineElement = createHtmlElement("p", "coursework-line");
+            const labelText = (courseworkRowData.label || courseworkRowData.term) + ": ";
+            courseworkLineElement.appendChild(createHtmlElement("strong", "coursework-label", escapeHtml(labelText)));
+            courseworkLineElement.appendChild(document.createTextNode(courseworkRowData.courses));
+            courseworkContainer.appendChild(courseworkLineElement);
           });
-          educationBlockElement.appendChild(courseworkTableElement);
+          detailsContainer.appendChild(courseworkContainer);
         }
         
+        educationBlockElement.appendChild(detailsContainer);
         educationSectionElement.appendChild(educationBlockElement);
       });
       contentElement.appendChild(educationSectionElement);
@@ -272,9 +347,20 @@
     if (portfolioData.honors && portfolioData.honors.length) {
       const honorsSectionElement = openSection("honors", "Honors");
       honorsSectionElement.appendChild(createHtmlElement("h2", null, "Honors"));
+      const honorsListElement = createHtmlElement("div", "honors-list");
       portfolioData.honors.forEach((honorEntry) => {
-        honorsSectionElement.appendChild(createPortfolioEntryElement(honorEntry));
+        const honorItemElement = createHtmlElement("div", "honor-item");
+        honorItemElement.appendChild(createHtmlElement("h3", null, escapeHtml(honorEntry.title)));
+        const metaSegments = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
+        if (metaSegments.length) {
+          honorItemElement.appendChild(createHtmlElement("div", "meta", metaSegments.join(" · ")));
+        }
+        if (honorEntry.body) {
+          honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
+        }
+        honorsListElement.appendChild(honorItemElement);
       });
+      honorsSectionElement.appendChild(honorsListElement);
       contentElement.appendChild(honorsSectionElement);
     }
 

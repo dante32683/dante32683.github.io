@@ -222,20 +222,32 @@ h2 {
 
 /* --- EDUCATION --------------------------------------------------------- */
 .edu h3 { font-weight: 600; font-size: 1.15rem; }
-.edu p { margin-top: 0.5rem; }
-.coursework { font-size: 0.9rem; margin-top: 1.2rem; border-collapse: collapse; width: 100%; }
-.coursework th, .coursework td { text-align: left; vertical-align: top;
-  padding: 0.55rem 0; border-top: 1px solid var(--faint); }
-.coursework th { color: var(--muted); font-weight: 600; white-space: nowrap; padding-right: 1.75rem; }
-.coursework tr:first-child th, .coursework tr:first-child td { border-top: none; }
+.edu .edu-block { margin-bottom: 2rem; }
+.edu .edu-block:last-child { margin-bottom: 0; }
+.edu .edu-detail { margin-top: 0.4rem; color: var(--ink); line-height: 1.5; font-size: 0.95rem; }
+.coursework-block { margin-top: 0.75rem; }
+.coursework-line { margin-top: 0.35rem; font-size: 0.9rem; line-height: 1.5; color: var(--ink); }
+.coursework-label { font-weight: 600; color: var(--muted); margin-right: 0.25rem; }
 
 /* --- HONORS & SKILLS --------------------------------------------------- */
-.plainlist { list-style: none; }
-.plainlist li {
-  padding-left: 1rem;
-  border-left: 2px solid var(--faint);
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem;
+.honors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.honor-item h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.honor-item .meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+.honor-item p {
+  font-size: 0.92rem;
+  color: var(--ink);
+  margin-top: 0.3rem;
 }
 
 .skillset { margin-bottom: 1.5rem; }
@@ -480,30 +492,6 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
 }
 
 /* --- OTHER WORK -------------------------------------------------------- */
-.tools-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
-  margin-bottom: 0.6rem;
-}
-.tool-tag {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  background-color: var(--faint);
-  color: var(--muted);
-  border: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
-}
-.tool-tag:hover {
-  border-color: var(--muted);
-  color: var(--ink);
-}
-
 .other-projects-heading {
   font-size: 0.9rem;
   font-weight: 700;
@@ -511,27 +499,40 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 3.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   border-top: 1px dashed var(--faint);
   padding-top: 2rem;
 }
 
-.entry.compact-entry {
-  margin-bottom: 1.25rem;
+.compact-entry {
+  margin-bottom: 0;
 }
-.entry.compact-entry h3 {
-  font-size: 1.05rem;
+.compact-entry + .compact-entry {
+  margin-top: 2.5rem;
+}
+.compact-entry h3 {
+  font-size: 1.1rem;
   font-weight: 600;
 }
-.entry.compact-entry .tools-list {
-  margin-top: 0.25rem;
-  margin-bottom: 0.4rem;
+.compact-entry .meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
 }
-.entry.compact-entry p {
-  font-size: 0.92rem;
+.compact-entry .compact-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+.compact-entry p {
+  font-size: 0.95rem;
   line-height: 1.5;
   color: var(--ink);
-  margin-top: 0.35rem;
+  margin-top: 0.45rem;
+}
+.compact-entry .more {
+  font-size: 0.85rem;
+  margin-top: 0.45rem;
 }
 
 /* Arrow micro-interaction */

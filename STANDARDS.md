@@ -50,7 +50,7 @@ that one person with a text editor can maintain this.
 
 ## Recipes
 
-**Add a project** - in `data.js`, copy an existing entry of `projects` and edit:
+**Add a featured project** - in `data.js`, copy an existing featured entry in `projects` and edit:
 
 ```js
 {
@@ -58,7 +58,7 @@ that one person with a text editor can maintain this.
   subtitle: "What it is",                            // optional, shown lighter
   org: "Where it happened",
   dates: "Sep 2026 to present",
-  featured: true,                                    // false for compact secondary projects
+  featured: true,                                    // true for full featured cards
   role: ["Product direction", "Architecture"],       // what you personally did and decided
   tech: ["C#", ".NET", "PowerToys Command Palette SDK"], // project dependencies, not personal skill claims
   method: "AI-assisted development",                 // optional, e.g. "AI-assisted development"
@@ -74,26 +74,54 @@ that one person with a text editor can maintain this.
 },
 ```
 
+**Add a compact project (Other Work)** - for secondary work, set `featured: false` and keep metadata concise (no separate role/tech/method rows):
+
+```js
+{
+  title: "Short name",
+  subtitle: "What it is",
+  org: "Personal project",
+  dates: "ongoing",
+  featured: false,
+  compactMeta: ["AutoHotkey v2", "Windows"],        // short inline tools list
+  body: "One concise paragraph explaining the project and your role.",
+  link: { label: "Source", href: "https://..." },
+  images: [                                          // max 2 images for compact entries
+    {
+      src: "images/example.webp",
+      alt: "Descriptive alt text",
+      caption: "Short caption",
+    },
+  ],
+},
+```
+
 The sidebar navigation builds itself from whichever sections have content, so
 you do not add nav links by hand.
 
-**Add experience** - same shape, in the `experience` list (no `link` needed).
+**Add experience** - same shape as projects, in the `experience` list.
 
-**Add coursework** - add a row to `education.coursework`:
+**Add education** - add an object to `education`:
 
 ```js
-{ term: "In Progress (Fall 2026)", courses: "Phys 42, Math 2, Engr 34, Engr 6" },
-{ term: "Completed Coursework",    courses: "Math 1A, Math 1B, Math 1C, Phys 40, CS 10A" },
+{
+  school: "Santa Rosa Junior College",
+  dates: "2023–present",
+  detail: "Civil Engineering transfer track · 4.0 GPA · Dean’s Highest Honors",
+  coursework: [
+    { label: "Current coursework", courses: "Differential Equations, Statics, MATLAB" },
+    { label: "Selected completed coursework", courses: "Calculus I–III, Physics 40, CS 10A" },
+  ],
+},
 ```
 
-**Add an honor** - in `data.js`, copy the first entry of `honors` and edit:
+**Add an honor** - in `data.js`, add a concise row to `honors` (title, optional org, year):
 
 ```js
 {
   title: "Honor name",
   org: "Awarding organization",
-  dates: "Year",
-  body: "One sentence describing the honor.",
+  dates: "2025",
 },
 ```
 
