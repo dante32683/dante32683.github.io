@@ -138,12 +138,12 @@ const DATA = {
         {
           src: "images/pigeon-tail.webp",
           alt: "UAV V-tail and landing gear mount design detail",
-          caption: "V-tail and landing gear mount concept detail",
+          caption: "Team-produced V-tail concept render shown for project context",
         },
         {
           src: "images/pigeon-motor.webp",
           alt: "Testing brushless motor weight on digital scale (1186g)",
-          caption: "Digital scale bench testing of brushless motor (1186g)",
+          caption: "Team bench-test photo shown for project context",
         },
       ],
     },

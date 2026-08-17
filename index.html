@@ -139,7 +139,8 @@
 
     // Inline image gallery grid if images exist
     if (portfolioEntry.images && portfolioEntry.images.length) {
-      const imagesGridContainer = createHtmlElement("div", "project-images-grid");
+      const gridClass = "project-images-grid" + (portfolioEntry.images.length === 4 ? " grid-4" : "");
+      const imagesGridContainer = createHtmlElement("div", gridClass);
       portfolioEntry.images.forEach((imageMetadata) => {
         const imageCardWrapper = createHtmlElement("figure", "project-image-card");
         const imageContainerElement = createHtmlElement("div", "project-image-container");
@@ -428,7 +429,9 @@
     lightboxCaptionElement.textContent = imageCaptionText || imageAlternativeText;
     lightboxModalElement.classList.add("active");
     document.body.style.overflow = "hidden";
-    lightboxCloseButtonElement.focus();
+    requestAnimationFrame(() => {
+      lightboxCloseButtonElement.focus();
+    });
     document.addEventListener("keydown", handleLightboxKeyDown);
   }
 

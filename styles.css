@@ -331,6 +331,10 @@ h2 {
   margin-top: 1rem;
 }
 
+.project-images-grid.grid-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .project-image-card {
   margin: 0;
   display: flex;
@@ -365,21 +369,23 @@ h2 {
 }
 
 .project-image-caption {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--muted);
-  line-height: 1.35;
-  margin-top: 0.35rem;
+  line-height: 1.4;
+  margin-top: 0.4rem;
 }
 
 @media (min-width: 24rem) and (max-width: 50rem) {
-  .project-images-grid {
+  .project-images-grid,
+  .project-images-grid.grid-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
   }
 }
 
 @media (max-width: 23.99rem) {
-  .project-images-grid {
+  .project-images-grid,
+  .project-images-grid.grid-4 {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
