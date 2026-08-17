@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Title and description are set from data.js at load time. -->
-  <title>Dante Martin</title>
-  <meta name="description" content="Dante Martin - Civil engineering student at Santa Rosa Junior College. AI-assisted software systems, student engineering projects, and coursework.">
+  <title>Dante Martin | Engineering & Software Portfolio</title>
+  <meta name="description" content="Dante Martin - Civil engineering student at Santa Rosa Junior College. Software and engineering projects, technical systems, and academic coursework.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
   
   <!-- SEO & Open Graph Preview Tags -->
   <meta property="og:title" content="Dante Martin - Engineering & Software Portfolio">
-  <meta property="og:description" content="Civil engineering student at Santa Rosa Junior College. AI-assisted software systems, student engineering projects, and academic coursework.">
+  <meta property="og:description" content="Civil engineering student at Santa Rosa Junior College. Software and engineering projects, technical systems, and academic coursework.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dante-martin.com">
 
@@ -110,12 +110,36 @@
       entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
     }
 
-    if (portfolioEntry.tools && portfolioEntry.tools.length) {
-      const toolsContainer = createHtmlElement("div", "tools-list");
-      portfolioEntry.tools.forEach((toolName) => {
-        toolsContainer.appendChild(createHtmlElement("span", "tool-tag", escapeHtml(toolName)));
-      });
-      entryContainerElement.appendChild(toolsContainer);
+    // Role, Tech, and Method structured metadata separation
+    const hasStructuredDetails = portfolioEntry.role || portfolioEntry.tech || portfolioEntry.tools || portfolioEntry.method;
+    if (hasStructuredDetails) {
+      const detailsContainer = createHtmlElement("div", "entry-details");
+      
+      if (portfolioEntry.role) {
+        const roleRowElement = createHtmlElement("div", "detail-row");
+        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "Role: "));
+        const roleText = Array.isArray(portfolioEntry.role) ? portfolioEntry.role.join(", ") : portfolioEntry.role;
+        roleRowElement.appendChild(document.createTextNode(roleText));
+        detailsContainer.appendChild(roleRowElement);
+      }
+      
+      const techList = portfolioEntry.tech || portfolioEntry.tools;
+      if (techList && techList.length) {
+        const techRowElement = createHtmlElement("div", "detail-row");
+        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Tech: "));
+        const techText = Array.isArray(techList) ? techList.join(", ") : techList;
+        techRowElement.appendChild(document.createTextNode(techText));
+        detailsContainer.appendChild(techRowElement);
+      }
+      
+      if (portfolioEntry.method) {
+        const methodRowElement = createHtmlElement("div", "detail-row");
+        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
+        methodRowElement.appendChild(createHtmlElement("span", "method-tag", escapeHtml(portfolioEntry.method)));
+        detailsContainer.appendChild(methodRowElement);
+      }
+      
+      entryContainerElement.appendChild(detailsContainer);
     }
     
     if (portfolioEntry.body) {
@@ -163,7 +187,7 @@
   }
 
   function renderPortfolio(portfolioData) {
-    document.title = portfolioData.name;
+    document.title = portfolioData.name + " | Engineering & Software Portfolio";
 
     const sidebarElement = document.getElementById("sidebar");
     const contentElement = document.getElementById("content");
@@ -269,8 +293,8 @@
       const skillGroups = Array.isArray(portfolioData.skills)
         ? portfolioData.skills
         : [
-            { category: "Working with", items: portfolioData.skills.working },
-            { category: "Learning", items: portfolioData.skills.learning }
+            { category: "Working with", type: "working", items: portfolioData.skills.working },
+            { category: "Learning", type: "learning", items: portfolioData.skills.learning }
           ];
 
       skillGroups.forEach((skillGroup) => {
@@ -278,8 +302,8 @@
         const skillsetGroupElement = createHtmlElement("div", "skillset");
         skillsetGroupElement.appendChild(createHtmlElement("div", "label", escapeHtml(skillGroup.category)));
         const skillsListElement = createHtmlElement("div", "skills-list");
-        const isLearningCategory = skillGroup.category.toLowerCase().includes("learning");
-        const skillClassString = isLearningCategory ? "skill-tag learning" : "skill-tag working";
+        const categoryType = skillGroup.type || (skillGroup.category.toLowerCase().includes("learning") ? "learning" : "working");
+        const skillClassString = "skill-tag " + categoryType;
         skillGroup.items.forEach((skillName) => {
           skillsListElement.appendChild(createHtmlElement("span", skillClassString, escapeHtml(skillName)));
         });

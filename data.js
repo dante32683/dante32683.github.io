@@ -19,16 +19,16 @@ const DATA = {
 
   /* --- Identity: shown in the sidebar and the browser tab. -------------- */
   name: "Dante Martin",
-  tagline: "Civil engineering student who designs software and technical systems through AI-assisted workflows.",
+  tagline: "Civil engineering student building software and engineering projects.",
   location: "Santa Rosa, California",
 
   /* Intro: two or three plain sentences. Say what you do and what you are
      after. No metaphors, no "passionate about", no em dashes. */
   intro: "I study civil engineering at Santa Rosa Junior College and build " +
-    "software and engineering projects alongside my coursework. My software projects " +
-    "are developed with AI coding agents: I focus on defining the problem, shaping the " +
-    "architecture and user experience, researching technical constraints, and testing " +
-    "and iterating until the system works.",
+    "software and engineering projects alongside my coursework. I use AI " +
+    "coding agents extensively for software implementation while focusing on " +
+    "project direction, architecture, behavior, technical research, testing, " +
+    "and iteration.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
@@ -43,13 +43,14 @@ const DATA = {
   projects: [
     {
       title: "CmdPal Extension Suite",
-      subtitle: "PowerToys command palette extensions",
+      subtitle: "PowerToys Command Palette extensions",
       org: "Personal project",
       dates: "ongoing",
       featured: true,
-      tools: ["C#", ".NET", "Microsoft SDK", "Git"],
-      body: "Designed and built ten Windows PowerToys Run automation extensions through an AI-assisted development workflow. " +
-        "I defined feature specifications, designed the user experience, researched Microsoft APIs, and tested and maintained the resulting tools, including an NPU-powered image editor and developer utilities.",
+      role: "Product direction, architecture, API research, testing & maintenance",
+      tech: ["C#", ".NET", "PowerToys Command Palette SDK"],
+      method: "AI-assisted development",
+      body: "Designed a suite of Windows PowerToys Command Palette extensions to add missing system controls and local NPU utilities, including an image editor and developer tools, published as open source on GitHub.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -66,8 +67,10 @@ const DATA = {
       org: "Personal project",
       dates: "ongoing",
       featured: false,
-      tools: ["AutoHotkey", "Windows"],
-      body: "Designed a daily-driver desktop automation workflow featuring a CapsLock navigation layer, multi-monitor window tiling, and virtual desktop management, developed and maintained through AI-assisted scripting.",
+      role: "Workflow design, custom keybindings, iteration",
+      tech: ["AutoHotkey v2", "Windows"],
+      method: "AI-assisted scripting",
+      body: "Designed a daily-driver desktop automation workflow featuring a CapsLock navigation layer, multi-monitor window tiling, and virtual desktop management.",
       link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
@@ -76,9 +79,10 @@ const DATA = {
       org: "SRJC Baja SAE",
       dates: "June 2026 to present",
       featured: true,
-      tools: ["Canvas", "Excel", "SolidWorks"],
+      role: "Onboarding design, member assignments, training systems",
+      tech: ["Canvas LMS", "Training Design", "Team Operations"],
       body: "Organize onboarding material and member assignments for the racing team. " +
-        "Built a centralized Canvas training system with study guides, quiz pools, and practical qualification checkoffs to streamline how new members start manufacturing and shop training.",
+        "Built a centralized Canvas training system with study guides, quiz pools, and practical qualification checkoffs to streamline member manufacturing training.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.webp", alt: "SRJC Baja SAE steel spaceframe chassis" },
@@ -91,9 +95,10 @@ const DATA = {
       org: "The Engineering Club, SRJC",
       dates: "Sep 2025 to May 2026",
       featured: true,
-      tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
+      role: "V-tail CAD modeling, BOM compilation, wing/thrust sizing research, team leadership",
+      tech: ["SolidWorks", "ArduPilot", "Aerodynamics"],
       body: "Co-designed a 1.5 m wingspan wildfire-detection UAV prototype. " +
-        "Modeled the V-tail and landing gear assemblies in SolidWorks, researched wing sizing and thrust requirements, assembled the bill of materials, and helped lead the student team.",
+        "Modeled the V-tail and landing gear assemblies in SolidWorks, researched wing sizing and thrust requirements, assembled the bill of materials, and helped lead the team.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
@@ -107,8 +112,9 @@ const DATA = {
       org: "Technology High School",
       dates: "Jan 2024 to May 2024",
       featured: false,
-      tools: ["CAD", "3D Printing", "Rapid Prototyping"],
-      body: "Prototyped a breathable mesh face guard to protect dogs from foxtail injuries. Conducted airflow testing, incorporated veterinarian feedback, and iterated 3D-printed collar attachment mechanisms for a high school capstone.",
+      role: "CAD modeling, rapid prototyping, airflow testing, veterinarian outreach",
+      tech: ["CAD", "3D Printing"],
+      body: "Prototyped a breathable mesh face guard to protect dogs from foxtail grass seed injuries. Conducted airflow testing, gathered veterinarian feedback, and iterated 3D-printed collar attachment mechanisms.",
       images: [
         { src: "images/foxtail-microscope.webp", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
         { src: "images/foxtail-prototype-final.webp", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
@@ -130,7 +136,7 @@ const DATA = {
       title: "Treasurer",
       org: "The Engineering Club, SRJC",
       dates: "Jan 2026 to May 2026",
-      body: "Maintained financial ledgers for a $1,004 trust account and a $10,000 enrichment fund. Reviewed and processed purchase requests and coordinated disbursement approvals with SRJC Student Life staff.",
+      body: "Tracked available funds and spending, reviewed purchase requests, maintained records, and coordinated approvals with SRJC Student Life staff.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
   ],
@@ -141,12 +147,16 @@ const DATA = {
       school: "Santa Rosa Junior College",
       dates: "2023 to present (Dual Enrollment 2023 to 2024)",
       detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. Earned Web & Mobile Front-End Development certificate in 2024. Planned transfer in Fall 2027.",
-      // Selected relevant coursework
+      // Selected coursework
       coursework: [
-        { term: "Mathematics", courses: "Calculus I–III (Math 1A, 1B, 1C), Differential Equations (Math 2)" },
-        { term: "Physics & Engineering", courses: "Classical Mechanics (Phys 40), Electricity & Magnetism (Phys 41), Statics (Engr 34), MATLAB (Engr 6)" },
-        { term: "Computer Science", courses: "C++ Programming (CS 10A), Web & Mobile Front-End Sequence (CS 50A/B/C)" },
-        { term: "Chemistry", courses: "General Chemistry I & II with Lab (Chem 3A/AL, Chem 3B)" },
+        {
+          term: "In Progress (Fall 2026)",
+          courses: "Differential Equations (Math 2), Electricity & Magnetism (Phys 42), Engineering Mechanics: Statics (Engr 34), MATLAB for Engineers (Engr 6)",
+        },
+        {
+          term: "Completed Coursework",
+          courses: "Calculus I–III (Math 1A, 1B, 1C), Classical Mechanics (Phys 40), C++ Programming (CS 10A), General Chemistry I & II with Lab (Chem 3A/AL, Chem 3B), Web & Mobile Development Sequence (CS 50A/B/C)",
+        },
       ],
     },
     {
@@ -165,16 +175,16 @@ const DATA = {
       body: "Won the Redwood Empire branch scholarship to fund my civil engineering transfer track.",
     },
     {
-      title: "AP Scholar with Distinction",
-      org: "College Board",
-      dates: "2025",
-      body: "Scored 5 on six of eight AP exams, maintaining a score average above 3.5 across all subjects.",
-    },
-    {
       title: "National Merit Commended Scholar",
       org: "National Merit Scholarship Corporation",
       dates: "2025",
       body: "Placed in the top 50,000 scorers nationwide out of 1.5 million students on the qualifying PSAT/NMSQT exam.",
+    },
+    {
+      title: "AP Scholar with Distinction",
+      org: "College Board",
+      dates: "2025",
+      body: "Scored 5 on six of eight AP exams, maintaining a score average above 3.5 across all subjects.",
     },
     {
       title: "Golden State Seal Merit Diploma",
@@ -184,29 +194,33 @@ const DATA = {
     },
   ],
 
-  /* SKILLS - categorized. ------------------------------------------------ */
+  /* SKILLS - categorized with explicit type indicators. ------------------ */
   skills: [
     {
       category: "Practical Tools & Environments",
-      items: ["Git & GitHub", "Linux CLI & Navigation", "Windows Administration", "Excel"],
+      type: "working",
+      items: ["Git & GitHub fundamentals", "Linux CLI & navigation", "Windows setup & troubleshooting", "Excel"],
     },
     {
       category: "Foundational Programming",
-      items: ["Python (Basic)", "C++ (Basic)", "HTML / CSS", "JavaScript"],
+      type: "foundational",
+      items: ["Python (Basic)", "C++ (Basic)", "Prior HTML/CSS coursework", "Prior JavaScript coursework"],
     },
     {
       category: "AI-Assisted Development",
+      type: "workflow",
       items: [
-        "Architecture & Task Decomposition",
-        "Behavior & UX Specification",
-        "Coding Agent Orchestration",
-        "Technical API Research",
-        "Iterative Debugging & Testing",
-        "System Maintenance",
+        "Problem definition",
+        "Architecture & task breakdown",
+        "AI coding-agent workflows",
+        "Technical API research",
+        "Testing & debugging",
+        "Implementation review & maintenance",
       ],
     },
     {
       category: "Currently Learning",
+      type: "learning",
       items: ["MATLAB", "FEA / ANSYS"],
     },
   ],

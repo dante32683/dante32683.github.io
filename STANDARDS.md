@@ -50,7 +50,7 @@ that one person with a text editor can maintain this.
 
 ## Recipes
 
-**Add a project** - in `data.js`, copy the first entry of `projects` and edit:
+**Add a project** - in `data.js`, copy an existing entry of `projects` and edit:
 
 ```js
 {
@@ -58,22 +58,25 @@ that one person with a text editor can maintain this.
   subtitle: "What it is",                            // optional, shown lighter
   org: "Where it happened",
   dates: "Sep 2026 to present",
-  body: "One paragraph. What it is, the concrete details, what YOU did.",
+  featured: true,                                    // false for compact secondary projects
+  role: "What you personally did and decided",       // e.g. "Product direction, architecture, testing"
+  tech: ["C#", ".NET", "PowerToys SDK"],             // project dependencies, not personal skill claims
+  method: "AI-assisted development",                 // optional, e.g. "AI-assisted development"
+  body: "One paragraph. Concrete details, what the system does, and what YOU did.",
   link: { label: "Source", href: "https://..." },   // delete this line if none
 },
 ```
 
 The sidebar navigation builds itself from whichever sections have content, so
-you do not add nav links by hand. Add a project and "Projects" stays in the
-nav; remove every entry in a list and that section and its nav link disappear.
+you do not add nav links by hand.
 
 **Add experience** - same shape, in the `experience` list (no `link` needed).
 
-**Add a course** - add a row to `education.coursework`. Oldest stays at the top,
-newest at the bottom, so it reads as a timeline:
+**Add coursework** - add a row to `education.coursework`:
 
 ```js
-{ term: "Fall 2026", courses: "Phys 42, Math 2, Engr 34" },
+{ term: "In Progress (Fall 2026)", courses: "Phys 42, Math 2, Engr 34, Engr 6" },
+{ term: "Completed Coursework",    courses: "Math 1A, Math 1B, Math 1C, Phys 40, CS 10A" },
 ```
 
 **Add an honor** - in `data.js`, copy the first entry of `honors` and edit:
@@ -87,8 +90,15 @@ newest at the bottom, so it reads as a timeline:
 },
 ```
 
-**Add a skill** - add a string to `skills.working` (things you actually use) or
-`skills.learning` (things you are picking up). Be honest about which list.
+**Add a skill group** - add an object to the `skills` array:
+
+```js
+{
+  category: "Group Name",
+  type: "working", // "working", "foundational", "workflow", or "learning"
+  items: ["Skill 1", "Skill 2"],
+}
+```
 
 **Re-colour the site** - in `styles.css`, change the variables in the `:root`
 block at the top. You should not need to edit anything below that block for a
@@ -97,10 +107,17 @@ dark)` block right under it - update both.
 
 ---
 
-## Writing style - this is what keeps the site from sounding AI-generated
+## Writing style & attribution rules
 
-The fastest way to make this site look fake is to write like a chatbot. Don't.
+The fastest way to make this site look fake is to write like a chatbot or overstate personal technical authorship.
 
+### Attribution standards (getting credit honestly)
+- **Separate personal role from project technology:** Just because a project uses C#, AutoHotkey, or Rust does NOT mean those are personal programming proficiencies. List them under `tech` on the project card, never under personal skills unless you can code in them independently.
+- **Disclose AI use once, clearly:** State the AI-assisted workflow in the bio/intro and use the `method` field on project cards. Do not repeatedly apologize for or mention AI in every prose paragraph.
+- **Allowed verbs:** "Built / developed" (when you owned the idea, direction, testing, iteration, and result), "Designed" (for architecture, UX, workflows, or CAD), "Tested, maintained, evaluated, integrated, researched" (when factually true).
+- **Forbidden claims:** Do not say "I wrote the C# code", "I coded...", or claim language mastery for languages you cannot independently program in without AI.
+
+### General writing rules
 - **Be specific. Use numbers and names.** "1.5 m wingspan, NACA 4412 airfoil"
   beats "an innovative aerodynamic design." "$10,000 enrichment fund" beats
   "significant club funds."

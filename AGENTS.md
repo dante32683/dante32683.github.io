@@ -21,7 +21,12 @@ It tells you which file to edit, how to add content, and - most importantly - ho
 
 Be specific - numbers, names, what *you* did. No emoji. No hype words
 (passionate, innovative, leverage, "the intersection of", …). One short
-paragraph per entry. Full list and rationale are in STANDARDS.md.
+paragraph per entry.
+
+**Attribution rules:**
+- Distinguish personal role from project technology. Project dependencies (e.g. C#, .NET, AHK) belong under `tech`, not under personal skills unless independently coded.
+- Disclose AI assistance in the intro/bio and `method` field. Do not repeat AI explanations in every project description.
+- Full list and rationale are in STANDARDS.md.
 
 ## Git and branching workflow
 
