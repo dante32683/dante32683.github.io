@@ -19,15 +19,16 @@ const DATA = {
 
   /* --- Identity: shown in the sidebar and the browser tab. -------------- */
   name: "Dante Martin",
-  tagline: "Civil engineering student who writes the tools the project needs.",
+  tagline: "Civil engineering student who designs software and technical systems through AI-assisted workflows.",
   location: "Santa Rosa, California",
 
   /* Intro: two or three plain sentences. Say what you do and what you are
      after. No metaphors, no "passionate about", no em dashes. */
-  intro: "I study civil engineering at Santa Rosa Junior College and plan to " +
-    "transfer in 2027. Most of my time goes to student engineering projects: a " +
-    "wildfire-detection UAV, a Baja race car, and the club's books. When a " +
-    "project needs a custom tool, I write it, using AI to prototype and automate software quickly.",
+  intro: "I study civil engineering at Santa Rosa Junior College and build " +
+    "software and engineering projects alongside my coursework. My software projects " +
+    "are developed with AI coding agents: I focus on defining the problem, shaping the " +
+    "architecture and user experience, researching technical constraints, and testing " +
+    "and iterating until the system works.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
@@ -46,9 +47,9 @@ const DATA = {
       org: "Personal project",
       dates: "ongoing",
       featured: true,
-      tools: ["C#", ".NET", "Git"],
-      body: "Built ten Windows PowerToys Run automation extensions against the Microsoft SDK to add missing utilities and use local NPU hardware. " +
-        "These include an NPU-powered image editor, clipboard controls, and developer utilities, published as open source on GitHub.",
+      tools: ["C#", ".NET", "Microsoft SDK", "Git"],
+      body: "Designed and built ten Windows PowerToys Run automation extensions through an AI-assisted development workflow. " +
+        "I defined feature specifications, designed the user experience, researched Microsoft APIs, and tested and maintained the resulting tools, including an NPU-powered image editor and developer utilities.",
       link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         { src: "images/cmdpal-image-editor.webp", alt: "NPU Image Editor extension tool actions in PowerToys Run" },
@@ -61,38 +62,28 @@ const DATA = {
     },
     {
       title: "AHK Scripting",
-      subtitle: "Keyboard hotkeys and desktop layout automation",
+      subtitle: "Personal desktop layout and hotkey automation",
       org: "Personal project",
       dates: "ongoing",
       featured: false,
       tools: ["AutoHotkey", "Windows"],
-      body: "Daily-driver automation scripting featuring a CapsLock hotkey layer, multi-monitor window tiling, custom virtual-desktop management, and autocorrect profiles.",
+      body: "Designed a daily-driver desktop automation workflow featuring a CapsLock navigation layer, multi-monitor window tiling, and virtual desktop management, developed and maintained through AI-assisted scripting.",
       link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
       title: "Baja SAE",
-      subtitle: "Member assignment and training",
+      subtitle: "Member onboarding and team organization",
       org: "SRJC Baja SAE",
       dates: "June 2026 to present",
       featured: true,
-      tools: ["SolidWorks", "FEA", "Excel"],
-      body: "I work on member assignment and assembly workflow for the team. " +
-        "I moved training material into Canvas so new members have one place to start. I am learning SolidWorks and FEA with the design and simulation groups.",
+      tools: ["Canvas", "Excel", "SolidWorks"],
+      body: "Organize onboarding material and member assignments for the racing team. " +
+        "Built a centralized Canvas training system with study guides, quiz pools, and practical qualification checkoffs to streamline how new members start manufacturing and shop training.",
       link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/baja-chassis.webp", alt: "SRJC Baja SAE steel spaceframe chassis" },
         { src: "images/baja-highlights.webp", alt: "SRJC Baja SAE spaceframe with highlighted members" }
       ],
-    },
-    {
-      title: "TEC Treasurer",
-      subtitle: "Club finances and asset management",
-      org: "The Engineering Club, SRJC",
-      dates: "Jan 2026 to May 2026",
-      featured: false,
-      tools: ["Excel", "Accounting"],
-      body: "Managed two club accounts representing a $1,004 trust account and a $10,000 enrichment fund, coordinating purchasing approvals through the SRJC Student Life department.",
-      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
     {
       title: "Project Pigeon",
@@ -101,8 +92,8 @@ const DATA = {
       dates: "Sep 2025 to May 2026",
       featured: true,
       tools: ["SolidWorks", "ArduPilot", "Aerodynamics"],
-      body: "Co-designed a 1.5 m wingspan wildfire-detection UAV to replace manned helicopter utility inspections for PG&E hotspots. " +
-        "Co-wrote design documentation, compiled the bill of materials, and modeled the tail components for the ArduPilot-controlled prototype.",
+      body: "Co-designed a 1.5 m wingspan wildfire-detection UAV prototype. " +
+        "Modeled the V-tail and landing gear assemblies in SolidWorks, researched wing sizing and thrust requirements, assembled the bill of materials, and helped lead the student team.",
       link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
       images: [
         { src: "images/pigeon-uav.webp", alt: "UAV fuselage 3D CAD modeling view" },
@@ -116,8 +107,8 @@ const DATA = {
       org: "Technology High School",
       dates: "Jan 2024 to May 2024",
       featured: false,
-      tools: ["CAD", "3D Printing"],
-      body: "Prototyped a protective mesh face guard to shield dogs from foxtail injuries. I tested airflow metrics and refined the fit with local veterinarians for my high school capstone project.",
+      tools: ["CAD", "3D Printing", "Rapid Prototyping"],
+      body: "Prototyped a breathable mesh face guard to protect dogs from foxtail injuries. Conducted airflow testing, incorporated veterinarian feedback, and iterated 3D-printed collar attachment mechanisms for a high school capstone.",
       images: [
         { src: "images/foxtail-microscope.webp", alt: "Microscope view of a foxtail seed highlighting the backward-pointing barbs that pose an injury risk to dogs" },
         { src: "images/foxtail-prototype-final.webp", alt: "Final prototype of the canine protective face guard showing mesh enclosure and adjustable straps with buckle" },
@@ -129,12 +120,18 @@ const DATA = {
   /* EXPERIENCE ----------------------------------------------------------- */
   experience: [
     {
-      title: "STEM Lab Assistant",
-      org: "SRJC STEM Success Center",
+      title: "STEM Success Center Lab Assistant",
+      org: "Santa Rosa Junior College",
       dates: "Oct 2025 to present",
-      body: "Tutoring and lab support in chemistry, math, physics, and intro " +
-        "programming, under coordinator Ann Schott.",
+      body: "Provide drop-in tutoring in Calculus I–III, precalculus, lower-level mathematics, and introductory chemistry. Assist students with graphing calculator operation and program installation alongside general lab maintenance.",
       link: { label: "STEM Success Center", href: "https://stem.santarosa.edu/stem-success-center" },
+    },
+    {
+      title: "Treasurer",
+      org: "The Engineering Club, SRJC",
+      dates: "Jan 2026 to May 2026",
+      body: "Maintained financial ledgers for a $1,004 trust account and a $10,000 enrichment fund. Reviewed and processed purchase requests and coordinated disbursement approvals with SRJC Student Life staff.",
+      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
     },
   ],
 
@@ -143,25 +140,19 @@ const DATA = {
     {
       school: "Santa Rosa Junior College",
       dates: "2023 to present (Dual Enrollment 2023 to 2024)",
-      detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. " +
-        "Earned a Web & Mobile Front-End Dev certificate in 2024. Conducted materials " +
-        "tests on a UTM and chemical reaction trials. Targeting transfer in Fall 2027 to " +
-        "UC Berkeley, UC Davis (TAG), or Stanford.",
-      // Coursework table, reverse chronological order.
+      detail: "Civil engineering transfer track. 4.0 GPA, Dean's Highest Honors. Earned Web & Mobile Front-End Development certificate in 2024. Planned transfer in Fall 2027.",
+      // Selected relevant coursework
       coursework: [
-        { term: "Spring 2027 (Planned)",         courses: "Math 5 (Linear Algebra), Phys 41, CS 10B or Engr 45" },
-        { term: "Fall 2026 (Planned)",           courses: "Phys 42, Math 2 (Diff Eq), Engr 6 (MATLAB), Engr 34 (Statics)" },
-        { term: "Summer 2026",                   courses: "Phys 40 (Mechanics), Ethnic Studies 20" },
-        { term: "Spring 2026",                   courses: "Chem 3B, Math 1C, CS 10A (C++), ENGL C1001" },
-        { term: "Fall 2025",                     courses: "Chem 3A & 3AL, Math 1B, Comm C1000" },
-        { term: "Summer 2025",                   courses: "Engr 10, Art 1.2" },
-        { term: "Dual Enrollment (2023 to 2024)", courses: "CS 50A (Web Dev 1), CS 50B (Web Dev 2), CS 50C (Web Dev 3), Psych 1A" },
+        { term: "Mathematics", courses: "Calculus I–III (Math 1A, 1B, 1C), Differential Equations (Math 2)" },
+        { term: "Physics & Engineering", courses: "Classical Mechanics (Phys 40), Electricity & Magnetism (Phys 41), Statics (Engr 34), MATLAB (Engr 6)" },
+        { term: "Computer Science", courses: "C++ Programming (CS 10A), Web & Mobile Front-End Sequence (CS 50A/B/C)" },
+        { term: "Chemistry", courses: "General Chemistry I & II with Lab (Chem 3A/AL, Chem 3B)" },
       ],
     },
     {
       school: "Technology High School",
       dates: "Graduated 2025",
-      detail: "GPA: 4.37. Graduated in the top ten of the class. STEM magnet school with a project-based, cross-curricular engineering focus (PLTW) and team design projects.",
+      detail: "GPA: 4.37. Graduated in top ten of class. STEM magnet school with project-based engineering curriculum (PLTW) and team design capstones.",
     },
   ],
 
@@ -193,10 +184,30 @@ const DATA = {
     },
   ],
 
-  /* SKILLS - grouped. Put what you actually use under "working"; put what
-     you are picking up under "learning". Be honest about the split. ------ */
-  skills: {
-    working:  ["JavaScript", "C++", "C# / .NET", "HTML / CSS", "AutoHotkey v2", "Excel", "Git"],
-    learning: ["Python", "MATLAB", "ANSYS", "AutoCAD", "Revit", "3D printing"],
-  },
+  /* SKILLS - categorized. ------------------------------------------------ */
+  skills: [
+    {
+      category: "Practical Tools & Environments",
+      items: ["Git & GitHub", "Linux CLI & Navigation", "Windows Administration", "Excel"],
+    },
+    {
+      category: "Foundational Programming",
+      items: ["Python (Basic)", "C++ (Basic)", "HTML / CSS", "JavaScript"],
+    },
+    {
+      category: "AI-Assisted Development",
+      items: [
+        "Architecture & Task Decomposition",
+        "Behavior & UX Specification",
+        "Coding Agent Orchestration",
+        "Technical API Research",
+        "Iterative Debugging & Testing",
+        "System Maintenance",
+      ],
+    },
+    {
+      category: "Currently Learning",
+      items: ["MATLAB", "FEA / ANSYS"],
+    },
+  ],
 };
