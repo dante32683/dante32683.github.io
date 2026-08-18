@@ -233,7 +233,7 @@ const DATA = {
       category: "Practical tools and environments",
       items: [
         "Git and GitHub fundamentals",
-        "Linux command line",
+        "Bash / Linux command line",
         "Windows setup and troubleshooting",
         "Excel",
       ],
