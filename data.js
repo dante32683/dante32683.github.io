@@ -124,7 +124,7 @@ const DATA = {
         "Team leadership",
       ],
       body: "Contributed to the tail design, compiled the bill of materials, researched wing configuration and thrust requirements, and helped lead the student team through the early design process.",
-      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
+      link: { label: "The Engineering Club", href: "https://clubs.santarosa.edu/tec" },
       images: [
         {
           src: "images/pigeon-uav.webp",
@@ -180,7 +180,7 @@ const DATA = {
       org: "The Engineering Club, SRJC",
       dates: "Jan 2026 to May 2026",
       body: "Tracked available funds and spending, reviewed purchase requests, maintained records, and coordinated approvals with SRJC Student Life staff.",
-      link: { label: "The Engineering Club", href: "https://srjcsaeclub.org" },
+      link: { label: "The Engineering Club", href: "https://clubs.santarosa.edu/tec" },
     },
   ],
 
@@ -214,16 +214,19 @@ const DATA = {
       title: "Civil Engineering Transfer Scholarship",
       org: "ASCE Redwood Empire Branch",
       dates: "2025-26",
+      href: "https://srjcstaff.santarosa.edu/~vbertsch/2026ASCE-SRJC-ScholarshipApp.pdf",
     },
     {
       title: "National Merit Commended Scholar",
       org: "National Merit Scholarship Corporation",
       dates: "2025",
+      href: "https://www.nationalmerit.org/s/1758/interior.aspx?gid=2&pgid=1180&sid=1758",
     },
     {
       title: "AP Scholar with Distinction",
       org: "College Board",
       dates: "2025",
+      href: "https://apstudents.collegeboard.org/awards-recognitions/ap-scholar-award",
     },
   ],
 

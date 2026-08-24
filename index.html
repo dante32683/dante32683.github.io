@@ -373,7 +373,16 @@
       portfolioData.honors.forEach((honorEntry) => {
         const honorItemElement = createHtmlElement("div", "honor-item");
         
-        const headingElement = createHtmlElement("h3", null, escapeHtml(honorEntry.title));
+        const headingElement = createHtmlElement("h3");
+        if (honorEntry.href) {
+          const honorLinkElement = createHtmlElement("a", "honor-link", escapeHtml(honorEntry.title));
+          honorLinkElement.href = honorEntry.href;
+          honorLinkElement.target = "_blank";
+          honorLinkElement.rel = "noopener noreferrer";
+          headingElement.appendChild(honorLinkElement);
+        } else {
+          headingElement.textContent = honorEntry.title;
+        }
         honorItemElement.appendChild(headingElement);
 
         const honorMetadata = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);

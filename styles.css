@@ -267,6 +267,18 @@ h3 .subtitle::before,
   gap: 1.35rem;
 }
 .honor-item .meta { margin-top: 0.2rem; }
+.honor-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1.5px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.honor-link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
 
 .skillset { margin-bottom: 1.75rem; }
 .skillset:last-child { margin-bottom: 0; }
