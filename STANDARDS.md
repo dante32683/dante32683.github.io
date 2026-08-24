@@ -215,8 +215,9 @@ written.
   `var(--accent)` and friends; do not hard-code a hex value in a rule.
 - **Use the semantic typography scale.** Primary project, experience, education,
   and honor titles use `--text-title`; primary descriptions use `--text-body`;
-  metadata uses `--text-meta`; coursework and skills use `--text-supporting`.
-  Compact Other Work intentionally uses the smaller `--text-title-compact` and
+  metadata uses `--text-meta`; subsection headings use `--text-subsection`;
+  coursework and skills use `--text-supporting`. Compact Other Work intentionally
+  uses the smaller `--text-title-compact` and
   `--text-body-compact` roles. Nested headings such as `Other Work` and Skills
   categories must remain visually secondary to top-level section headings. Dates
   belong in metadata, not title-sized subtitle text. Do not introduce one-off font

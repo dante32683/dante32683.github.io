@@ -34,7 +34,8 @@
   --text-title-compact: 1.1rem;
   --text-body: 1rem;
   --text-body-compact: 0.95rem;
-  --text-section: 0.9rem;
+  --text-section: 1.05rem;
+  --text-subsection: 0.95rem;
   --text-supporting: 0.9rem;
   --text-link-small: 0.85rem;
   --text-meta: 0.82rem;
@@ -172,7 +173,7 @@ section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 h2 {
   font-size: var(--text-section);
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 1.75rem;
@@ -268,7 +269,7 @@ h3 .subtitle::before,
 .skillset { margin-bottom: 1.75rem; }
 .skillset:last-child { margin-bottom: 0; }
 .skillset-heading {
-  font-size: var(--text-meta);
+  font-size: var(--text-subsection);
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: var(--leading-title);
@@ -458,7 +459,7 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
   margin-bottom: 1.75rem;
   border-top: 1px dashed var(--faint);
   padding-top: 2rem;
-  font-size: var(--text-meta);
+  font-size: var(--text-subsection);
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: var(--leading-title);
