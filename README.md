@@ -10,11 +10,11 @@ The source code for Dante Martin's personal website and portfolio. It is a light
 
 ## Project Structure
 
-- `data.js` — **Main file.** All resume data, projects, experience, coursework, honors, and skills reside here. To change what the site says, edit this file only.
-- `index.html` — The structural shell and custom Vanilla JavaScript renderer that translates `data.js` into DOM elements.
-- `styles.css` — High-contrast, minimal CSS styling using custom property themes (green color palette) with smooth transitions, native responsive queries, and dedicated print stylesheets.
-- `STANDARDS.md` — Strict rules and writing guidelines governing formatting, content structures, and layout rules.
-- `AGENTS.md` — Workspace instructions for AI coding assistants.
+- `data.js` - **Main file.** All resume data, projects, experience, coursework, honors, and skills reside here. To change what the site says, edit this file only.
+- `index.html` - The structural shell and custom Vanilla JavaScript renderer that translates `data.js` into DOM elements.
+- `styles.css` - High-contrast, minimal CSS styling using custom property themes (green color palette) with smooth transitions, native responsive queries, and dedicated print stylesheets.
+- `STANDARDS.md` - Strict rules and writing guidelines governing formatting, content structures, and layout rules.
+- `AGENTS.md` - Workspace instructions for AI coding assistants.
 
 ## Making Changes
 

@@ -37,7 +37,7 @@ const DATA = {
   ],
 
   /* Colophon: quiet static-site note in footer. */
-  colophon: "Designed and maintained by Dante Martin · Dependency-free static site",
+  colophon: "Designed and maintained by Dante Martin | Dependency-free static site",
 
   /* --- Sections render in the order listed below. ----------------------- */
 
@@ -107,7 +107,7 @@ const DATA = {
         {
           src: "images/baja-chassis.webp",
           alt: "SRJC Baja SAE steel spaceframe chassis",
-          caption: "SRJC Baja SAE competition chassis shown for team context",
+          caption: "SRJC Baja SAE competition chassis",
         },
       ],
     },
@@ -129,28 +129,28 @@ const DATA = {
         {
           src: "images/pigeon-uav.webp",
           alt: "Fixed-wing UAV fuselage design overview",
-          caption: "Team design render shown for project context",
+          caption: "Team fuselage concept render",
         },
         {
           src: "images/pigeon-tail.webp",
           alt: "UAV V-tail and landing gear mount design detail",
-          caption: "Team-produced V-tail concept render shown for project context",
+          caption: "Team V-tail concept render",
         },
         {
           src: "images/pigeon-motor.webp",
           alt: "Testing brushless motor weight on digital scale (1186g)",
-          caption: "Team bench-test photo shown for project context",
+          caption: "Brushless motor bench test",
         },
       ],
     },
     {
       title: "Dog Protection Device",
       subtitle: "Foxtail grass seed canine face guard",
-      org: "High-school capstone",
+      org: "PLTW Design and Development",
       dates: "2024",
       featured: false,
-      compactMeta: ["CAD", "3D printing"],
-      body: "Prototyped a breathable mesh face guard, tested airflow, and revised the design using veterinarian feedback.",
+      compactMeta: ["Agile methodology", "Research", "Iterative prototyping"],
+      body: "Completed a semester-long design project using Agile methodology to research, plan, prototype, and iteratively refine a breathable foxtail-protection face guard. Tested airflow and incorporated veterinarian feedback into later iterations.",
       images: [
         {
           src: "images/foxtail-prototype-final.webp",
@@ -172,7 +172,7 @@ const DATA = {
       title: "STEM Success Center Lab Assistant",
       org: "Santa Rosa Junior College",
       dates: "Oct 2025 to present",
-      body: "Provide drop-in tutoring in Calculus I–III, precalculus, lower-level mathematics, and introductory chemistry. Assist students with graphing calculator operation and program installation alongside general lab maintenance.",
+      body: "Provide drop-in tutoring in Calculus I-III, precalculus, lower-level mathematics, and introductory chemistry. Assist students with graphing calculator operation and program installation alongside general lab maintenance.",
       link: { label: "STEM Success Center", href: "https://stem.santarosa.edu/stem-success-center" },
     },
     {
@@ -188,8 +188,8 @@ const DATA = {
   education: [
     {
       school: "Santa Rosa Junior College",
-      dates: "2023–present",
-      detail: "Civil Engineering transfer track · 4.0 GPA · Dean’s Highest Honors · Front-End Development certificate · Transfer planned Fall 2027",
+      dates: "2023-present",
+      detail: "Civil Engineering transfer track | 4.0 GPA | Dean's Highest Honors | Front-End Development certificate | Transfer planned Fall 2027",
       coursework: [
         {
           label: "Current coursework",
@@ -197,14 +197,14 @@ const DATA = {
         },
         {
           label: "Selected completed coursework",
-          courses: "Calculus I–III, Classical Mechanics, C++ Programming, General Chemistry, Web Development",
+          courses: "Calculus I-III, Classical Mechanics, C++ Programming, General Chemistry, Web Development",
         },
       ],
     },
     {
       school: "Technology High School",
       dates: "Graduated 2025",
-      detail: "4.37 GPA · Top 10 in class · STEM project-based curriculum",
+      detail: "4.37 GPA | Top 10 in class | STEM project-based curriculum",
     },
   ],
 
@@ -213,7 +213,7 @@ const DATA = {
     {
       title: "Civil Engineering Transfer Scholarship",
       org: "ASCE Redwood Empire Branch",
-      dates: "2025–26",
+      dates: "2025-26",
     },
     {
       title: "National Merit Commended Scholar",

@@ -108,7 +108,7 @@
       const entryContainerElement = createHtmlElement("article", "entry compact-entry");
       
       if (portfolioEntry.title) {
-        const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
+        const headingElement = createHtmlElement("h4", null, escapeHtml(portfolioEntry.title));
         if (portfolioEntry.subtitle) {
           headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioEntry.subtitle)));
         }
@@ -117,12 +117,12 @@
       
       const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
       if (metadataSegments.length) {
-        entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+        entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
       }
 
       const compactTools = portfolioEntry.compactMeta || portfolioEntry.tech || portfolioEntry.tools;
       if (compactTools && compactTools.length) {
-        const toolsText = Array.isArray(compactTools) ? compactTools.join(" · ") : compactTools;
+        const toolsText = Array.isArray(compactTools) ? compactTools.join(" | ") : compactTools;
         entryContainerElement.appendChild(createHtmlElement("div", "compact-meta", escapeHtml(toolsText)));
       }
       
@@ -189,7 +189,7 @@
     
     const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
     if (metadataSegments.length) {
-      entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" · ")));
+      entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
     }
 
     // Role, Tech, and Method structured metadata separation
@@ -308,7 +308,7 @@
 
       const otherProjects = portfolioData.projects.filter(p => p.featured === false);
       if (otherProjects.length) {
-        sectionElement.appendChild(createHtmlElement("h4", "other-projects-heading", "Other Work"));
+        sectionElement.appendChild(createHtmlElement("h3", "other-projects-heading", "Other Work"));
         otherProjects.forEach((projectEntry) => {
           sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
         });
@@ -338,10 +338,10 @@
         
         const detailsContainer = createHtmlElement("div", "edu-details");
         const schoolHeading = createHtmlElement("h3", null, escapeHtml(educationSectionData.school));
-        if (educationSectionData.dates) {
-          schoolHeading.appendChild(createHtmlElement("span", "subtitle", escapeHtml(educationSectionData.dates)));
-        }
         detailsContainer.appendChild(schoolHeading);
+        if (educationSectionData.dates) {
+          detailsContainer.appendChild(createHtmlElement("div", "meta", escapeHtml(educationSectionData.dates)));
+        }
         
         if (educationSectionData.detail) {
           detailsContainer.appendChild(createHtmlElement("p", "edu-detail", escapeHtml(educationSectionData.detail)));
@@ -374,13 +374,11 @@
         const honorItemElement = createHtmlElement("div", "honor-item");
         
         const headingElement = createHtmlElement("h3", null, escapeHtml(honorEntry.title));
-        if (honorEntry.dates) {
-          headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(honorEntry.dates)));
-        }
         honorItemElement.appendChild(headingElement);
-        
-        if (honorEntry.org) {
-          honorItemElement.appendChild(createHtmlElement("div", "meta", escapeHtml(honorEntry.org)));
+
+        const honorMetadata = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
+        if (honorMetadata.length) {
+          honorItemElement.appendChild(createHtmlElement("div", "meta", honorMetadata.join(" | ")));
         }
         if (honorEntry.body) {
           honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
@@ -406,8 +404,8 @@
       skillGroups.forEach((skillGroup) => {
         if (!skillGroup.items || !skillGroup.items.length) return;
         const skillsetGroupElement = createHtmlElement("div", "skillset");
-        skillsetGroupElement.appendChild(createHtmlElement("div", "label", escapeHtml(skillGroup.category)));
-        const itemsJoinedString = skillGroup.items.map(escapeHtml).join(" · ");
+        skillsetGroupElement.appendChild(createHtmlElement("h3", "skillset-heading", escapeHtml(skillGroup.category)));
+        const itemsJoinedString = skillGroup.items.map(escapeHtml).join(" | ");
         const skillsInlineElement = createHtmlElement("p", "skills-inline", itemsJoinedString);
         skillsetGroupElement.appendChild(skillsInlineElement);
         skillsSectionElement.appendChild(skillsetGroupElement);
@@ -448,7 +446,7 @@
 
     /* Footer */
     const footerElement = document.getElementById("footer");
-    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name + " · Dependency-free static site");
+    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name + " | Dependency-free static site");
     footerElement.appendChild(createHtmlElement("p", "colophon", escapeHtml(colophonText)));
 
     // Scroll-spy
@@ -457,41 +455,50 @@
       return document.getElementById(targetSection.id);
     }).filter(Boolean);
 
-    window.addEventListener("scroll", () => {
+    function updateScrollState() {
       const scrollPosition = window.scrollY;
       const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
+
       const scrollProgressBar = document.getElementById("scroll-progress-bar");
       if (scrollProgressBar) {
-        scrollProgressBar.style.width = (maximumScrollableHeight > 0 
-          ? (scrollPosition / maximumScrollableHeight) * 100 
+        scrollProgressBar.style.width = (maximumScrollableHeight > 0
+          ? (scrollPosition / maximumScrollableHeight) * 100
           : 0) + "%";
       }
 
-      let activeSectionId = "";
-      if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 10) {
-        activeSectionId = sectionElements[sectionElements.length - 1].id;
-      } else {
-        const detectionThreshold = window.innerHeight * 0.25;
-        sectionElements.forEach((sectionElement) => {
-          if (sectionElement.getBoundingClientRect().top <= detectionThreshold) {
-            activeSectionId = sectionElement.id;
-          }
-        });
-        if (!activeSectionId && sectionElements.length > 0) {
-          activeSectionId = sectionElements[0].id;
+      if (!sectionElements.length) return;
+
+      // Activate a section when its top passes a stable point near the upper
+      // third of the viewport. Using document positions makes this symmetric
+      // whether the user is scrolling down or back up.
+      const activationPosition = scrollPosition + Math.min(window.innerHeight * 0.3, 180);
+      let activeSectionId = sectionElements[0].id;
+      for (const sectionElement of sectionElements) {
+        const sectionTop = sectionElement.getBoundingClientRect().top + scrollPosition;
+        if (sectionTop <= activationPosition) {
+          activeSectionId = sectionElement.id;
+        } else {
+          break;
         }
       }
 
-      // Set active link
+      // At the physical end of the document, make the final section active
+      // even when it is too short to cross the activation line.
+      if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 2) {
+        activeSectionId = sectionElements[sectionElements.length - 1].id;
+      }
+
       navigationLinks.forEach((navigationLinkElement) => {
         const href = navigationLinkElement.getAttribute("href");
         if (href && href.startsWith("#")) {
-          const anchorReferenceId = href.slice(1);
-          navigationLinkElement.classList.toggle("active", anchorReferenceId === activeSectionId);
+          navigationLinkElement.classList.toggle("active", href.slice(1) === activeSectionId);
         }
       });
-    });
+    }
+
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    updateScrollState();
   }
 
   // Get active theme

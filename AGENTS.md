@@ -20,7 +20,7 @@ It tells you which file to edit, how to add content, and - most importantly - ho
 ## Writing rules (the part agents get wrong)
 
 Be specific - numbers, names, what *you* did. No emoji. No hype words
-(passionate, innovative, leverage, "the intersection of", …). One short
+(passionate, innovative, leverage, "the intersection of", ...). One short
 paragraph per entry.
 
 **Attribution rules:**

@@ -31,7 +31,7 @@ fields are skipped - they will not show a blank label or break the layout.
 
 ## The files, and when to touch each
 
-| File | What it is | Touch it when… |
+| File | What it is | Touch it when... |
 |------|------------|----------------|
 | `data.js` | All content. | You change any words, add/remove an entry. **This is the normal one.** |
 | `styles.css` | All styling. | You want to change colours, spacing, fonts. |
@@ -106,11 +106,11 @@ you do not add nav links by hand.
 ```js
 {
   school: "Santa Rosa Junior College",
-  dates: "2023–present",
-  detail: "Civil Engineering transfer track · 4.0 GPA · Dean’s Highest Honors",
+  dates: "2023-present",
+  detail: "Civil Engineering transfer track | 4.0 GPA | Dean's Highest Honors",
   coursework: [
     { label: "Current coursework", courses: "Differential Equations, Statics, MATLAB" },
-    { label: "Selected completed coursework", courses: "Calculus I–III, Physics 40, CS 10A" },
+    { label: "Selected completed coursework", courses: "Calculus I-III, Physics 40, CS 10A" },
   ],
 },
 ```
@@ -157,8 +157,10 @@ The fastest way to make this site look fake is to write like a chatbot or overst
   "significant club funds."
 - **Say what YOU did**, not what the team or the field does in general.
 - **No emoji. Anywhere.** Not in content, not in headings.
-- **No em dashes ( - ).** They are a strong AI tell. Use a comma, a period, a
-  colon, or parentheses instead. Rephrase the sentence if you have to.
+- **Use ordinary keyboard punctuation in visible copy.** Do not use em dashes,
+  en dashes, curly quotes/apostrophes, middle-dot separators, or typographic
+  ellipses. Use plain `-`, straight quotes/apostrophes, `|`, commas, or `...`
+  where appropriate. Rephrase when a special punctuation mark is unnecessary.
 - **Ban these words and their cousins:** passionate, innovative, cutting-edge,
   leverage, synergy, seamless, robust, dynamic, "the intersection of",
   "I'm excited to", "always eager to learn", "wearing many hats."
@@ -215,7 +217,10 @@ written.
   and honor titles use `--text-title`; primary descriptions use `--text-body`;
   metadata uses `--text-meta`; coursework and skills use `--text-supporting`.
   Compact Other Work intentionally uses the smaller `--text-title-compact` and
-  `--text-body-compact` roles. Do not introduce one-off font sizes per section.
+  `--text-body-compact` roles. Nested headings such as `Other Work` and Skills
+  categories must remain visually secondary to top-level section headings. Dates
+  belong in metadata, not title-sized subtitle text. Do not introduce one-off font
+  sizes per section.
 - **Dark mode is defined twice** (the `prefers-color-scheme` block and the
   `[data-theme="dark"]` block) and the two value lists must stay identical. If
   you add a variable or a dark override, update both.

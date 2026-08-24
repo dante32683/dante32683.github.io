@@ -112,7 +112,7 @@ a:focus-visible, button:focus-visible {
   margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s, background-color 0.15s;
   border-radius: 4px;
 }
-.nav a:hover { color: var(--accent); background-color: var(--accent-tint); }
+.nav a:hover { color: var(--accent); background-color: transparent; }
 .nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
 /* Contact */
@@ -169,15 +169,14 @@ a:focus-visible, button:focus-visible {
 section { padding: 0; padding-top: 3rem; border-top: 1px solid var(--faint); margin-top: 3rem; transition: border-color 0.3s ease; }
 section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 
-h2,
-.other-projects-heading {
+h2 {
   font-size: var(--text-section);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+  margin-bottom: 1.75rem;
 }
-h2 { margin-bottom: 1.75rem; }
 
 /* --- ENTRIES (projects, experience) ------------------------------------ */
 .entry,
@@ -197,9 +196,12 @@ h3 {
   font-size: var(--text-title);
   line-height: var(--leading-title);
 }
-h3 .subtitle { color: var(--muted); font-weight: 400; }
-h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
+h3 .subtitle,
+.compact-entry h4 .subtitle { color: var(--muted); font-weight: 400; }
+h3 .subtitle::before,
+.compact-entry h4 .subtitle::before { content: "  -  "; color: var(--faint); }
 .entry .meta,
+.edu-block .meta,
 .honor-item .meta,
 .compact-entry .meta,
 .compact-entry .compact-meta {
@@ -207,6 +209,7 @@ h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
   color: var(--muted);
 }
 .entry .meta,
+.edu-block .meta,
 .honor-item .meta { margin-top: 0.25rem; }
 
 .entry-details {
@@ -264,8 +267,13 @@ h3 .subtitle::before { content: "  ·  "; color: var(--faint); }
 
 .skillset { margin-bottom: 1.75rem; }
 .skillset:last-child { margin-bottom: 0; }
-.skillset .label { font-size: var(--text-label); font-weight: 700; letter-spacing: 0.05em;
-  text-transform: uppercase; color: var(--muted); }
+.skillset-heading {
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: var(--leading-title);
+  color: var(--muted);
+}
 .skills-inline {
   margin-top: 0.45rem;
   font-size: var(--text-supporting);
@@ -450,6 +458,11 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
   margin-bottom: 1.75rem;
   border-top: 1px dashed var(--faint);
   padding-top: 2rem;
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: var(--leading-title);
+  color: var(--muted);
 }
 
 .compact-entry {
@@ -458,8 +471,10 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
 .compact-entry + .compact-entry {
   margin-top: 2.5rem;
 }
-.compact-entry h3 {
+.compact-entry h4 {
   font-size: var(--text-title-compact);
+  font-weight: 600;
+  line-height: var(--leading-title);
 }
 .compact-entry .meta { margin-top: 0.15rem; }
 .compact-entry .compact-meta { margin-top: 0.25rem; }
