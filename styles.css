@@ -120,6 +120,7 @@ a:focus-visible, button:focus-visible {
 .contact { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-size: var(--text-supporting); }
 .contact a { position: relative; width: fit-content; padding-bottom: 2px;
+  display: inline-flex; align-items: center;
   transition: color 0.15s; }
 .contact a::after {
   content: "";
@@ -234,6 +235,7 @@ h3 .subtitle::before,
 .entry p { margin-top: 0.65rem; font-size: var(--text-body); line-height: var(--leading-body); color: var(--ink); }
 .entry .more { font-size: var(--text-link-small); margin-top: 0.55rem; }
 .entry .more a { position: relative; padding-bottom: 2px;
+  display: inline-flex; align-items: center;
   transition: color 0.15s; }
 .entry .more a::after {
   content: "";
