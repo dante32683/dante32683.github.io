@@ -455,7 +455,7 @@
 
     /* Footer */
     const footerElement = document.getElementById("footer");
-    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name + " | Dependency-free static site");
+    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name);
     footerElement.appendChild(createHtmlElement("p", "colophon", escapeHtml(colophonText)));
 
     // Scroll-spy

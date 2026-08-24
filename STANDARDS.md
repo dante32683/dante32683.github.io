@@ -176,7 +176,7 @@ make it concrete.
 
 ## Hard limits
 
-- No external requests: no CDNs, no web fonts, no analytics, no trackers.
+- No unnecessary external runtime dependencies: no CDNs, no web fonts, and no additional trackers. Cloudflare Web Analytics is intentionally enabled at the edge for aggregate traffic and performance measurement; adding any other analytics or tracking requires an explicit decision.
 - No JavaScript libraries. The renderer in `index.html` is plain JS and stays
   that way.
 - Keep each entry's `body` to roughly 45 words or less.

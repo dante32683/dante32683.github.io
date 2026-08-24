@@ -5,7 +5,7 @@ The source code for Dante Martin's personal website and portfolio. It is a light
 ## Core Design Principles
 
 - **Zero Build Step:** What you see in the repository is exactly what the browser executes. No compilers, transpillers, or bundlers.
-- **Zero External Dependencies:** No external tracking scripts, CDNs, web fonts, or CSS/JS frameworks. It runs entirely on standard-compliant Vanilla HTML, CSS, and JS, making it exceptionally secure and fast-loading.
+- **Minimal Runtime Dependencies:** No CDN, web-font, or CSS/JS framework dependencies. Cloudflare Web Analytics is intentionally enabled at the edge for aggregate site-traffic and real-user performance measurement.
 - **Data-Driven Architecture:** All textual content lives inside `data.js` as a single structured object. The custom renderer in `index.html` dynamically handles building layout sections, active scroll-spy navigation, and the interactive light/dark theme toggle.
 
 ## Project Structure

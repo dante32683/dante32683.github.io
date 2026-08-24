@@ -37,7 +37,7 @@ const DATA = {
   ],
 
   /* Colophon: quiet static-site note in footer. */
-  colophon: "Designed and maintained by Dante Martin | Dependency-free static site",
+  colophon: "Designed and maintained by Dante Martin",
 
   /* --- Sections render in the order listed below. ----------------------- */
 
