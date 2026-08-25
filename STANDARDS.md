@@ -114,7 +114,7 @@ make it concrete.
   not create or hide essential portfolio content.
 - Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
 - Homepage featured projects use one meaningful evidence image. That image may open the shared native `<dialog>` preview for larger inspection. Compact Other Work entries normally stay text-first without image galleries.
-- Normal external links open in the same tab. Do not add `target="_blank"` by default.
+- External web links (`http://` / `https://`) open in a new tab with `target="_blank"` and `rel="noopener noreferrer"` so visitors can inspect evidence without losing the portfolio. The visible `↗` marker means an external/new-tab destination. In-page anchors and `mailto:` links stay in the current context.
 - Test before you push: confirm raw `index.html` contains the complete portfolio,
   then open it in a browser and verify light/dark mode, keyboard navigation, image
   preview behavior, narrow-screen reflow, and no console errors.
@@ -133,7 +133,7 @@ These rules describe how the current code is written.
 - The project image preview must retain a direct-image anchor fallback when JavaScript
   is unavailable.
 - Keep variable and function names descriptive.
-- Normal external links stay in the current tab.
+- External web links open in a new tab with `target="_blank"` and `rel="noopener noreferrer"`; in-page and `mailto:` links do not. Keep `↗` reserved for external/new-tab destinations.
 - Plain ES5/ES6 only; no framework, library, transpiler, bundler, or build step.
 
 **CSS (`styles.css`)**
