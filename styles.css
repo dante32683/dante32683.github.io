@@ -371,6 +371,9 @@ h3 .subtitle::before,
 
 .image-preview-open { overflow: hidden; }
 .image-preview-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   width: min(92vw, 72rem);
   max-width: 92vw;
   max-height: 92vh;
