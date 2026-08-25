@@ -289,6 +289,11 @@ h3 .subtitle::before,
   gap: 1.35rem;
 }
 .honor-item .meta { margin-top: 0.2rem; }
+.honor-title {
+  font-weight: 600;
+  font-size: var(--text-title);
+  line-height: var(--leading-title);
+}
 .honor-link {
   color: inherit;
   text-decoration: underline;

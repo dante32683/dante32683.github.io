@@ -75,7 +75,7 @@ const DATA = {
       title: "AHK Scripting",
       subtitle: "Personal desktop automation",
       org: "Personal project",
-      dates: "Jul 2026 to present",
+      dates: "Jan 2026 to present",
       status: "Maintained daily-use toolkit",
       featured: false,
       compactMeta: ["AutoHotkey v2", "Windows"],
@@ -209,7 +209,8 @@ const DATA = {
     {
       category: "Engineering and design",
       items: [
-        "Design research and iterative prototyping (Project Pigeon, dog protection device)",
+        "Design research (Project Pigeon)",
+        "Iterative prototyping and testing (dog protection device)",
         "Bill of materials development (Project Pigeon)",
       ],
     },

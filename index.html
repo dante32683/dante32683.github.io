@@ -346,7 +346,7 @@
         const honorsListElement = createHtmlElement("div", "honors-list");
         portfolioData.honors.forEach((honorEntry) => {
           const honorItemElement = createHtmlElement("div", "honor-item");
-          const headingElement = createHtmlElement("h3");
+          const headingElement = createHtmlElement("h4", "honor-title");
           if (honorEntry.href) {
             headingElement.appendChild(createAnchorElement(honorEntry.href, honorEntry.title, { className: "honor-link" }));
           } else {
