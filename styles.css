@@ -83,6 +83,14 @@ body {
 
 a { color: var(--accent); text-decoration: none; }
 
+.inline-icon {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: 0.3125rem;
+  vertical-align: -0.125rem;
+}
+
 /* Accessibility focus ring */
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);

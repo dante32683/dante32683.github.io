@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Title and description are set from data.js at load time. -->
   <title>Dante Martin | Engineering &amp; Software Portfolio</title>
   <meta name="description" content="Dante Martin - Civil engineering student at Santa Rosa Junior College. Software and engineering projects, technical systems, and academic coursework.">
-  <link rel="stylesheet" href="styles.css?v=1.5">
+  <link rel="stylesheet" href="styles.css?v=1.6">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
 
   <!-- Search and social metadata -->
@@ -39,18 +38,193 @@
 
   <script>
     (function () {
-      var t = localStorage.getItem("theme");
-      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      var savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.setAttribute("data-theme", savedTheme);
     })();
   </script>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
-  <!-- Shell layout -->
   <div class="layout">
-    <aside class="sidebar" id="sidebar"></aside>
-    <main class="content" id="content" tabindex="-1"></main>
-    <footer id="footer"></footer>
+    <!-- Identity and in-page navigation -->
+    <aside class="sidebar">
+      <h1>Dante Martin</h1>
+      <p class="tagline">Civil engineering student | Engineering projects, software, and automation.</p>
+      <p class="location">Santa Rosa, California</p>
+      <div class="contact">
+      <a href="mailto:dziadymartin@gmail.com"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>Email</a>
+      <a href="https://github.com/dante32683"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/dante-martin-722763279/"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.026 2.4 3.734c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>LinkedIn</a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme" hidden></button>
+      <nav class="nav" aria-label="Portfolio sections">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education &amp; Recognition</a>
+        <a href="#capabilities">Capabilities</a>
+      </nav>
+    </aside>
+
+    <main class="content" id="content" tabindex="-1">
+      <p class="intro">I study civil engineering at Santa Rosa Junior College and build practical tools and systems for engineering work. My projects range from hands-on design and team operations to Windows software and automation.</p>
+
+      <!-- Selected projects and compact additional work -->
+      <section id="projects">
+        <h2>Projects</h2>
+      <article class="entry">
+        <h3>CmdPal Extension Suite <span class="subtitle">PowerToys Command Palette extensions</span></h3>
+        <div class="meta">Personal project | 2026</div>
+        <div class="entry-details">
+          <div class="detail-row"><span class="detail-label">My work: </span>Product direction, Architecture, Testing &amp; maintenance</div>
+          <div class="detail-row"><span class="detail-label">Project tools: </span>C#, .NET, PowerToys Command Palette SDK</div>
+          <div class="detail-row"><span class="detail-label">Status: </span>Open source; last updated July 2026</div>
+          <div class="detail-row"><span class="detail-label">Method: </span>AI-assisted development</div>
+        </div>
+        <p>Designed a suite of PowerToys Command Palette extensions to fill gaps in Windows workflows, including system controls, local NPU image tools, screenshot organization, clipboard utilities, and developer tools. The current codebase packages the extensions independently and is published as open source.</p>
+        <div class="more"><a href="https://github.com/dante32683/cmdpal-extension-suite"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View source on GitHub</a></div>
+        <div class="project-images-grid">
+          <figure class="project-image-card">
+            <a class="project-image-button" href="images/cmdpal-image-editor.webp" data-preview-src="images/cmdpal-image-editor.webp" data-preview-alt="NPU Image Editor extension tool actions in PowerToys Command Palette" data-preview-caption="NPU Image Editor actions inside PowerToys Command Palette" aria-label="Enlarge image: NPU Image Editor extension tool actions in PowerToys Command Palette">
+              <img src="images/cmdpal-image-editor.webp" alt="" width="1920" height="1179" loading="eager" decoding="async" fetchpriority="high">
+            </a>
+            <figcaption class="project-image-caption">NPU Image Editor actions inside PowerToys Command Palette</figcaption>
+          </figure>
+        </div>
+      </article>
+      <article class="entry">
+        <h3>Baja SAE <span class="subtitle">Member onboarding and team organization</span></h3>
+        <div class="meta">SRJC Baja SAE | June 2026 to present</div>
+        <div class="entry-details">
+          <div class="detail-row"><span class="detail-label">My work: </span>Onboarding design, Member organization, Team operations, Training systems</div>
+          <div class="detail-row"><span class="detail-label">Project tools: </span>Canvas LMS</div>
+          <div class="detail-row"><span class="detail-label">Status: </span>Active for Fall 2026</div>
+        </div>
+        <p>Built and maintain a centralized Canvas training system for SRJC Baja SAE with study guides, six randomized qualification quizzes, and supervisor-recorded practical checkoffs. I also support new-member onboarding and team organization, including Fall 2026 status planning and recruitment materials.</p>
+        <div class="more"><a href="https://srjcsaeclub.org">Visit SRJC Baja SAE&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
+        <div class="project-images-grid">
+          <figure class="project-image-card">
+            <a class="project-image-button" href="images/baja-canvas-modules.webp" data-preview-src="images/baja-canvas-modules.webp" data-preview-alt="Canvas module structure showing the sequence of manufacturing study guides, quizzes, and practical qualifications" data-preview-caption="Manufacturing training sequence organized in Canvas" aria-label="Enlarge image: Canvas module structure showing the sequence of manufacturing study guides, quizzes, and practical qualifications">
+              <img src="images/baja-canvas-modules.webp" alt="" width="1024" height="687" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="project-image-caption">Manufacturing training sequence organized in Canvas</figcaption>
+          </figure>
+        </div>
+      </article>
+      <article class="entry">
+        <h3>Project Pigeon <span class="subtitle">Wildfire-detection fixed-wing UAV</span></h3>
+        <div class="meta">The Engineering Club, SRJC | Sep 2025 to May 2026</div>
+        <div class="entry-details">
+          <div class="detail-row"><span class="detail-label">My work: </span>Tail design, Bill of materials, Wing and thrust research, Team leadership</div>
+          <div class="detail-row"><span class="detail-label">Status: </span>Archived after early design and partial build work</div>
+        </div>
+        <p>Worked on a student fixed-wing UAV concept for thermal wildfire and hotspot detection. I contributed to the tail design, bill of materials, wing configuration and thrust research, and team leadership. The project reached early design and partial build work, then stalled and was archived in May 2026.</p>
+        <div class="more"><a href="https://clubs.santarosa.edu/tec">View The Engineering Club at SRJC&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
+        <div class="project-images-grid">
+          <figure class="project-image-card">
+            <a class="project-image-button" href="images/pigeon-tail.webp" data-preview-src="images/pigeon-tail.webp" data-preview-alt="UAV V-tail and landing gear mount design detail" data-preview-caption="Team V-tail concept render from the early design phase; I contributed to the tail design" aria-label="Enlarge image: UAV V-tail and landing gear mount design detail">
+              <img src="images/pigeon-tail.webp" alt="" width="1920" height="842" loading="lazy" decoding="async">
+            </a>
+            <figcaption class="project-image-caption">Team V-tail concept render from the early design phase; I contributed to the tail design</figcaption>
+          </figure>
+        </div>
+      </article>
+        <h3 class="other-projects-heading">Other Work</h3>
+      <article class="entry compact-entry">
+        <h4>AHK Scripting <span class="subtitle">Personal desktop automation</span></h4>
+        <div class="meta">Personal project | Jan 2026 to present | Maintained daily-use toolkit</div>
+        <div class="compact-meta">AutoHotkey v2 | Windows</div>
+        <p>Designed and maintain a daily-use AutoHotkey v2 toolkit for a dedicated Caps Lock shortcut layer, window tiling and focus navigation, virtual desktops, media controls, and other Windows automation.</p>
+        <div class="more"><a href="https://github.com/dante32683/ahk-scripting"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View source on GitHub</a></div>
+      </article>
+      <article class="entry compact-entry">
+        <h4>Dog Protection Device <span class="subtitle">Foxtail grass seed canine face guard</span></h4>
+        <div class="meta">PLTW Design and Development | 2024 | Completed</div>
+        <div class="compact-meta">Agile methodology | Research | Iterative prototyping</div>
+        <p>Completed a semester-long PLTW design project using Agile methods to research and iteratively prototype a breathable face guard intended to reduce foxtail grass-seed exposure in dogs. Tested airflow and incorporated veterinarian feedback into later prototypes.</p>
+      </article>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2>Experience</h2>
+      <article class="entry">
+        <h3>STEM Success Center Lab Assistant</h3>
+        <div class="meta">Santa Rosa Junior College | Oct 2025 to present</div>
+        <p>Provide drop-in tutoring in Calculus I-III, precalculus, lower-level mathematics, and introductory chemistry. Assist students with graphing calculator operation and program installation alongside general lab maintenance.</p>
+        <div class="more"><a href="https://stem.santarosa.edu/stem-success-center">STEM Success Center&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
+      </article>
+      <article class="entry">
+        <h3>Treasurer</h3>
+        <div class="meta">The Engineering Club, SRJC | Jan 2026 to May 2026</div>
+        <p>Tracked available funds and spending, reviewed purchase requests, maintained records, and coordinated approvals with SRJC Student Life staff.</p>
+        <div class="more"><a href="https://clubs.santarosa.edu/tec">The Engineering Club&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
+      </article>
+      </section>
+
+      <!-- Education and recognition -->
+      <section id="education" class="edu">
+        <h2>Education &amp; Recognition</h2>
+      <div class="edu-block">
+        <div class="edu-details">
+          <h3>Santa Rosa Junior College</h3>
+          <div class="meta">2023 to present</div>
+          <p class="edu-detail">Civil Engineering transfer track | GPA 4.00 | Dean's Highest Honors, Fall 2025 and Spring 2026 | Web and Mobile Front-End Development certificate | Expected transfer: Fall 2027</p>
+          <div class="coursework-block">
+            <p class="coursework-line"><strong class="coursework-label">Current coursework: </strong>Differential Equations, Electricity &amp; Magnetism, Statics, MATLAB for Engineers</p>
+            <p class="coursework-line"><strong class="coursework-label">Selected completed coursework: </strong>Calculus I-III, Classical Mechanics, C++ Programming, General Chemistry, Web Development</p>
+          </div>
+        </div>
+      </div>
+      <div class="edu-block">
+        <div class="edu-details">
+          <h3>Technology High School</h3>
+          <div class="meta">Graduated 2025</div>
+          <p class="edu-detail">4.37 GPA | Top 10 in class | STEM project-based curriculum</p>
+        </div>
+      </div>
+        <h3 class="recognition-heading">Recognition</h3>
+        <div class="honors-list">
+        <div class="honor-item">
+          <h4 class="honor-title"><a class="honor-link" href="https://srjcstaff.santarosa.edu/~vbertsch/2026ASCE-SRJC-ScholarshipApp.pdf">Civil Engineering Transfer Scholarship&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h4>
+          <div class="meta">ASCE Redwood Empire Branch | 2025-26</div>
+        </div>
+        <div class="honor-item">
+          <h4 class="honor-title"><a class="honor-link" href="https://www.nationalmerit.org/s/1758/interior.aspx?gid=2&amp;pgid=1180&amp;sid=1758">National Merit Commended Student&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h4>
+          <div class="meta">National Merit Scholarship Corporation | 2025</div>
+        </div>
+        <div class="honor-item">
+          <h4 class="honor-title"><a class="honor-link" href="https://apstudents.collegeboard.org/awards-recognitions/ap-scholar-award">AP Scholar with Distinction&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></h4>
+          <div class="meta">College Board | 2025</div>
+        </div>
+        </div>
+      </section>
+
+      <!-- Evidence-linked capabilities and software authorship note -->
+      <section id="capabilities">
+        <h2>Capabilities</h2>
+      <div class="capability-group">
+        <h3 class="capability-heading">Engineering and design</h3>
+        <p class="capabilities-inline">Design research (Project Pigeon) | Iterative prototyping and testing (dog protection device) | Bill of materials development (Project Pigeon)</p>
+      </div>
+      <div class="capability-group">
+        <h3 class="capability-heading">Software and automation</h3>
+        <p class="capabilities-inline">Windows automation and workflow design (CmdPal, AHK toolkit) | Git and GitHub fundamentals | Bash / Linux command line | Basic Python and C++</p>
+      </div>
+      <div class="capability-group">
+        <h3 class="capability-heading">Documentation and team operations</h3>
+        <p class="capabilities-inline">Training and onboarding systems (Baja SAE) | Project documentation and team organization (Baja SAE, Project Pigeon) | Technical tutoring and explanation (STEM Success Center)</p>
+      </div>
+      <div class="capability-group">
+        <h3 class="capability-heading">Currently learning</h3>
+        <p class="capabilities-inline">Python fluency for engineering work | MATLAB through current coursework</p>
+      </div>
+        <p class="capabilities-note"><strong>Software development approach: </strong>For software projects, I use coding agents for most implementation. I define the behavior and constraints, make architecture and product decisions, research technical details, then review, test, debug, and maintain the result.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p class="colophon">Designed and maintained by Dante Martin</p>
+    </footer>
   </div>
 
   <dialog id="image-preview-dialog" class="image-preview-dialog" aria-label="Image preview">
@@ -61,503 +235,106 @@
     </div>
   </dialog>
 
-  <script src="data.js"></script>
   <script>
-  // HTML renderer
+  (function () {
+    const themeToggleButton = document.getElementById("theme-toggle");
 
-  const escapeHtml = (unsafeString) => String(unsafeString == null ? "" : unsafeString)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-  function createHtmlElement(tagName, className, innerHtml) {
-    const htmlElementNode = document.createElement(tagName);
-    if (className) htmlElementNode.className = className;
-    if (innerHtml != null) htmlElementNode.innerHTML = innerHtml;
-    return htmlElementNode;
-  }
-
-  function createAnchorElement(hyperlinkReference, linkText, renderingOptions) {
-    const anchorElement = createHtmlElement("a", null, escapeHtml(linkText));
-    anchorElement.href = hyperlinkReference;
-    if (hyperlinkReference.includes("github.com")) {
-      const gitHubIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
-      anchorElement.innerHTML = gitHubIconSvg + escapeHtml(linkText);
-    } else if (hyperlinkReference.includes("linkedin.com")) {
-      const linkedInIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.026 2.4 3.734c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>';
-      anchorElement.innerHTML = linkedInIconSvg + escapeHtml(linkText);
-    } else if (hyperlinkReference.startsWith("mailto:")) {
-      const envelopeIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>';
-      anchorElement.innerHTML = envelopeIconSvg + escapeHtml(linkText);
-    } else if (/^https?:/.test(hyperlinkReference)) {
-      anchorElement.innerHTML = escapeHtml(linkText) + '&nbsp;<span class="arrow" aria-hidden="true">\u2197</span>';
-    }
-    if (renderingOptions && renderingOptions.className) {
-      anchorElement.className = renderingOptions.className;
-    }
-    return anchorElement;
-  }
-
-  const imagePreviewDialogElement = document.getElementById("image-preview-dialog");
-  const imagePreviewImageElement = document.getElementById("image-preview-image");
-  const imagePreviewCaptionElement = document.getElementById("image-preview-caption");
-  const imagePreviewCloseElement = document.getElementById("image-preview-close");
-  let imagePreviewTriggerElement = null;
-
-  function openImagePreview(imageMetadata, triggerElement) {
-    imagePreviewTriggerElement = triggerElement;
-    imagePreviewImageElement.src = imageMetadata.src;
-    imagePreviewImageElement.alt = imageMetadata.alt || "";
-    imagePreviewCaptionElement.textContent = imageMetadata.caption || imageMetadata.alt || "";
-    document.body.classList.add("image-preview-open");
-    imagePreviewDialogElement.showModal();
-    imagePreviewCloseElement.focus();
-  }
-
-  function closeImagePreview() {
-    if (imagePreviewDialogElement.open) imagePreviewDialogElement.close();
-  }
-
-  imagePreviewCloseElement.addEventListener("click", closeImagePreview);
-  imagePreviewDialogElement.addEventListener("close", () => {
-    document.body.classList.remove("image-preview-open");
-    imagePreviewImageElement.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
-    imagePreviewImageElement.alt = "";
-    imagePreviewCaptionElement.textContent = "";
-    if (imagePreviewTriggerElement) {
-      imagePreviewTriggerElement.focus();
-      imagePreviewTriggerElement = null;
-    }
-  });
-
-  imagePreviewDialogElement.addEventListener("click", (event) => {
-    if (event.target === imagePreviewDialogElement) closeImagePreview();
-  });
-
-  function createProjectImageFigure(imageMetadata) {
-    const imageCardWrapper = createHtmlElement("figure", "project-image-card");
-    const imageButtonElement = createHtmlElement("button", "project-image-button");
-    imageButtonElement.type = "button";
-    imageButtonElement.setAttribute("aria-label", "Enlarge image: " + (imageMetadata.alt || "Project image"));
-    imageButtonElement.setAttribute("aria-haspopup", "dialog");
-    imageButtonElement.setAttribute("aria-controls", "image-preview-dialog");
-
-    const imageTag = document.createElement("img");
-    imageTag.src = imageMetadata.src;
-    imageTag.alt = "";
-    imageTag.loading = imageMetadata.loading || "lazy";
-    imageTag.decoding = "async";
-    if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
-    if (imageMetadata.width) imageTag.width = imageMetadata.width;
-    if (imageMetadata.height) imageTag.height = imageMetadata.height;
-
-    imageButtonElement.appendChild(imageTag);
-    imageButtonElement.addEventListener("click", () => openImagePreview(imageMetadata, imageButtonElement));
-    imageCardWrapper.appendChild(imageButtonElement);
-
-    if (imageMetadata.caption) {
-      const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
-      imageCardWrapper.appendChild(captionElement);
+    function determineEffectiveTheme() {
+      const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
+      if (explicitlySavedTheme) return explicitlySavedTheme;
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
 
-    return imageCardWrapper;
-  }
-
-  // One project/experience entry.
-  function createPortfolioEntryElement(portfolioEntry) {
-    const isFeatured = portfolioEntry.featured !== false;
-
-    // Dedicated compact rendering path for Other Work
-    if (!isFeatured) {
-      const entryContainerElement = createHtmlElement("article", "entry compact-entry");
-
-      if (portfolioEntry.title) {
-        const headingElement = createHtmlElement("h4", null, escapeHtml(portfolioEntry.title));
-        if (portfolioEntry.subtitle) {
-          headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioEntry.subtitle)));
-        }
-        entryContainerElement.appendChild(headingElement);
-      }
-
-      const metadataSegments = [portfolioEntry.org, portfolioEntry.dates, portfolioEntry.status].filter(Boolean).map(escapeHtml);
-      if (metadataSegments.length) {
-        entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
-      }
-
-      const compactTools = portfolioEntry.compactMeta || portfolioEntry.tech || portfolioEntry.tools;
-      if (compactTools && compactTools.length) {
-        const toolsText = Array.isArray(compactTools) ? compactTools.join(" | ") : compactTools;
-        entryContainerElement.appendChild(createHtmlElement("div", "compact-meta", escapeHtml(toolsText)));
-      }
-
-      if (portfolioEntry.body) {
-        entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
-      }
-
-      if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
-        const moreLinkContainer = createHtmlElement("div", "more");
-        moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
-        entryContainerElement.appendChild(moreLinkContainer);
-      }
-
-      if (portfolioEntry.images && portfolioEntry.images.length) {
-        const imagesGridContainer = createHtmlElement("div", "project-images-grid");
-        portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
-          imagesGridContainer.appendChild(createProjectImageFigure(imageMetadata));
-        });
-        entryContainerElement.appendChild(imagesGridContainer);
-      }
-
-      return entryContainerElement;
+    function updateThemeToggleLabel() {
+      const currentThemeIsDark = determineEffectiveTheme() === "dark";
+      themeToggleButton.textContent = currentThemeIsDark ? "\u263C" : "\u263E";
+      const nextTheme = currentThemeIsDark ? "light" : "dark";
+      themeToggleButton.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
+      themeToggleButton.title = "Switch to " + nextTheme + " theme";
     }
 
-    // Featured / standard entry
-    const entryContainerElement = createHtmlElement("article", "entry");
-
-    if (portfolioEntry.title) {
-      const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
-      if (portfolioEntry.subtitle) {
-        headingElement.appendChild(createHtmlElement("span", "subtitle", escapeHtml(portfolioEntry.subtitle)));
-      }
-      entryContainerElement.appendChild(headingElement);
-    }
-
-    const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
-    if (metadataSegments.length) {
-      entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
-    }
-
-    // Role, Tech, and Method structured metadata separation
-    const hasStructuredDetails = portfolioEntry.role || portfolioEntry.tech || portfolioEntry.tools || portfolioEntry.status || portfolioEntry.method;
-    if (hasStructuredDetails) {
-      const detailsContainer = createHtmlElement("div", "entry-details");
-
-      if (portfolioEntry.role) {
-        const roleRowElement = createHtmlElement("div", "detail-row");
-        roleRowElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
-        const roleText = Array.isArray(portfolioEntry.role) ? portfolioEntry.role.join(", ") : portfolioEntry.role;
-        roleRowElement.appendChild(document.createTextNode(roleText));
-        detailsContainer.appendChild(roleRowElement);
-      }
-
-      const techList = portfolioEntry.tech || portfolioEntry.tools;
-      if (techList && techList.length) {
-        const techRowElement = createHtmlElement("div", "detail-row");
-        techRowElement.appendChild(createHtmlElement("span", "detail-label", "Project tools: "));
-        const techText = Array.isArray(techList) ? techList.join(", ") : techList;
-        techRowElement.appendChild(document.createTextNode(techText));
-        detailsContainer.appendChild(techRowElement);
-      }
-
-      if (portfolioEntry.status) {
-        const statusRowElement = createHtmlElement("div", "detail-row");
-        statusRowElement.appendChild(createHtmlElement("span", "detail-label", "Status: "));
-        statusRowElement.appendChild(document.createTextNode(portfolioEntry.status));
-        detailsContainer.appendChild(statusRowElement);
-      }
-
-      if (portfolioEntry.method) {
-        const methodRowElement = createHtmlElement("div", "detail-row");
-        methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
-        methodRowElement.appendChild(document.createTextNode(portfolioEntry.method));
-        detailsContainer.appendChild(methodRowElement);
-      }
-
-      entryContainerElement.appendChild(detailsContainer);
-    }
-
-    if (portfolioEntry.body) {
-      entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
-    }
-
-    if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
-      const moreLinkContainer = createHtmlElement("div", "more");
-      moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
-      entryContainerElement.appendChild(moreLinkContainer);
-    }
-
-    // One evidence image per featured project on the homepage.
-    if (portfolioEntry.images && portfolioEntry.images.length) {
-      const imagesGridContainer = createHtmlElement("div", "project-images-grid");
-      portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
-        imagesGridContainer.appendChild(createProjectImageFigure(imageMetadata));
+    themeToggleButton.hidden = false;
+    updateThemeToggleLabel();
+    themeToggleButton.addEventListener("click", function () {
+      const nextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("theme", nextTheme);
+      updateThemeToggleLabel();
+    });
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+        if (!localStorage.getItem("theme")) updateThemeToggleLabel();
       });
-      entryContainerElement.appendChild(imagesGridContainer);
     }
 
-    return entryContainerElement;
-  }
-
-  function renderPortfolio(portfolioData) {
-    document.title = portfolioData.name + " | Engineering & Software Portfolio";
-
-    const sidebarElement = document.getElementById("sidebar");
-    const contentElement = document.getElementById("content");
-    const navigationTargetSections = [];
-
-    // Helper to open new page sections and register them in the nav
-    function openSection(sectionId, navigationLabel) {
-      const sectionElement = createHtmlElement("section");
-      sectionElement.id = sectionId;
-      navigationTargetSections.push({ id: sectionId, label: navigationLabel });
-      return sectionElement;
-    }
-
-    // Intro
-    if (portfolioData.intro) {
-      contentElement.appendChild(createHtmlElement("p", "intro", escapeHtml(portfolioData.intro)));
-    }
-
-    // Projects
-    if (portfolioData.projects && portfolioData.projects.length) {
-      const sectionElement = openSection("projects", "Projects");
-      sectionElement.appendChild(createHtmlElement("h2", null, "Projects"));
-
-      const featuredProjects = portfolioData.projects.filter(p => p.featured !== false);
-      featuredProjects.forEach((projectEntry) => {
-        sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
-      });
-
-      const otherProjects = portfolioData.projects.filter(p => p.featured === false);
-      if (otherProjects.length) {
-        sectionElement.appendChild(createHtmlElement("h3", "other-projects-heading", "Other Work"));
-        otherProjects.forEach((projectEntry) => {
-          sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
-        });
-      }
-
-      contentElement.appendChild(sectionElement);
-    }
-
-    // Experience
-    if (portfolioData.experience && portfolioData.experience.length) {
-      const sectionElement = openSection("experience", "Experience");
-      sectionElement.appendChild(createHtmlElement("h2", null, "Experience"));
-      portfolioData.experience.forEach((experienceEntry) => {
-        sectionElement.appendChild(createPortfolioEntryElement(experienceEntry));
-      });
-      contentElement.appendChild(sectionElement);
-    }
-
-    // Education & Recognition
-    if (portfolioData.education && portfolioData.education.length) {
-      const educationSectionElement = openSection("education", "Education & Recognition");
-      educationSectionElement.className = "edu";
-      educationSectionElement.appendChild(createHtmlElement("h2", null, "Education & Recognition"));
-
-      portfolioData.education.forEach((educationSectionData) => {
-        const educationBlockElement = createHtmlElement("div", "edu-block");
-
-        const detailsContainer = createHtmlElement("div", "edu-details");
-        const schoolHeading = createHtmlElement("h3", null, escapeHtml(educationSectionData.school));
-        detailsContainer.appendChild(schoolHeading);
-        if (educationSectionData.dates) {
-          detailsContainer.appendChild(createHtmlElement("div", "meta", escapeHtml(educationSectionData.dates)));
-        }
-
-        if (educationSectionData.detail) {
-          detailsContainer.appendChild(createHtmlElement("p", "edu-detail", escapeHtml(educationSectionData.detail)));
-        }
-
-        if (educationSectionData.coursework && educationSectionData.coursework.length) {
-          const courseworkContainer = createHtmlElement("div", "coursework-block");
-          educationSectionData.coursework.forEach((courseworkRowData) => {
-            const courseworkLineElement = createHtmlElement("p", "coursework-line");
-            const labelText = (courseworkRowData.label || courseworkRowData.term) + ": ";
-            courseworkLineElement.appendChild(createHtmlElement("strong", "coursework-label", escapeHtml(labelText)));
-            courseworkLineElement.appendChild(document.createTextNode(courseworkRowData.courses));
-            courseworkContainer.appendChild(courseworkLineElement);
-          });
-          detailsContainer.appendChild(courseworkContainer);
-        }
-
-        educationBlockElement.appendChild(detailsContainer);
-        educationSectionElement.appendChild(educationBlockElement);
-      });
-
-      if (portfolioData.honors && portfolioData.honors.length) {
-        educationSectionElement.appendChild(createHtmlElement("h3", "recognition-heading", "Recognition"));
-        const honorsListElement = createHtmlElement("div", "honors-list");
-        portfolioData.honors.forEach((honorEntry) => {
-          const honorItemElement = createHtmlElement("div", "honor-item");
-          const headingElement = createHtmlElement("h4", "honor-title");
-          if (honorEntry.href) {
-            headingElement.appendChild(createAnchorElement(honorEntry.href, honorEntry.title, { className: "honor-link" }));
-          } else {
-            headingElement.textContent = honorEntry.title;
-          }
-          honorItemElement.appendChild(headingElement);
-
-          const honorMetadata = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
-          if (honorMetadata.length) {
-            honorItemElement.appendChild(createHtmlElement("div", "meta", honorMetadata.join(" | ")));
-          }
-          if (honorEntry.body) {
-            honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
-          }
-          honorsListElement.appendChild(honorItemElement);
-        });
-        educationSectionElement.appendChild(honorsListElement);
-      }
-
-      contentElement.appendChild(educationSectionElement);
-    }
-
-    // Capabilities
-    const capabilityData = portfolioData.capabilities || portfolioData.skills;
-    if (capabilityData) {
-      const capabilitiesSectionElement = openSection("capabilities", "Capabilities");
-      capabilitiesSectionElement.appendChild(createHtmlElement("h2", null, "Capabilities"));
-
-      const capabilityGroups = Array.isArray(capabilityData)
-        ? capabilityData
-        : [
-            { category: "Working with", items: capabilityData.working },
-            { category: "Learning", items: capabilityData.learning }
-          ];
-
-      capabilityGroups.forEach((capabilityGroup) => {
-        if (!capabilityGroup.items || !capabilityGroup.items.length) return;
-        const capabilityGroupElement = createHtmlElement("div", "capability-group");
-        capabilityGroupElement.appendChild(createHtmlElement("h3", "capability-heading", escapeHtml(capabilityGroup.category)));
-        const itemsJoinedString = capabilityGroup.items.map(escapeHtml).join(" | ");
-        const capabilitiesInlineElement = createHtmlElement("p", "capabilities-inline", itemsJoinedString);
-        capabilityGroupElement.appendChild(capabilitiesInlineElement);
-        capabilitiesSectionElement.appendChild(capabilityGroupElement);
-      });
-
-      if (portfolioData.developmentNote) {
-        const developmentNoteElement = createHtmlElement("p", "capabilities-note");
-        developmentNoteElement.appendChild(createHtmlElement("strong", null, "Software development approach: "));
-        developmentNoteElement.appendChild(document.createTextNode(portfolioData.developmentNote));
-        capabilitiesSectionElement.appendChild(developmentNoteElement);
-      }
-
-      contentElement.appendChild(capabilitiesSectionElement);
-    }
-
-    // Sidebar
-    sidebarElement.appendChild(createHtmlElement("h1", null, escapeHtml(portfolioData.name)));
-    if (portfolioData.tagline) {
-      sidebarElement.appendChild(createHtmlElement("p", "tagline", escapeHtml(portfolioData.tagline)));
-    }
-    if (portfolioData.location) {
-      sidebarElement.appendChild(createHtmlElement("p", "location", escapeHtml(portfolioData.location)));
-    }
-
-    if (portfolioData.links && portfolioData.links.length) {
-      const contactInfoContainer = createHtmlElement("div", "contact");
-      portfolioData.links.forEach((linkData) => {
-        if (linkData.href && linkData.label) {
-          contactInfoContainer.appendChild(createAnchorElement(linkData.href, linkData.label));
-        }
-      });
-      sidebarElement.appendChild(contactInfoContainer);
-    }
-
-    // Theme control stays near the identity/contact actions in source order.
-    createThemeToggleButton(sidebarElement);
-
-    if (navigationTargetSections.length) {
-      const navigationElement = createHtmlElement("nav", "nav");
-      navigationElement.setAttribute("aria-label", "Portfolio sections");
-      navigationTargetSections.forEach((navigationTarget) => {
-        navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
-      });
-      sidebarElement.appendChild(navigationElement);
-    }
-
-    /* Footer */
-    const footerElement = document.getElementById("footer");
-    const colophonText = portfolioData.colophon || ("Designed and maintained by " + portfolioData.name);
-    footerElement.appendChild(createHtmlElement("p", "colophon", escapeHtml(colophonText)));
-
-    // Scroll-spy
-    const navigationLinks = document.querySelectorAll(".nav a");
-    const sectionElements = navigationTargetSections.map((targetSection) => {
-      return document.getElementById(targetSection.id);
+    const navigationLinks = Array.from(document.querySelectorAll(".nav a[href^='#']"));
+    const sectionElements = navigationLinks.map(function (navigationLink) {
+      return document.querySelector(navigationLink.getAttribute("href"));
     }).filter(Boolean);
 
     function updateScrollState() {
+      if (!sectionElements.length) return;
       const scrollPosition = window.scrollY;
       const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-      if (!sectionElements.length) return;
-
-      // Activate a section when its top passes a stable point near the upper
-      // third of the viewport. Using document positions makes this symmetric
-      // whether the user is scrolling down or back up.
       const activationPosition = scrollPosition + Math.min(window.innerHeight * 0.3, 180);
       let activeSectionId = sectionElements[0].id;
-      for (const sectionElement of sectionElements) {
+      sectionElements.forEach(function (sectionElement) {
         const sectionTop = sectionElement.getBoundingClientRect().top + scrollPosition;
-        if (sectionTop <= activationPosition) {
-          activeSectionId = sectionElement.id;
-        } else {
-          break;
-        }
-      }
-
-      // At the physical end of the document, make the final section active
-      // even when it is too short to cross the activation line.
+        if (sectionTop <= activationPosition) activeSectionId = sectionElement.id;
+      });
       if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 2) {
         activeSectionId = sectionElements[sectionElements.length - 1].id;
       }
-
-      navigationLinks.forEach((navigationLinkElement) => {
-        const href = navigationLinkElement.getAttribute("href");
-        if (href && href.startsWith("#")) {
-          const isActiveSection = href.slice(1) === activeSectionId;
-          navigationLinkElement.classList.toggle("active", isActiveSection);
-          if (isActiveSection) {
-            navigationLinkElement.setAttribute("aria-current", "location");
-          } else {
-            navigationLinkElement.removeAttribute("aria-current");
-          }
-        }
+      navigationLinks.forEach(function (navigationLink) {
+        const isActiveSection = navigationLink.getAttribute("href") === "#" + activeSectionId;
+        navigationLink.classList.toggle("active", isActiveSection);
+        if (isActiveSection) navigationLink.setAttribute("aria-current", "location");
+        else navigationLink.removeAttribute("aria-current");
       });
     }
-
     window.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", updateScrollState);
     updateScrollState();
-  }
 
-  // Get active theme
-  function determineEffectiveTheme() {
-    const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
-    if (explicitlySavedTheme) return explicitlySavedTheme;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark" : "light";
-  }
+    const imagePreviewDialog = document.getElementById("image-preview-dialog");
+    const imagePreviewImage = document.getElementById("image-preview-image");
+    const imagePreviewCaption = document.getElementById("image-preview-caption");
+    const imagePreviewCloseButton = document.getElementById("image-preview-close");
+    let imagePreviewTrigger = null;
 
-  function createThemeToggleButton(toggleContainerElement) {
-    const themeToggleButton = createHtmlElement("button", "theme-toggle");
-    themeToggleButton.type = "button";
-    const updateToggleButtonLabelAndTitle = () => {
-      const isCurrentThemeDark = determineEffectiveTheme() === "dark";
-      themeToggleButton.textContent = isCurrentThemeDark ? "\u263C" : "\u263E"; // ☼ and ☾
-      const upcomingTheme = isCurrentThemeDark ? "light" : "dark";
-      themeToggleButton.setAttribute("aria-label", "Switch to " + upcomingTheme + " theme");
-      themeToggleButton.title = "Switch to " + upcomingTheme + " theme";
-    };
-    updateToggleButtonLabelAndTitle();
-    themeToggleButton.addEventListener("click", () => {
-      const selectedNextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", selectedNextTheme);
-      localStorage.setItem("theme", selectedNextTheme);
-      updateToggleButtonLabelAndTitle();
-    });
-    if (window.matchMedia) {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        if (!localStorage.getItem("theme")) {
-          updateToggleButtonLabelAndTitle();
-        }
+    document.querySelectorAll(".project-image-button[data-preview-src]").forEach(function (imageLink) {
+      imageLink.setAttribute("aria-haspopup", "dialog");
+      imageLink.setAttribute("aria-controls", "image-preview-dialog");
+      imageLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        imagePreviewTrigger = imageLink;
+        imagePreviewImage.src = imageLink.dataset.previewSrc;
+        imagePreviewImage.alt = imageLink.dataset.previewAlt || "";
+        imagePreviewCaption.textContent = imageLink.dataset.previewCaption || imageLink.dataset.previewAlt || "";
+        document.body.classList.add("image-preview-open");
+        imagePreviewDialog.showModal();
+        imagePreviewCloseButton.focus();
       });
+    });
+
+    function closeImagePreview() {
+      if (imagePreviewDialog.open) imagePreviewDialog.close();
     }
-    toggleContainerElement.appendChild(themeToggleButton);
-  }
-
-
-  renderPortfolio(DATA);
+    imagePreviewCloseButton.addEventListener("click", closeImagePreview);
+    imagePreviewDialog.addEventListener("click", function (event) {
+      if (event.target === imagePreviewDialog) closeImagePreview();
+    });
+    imagePreviewDialog.addEventListener("close", function () {
+      document.body.classList.remove("image-preview-open");
+      imagePreviewImage.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+      imagePreviewImage.alt = "";
+      imagePreviewCaption.textContent = "";
+      if (imagePreviewTrigger) {
+        imagePreviewTrigger.focus();
+        imagePreviewTrigger = null;
+      }
+    });
+  })();
   </script>
 </body>
 </html>

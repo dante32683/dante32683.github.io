@@ -9,13 +9,10 @@ It tells you which file to edit, how to add content, and - most importantly - ho
 
 ## The 30-second version
 
-- All content lives in **`data.js`**. To change what the site says, edit that
-  file and only that file.
-- To add something, copy an existing entry in the relevant list, paste it
-  below, edit the text, keep the trailing comma. Newest first.
-- Styling is in `styles.css` (re-skin via the `:root` variables at the top).
-  Structure is in `index.html` (rarely touched).
-- No build step. No frameworks, CDNs, fonts, or trackers. Static files only.
+- All public content lives directly in semantic **`index.html`**. Do not reintroduce a client-side content renderer or a second content source.
+- To add something, copy the matching semantic HTML block, place it in the correct section, and edit the visible text/links. Newest entries stay first.
+- Styling is in `styles.css` (re-skin via the `:root` variables at the top). `index.html` is the normal content/structure file.
+- No build step. No frameworks, CDNs, fonts, or extra trackers. Static HTML first; JavaScript is progressive enhancement only.
 
 ## Writing rules (the part agents get wrong)
 
@@ -25,7 +22,7 @@ paragraph per entry.
 
 **Attribution rules:**
 - Distinguish personal role from project technology. Project dependencies (e.g. C#, .NET, AHK) belong under `tech`, not under personal skills unless independently coded.
-- Disclose AI assistance in the intro/bio and `method` field. Do not repeat AI explanations in every project description.
+- Disclose AI assistance in the quiet development note and relevant project metadata. Do not repeat AI explanations in every project description.
 - Full list and rationale are in STANDARDS.md.
 
 ## Git and branching workflow

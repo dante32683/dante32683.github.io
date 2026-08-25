@@ -2,30 +2,22 @@
 
 Read this whole file before you change anything. It is short on purpose.
 
-This site is a single static page hosted on GitHub Pages. There is **no build
-step**: the files in this repo are exactly what the browser loads. If you edit a
-file and push, the live site changes.
+This site is a single static page hosted on GitHub Pages. The public content is
+written directly as semantic HTML in `index.html`; JavaScript only adds optional
+theme, scroll-spy, and image-preview behavior. There is no framework, templating
+system, or build step. If JavaScript fails or is disabled, the portfolio content,
+navigation, links, and project images still work.
 
 ---
 
 ## The one rule that matters most
 
-**To change what the site SAYS, edit `data.js` and nothing else.**
+**The HTML is the product. Keep the complete portfolio readable without JavaScript.**
 
-`data.js` holds all the content as one object called `DATA`. The page builds
-itself from that object. You almost never need to open the other files.
-
-To add an item (a project, a course, a skill):
-
-1. Open `data.js`.
-2. Find the right list.
-3. Copy an entry that is already there.
-4. Paste it directly below the one you copied. **Newest goes first.**
-5. Edit the text in your pasted copy.
-6. Make sure it still ends with a comma.
-
-If a field does not apply to your new item, **delete that whole line**. Empty
-fields are skipped - they will not show a blank label or break the layout.
+To change what the site says, edit the corresponding semantic HTML in `index.html`.
+Do not move public copy back into JavaScript or create a second content source.
+Newest entries stay first within their section. Delete markup that does not apply
+rather than leaving empty labels or placeholder elements.
 
 ---
 
@@ -33,107 +25,51 @@ fields are skipped - they will not show a blank label or break the layout.
 
 | File | What it is | Touch it when... |
 |------|------------|----------------|
-| `data.js` | All content. | You change any words, add/remove an entry. **This is the normal one.** |
 | `styles.css` | All styling. | You want to change colours, spacing, fonts. |
-| `index.html` | Page shell + the renderer that turns `DATA` into HTML. | You add a brand-new *kind* of section. Rare. |
+| `index.html` | Complete semantic page content + small progressive-enhancement script. | You change public copy, links, entries, or page structure. **This is the normal one.** |
 | `STANDARDS.md` | General project rules & standards. | The rules change. |
 | `README.md` | Public repository documentation. | You want to update repo guidelines or project overview. |
 | `.gitignore` | Git file exclusions. | You need to exclude new temp or IDE files. |
 | `AGENTS.md` | Rules and prompts for AI coding assistants. | You want to adjust instructions for AI agents. |
 | `CNAME` | The custom domain. | **Never**, unless the domain changes. |
 
-Do not move content into `index.html`. Do not add a second stylesheet. Do not
-add a framework, a CDN link, a font import, or a build tool. The whole point is
-that one person with a text editor can maintain this.
+Do not move public content into JavaScript. Do not add a second stylesheet, a
+framework, a CDN link, a font import, or a build tool. The whole point is that
+one person with a text editor can maintain this and that the HTML remains useful
+without JavaScript.
 
 ---
 
 ## Recipes
 
-**Add a featured project** - in `data.js`, copy an existing featured entry in `projects` and edit:
+**Add a featured project** - in `index.html`, copy an existing featured `<article
+class="entry">` block, keep it in the Projects section, and edit the visible text.
+Preserve the existing hierarchy: title/descriptor, organization/date metadata,
+`My work`, project tools/status/method where applicable, one concise paragraph,
+a descriptive link, and at most one homepage evidence image.
 
-```js
-{
-  title: "Short name",
-  subtitle: "What it is",                            // optional, shown lighter
-  org: "Where it happened",
-  dates: "Sep 2026 to present",
-  status: "Active prototype",                          // clear human-readable state
-  featured: true,                                    // true for full featured cards
-  role: ["Product direction", "Architecture"],       // what you personally did and decided
-  tech: ["C#", ".NET", "PowerToys Command Palette SDK"], // project dependencies, not personal skill claims
-  method: "AI-assisted development",                 // optional, rendered inline quietly
-  body: "One paragraph. Concrete details, what the system does, and what YOU did.",
-  link: { label: "View source on GitHub", href: "https://..." }, // delete if none
-  images: [                                          // homepage uses first image only
-    {
-      src: "images/example.webp",
-      alt: "Descriptive alt text for accessibility",
-      caption: "Optional context or attribution caption shown below image",
-      width: 1600,
-      height: 900,
-    },
-  ],
-},
-```
+**Add a compact project (Other Work)** - copy an existing `<article class="entry
+compact-entry">` block under `Other Work`. Keep metadata and prose shorter than a
+featured project. Compact entries normally remain text-first.
 
-**Add a compact project (Other Work)** - for secondary work, set `featured: false` and keep metadata concise (no separate role/tech/method rows):
+**Add experience** - copy an existing Experience `<article class="entry">` and
+edit the title, organization/date metadata, paragraph, and optional descriptive link.
 
-```js
-{
-  title: "Short name",
-  subtitle: "What it is",
-  org: "Personal project",
-  dates: "Jul 2026 to present",
-  status: "Maintained",
-  featured: false,
-  compactMeta: ["AutoHotkey v2", "Windows"],        // short inline tools list
-  body: "One concise paragraph explaining the project and your role.",
-  link: { label: "View source on GitHub", href: "https://..." },
-},
-```
+**Add education or recognition** - copy the matching block inside
+`#education`. Maintain the heading hierarchy: Education & Recognition is H2,
+schools and the Recognition subsection are H3, and individual award titles are H4.
 
-The sidebar navigation builds itself from whichever sections have content, so
-you do not add nav links by hand.
+**Add a capability group** - copy an existing `.capability-group`, keep its H3
+heading and one evidence-linked inline paragraph.
 
-**Add experience** - same shape as projects, in the `experience` list.
-
-**Add education** - add an object to `education`:
-
-```js
-{
-  school: "Santa Rosa Junior College",
-  dates: "2023-present",
-  detail: "Civil Engineering transfer track | 4.0 GPA | Dean's Highest Honors",
-  coursework: [
-    { label: "Current coursework", courses: "Differential Equations, Statics, MATLAB" },
-    { label: "Selected completed coursework", courses: "Calculus I-III, Physics 40, CS 10A" },
-  ],
-},
-```
-
-**Add an honor** - in `data.js`, add a concise row to `honors` (title, optional org, year):
-
-```js
-{
-  title: "Honor name",
-  org: "Awarding organization",
-  dates: "2025",
-},
-```
-
-**Add a capability group** - add an object to the `capabilities` array:
-
-```js
-{
-  category: "Group Name",
-  items: ["Skill 1", "Skill 2", "Skill 3"],
-}
-```
+**Add or change a project image** - use a normal anchor pointing directly to the
+image so it still works without JavaScript. Keep the `project-image-button` class
+and `data-preview-*` attributes so JavaScript can progressively enhance the link
+into the shared native dialog preview. Use exactly one representative homepage
+image per featured project.
 
 **Re-colour the site** - in `styles.css`, change the variables in the `:root`
-block at the top. You should not need to edit anything below that block for a
-palette change. Dark-mode colours are in the `@media (prefers-color-scheme:
+block at the top. Dark-mode colours are in the `@media (prefers-color-scheme:
 dark)` block right under it - update both.
 
 ---
@@ -174,38 +110,31 @@ make it concrete.
 ## Hard limits
 
 - No unnecessary external runtime dependencies: no CDNs, no web fonts, and no additional trackers. Cloudflare Web Analytics is intentionally enabled at the edge for aggregate traffic and performance measurement; adding any other analytics or tracking requires an explicit decision.
-- No JavaScript libraries. The renderer in `index.html` is plain JS and stays
-  that way.
+- No JavaScript libraries. JavaScript is progressive enhancement only; it must
+  not create or hide essential portfolio content.
 - Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
 - Homepage featured projects use one meaningful evidence image. That image may open the shared native `<dialog>` preview for larger inspection. Compact Other Work entries normally stay text-first without image galleries.
 - Normal external links open in the same tab. Do not add `target="_blank"` by default.
-- Test before you push: open `index.html` in a browser and confirm it renders
-  in both light and dark mode (toggle your OS theme), with no blank labels and
-  no console errors.
+- Test before you push: confirm raw `index.html` contains the complete portfolio,
+  then open it in a browser and verify light/dark mode, keyboard navigation, image
+  preview behavior, narrow-screen reflow, and no console errors.
 
 ---
 
 ## Code conventions
 
-You rarely touch `index.html` or `styles.css`, but when you do, match what is
-already there. These are not new rules; they describe how the existing code is
-written.
+When editing `index.html` or `styles.css`, match the existing structure and conventions.
+These rules describe how the current code is written.
 
-**JavaScript (the renderer in `index.html`)**
+**JavaScript (progressive enhancement in `index.html`)**
 
-- **Escape every value that comes from `data.js`.** Wrap it in `escapeHtml(...)` before
-  it reaches the DOM. The only exception is text you wrote literally in the
-  renderer itself.
-- **Build DOM with the helpers**, not raw HTML strings: `createHtmlElement(tagName, className, innerHtml)`
-  for elements, `createAnchorElement(hyperlinkReference, linkText)` for links. Do not reach for a templating
-  library or `innerHTML +=`.
-- **Use self-documenting variable and function names.** All variable, parameter, and function names must be fully descriptive of their purpose and role (e.g. `escapeHtml` instead of `esc`, `createHtmlElement` instead of `el`, `createAnchorElement` instead of `anchor`, `portfolioEntry` instead of `item`). Do not abbreviate names for memory or typing convenience.
-- **Skip empty fields, never render blanks.** Guard every optional field with
-  `if (portfolioEntry.field)` so a half-filled entry can never show an empty label. This
-  is what lets `data.js` editors delete any line that does not apply.
-- **Normal external links stay in the current tab.** Use ordinary anchors unless a specific destination genuinely needs a new browsing context.
-- Plain ES5/ES6, no transpiler. `const`/`let`, arrow functions, and
-  `addEventListener` are fine; anything needing a build step is not.
+- Do not generate public portfolio content with JavaScript. The HTML must stand alone.
+- Use native controls and enhance existing links/buttons instead of replacing them.
+- The project image preview must retain a direct-image anchor fallback when JavaScript
+  is unavailable.
+- Keep variable and function names descriptive.
+- Normal external links stay in the current tab.
+- Plain ES5/ES6 only; no framework, library, transpiler, bundler, or build step.
 
 **CSS (`styles.css`)**
 
