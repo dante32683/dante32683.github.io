@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Title and description are set from data.js at load time. -->
-  <title>Dante Martin | Engineering & Software Portfolio</title>
+  <title>Dante Martin | Engineering &amp; Software Portfolio</title>
   <meta name="description" content="Dante Martin - Civil engineering student at Santa Rosa Junior College. Software and engineering projects, technical systems, and academic coursework.">
-  <link rel="stylesheet" href="styles.css?v=1.3">
+  <link rel="stylesheet" href="styles.css?v=1.4">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
-  
+
   <!-- Search and social metadata -->
   <link rel="canonical" href="https://dante-martin.com/">
   <meta property="og:title" content="Dante Martin - Engineering & Software Portfolio">
@@ -45,20 +45,14 @@
   </script>
 </head>
 <body>
-  <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+  <a class="skip-link" href="#content">Skip to content</a>
   <!-- Shell layout -->
   <div class="layout">
     <aside class="sidebar" id="sidebar"></aside>
-    <main class="content" id="content"></main>
+    <main class="content" id="content" tabindex="-1"></main>
     <footer id="footer"></footer>
   </div>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox-overlay-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image preview lightbox">
-    <button id="lightbox-close-control-button" class="lightbox-close-button" aria-label="Close image preview">&times;</button>
-    <img id="lightbox-enlarged-image-display" class="lightbox-image-element" src="" alt="">
-    <div id="lightbox-image-caption-text" class="lightbox-caption-text"></div>
-  </div>
 
   <script src="data.js"></script>
   <script>
@@ -77,10 +71,6 @@
   function createAnchorElement(hyperlinkReference, linkText, renderingOptions) {
     const anchorElement = createHtmlElement("a", null, escapeHtml(linkText));
     anchorElement.href = hyperlinkReference;
-    if (/^https?:/.test(hyperlinkReference)) { 
-      anchorElement.target = "_blank"; 
-      anchorElement.rel = "noopener noreferrer"; 
-    }
     if (hyperlinkReference.includes("github.com")) {
       const gitHubIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
       anchorElement.innerHTML = gitHubIconSvg + escapeHtml(linkText);
@@ -91,7 +81,7 @@
       const envelopeIconSvg = '<svg viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 5px;" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>';
       anchorElement.innerHTML = envelopeIconSvg + escapeHtml(linkText);
     } else if (/^https?:/.test(hyperlinkReference)) {
-      anchorElement.innerHTML = escapeHtml(linkText) + '&nbsp;<span class="arrow">\u2197</span>';
+      anchorElement.innerHTML = escapeHtml(linkText) + '&nbsp;<span class="arrow" aria-hidden="true">\u2197</span>';
     }
     if (renderingOptions && renderingOptions.className) {
       anchorElement.className = renderingOptions.className;
@@ -102,11 +92,11 @@
   // One project/experience entry.
   function createPortfolioEntryElement(portfolioEntry) {
     const isFeatured = portfolioEntry.featured !== false;
-    
+
     // Dedicated compact rendering path for Other Work
     if (!isFeatured) {
       const entryContainerElement = createHtmlElement("article", "entry compact-entry");
-      
+
       if (portfolioEntry.title) {
         const headingElement = createHtmlElement("h4", null, escapeHtml(portfolioEntry.title));
         if (portfolioEntry.subtitle) {
@@ -114,8 +104,8 @@
         }
         entryContainerElement.appendChild(headingElement);
       }
-      
-      const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
+
+      const metadataSegments = [portfolioEntry.org, portfolioEntry.dates, portfolioEntry.status].filter(Boolean).map(escapeHtml);
       if (metadataSegments.length) {
         entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
       }
@@ -125,11 +115,11 @@
         const toolsText = Array.isArray(compactTools) ? compactTools.join(" | ") : compactTools;
         entryContainerElement.appendChild(createHtmlElement("div", "compact-meta", escapeHtml(toolsText)));
       }
-      
+
       if (portfolioEntry.body) {
         entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
       }
-      
+
       if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
         const moreLinkContainer = createHtmlElement("div", "more");
         moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
@@ -138,18 +128,19 @@
 
       if (portfolioEntry.images && portfolioEntry.images.length) {
         const imagesGridContainer = createHtmlElement("div", "project-images-grid");
-        portfolioEntry.images.slice(0, 2).forEach((imageMetadata) => {
+        portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
           const imageCardWrapper = createHtmlElement("figure", "project-image-card");
           const imageContainerElement = createHtmlElement("div", "project-image-container");
-          imageContainerElement.setAttribute("role", "button");
-          imageContainerElement.setAttribute("tabindex", "0");
-          imageContainerElement.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
-          
+
           const imageTag = document.createElement("img");
           imageTag.src = imageMetadata.src;
           imageTag.alt = imageMetadata.alt;
-          imageTag.loading = "lazy";
-          
+          imageTag.loading = imageMetadata.loading || "lazy";
+          imageTag.decoding = "async";
+          if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
+          if (imageMetadata.width) imageTag.width = imageMetadata.width;
+          if (imageMetadata.height) imageTag.height = imageMetadata.height;
+
           imageContainerElement.appendChild(imageTag);
           imageCardWrapper.appendChild(imageContainerElement);
 
@@ -157,28 +148,18 @@
             const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
             imageCardWrapper.appendChild(captionElement);
           }
-          
-          imageContainerElement.addEventListener("click", () => {
-            openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
-          });
-          imageContainerElement.addEventListener("keydown", (keyboardEvent) => {
-            if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
-              keyboardEvent.preventDefault();
-              openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
-            }
-          });
-          
+
           imagesGridContainer.appendChild(imageCardWrapper);
         });
         entryContainerElement.appendChild(imagesGridContainer);
       }
-      
+
       return entryContainerElement;
     }
 
     // Featured / standard entry
     const entryContainerElement = createHtmlElement("article", "entry");
-    
+
     if (portfolioEntry.title) {
       const headingElement = createHtmlElement("h3", null, escapeHtml(portfolioEntry.title));
       if (portfolioEntry.subtitle) {
@@ -186,17 +167,17 @@
       }
       entryContainerElement.appendChild(headingElement);
     }
-    
+
     const metadataSegments = [portfolioEntry.org, portfolioEntry.dates].filter(Boolean).map(escapeHtml);
     if (metadataSegments.length) {
       entryContainerElement.appendChild(createHtmlElement("div", "meta", metadataSegments.join(" | ")));
     }
 
     // Role, Tech, and Method structured metadata separation
-    const hasStructuredDetails = portfolioEntry.role || portfolioEntry.tech || portfolioEntry.tools || portfolioEntry.method;
+    const hasStructuredDetails = portfolioEntry.role || portfolioEntry.tech || portfolioEntry.tools || portfolioEntry.status || portfolioEntry.method;
     if (hasStructuredDetails) {
       const detailsContainer = createHtmlElement("div", "entry-details");
-      
+
       if (portfolioEntry.role) {
         const roleRowElement = createHtmlElement("div", "detail-row");
         roleRowElement.appendChild(createHtmlElement("span", "detail-label", "My work: "));
@@ -204,7 +185,7 @@
         roleRowElement.appendChild(document.createTextNode(roleText));
         detailsContainer.appendChild(roleRowElement);
       }
-      
+
       const techList = portfolioEntry.tech || portfolioEntry.tools;
       if (techList && techList.length) {
         const techRowElement = createHtmlElement("div", "detail-row");
@@ -213,43 +194,50 @@
         techRowElement.appendChild(document.createTextNode(techText));
         detailsContainer.appendChild(techRowElement);
       }
-      
+
+      if (portfolioEntry.status) {
+        const statusRowElement = createHtmlElement("div", "detail-row");
+        statusRowElement.appendChild(createHtmlElement("span", "detail-label", "Status: "));
+        statusRowElement.appendChild(document.createTextNode(portfolioEntry.status));
+        detailsContainer.appendChild(statusRowElement);
+      }
+
       if (portfolioEntry.method) {
         const methodRowElement = createHtmlElement("div", "detail-row");
         methodRowElement.appendChild(createHtmlElement("span", "detail-label", "Method: "));
         methodRowElement.appendChild(document.createTextNode(portfolioEntry.method));
         detailsContainer.appendChild(methodRowElement);
       }
-      
+
       entryContainerElement.appendChild(detailsContainer);
     }
-    
+
     if (portfolioEntry.body) {
       entryContainerElement.appendChild(createHtmlElement("p", null, escapeHtml(portfolioEntry.body)));
     }
-    
+
     if (portfolioEntry.link && portfolioEntry.link.href && portfolioEntry.link.label) {
       const moreLinkContainer = createHtmlElement("div", "more");
       moreLinkContainer.appendChild(createAnchorElement(portfolioEntry.link.href, portfolioEntry.link.label));
       entryContainerElement.appendChild(moreLinkContainer);
     }
 
-    // Inline image gallery grid if images exist
+    // One evidence image per featured project on the homepage.
     if (portfolioEntry.images && portfolioEntry.images.length) {
-      const gridClass = "project-images-grid" + (portfolioEntry.images.length === 4 ? " grid-4" : "");
-      const imagesGridContainer = createHtmlElement("div", gridClass);
-      portfolioEntry.images.forEach((imageMetadata) => {
+      const imagesGridContainer = createHtmlElement("div", "project-images-grid");
+      portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
         const imageCardWrapper = createHtmlElement("figure", "project-image-card");
         const imageContainerElement = createHtmlElement("div", "project-image-container");
-        imageContainerElement.setAttribute("role", "button");
-        imageContainerElement.setAttribute("tabindex", "0");
-        imageContainerElement.setAttribute("aria-label", "Enlarge image: " + imageMetadata.alt);
-        
+
         const imageTag = document.createElement("img");
         imageTag.src = imageMetadata.src;
         imageTag.alt = imageMetadata.alt;
-        imageTag.loading = "lazy";
-        
+        imageTag.loading = imageMetadata.loading || "lazy";
+        imageTag.decoding = "async";
+        if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
+        if (imageMetadata.width) imageTag.width = imageMetadata.width;
+        if (imageMetadata.height) imageTag.height = imageMetadata.height;
+
         imageContainerElement.appendChild(imageTag);
         imageCardWrapper.appendChild(imageContainerElement);
 
@@ -257,22 +245,12 @@
           const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
           imageCardWrapper.appendChild(captionElement);
         }
-        
-        imageContainerElement.addEventListener("click", () => {
-          openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
-        });
-        imageContainerElement.addEventListener("keydown", (keyboardEvent) => {
-          if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
-            keyboardEvent.preventDefault();
-            openLightbox(imageMetadata.src, imageMetadata.alt, imageMetadata.caption);
-          }
-        });
-        
+
         imagesGridContainer.appendChild(imageCardWrapper);
       });
       entryContainerElement.appendChild(imagesGridContainer);
     }
-    
+
     return entryContainerElement;
   }
 
@@ -300,7 +278,7 @@
     if (portfolioData.projects && portfolioData.projects.length) {
       const sectionElement = openSection("projects", "Projects");
       sectionElement.appendChild(createHtmlElement("h2", null, "Projects"));
-      
+
       const featuredProjects = portfolioData.projects.filter(p => p.featured !== false);
       featuredProjects.forEach((projectEntry) => {
         sectionElement.appendChild(createPortfolioEntryElement(projectEntry));
@@ -327,26 +305,26 @@
       contentElement.appendChild(sectionElement);
     }
 
-    // Education
+    // Education & Recognition
     if (portfolioData.education && portfolioData.education.length) {
-      const educationSectionElement = openSection("education", "Education");
+      const educationSectionElement = openSection("education", "Education & Recognition");
       educationSectionElement.className = "edu";
-      educationSectionElement.appendChild(createHtmlElement("h2", null, "Education"));
-      
+      educationSectionElement.appendChild(createHtmlElement("h2", null, "Education & Recognition"));
+
       portfolioData.education.forEach((educationSectionData) => {
         const educationBlockElement = createHtmlElement("div", "edu-block");
-        
+
         const detailsContainer = createHtmlElement("div", "edu-details");
         const schoolHeading = createHtmlElement("h3", null, escapeHtml(educationSectionData.school));
         detailsContainer.appendChild(schoolHeading);
         if (educationSectionData.dates) {
           detailsContainer.appendChild(createHtmlElement("div", "meta", escapeHtml(educationSectionData.dates)));
         }
-        
+
         if (educationSectionData.detail) {
           detailsContainer.appendChild(createHtmlElement("p", "edu-detail", escapeHtml(educationSectionData.detail)));
         }
-        
+
         if (educationSectionData.coursework && educationSectionData.coursework.length) {
           const courseworkContainer = createHtmlElement("div", "coursework-block");
           educationSectionData.coursework.forEach((courseworkRowData) => {
@@ -358,68 +336,70 @@
           });
           detailsContainer.appendChild(courseworkContainer);
         }
-        
+
         educationBlockElement.appendChild(detailsContainer);
         educationSectionElement.appendChild(educationBlockElement);
       });
+
+      if (portfolioData.honors && portfolioData.honors.length) {
+        educationSectionElement.appendChild(createHtmlElement("h3", "recognition-heading", "Recognition"));
+        const honorsListElement = createHtmlElement("div", "honors-list");
+        portfolioData.honors.forEach((honorEntry) => {
+          const honorItemElement = createHtmlElement("div", "honor-item");
+          const headingElement = createHtmlElement("h3");
+          if (honorEntry.href) {
+            headingElement.appendChild(createAnchorElement(honorEntry.href, honorEntry.title, { className: "honor-link" }));
+          } else {
+            headingElement.textContent = honorEntry.title;
+          }
+          honorItemElement.appendChild(headingElement);
+
+          const honorMetadata = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
+          if (honorMetadata.length) {
+            honorItemElement.appendChild(createHtmlElement("div", "meta", honorMetadata.join(" | ")));
+          }
+          if (honorEntry.body) {
+            honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
+          }
+          honorsListElement.appendChild(honorItemElement);
+        });
+        educationSectionElement.appendChild(honorsListElement);
+      }
+
       contentElement.appendChild(educationSectionElement);
     }
 
-    // Honors
-    if (portfolioData.honors && portfolioData.honors.length) {
-      const honorsSectionElement = openSection("honors", "Honors");
-      honorsSectionElement.appendChild(createHtmlElement("h2", null, "Honors"));
-      const honorsListElement = createHtmlElement("div", "honors-list");
-      portfolioData.honors.forEach((honorEntry) => {
-        const honorItemElement = createHtmlElement("div", "honor-item");
-        
-        const headingElement = createHtmlElement("h3");
-        if (honorEntry.href) {
-          const honorLinkElement = createHtmlElement("a", "honor-link", escapeHtml(honorEntry.title));
-          honorLinkElement.href = honorEntry.href;
-          honorLinkElement.target = "_blank";
-          honorLinkElement.rel = "noopener noreferrer";
-          headingElement.appendChild(honorLinkElement);
-        } else {
-          headingElement.textContent = honorEntry.title;
-        }
-        honorItemElement.appendChild(headingElement);
+    // Capabilities
+    const capabilityData = portfolioData.capabilities || portfolioData.skills;
+    if (capabilityData) {
+      const capabilitiesSectionElement = openSection("capabilities", "Capabilities");
+      capabilitiesSectionElement.appendChild(createHtmlElement("h2", null, "Capabilities"));
 
-        const honorMetadata = [honorEntry.org, honorEntry.dates].filter(Boolean).map(escapeHtml);
-        if (honorMetadata.length) {
-          honorItemElement.appendChild(createHtmlElement("div", "meta", honorMetadata.join(" | ")));
-        }
-        if (honorEntry.body) {
-          honorItemElement.appendChild(createHtmlElement("p", null, escapeHtml(honorEntry.body)));
-        }
-        honorsListElement.appendChild(honorItemElement);
-      });
-      honorsSectionElement.appendChild(honorsListElement);
-      contentElement.appendChild(honorsSectionElement);
-    }
-
-    // Skills
-    if (portfolioData.skills) {
-      const skillsSectionElement = openSection("skills", "Skills");
-      skillsSectionElement.appendChild(createHtmlElement("h2", null, "Skills"));
-      
-      const skillGroups = Array.isArray(portfolioData.skills)
-        ? portfolioData.skills
+      const capabilityGroups = Array.isArray(capabilityData)
+        ? capabilityData
         : [
-            { category: "Working with", items: portfolioData.skills.working },
-            { category: "Learning", items: portfolioData.skills.learning }
+            { category: "Working with", items: capabilityData.working },
+            { category: "Learning", items: capabilityData.learning }
           ];
 
-      skillGroups.forEach((skillGroup) => {
-        if (!skillGroup.items || !skillGroup.items.length) return;
-        const skillsetGroupElement = createHtmlElement("div", "skillset");
-        skillsetGroupElement.appendChild(createHtmlElement("h3", "skillset-heading", escapeHtml(skillGroup.category)));
-        const itemsJoinedString = skillGroup.items.map(escapeHtml).join(" | ");
-        const skillsInlineElement = createHtmlElement("p", "skills-inline", itemsJoinedString);
-        skillsetGroupElement.appendChild(skillsInlineElement);
-        skillsSectionElement.appendChild(skillsetGroupElement);
+      capabilityGroups.forEach((capabilityGroup) => {
+        if (!capabilityGroup.items || !capabilityGroup.items.length) return;
+        const capabilityGroupElement = createHtmlElement("div", "capability-group");
+        capabilityGroupElement.appendChild(createHtmlElement("h3", "capability-heading", escapeHtml(capabilityGroup.category)));
+        const itemsJoinedString = capabilityGroup.items.map(escapeHtml).join(" | ");
+        const capabilitiesInlineElement = createHtmlElement("p", "capabilities-inline", itemsJoinedString);
+        capabilityGroupElement.appendChild(capabilitiesInlineElement);
+        capabilitiesSectionElement.appendChild(capabilityGroupElement);
       });
-      contentElement.appendChild(skillsSectionElement);
+
+      if (portfolioData.developmentNote) {
+        const developmentNoteElement = createHtmlElement("p", "capabilities-note");
+        developmentNoteElement.appendChild(createHtmlElement("strong", null, "Software development approach: "));
+        developmentNoteElement.appendChild(document.createTextNode(portfolioData.developmentNote));
+        capabilitiesSectionElement.appendChild(developmentNoteElement);
+      }
+
+      contentElement.appendChild(capabilitiesSectionElement);
     }
 
     // Sidebar
@@ -429,15 +409,6 @@
     }
     if (portfolioData.location) {
       sidebarElement.appendChild(createHtmlElement("p", "location", escapeHtml(portfolioData.location)));
-    }
-
-    if (navigationTargetSections.length) {
-      const navigationElement = createHtmlElement("nav", "nav");
-      navigationTargetSections.forEach((navigationTarget) => {
-        navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
-
-      });
-      sidebarElement.appendChild(navigationElement);
     }
 
     if (portfolioData.links && portfolioData.links.length) {
@@ -450,8 +421,17 @@
       sidebarElement.appendChild(contactInfoContainer);
     }
 
-    // Theme toggle
-    createThemeToggleButton(document.body);
+    // Theme control stays near the identity/contact actions in source order.
+    createThemeToggleButton(sidebarElement);
+
+    if (navigationTargetSections.length) {
+      const navigationElement = createHtmlElement("nav", "nav");
+      navigationElement.setAttribute("aria-label", "Portfolio sections");
+      navigationTargetSections.forEach((navigationTarget) => {
+        navigationElement.appendChild(createAnchorElement("#" + navigationTarget.id, navigationTarget.label));
+      });
+      sidebarElement.appendChild(navigationElement);
+    }
 
     /* Footer */
     const footerElement = document.getElementById("footer");
@@ -467,13 +447,6 @@
     function updateScrollState() {
       const scrollPosition = window.scrollY;
       const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-      const scrollProgressBar = document.getElementById("scroll-progress-bar");
-      if (scrollProgressBar) {
-        scrollProgressBar.style.width = (maximumScrollableHeight > 0
-          ? (scrollPosition / maximumScrollableHeight) * 100
-          : 0) + "%";
-      }
 
       if (!sectionElements.length) return;
 
@@ -500,7 +473,13 @@
       navigationLinks.forEach((navigationLinkElement) => {
         const href = navigationLinkElement.getAttribute("href");
         if (href && href.startsWith("#")) {
-          navigationLinkElement.classList.toggle("active", href.slice(1) === activeSectionId);
+          const isActiveSection = href.slice(1) === activeSectionId;
+          navigationLinkElement.classList.toggle("active", isActiveSection);
+          if (isActiveSection) {
+            navigationLinkElement.setAttribute("aria-current", "location");
+          } else {
+            navigationLinkElement.removeAttribute("aria-current");
+          }
         }
       });
     }
@@ -545,55 +524,6 @@
     toggleContainerElement.appendChild(themeToggleButton);
   }
 
-  const lightboxModalElement = document.getElementById("lightbox-overlay-modal");
-  const lightboxImageElement = document.getElementById("lightbox-enlarged-image-display");
-  const lightboxCaptionElement = document.getElementById("lightbox-image-caption-text");
-  const lightboxCloseButtonElement = document.getElementById("lightbox-close-control-button");
-  let elementToFocusOnClose = null;
-
-  function openLightbox(imageSource, imageAlternativeText, imageCaptionText) {
-    elementToFocusOnClose = document.activeElement;
-    lightboxImageElement.src = imageSource;
-    lightboxImageElement.alt = imageAlternativeText;
-    lightboxCaptionElement.textContent = imageCaptionText || imageAlternativeText;
-    lightboxModalElement.classList.add("active");
-    document.body.style.overflow = "hidden";
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        lightboxCloseButtonElement.focus();
-      });
-    });
-    document.addEventListener("keydown", handleLightboxKeyDown);
-  }
-
-  function closeLightbox() {
-    lightboxModalElement.classList.remove("active");
-    lightboxImageElement.src = "";
-    lightboxImageElement.alt = "";
-    lightboxCaptionElement.textContent = "";
-    document.body.style.overflow = "";
-    document.removeEventListener("keydown", handleLightboxKeyDown);
-    if (elementToFocusOnClose) {
-      elementToFocusOnClose.focus();
-      elementToFocusOnClose = null;
-    }
-  }
-
-  function handleLightboxKeyDown(keyboardEvent) {
-    if (keyboardEvent.key === "Escape") {
-      closeLightbox();
-    } else if (keyboardEvent.key === "Tab") {
-      keyboardEvent.preventDefault();
-      lightboxCloseButtonElement.focus();
-    }
-  }
-
-  lightboxCloseButtonElement.addEventListener("click", closeLightbox);
-  lightboxModalElement.addEventListener("click", (mouseEvent) => {
-    if (mouseEvent.target === lightboxModalElement) {
-      closeLightbox();
-    }
-  });
 
   renderPortfolio(DATA);
   </script>

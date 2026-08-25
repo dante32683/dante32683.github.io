@@ -58,17 +58,20 @@ that one person with a text editor can maintain this.
   subtitle: "What it is",                            // optional, shown lighter
   org: "Where it happened",
   dates: "Sep 2026 to present",
+  status: "Active prototype",                          // clear human-readable state
   featured: true,                                    // true for full featured cards
   role: ["Product direction", "Architecture"],       // what you personally did and decided
   tech: ["C#", ".NET", "PowerToys Command Palette SDK"], // project dependencies, not personal skill claims
   method: "AI-assisted development",                 // optional, rendered inline quietly
   body: "One paragraph. Concrete details, what the system does, and what YOU did.",
-  link: { label: "Source", href: "https://..." },   // delete this line if none
-  images: [                                          // optional image gallery
+  link: { label: "View source on GitHub", href: "https://..." }, // delete if none
+  images: [                                          // homepage uses first image only
     {
       src: "images/example.webp",
-      alt: "Descriptive alt text for accessibility and lightbox",
-      caption: "Optional context or attribution caption shown below thumbnail",
+      alt: "Descriptive alt text for accessibility",
+      caption: "Optional context or attribution caption shown below image",
+      width: 1600,
+      height: 900,
     },
   ],
 },
@@ -81,18 +84,12 @@ that one person with a text editor can maintain this.
   title: "Short name",
   subtitle: "What it is",
   org: "Personal project",
-  dates: "ongoing",
+  dates: "Jul 2026 to present",
+  status: "Maintained",
   featured: false,
   compactMeta: ["AutoHotkey v2", "Windows"],        // short inline tools list
   body: "One concise paragraph explaining the project and your role.",
-  link: { label: "Source", href: "https://..." },
-  images: [                                          // max 2 images for compact entries
-    {
-      src: "images/example.webp",
-      alt: "Descriptive alt text",
-      caption: "Short caption",
-    },
-  ],
+  link: { label: "View source on GitHub", href: "https://..." },
 },
 ```
 
@@ -125,7 +122,7 @@ you do not add nav links by hand.
 },
 ```
 
-**Add a skill group** - add an object to the `skills` array:
+**Add a capability group** - add an object to the `capabilities` array:
 
 ```js
 {
@@ -147,7 +144,7 @@ The fastest way to make this site look fake is to write like a chatbot or overst
 
 ### Attribution standards (getting credit honestly)
 - **Separate personal role from project technology:** Just because a project uses C#, AutoHotkey, or Rust does NOT mean those are personal programming proficiencies. List them under `tech` on the project card, never under personal skills unless you can code in them independently.
-- **Disclose AI use once, clearly:** State the AI-assisted workflow in the bio/intro and use the `method` field on project cards. Do not repeatedly apologize for or mention AI in every prose paragraph.
+- **Disclose AI use once, clearly:** Keep the detailed software authorship boundary in a quiet Capabilities / development note and use the `method` field on project cards only where it helps. Do not make AI process the dominant opening message or repeat it in every prose paragraph.
 - **Allowed verbs:** "Built / developed" (when you owned the idea, direction, testing, iteration, and result), "Designed" (for architecture, UX, workflows, or CAD), "Tested, maintained, evaluated, integrated, researched" (when factually true).
 - **Forbidden claims:** Do not say "I wrote the C# code", "I coded...", or claim language mastery for languages you cannot independently program in without AI.
 
@@ -179,7 +176,9 @@ make it concrete.
 - No unnecessary external runtime dependencies: no CDNs, no web fonts, and no additional trackers. Cloudflare Web Analytics is intentionally enabled at the edge for aggregate traffic and performance measurement; adding any other analytics or tracking requires an explicit decision.
 - No JavaScript libraries. The renderer in `index.html` is plain JS and stays
   that way.
-- Keep each entry's `body` to roughly 45 words or less.
+- Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
+- Homepage featured projects use one meaningful evidence image. Compact Other Work entries normally stay text-first without image galleries.
+- Normal external links open in the same tab. Do not add `target="_blank"` by default.
 - Test before you push: open `index.html` in a browser and confirm it renders
   in both light and dark mode (toggle your OS theme), with no blank labels and
   no console errors.
@@ -204,8 +203,7 @@ written.
 - **Skip empty fields, never render blanks.** Guard every optional field with
   `if (portfolioEntry.field)` so a half-filled entry can never show an empty label. This
   is what lets `data.js` editors delete any line that does not apply.
-- **External links get `target="_blank"` and `rel="noopener noreferrer"`.**
-  `createAnchorElement()` already does this for `http(s)` links; rely on it.
+- **Normal external links stay in the current tab.** Use ordinary anchors unless a specific destination genuinely needs a new browsing context.
 - Plain ES5/ES6, no transpiler. `const`/`let`, arrow functions, and
   `addEventListener` are fine; anything needing a build step is not.
 
@@ -216,10 +214,10 @@ written.
 - **Use the semantic typography scale.** Primary project, experience, education,
   and honor titles use `--text-title`; primary descriptions use `--text-body`;
   metadata uses `--text-meta`; subsection headings use `--text-subsection`;
-  coursework and skills use `--text-supporting`. Compact Other Work intentionally
+  coursework and capabilities use `--text-supporting`. Compact Other Work intentionally
   uses the smaller `--text-title-compact` and
-  `--text-body-compact` roles. Nested headings such as `Other Work` and Skills
-  categories must remain visually secondary to top-level section headings. Dates
+  `--text-body-compact` roles. Nested headings such as `Other Work`, Recognition,
+  and Capabilities categories must remain visually secondary to top-level section headings. Dates
   belong in metadata, not title-sized subtitle text. Do not introduce one-off font
   sizes per section.
 - **Dark mode is defined twice** (the `prefers-color-scheme` block and the

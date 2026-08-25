@@ -19,15 +19,19 @@ const DATA = {
 
   /* --- Identity: shown in the sidebar and the browser tab. -------------- */
   name: "Dante Martin",
-  tagline: "Civil engineering student building software and engineering projects.",
+  tagline: "Civil engineering student | Engineering projects, software, and automation.",
   location: "Santa Rosa, California",
 
   /* Intro: two or three plain sentences. Say what you do and what you are
      after. No metaphors, no "passionate about", no em dashes. */
-  intro: "I study civil engineering at Santa Rosa Junior College and build " +
-    "software and engineering projects alongside my coursework. I use coding " +
-    "agents for most software implementation, then guide the design, research " +
-    "the technical details, and test and revise the result until it works.",
+  intro: "I study civil engineering at Santa Rosa Junior College and build practical " +
+    "tools and systems for engineering work. My projects range from hands-on design " +
+    "and team operations to Windows software and automation.",
+
+  /* Keep software authorship disclosure clear but secondary to the identity. */
+  developmentNote: "For software projects, I use coding agents for most implementation. " +
+    "I define the behavior and constraints, make architecture and product decisions, " +
+    "research technical details, then review, test, debug, and maintain the result.",
 
   /* Contact links. Delete any line you do not want shown. */
   links: [
@@ -47,29 +51,23 @@ const DATA = {
       title: "CmdPal Extension Suite",
       subtitle: "PowerToys Command Palette extensions",
       org: "Personal project",
-      dates: "ongoing",
+      dates: "2026",
+      status: "Open source; last updated July 2026",
       featured: true,
       role: ["Product direction", "Architecture", "Testing & maintenance"],
       tech: ["C#", ".NET", "PowerToys Command Palette SDK"],
       method: "AI-assisted development",
-      body: "Designed a suite of Windows PowerToys Command Palette extensions to add missing system controls and local NPU utilities, including an image editor and developer tools, published as open source on GitHub.",
-      link: { label: "Source", href: "https://github.com/dante32683/cmdpal-extension-suite" },
+      body: "Designed a suite of PowerToys Command Palette extensions to fill gaps in Windows workflows, including system controls, local NPU image tools, screenshot organization, clipboard utilities, and developer tools. The current codebase packages the extensions independently and is published as open source.",
+      link: { label: "View source on GitHub", href: "https://github.com/dante32683/cmdpal-extension-suite" },
       images: [
         {
           src: "images/cmdpal-image-editor.webp",
           alt: "NPU Image Editor extension tool actions in PowerToys Command Palette",
-        },
-        {
-          src: "images/cmdpal-organize.webp",
-          alt: "NPU Organize screenshot utility in PowerToys Command Palette",
-        },
-        {
-          src: "images/cmdpal-code.webp",
-          alt: "NPU Developer Dev Toolbox code utility in PowerToys Command Palette",
-        },
-        {
-          src: "images/cmdpal-settings-1.webp",
-          alt: "Action Center, Awake, and Clipboard extension settings toggles",
+          caption: "NPU Image Editor actions inside PowerToys Command Palette",
+          width: 1920,
+          height: 1179,
+          loading: "eager",
+          fetchPriority: "high",
         },
       ],
     },
@@ -77,37 +75,31 @@ const DATA = {
       title: "AHK Scripting",
       subtitle: "Personal desktop automation",
       org: "Personal project",
-      dates: "ongoing",
+      dates: "Jul 2026 to present",
+      status: "Maintained daily-use toolkit",
       featured: false,
       compactMeta: ["AutoHotkey v2", "Windows"],
-      body: "Designed and maintain a daily-use automation system for hotkeys, window tiling, and virtual desktops using AI-assisted implementation.",
-      link: { label: "Source", href: "https://github.com/dante32683/ahk-scripting" },
+      body: "Designed and maintain a daily-use AutoHotkey v2 toolkit for a dedicated Caps Lock shortcut layer, window tiling and focus navigation, virtual desktops, media controls, and other Windows automation.",
+      link: { label: "View source on GitHub", href: "https://github.com/dante32683/ahk-scripting" },
     },
     {
       title: "Baja SAE",
       subtitle: "Member onboarding and team organization",
       org: "SRJC Baja SAE",
       dates: "June 2026 to present",
+      status: "Active for Fall 2026",
       featured: true,
       role: ["Onboarding design", "Member organization", "Team operations", "Training systems"],
       tech: ["Canvas LMS"],
-      body: "Organize onboarding material and member assignments for the racing team. " +
-        "Built a centralized Canvas training system with study guides, quiz pools, and practical qualification checkoffs to streamline member manufacturing training.",
-      link: { label: "SRJC Baja SAE", href: "https://srjcsaeclub.org" },
+      body: "Built and maintain a centralized Canvas training system for SRJC Baja SAE with study guides, six randomized qualification quizzes, and supervisor-recorded practical checkoffs. I also support new-member onboarding and team organization, including Fall 2026 status planning and recruitment materials.",
+      link: { label: "Visit SRJC Baja SAE", href: "https://srjcsaeclub.org" },
       images: [
         {
           src: "images/baja-canvas-modules.webp",
           alt: "Canvas module structure showing the sequence of manufacturing study guides, quizzes, and practical qualifications",
           caption: "Manufacturing training sequence organized in Canvas",
-        },
-        {
-          src: "images/baja-canvas-quiz.webp",
-          alt: "Canvas shop safety qualification quiz with randomized question pools",
-        },
-        {
-          src: "images/baja-chassis.webp",
-          alt: "SRJC Baja SAE steel spaceframe chassis",
-          caption: "SRJC Baja SAE competition chassis",
+          width: 1024,
+          height: 687,
         },
       ],
     },
@@ -116,6 +108,7 @@ const DATA = {
       subtitle: "Wildfire-detection fixed-wing UAV",
       org: "The Engineering Club, SRJC",
       dates: "Sep 2025 to May 2026",
+      status: "Archived after early design and partial build work",
       featured: true,
       role: [
         "Tail design",
@@ -123,23 +116,15 @@ const DATA = {
         "Wing and thrust research",
         "Team leadership",
       ],
-      body: "Contributed to the tail design, compiled the bill of materials, researched wing configuration and thrust requirements, and helped lead the student team through the early design process.",
-      link: { label: "The Engineering Club", href: "https://clubs.santarosa.edu/tec" },
+      body: "Worked on a student fixed-wing UAV concept for thermal wildfire and hotspot detection. I contributed to the tail design, bill of materials, wing configuration and thrust research, and team leadership. The project reached early design and partial build work, then stalled and was archived in May 2026.",
+      link: { label: "View The Engineering Club at SRJC", href: "https://clubs.santarosa.edu/tec" },
       images: [
-        {
-          src: "images/pigeon-uav.webp",
-          alt: "Fixed-wing UAV fuselage design overview",
-          caption: "Team fuselage concept render",
-        },
         {
           src: "images/pigeon-tail.webp",
           alt: "UAV V-tail and landing gear mount design detail",
-          caption: "Team V-tail concept render",
-        },
-        {
-          src: "images/pigeon-motor.webp",
-          alt: "Testing brushless motor weight on digital scale (1186g)",
-          caption: "Brushless motor bench test",
+          caption: "Team V-tail concept render from the early design phase; I contributed to the tail design",
+          width: 1920,
+          height: 842,
         },
       ],
     },
@@ -148,21 +133,10 @@ const DATA = {
       subtitle: "Foxtail grass seed canine face guard",
       org: "PLTW Design and Development",
       dates: "2024",
+      status: "Completed",
       featured: false,
       compactMeta: ["Agile methodology", "Research", "Iterative prototyping"],
-      body: "Completed a semester-long design project using Agile methodology to research, plan, prototype, and iteratively refine a breathable foxtail-protection face guard. Tested airflow and incorporated veterinarian feedback into later iterations.",
-      images: [
-        {
-          src: "images/foxtail-prototype-final.webp",
-          alt: "Final prototype canine protective face guard with mesh enclosure and buckle",
-          caption: "Final prototype",
-        },
-        {
-          src: "images/foxtail-prototype-initial.webp",
-          alt: "Initial mesh face guard prototype with elastic opening",
-          caption: "Initial prototype",
-        },
-      ],
+      body: "Completed a semester-long PLTW design project using Agile methods to research and iteratively prototype a breathable face guard intended to reduce foxtail grass-seed exposure in dogs. Tested airflow and incorporated veterinarian feedback into later prototypes.",
     },
   ],
 
@@ -188,8 +162,8 @@ const DATA = {
   education: [
     {
       school: "Santa Rosa Junior College",
-      dates: "2023-present",
-      detail: "Civil Engineering transfer track | 4.0 GPA | Dean's Highest Honors | Front-End Development certificate | Transfer planned Fall 2027",
+      dates: "2023 to present",
+      detail: "Civil Engineering transfer track | GPA 4.00 | Dean's Highest Honors, Fall 2025 and Spring 2026 | Web and Mobile Front-End Development certificate | Expected transfer: Fall 2027",
       coursework: [
         {
           label: "Current coursework",
@@ -208,7 +182,7 @@ const DATA = {
     },
   ],
 
-  /* HONORS --------------------------------------------------------------- */
+  /* RECOGNITION ---------------------------------------------------------- */
   honors: [
     {
       title: "Civil Engineering Transfer Scholarship",
@@ -217,7 +191,7 @@ const DATA = {
       href: "https://srjcstaff.santarosa.edu/~vbertsch/2026ASCE-SRJC-ScholarshipApp.pdf",
     },
     {
-      title: "National Merit Commended Scholar",
+      title: "National Merit Commended Student",
       org: "National Merit Scholarship Corporation",
       dates: "2025",
       href: "https://www.nationalmerit.org/s/1758/interior.aspx?gid=2&pgid=1180&sid=1758",
@@ -230,42 +204,37 @@ const DATA = {
     },
   ],
 
-  /* SKILLS - plain, interview-defensible categories. --------------------- */
-  skills: [
+  /* CAPABILITIES - evidence-linked, interview-defensible claims. --------- */
+  capabilities: [
     {
-      category: "Practical tools and environments",
+      category: "Engineering and design",
       items: [
+        "Design research and iterative prototyping (Project Pigeon, dog protection device)",
+        "Bill of materials development (Project Pigeon)",
+      ],
+    },
+    {
+      category: "Software and automation",
+      items: [
+        "Windows automation and workflow design (CmdPal, AHK toolkit)",
         "Git and GitHub fundamentals",
         "Bash / Linux command line",
-        "Windows setup and troubleshooting",
-        "Excel",
+        "Basic Python and C++",
       ],
     },
     {
-      category: "Foundational programming knowledge",
+      category: "Documentation and team operations",
       items: [
-        "Basic Python",
-        "Basic C++",
-        "Prior HTML/CSS coursework",
-        "Prior JavaScript coursework",
-      ],
-    },
-    {
-      category: "AI-assisted development",
-      items: [
-        "Defining project behavior",
-        "Breaking work into tasks",
-        "Directing coding agents",
-        "Researching APIs and constraints",
-        "Testing and debugging",
-        "Reviewing and maintaining generated code",
+        "Training and onboarding systems (Baja SAE)",
+        "Project documentation and team organization (Baja SAE, Project Pigeon)",
+        "Technical tutoring and explanation (STEM Success Center)",
       ],
     },
     {
       category: "Currently learning",
       items: [
-        "MATLAB",
-        "FEA / ANSYS",
+        "Python fluency for engineering work",
+        "MATLAB through current coursework",
       ],
     },
   ],

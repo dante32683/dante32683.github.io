@@ -15,6 +15,7 @@
 
 /* --- THEME: edit these to re-colour the site. -------------------------- */
 :root {
+  color-scheme: light dark;
   --bg:      #fbfbfa;   /* 60% - page background          */
   --ink:     #17191c;   /* 30% - body text                */
   --muted:   #52565c;   /* secondary text (optimized contrast) */
@@ -28,13 +29,13 @@
   /* Typography scale. Reuse these semantic roles instead of introducing
      one-off sizes inside individual sections. */
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --text-name: 1.5rem;
+  --text-name: 2rem;
   --text-lead: 1.15rem;
   --text-title: 1.15rem;
   --text-title-compact: 1.1rem;
   --text-body: 1rem;
   --text-body-compact: 0.95rem;
-  --text-section: 1.05rem;
+  --text-section: 1.25rem;
   --text-subsection: 0.95rem;
   --text-supporting: 0.9rem;
   --text-link-small: 0.85rem;
@@ -42,7 +43,6 @@
   --text-caption: 0.8rem;
   --text-label: 0.78rem;
   --text-icon: 1.15rem;
-  --text-icon-large: 2rem;
   --text-print: 11pt;
   --leading-name: 1.15;
   --leading-body: 1.6;
@@ -56,10 +56,13 @@
    the toggle. Keep the two value lists below identical. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788; --accent-tint: rgba(82, 183, 136, 0.08);
   }
 }
+:root[data-theme="light"] { color-scheme: light; }
 :root[data-theme="dark"] {
+  color-scheme: dark;
   --bg: #121316; --ink: #e8e9ea; --muted: #9aa0a6; --faint: #2c2f34; --accent: #52b788; --accent-tint: rgba(82, 183, 136, 0.08);
 }
 
@@ -85,6 +88,20 @@ a:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--ink);
+  background: var(--bg);
+  transform: translateY(calc(-100% - 1rem));
+}
+.skip-link:focus { transform: translateY(0); }
 
 /* --- LAYOUT: sidebar + content ----------------------------------------- */
 .layout {
@@ -137,19 +154,15 @@ a:focus-visible, button:focus-visible {
   left: 0;
 }
 
-/* Theme toggle: a clean, minimal icon button pinned to the top-right of the
-   viewport, so it stays put while scrolling and never crowds the identity
-   block. The page background tint keeps it legible over any content. */
+/* Theme toggle: restrained, and kept with identity/contact actions so visual
+   placement and keyboard source order agree. */
 .theme-toggle {
-  position: fixed;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 10;
+  margin-top: 1.25rem;
   background: var(--bg);
   border: 1px solid var(--faint);
   border-radius: 4px;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -174,7 +187,7 @@ section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 h2 {
   font-size: var(--text-section);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 1.75rem;
@@ -260,7 +273,16 @@ h3 .subtitle::before,
 .coursework-line { margin-top: 0; font-size: var(--text-supporting); line-height: var(--leading-body); color: var(--ink); }
 .coursework-label { font-weight: 600; color: var(--muted); margin-right: 0.35rem; }
 
-/* --- HONORS ------------------------------------------------------------ */
+/* --- RECOGNITION ------------------------------------------------------- */
+.recognition-heading {
+  margin-top: 2.75rem;
+  margin-bottom: 1.35rem;
+  font-size: var(--text-subsection);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: var(--leading-title);
+  color: var(--muted);
+}
 .honors-list {
   display: flex;
   flex-direction: column;
@@ -280,16 +302,16 @@ h3 .subtitle::before,
   text-decoration-color: var(--accent);
 }
 
-.skillset { margin-bottom: 1.75rem; }
-.skillset:last-child { margin-bottom: 0; }
-.skillset-heading {
+.capability-group { margin-bottom: 1.75rem; }
+.capability-group:last-of-type { margin-bottom: 0; }
+.capability-heading {
   font-size: var(--text-subsection);
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: var(--leading-title);
   color: var(--muted);
 }
-.skills-inline {
+.capabilities-inline {
   margin-top: 0.45rem;
   font-size: var(--text-supporting);
   line-height: var(--leading-body);
@@ -297,28 +319,11 @@ h3 .subtitle::before,
 }
 
 
-/* --- SCROLL PROGRESS BAR ----------------------------------------------- */
-.scroll-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent);
-  width: 0%;
-  z-index: 1000;
-  transition: width 0.05s ease;
-}
-
-/* --- PROJECTS GALLERY -------------------------------------------------- */
+/* --- PROJECT EVIDENCE IMAGE ------------------------------------------- */
 .project-images-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr;
   margin-top: 1rem;
-}
-
-.project-images-grid.grid-4 {
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .project-image-card {
@@ -328,29 +333,15 @@ h3 .subtitle::before,
 }
 
 .project-image-container {
-  position: relative;
   border: 1px solid var(--faint);
   border-radius: 6px;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
-  cursor: zoom-in;
   background: var(--faint);
-  transition: border-color 0.15s;
-}
-
-.project-image-container:hover {
-  border-color: var(--accent);
-}
-
-.project-image-container:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
 }
 
 .project-image-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -361,96 +352,16 @@ h3 .subtitle::before,
   margin-top: 0.4rem;
 }
 
-@media (min-width: 24rem) and (max-width: 50rem) {
-  .project-images-grid,
-  .project-images-grid.grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-}
-
-@media (max-width: 23.99rem) {
-  .project-images-grid,
-  .project-images-grid.grid-4 {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-}
-
-.lightbox-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(18, 19, 22, 0.95);
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
-
-.lightbox-modal.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.lightbox-image-element {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: scale(0.96);
-  transition: transform 0.2s ease;
-}
-
-.lightbox-modal.active .lightbox-image-element {
-  transform: scale(1);
-}
-
-.lightbox-caption-text {
-  color: #9aa0a6;
+.capabilities-note {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--faint);
+  color: var(--muted);
   font-size: var(--text-supporting);
-  line-height: var(--leading-caption);
-  margin-top: 1.25rem;
-  text-align: center;
-  max-width: 80%;
+  line-height: var(--leading-body);
 }
+.capabilities-note strong { color: var(--ink); }
 
-.lightbox-close-button {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: transparent;
-  border: none;
-  color: #e8e9ea;
-  font-size: var(--text-icon-large);
-  cursor: pointer;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.15s, color 0.15s;
-}
-
-.lightbox-close-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-.lightbox-close-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
 /* --- FOOTER ------------------------------------------------------------ */
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   padding: 1.5rem 0 2.5rem; font-size: var(--text-meta); color: var(--muted); transition: border-color 0.3s ease; }
@@ -513,12 +424,23 @@ a:hover .arrow {
   transform: translate(2px, -2px);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  a:hover .arrow { transform: none; }
+}
+
 /* --- PRINT STYLES ------------------------------------------------------ */
 @media print {
   body { background: #fff; color: #000; font-size: var(--text-print); }
   .layout { display: block; padding: 0; position: static; }
   .sidebar { position: static; padding: 0 0 2rem; border-bottom: 1px solid var(--faint); }
-  .nav, .theme-toggle { display: none; }
+  .nav, .theme-toggle, .skip-link { display: none; }
   .content { padding: 2rem 0 0; max-width: none; }
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
   section:first-of-type { border-top: none; }
