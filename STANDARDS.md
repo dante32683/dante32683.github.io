@@ -177,7 +177,7 @@ make it concrete.
 - No JavaScript libraries. The renderer in `index.html` is plain JS and stays
   that way.
 - Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
-- Homepage featured projects use one meaningful evidence image. Compact Other Work entries normally stay text-first without image galleries.
+- Homepage featured projects use one meaningful evidence image. That image may open the shared native `<dialog>` preview for larger inspection. Compact Other Work entries normally stay text-first without image galleries.
 - Normal external links open in the same tab. Do not add `target="_blank"` by default.
 - Test before you push: open `index.html` in a browser and confirm it renders
   in both light and dark mode (toggle your OS theme), with no blank labels and
@@ -220,6 +220,7 @@ written.
   and Capabilities categories must remain visually secondary to top-level section headings. Dates
   belong in metadata, not title-sized subtitle text. Do not introduce one-off font
   sizes per section.
+- **Theme control:** keep the button near identity/contact in DOM/tab order, while CSS may visually fix it at the top-right.
 - **Dark mode is defined twice** (the `prefers-color-scheme` block and the
   `[data-theme="dark"]` block) and the two value lists must stay identical. If
   you add a variable or a dark override, update both.

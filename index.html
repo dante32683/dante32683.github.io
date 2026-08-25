@@ -6,7 +6,7 @@
   <!-- Title and description are set from data.js at load time. -->
   <title>Dante Martin | Engineering &amp; Software Portfolio</title>
   <meta name="description" content="Dante Martin - Civil engineering student at Santa Rosa Junior College. Software and engineering projects, technical systems, and academic coursework.">
-  <link rel="stylesheet" href="styles.css?v=1.4">
+  <link rel="stylesheet" href="styles.css?v=1.5">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
 
   <!-- Search and social metadata -->
@@ -53,6 +53,13 @@
     <footer id="footer"></footer>
   </div>
 
+  <dialog id="image-preview-dialog" class="image-preview-dialog" aria-label="Image preview">
+    <div class="image-preview-content">
+      <button id="image-preview-close" class="image-preview-close" type="button" aria-label="Close image preview">&times;</button>
+      <img id="image-preview-image" class="image-preview-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+      <p id="image-preview-caption" class="image-preview-caption"></p>
+    </div>
+  </dialog>
 
   <script src="data.js"></script>
   <script>
@@ -87,6 +94,71 @@
       anchorElement.className = renderingOptions.className;
     }
     return anchorElement;
+  }
+
+  const imagePreviewDialogElement = document.getElementById("image-preview-dialog");
+  const imagePreviewImageElement = document.getElementById("image-preview-image");
+  const imagePreviewCaptionElement = document.getElementById("image-preview-caption");
+  const imagePreviewCloseElement = document.getElementById("image-preview-close");
+  let imagePreviewTriggerElement = null;
+
+  function openImagePreview(imageMetadata, triggerElement) {
+    imagePreviewTriggerElement = triggerElement;
+    imagePreviewImageElement.src = imageMetadata.src;
+    imagePreviewImageElement.alt = imageMetadata.alt || "";
+    imagePreviewCaptionElement.textContent = imageMetadata.caption || imageMetadata.alt || "";
+    document.body.classList.add("image-preview-open");
+    imagePreviewDialogElement.showModal();
+    imagePreviewCloseElement.focus();
+  }
+
+  function closeImagePreview() {
+    if (imagePreviewDialogElement.open) imagePreviewDialogElement.close();
+  }
+
+  imagePreviewCloseElement.addEventListener("click", closeImagePreview);
+  imagePreviewDialogElement.addEventListener("close", () => {
+    document.body.classList.remove("image-preview-open");
+    imagePreviewImageElement.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    imagePreviewImageElement.alt = "";
+    imagePreviewCaptionElement.textContent = "";
+    if (imagePreviewTriggerElement) {
+      imagePreviewTriggerElement.focus();
+      imagePreviewTriggerElement = null;
+    }
+  });
+
+  imagePreviewDialogElement.addEventListener("click", (event) => {
+    if (event.target === imagePreviewDialogElement) closeImagePreview();
+  });
+
+  function createProjectImageFigure(imageMetadata) {
+    const imageCardWrapper = createHtmlElement("figure", "project-image-card");
+    const imageButtonElement = createHtmlElement("button", "project-image-button");
+    imageButtonElement.type = "button";
+    imageButtonElement.setAttribute("aria-label", "Enlarge image: " + (imageMetadata.alt || "Project image"));
+    imageButtonElement.setAttribute("aria-haspopup", "dialog");
+    imageButtonElement.setAttribute("aria-controls", "image-preview-dialog");
+
+    const imageTag = document.createElement("img");
+    imageTag.src = imageMetadata.src;
+    imageTag.alt = "";
+    imageTag.loading = imageMetadata.loading || "lazy";
+    imageTag.decoding = "async";
+    if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
+    if (imageMetadata.width) imageTag.width = imageMetadata.width;
+    if (imageMetadata.height) imageTag.height = imageMetadata.height;
+
+    imageButtonElement.appendChild(imageTag);
+    imageButtonElement.addEventListener("click", () => openImagePreview(imageMetadata, imageButtonElement));
+    imageCardWrapper.appendChild(imageButtonElement);
+
+    if (imageMetadata.caption) {
+      const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
+      imageCardWrapper.appendChild(captionElement);
+    }
+
+    return imageCardWrapper;
   }
 
   // One project/experience entry.
@@ -129,27 +201,7 @@
       if (portfolioEntry.images && portfolioEntry.images.length) {
         const imagesGridContainer = createHtmlElement("div", "project-images-grid");
         portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
-          const imageCardWrapper = createHtmlElement("figure", "project-image-card");
-          const imageContainerElement = createHtmlElement("div", "project-image-container");
-
-          const imageTag = document.createElement("img");
-          imageTag.src = imageMetadata.src;
-          imageTag.alt = imageMetadata.alt;
-          imageTag.loading = imageMetadata.loading || "lazy";
-          imageTag.decoding = "async";
-          if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
-          if (imageMetadata.width) imageTag.width = imageMetadata.width;
-          if (imageMetadata.height) imageTag.height = imageMetadata.height;
-
-          imageContainerElement.appendChild(imageTag);
-          imageCardWrapper.appendChild(imageContainerElement);
-
-          if (imageMetadata.caption) {
-            const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
-            imageCardWrapper.appendChild(captionElement);
-          }
-
-          imagesGridContainer.appendChild(imageCardWrapper);
+          imagesGridContainer.appendChild(createProjectImageFigure(imageMetadata));
         });
         entryContainerElement.appendChild(imagesGridContainer);
       }
@@ -226,27 +278,7 @@
     if (portfolioEntry.images && portfolioEntry.images.length) {
       const imagesGridContainer = createHtmlElement("div", "project-images-grid");
       portfolioEntry.images.slice(0, 1).forEach((imageMetadata) => {
-        const imageCardWrapper = createHtmlElement("figure", "project-image-card");
-        const imageContainerElement = createHtmlElement("div", "project-image-container");
-
-        const imageTag = document.createElement("img");
-        imageTag.src = imageMetadata.src;
-        imageTag.alt = imageMetadata.alt;
-        imageTag.loading = imageMetadata.loading || "lazy";
-        imageTag.decoding = "async";
-        if (imageMetadata.fetchPriority) imageTag.fetchPriority = imageMetadata.fetchPriority;
-        if (imageMetadata.width) imageTag.width = imageMetadata.width;
-        if (imageMetadata.height) imageTag.height = imageMetadata.height;
-
-        imageContainerElement.appendChild(imageTag);
-        imageCardWrapper.appendChild(imageContainerElement);
-
-        if (imageMetadata.caption) {
-          const captionElement = createHtmlElement("figcaption", "project-image-caption", escapeHtml(imageMetadata.caption));
-          imageCardWrapper.appendChild(captionElement);
-        }
-
-        imagesGridContainer.appendChild(imageCardWrapper);
+        imagesGridContainer.appendChild(createProjectImageFigure(imageMetadata));
       });
       entryContainerElement.appendChild(imagesGridContainer);
     }
