@@ -117,7 +117,7 @@ a:focus-visible, button:focus-visible {
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: var(--sidebar) 1fr;
+  grid-template-columns: var(--sidebar) minmax(0, 1fr);
   gap: 4rem;
   align-items: start;
   position: relative;
@@ -188,15 +188,17 @@ a:focus-visible, button:focus-visible {
   border-color: var(--accent);
   background-color: var(--faint);
 }
+.theme-toggle[hidden] { display: none; }
 
 /* --- CONTENT ----------------------------------------------------------- */
-.content { padding: 3.5rem 0; max-width: 42rem; }
+.content { padding: 3.5rem 0; max-width: 42rem; min-width: 0; }
 .content .intro { font-size: var(--text-lead); line-height: var(--leading-body); color: var(--ink); margin-bottom: 2.75rem; }
 
 section { padding: 0; padding-top: 3rem; border-top: 1px solid var(--faint); margin-top: 3rem; transition: border-color 0.3s ease; }
 section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 
 h2 {
+  overflow-wrap: anywhere;
   font-size: var(--text-section);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -370,6 +372,7 @@ h3 .subtitle::before,
 }
 
 .image-preview-open { overflow: hidden; }
+.image-preview-dialog:not([open]) { display: none; }
 .image-preview-dialog {
   position: fixed;
   inset: 0;
@@ -377,6 +380,7 @@ h3 .subtitle::before,
   width: min(92vw, 72rem);
   max-width: 92vw;
   max-height: 92vh;
+  max-height: 92dvh;
   padding: 0;
   border: 1px solid var(--faint);
   border-radius: 8px;
@@ -408,6 +412,7 @@ h3 .subtitle::before,
   display: block;
   max-width: 100%;
   max-height: calc(92vh - 7rem);
+  max-height: calc(92dvh - 7rem);
   width: auto;
   height: auto;
   margin: 0 auto;
@@ -442,6 +447,17 @@ h3 .subtitle::before,
 footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
   padding: 1.5rem 0 2.5rem; font-size: var(--text-meta); color: var(--muted); transition: border-color 0.3s ease; }
 footer .colophon { margin: 0; line-height: var(--leading-meta); }
+
+/* Keep the fixed theme control out of the opening copy when the desktop
+   layout has little or no right-side gutter. */
+@media (min-width: 50.0625rem) and (max-width: 66rem) {
+  .content .intro { padding-right: 4rem; }
+}
+
+/* A sticky rail taller than the viewport can make its lower links unreachable. */
+@media (min-width: 50.0625rem) and (max-height: 36rem) {
+  .sidebar { position: static; }
+}
 
 /* --- SMALL SCREENS: collapse to one column, nav goes horizontal -------- */
 @media (max-width: 50rem) {
@@ -513,7 +529,19 @@ a:hover .arrow {
 
 /* --- PRINT STYLES ------------------------------------------------------ */
 @media print {
-  body { background: #fff; color: #000; font-size: var(--text-print); }
+  :root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    color-scheme: light !important;
+    --bg: #fff;
+    --ink: #000;
+    --muted: #444;
+    --faint: #ccc;
+    --accent: #000;
+    --accent-tint: transparent;
+  }
+  body { background: #fff !important; color: #000 !important; font-size: var(--text-print); transition: none; }
+  a { color: #000 !important; text-decoration: underline; }
   .layout { display: block; padding: 0; position: static; }
   .sidebar { position: static; padding: 0 0 2rem; border-bottom: 1px solid var(--faint); }
   .nav, .theme-toggle, .skip-link { display: none; }
