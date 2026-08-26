@@ -20,8 +20,7 @@ The source code for Dante Martin's personal website and portfolio. It is a light
 - **Production host:** Cloudflare Pages (`dante32683-github-io.pages.dev`).
 - **Production domain:** `dante-martin.com`, attached to the Cloudflare Pages project through Cloudflare DNS.
 - **Source:** this GitHub repository. Cloudflare Pages deploys the static files from `main`.
-- GitHub Pages is not the production host and must not claim `dante-martin.com` as a custom domain.
-- Because this repository is named `dante32683.github.io`, GitHub may also publish the same files at that user-site URL. Treat it only as an incidental mirror, never as the production domain.
+- GitHub Pages is intentionally unpublished. `https://dante32683.github.io/` should return GitHub's 404 and must not claim `dante-martin.com` as a custom domain.
 - Do not add a repository `CNAME` file or GitHub Pages A/AAAA records for the production domain.
 
 ## Making Changes

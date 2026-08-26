@@ -37,8 +37,7 @@ rather than leaving empty labels or placeholder elements.
 
 - Cloudflare Pages is the production host. The Pages project deploys this repository's `main` branch.
 - `dante-martin.com` belongs to that Cloudflare Pages project and is managed through Cloudflare DNS.
-- GitHub Pages is not the production host. Do not attach `dante-martin.com` to GitHub Pages.
-- The special repository name `dante32683.github.io` may still produce a GitHub user-site mirror. That mirror is not production and must not own the custom domain.
+- GitHub Pages is intentionally unpublished. Do not republish it or attach `dante-martin.com` to GitHub Pages.
 - Do not add a repository `CNAME` file or GitHub Pages A/AAAA records for the production domain.
 - Do not change Cloudflare DNS, the Pages custom-domain association, or production hosting unless the user explicitly asks for a hosting change.
 
