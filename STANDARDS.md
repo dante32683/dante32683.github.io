@@ -2,10 +2,11 @@
 
 Read this whole file before you change anything. It is short on purpose.
 
-This site is a single static page hosted on GitHub Pages. The public content is
-written directly as semantic HTML in `index.html`; JavaScript only adds optional
-theme, scroll-spy, and image-preview behavior. There is no framework, templating
-system, or build step. If JavaScript fails or is disabled, the portfolio content,
+This site is a single static page deployed from this GitHub repository to
+Cloudflare Pages and served at `dante-martin.com`. The public content is written
+directly as semantic HTML in `index.html`; JavaScript only adds optional theme,
+scroll-spy, and image-preview behavior. There is no framework, templating system,
+or build step. If JavaScript fails or is disabled, the portfolio content,
 navigation, links, and project images still work.
 
 ---
@@ -31,7 +32,15 @@ rather than leaving empty labels or placeholder elements.
 | `README.md` | Public repository documentation. | You want to update repo guidelines or project overview. |
 | `.gitignore` | Git file exclusions. | You need to exclude new temp or IDE files. |
 | `AGENTS.md` | Rules and prompts for AI coding assistants. | You want to adjust instructions for AI agents. |
-| `CNAME` | The custom domain. | **Never**, unless the domain changes. |
+
+### Hosting and domain rules
+
+- Cloudflare Pages is the production host. The Pages project deploys this repository's `main` branch.
+- `dante-martin.com` belongs to that Cloudflare Pages project and is managed through Cloudflare DNS.
+- GitHub Pages is not the production host. Do not attach `dante-martin.com` to GitHub Pages.
+- The special repository name `dante32683.github.io` may still produce a GitHub user-site mirror. That mirror is not production and must not own the custom domain.
+- Do not add a repository `CNAME` file or GitHub Pages A/AAAA records for the production domain.
+- Do not change Cloudflare DNS, the Pages custom-domain association, or production hosting unless the user explicitly asks for a hosting change.
 
 Do not move public content into JavaScript. Do not add a second stylesheet, a
 framework, a CDN link, a font import, or a build tool. The whole point is that

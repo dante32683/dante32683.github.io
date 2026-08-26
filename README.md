@@ -1,6 +1,6 @@
 # dante-martin.com
 
-The source code for Dante Martin's personal website and portfolio. It is a lightweight, single static page hosted on GitHub Pages.
+The source code for Dante Martin's personal website and portfolio. It is a lightweight, single static page deployed from this repository to Cloudflare Pages and served at `dante-martin.com`.
 
 ## Core Design Principles
 
@@ -14,6 +14,15 @@ The source code for Dante Martin's personal website and portfolio. It is a light
 - `styles.css` - High-contrast, minimal CSS styling using custom property themes (green color palette) with smooth transitions, native responsive queries, and dedicated print stylesheets.
 - `STANDARDS.md` - Strict rules and writing guidelines governing formatting, content structures, and layout rules.
 - `AGENTS.md` - Workspace instructions for AI coding assistants.
+
+## Hosting
+
+- **Production host:** Cloudflare Pages (`dante32683-github-io.pages.dev`).
+- **Production domain:** `dante-martin.com`, attached to the Cloudflare Pages project through Cloudflare DNS.
+- **Source:** this GitHub repository. Cloudflare Pages deploys the static files from `main`.
+- GitHub Pages is not the production host and must not claim `dante-martin.com` as a custom domain.
+- Because this repository is named `dante32683.github.io`, GitHub may also publish the same files at that user-site URL. Treat it only as an incidental mirror, never as the production domain.
+- Do not add a repository `CNAME` file or GitHub Pages A/AAAA records for the production domain.
 
 ## Making Changes
 
