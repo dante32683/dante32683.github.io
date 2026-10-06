@@ -13,8 +13,8 @@
   <meta property="og:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://dante-martin.com/projects/baja/">
-  <meta property="og:image" content="https://dante-martin.com/images/baja-website-homepage.webp">
-  <meta property="og:image:alt" content="Homepage of the SRJC Baja SAE website">
+  <meta property="og:image" content="https://dante-martin.com/images/baja-daq-schematic-crop.webp">
+  <meta property="og:image:alt" content="Part of the draft Baja SAE DAQ schematic">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Baja SAE | Dante Martin">
   <meta name="twitter:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
@@ -59,12 +59,9 @@
       </div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme" hidden></button>
       <nav class="nav" aria-label="Project sections">
-        <a href="#overview">Overview</a>
-        <a href="#electrical">Electrical &amp; DAQ</a>
+        <a href="#electrical">Electrical work</a>
         <a href="#testing">Bench testing</a>
-        <a href="#integration">Integration &amp; test</a>
         <a href="#team-systems">Team systems</a>
-        <a href="#status">Current status</a>
       </nav>
       <div class="project-back"><a href="../../index.html">Back to portfolio</a></div>
     </aside>
@@ -75,34 +72,23 @@
         <h1 class="project-title">Baja SAE</h1>
         <div class="meta">June 2026 to present</div>
         <div class="entry-details">
-          <div class="detail-row"><span class="detail-label">My work: </span>Electrical integration and test, KiCad schematics, RaceCapture bring-up, Canvas, public website</div>
-          <div class="detail-row"><span class="detail-label">Current state: </span>Rev 6 electrical package is WIP; initial DAQ bench checks complete; vehicle validation still ahead</div>
-          <div class="detail-row"><span class="detail-label">Project context: </span>SRJC is building its first competition vehicle for Baja SAE Arizona 2027</div>
+          <div class="detail-row"><span class="detail-label">My work: </span>Electrical integration and testing, KiCad schematics, Data-logger bench testing, Canvas training workspace, Team website</div>
+          <div class="detail-row"><span class="detail-label">Status: </span>Schematics in progress, first bench checks done, not yet tested on the car</div>
         </div>
-        <p class="project-lede">My role sits across subteams rather than owning every electrical subsystem. I focus on getting sensing, power, safety interfaces, and test work to line up with the mechanical systems they depend on, while keeping the team's member-facing systems and technical organization usable.</p>
+        <p class="project-lede">SRJC is building its first Baja SAE car for the 2027 competition in Arizona. I'm on the electrical side, working on integration and testing: I draw schematics, bench-test the data logger, and work with the other subteams so the sensors, power, and wiring fit the car they're building.</p>
+        <div class="more"><a href="https://srjcsaeclub.org" target="_blank" rel="noopener noreferrer">Visit SRJC Baja SAE&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
       </header>
 
-      <section id="overview">
-        <h2>Overview</h2>
-        <article class="entry">
-          <p>Earlier in the project, most of my Baja work was whole-car planning, sensor and data-logging research, manufacturing training, and team organization. The work is now more concrete: electrical schematics, DAQ hardware, physical interfaces, test fixtures, and validation planning. I still support the team systems I built, but electrical integration and test are the main technical focus.</p>
-          <div class="more"><a href="https://srjcsaeclub.org" target="_blank" rel="noopener noreferrer">Visit SRJC Baja SAE&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
-        </article>
-      </section>
-
       <section id="electrical">
-        <h2>Electrical &amp; DAQ</h2>
+        <h2>Electrical work</h2>
         <article class="entry">
-          <p>I drew the Rev 6-WIP electrical overview, power, and safety sheets in KiCad, and share the DAQ sheet with Heyman Luong. The package defines the vehicle's 12 V branches, required kill, brake, and reverse circuits, RaceCapture/Pro MK4 power, and four planned Hall-effect RPM channels for front wheel, rear wheel, engine, and CVT-secondary speed. Hardware, fuse ratings, harness details, and several mechanical interfaces are still open.</p>
-        </article>
-        <article class="entry">
-          <p>The DAQ plan uses the MK4's four Timer/RPM inputs for rear wheel, front wheel, engine, and CVT-secondary speed. The sensors share the logger's 5 V reference and sensor return, while the MK4 itself is powered from the protected 12 V vehicle system. The drawing also keeps the planned exhaust-temperature channel separate because the final sensor and conditioner are not selected yet.</p>
+          <p>I drew the overview, power, and safety sheets of the car's electrical schematics in KiCad, and share the data-acquisition sheet with a teammate. The schematics cover the car's 12 V power, the kill switch, brake light, and reverse warning required by the rules, and the data logger. The logger is a RaceCapture unit with four speed inputs, planned for the rear wheel, front wheel, engine, and CVT. The required safety circuits are kept separate from the logger.</p>
           <div class="project-images-grid">
             <figure class="project-image-card">
-              <a class="project-image-button" href="../../images/baja-project/daq-schematic.png" data-preview-src="../../images/baja-project/daq-schematic.png" data-preview-alt="Rev 6-WIP Baja DAQ schematic showing RaceCapture power, four Hall-effect RPM inputs, and a planned temperature channel" data-preview-caption="Rev 6-WIP DAQ sheet. The four planned 55505 Hall sensors map to dedicated Timer/RPM inputs; the temperature channel remains TBD." aria-label="Enlarge image: Rev 6-WIP Baja DAQ schematic">
-                <img src="../../images/baja-project/daq-schematic.png" alt="" width="2481" height="1754" loading="lazy" decoding="async">
+              <a class="project-image-button" href="../../images/baja-project/daq-schematic.png" data-preview-src="../../images/baja-project/daq-schematic.png" data-preview-alt="Full draft DAQ schematic sheet for the SRJC Baja SAE car" data-preview-caption="Draft DAQ schematic: four planned speed sensors wired to the data logger's RPM inputs." aria-label="Enlarge image: draft Baja SAE DAQ schematic">
+                <img src="../../images/baja-daq-schematic-crop.webp" alt="" width="1340" height="992" loading="lazy" decoding="async">
               </a>
-              <figcaption class="project-image-caption">Rev 6-WIP DAQ sheet. The four planned 55505 Hall sensors map to dedicated Timer/RPM inputs; the temperature channel remains TBD.</figcaption>
+              <figcaption class="project-image-caption">Part of the draft DAQ schematic: four planned speed sensors wired to the data logger. Select to see the full sheet.</figcaption>
             </figure>
           </div>
         </article>
@@ -111,28 +97,14 @@
       <section id="testing">
         <h2>Bench testing</h2>
         <article class="entry">
-          <p>When the RaceCapture/Pro MK4 arrived, I updated it from firmware 2.22.0 to 2.24.0, confirmed the USB connection and live dashboard, checked the onboard IMU and outdoor GNSS, measured the sensor reference at about 4.69 V on USB power, and spot-checked Analog 1-4 and Digital/GPIO 1 through the two M12 pigtails. That was a receiving and bench sanity check, not full system validation.</p>
-          <div class="entry-details">
-            <div class="detail-row"><span class="detail-label">Important result: </span>The 4.69 V USB-powered reference is slightly below the Littelfuse 55505 sensor's 4.75 V minimum, so USB-only testing does not count as final sensor-power validation.</div>
-            <div class="detail-row"><span class="detail-label">Next checks: </span>Representative 12 V power, SD logging, then Timer/RPM and 55505 sensor testing after the sensors are acquired.</div>
-          </div>
-        </article>
-      </section>
-
-      <section id="integration">
-        <h2>Integration &amp; test</h2>
-        <article class="entry">
-          <p>My current Electrical work-plan focus is Integration / Test. I am closing DAQ harness parts, defining RPM-sensor and battery test fixtures, coordinating sensor and mounting interfaces with Vehicle Dynamics, Powertrain, and Chassis, and preparing integrated bench and vehicle-validation work. Jennifer Alvarado Flores leads Electrical; the other subteams retain ownership of their mechanical interfaces and the safety and power/wiring lanes have their own owners.</p>
-          <div class="entry-details">
-            <div class="detail-row"><span class="detail-label">Current integration blockers: </span>Accepted wheel and drivetrain sensing geometry, component packaging, final harness routing, battery/protection decisions, and a finished reverse-state interface.</div>
-          </div>
+          <p>When the data logger arrived, I updated its firmware, confirmed the live dashboard, checked the onboard IMU and GPS, and spot-checked its analog and digital inputs. I also measured the 5 V reference that will power the speed sensors. On USB power it read about 4.69 V, just under the sensors' 4.75 V minimum, so the sensor tests need to run on 12 V power, not USB.</p>
         </article>
       </section>
 
       <section id="team-systems">
         <h2>Team systems</h2>
         <article class="entry">
-          <p>I built and continue to maintain the team's Canvas workspace for onboarding, subteam organization, and manufacturing training and qualification. I also built and maintain srjcsaeclub.org, the public team website. Those systems are separate from the vehicle electrical work, but they are still part of my Baja role and give the team one place for current member resources and one public home for recruiting, sponsors, and the build.</p>
+          <p>I built and maintain the team's Canvas workspace for onboarding and manufacturing training, including quizzes and practical checkoffs, and the team website, srjcsaeclub.org.</p>
           <div class="project-images-grid">
             <figure class="project-image-card">
               <a class="project-image-button" href="../../images/baja-website-homepage.webp" data-preview-src="../../images/baja-website-homepage.webp" data-preview-alt="Homepage of the SRJC Baja SAE website showing the Baja SAE hero, off-road car, and site navigation" data-preview-caption="Homepage of srjcsaeclub.org, the SRJC Baja SAE website I built and maintain." aria-label="Enlarge image: homepage of the SRJC Baja SAE website">
@@ -141,13 +113,6 @@
               <figcaption class="project-image-caption">Homepage of srjcsaeclub.org, the SRJC Baja SAE website I built and maintain.</figcaption>
             </figure>
           </div>
-        </article>
-      </section>
-
-      <section id="status">
-        <h2>Current status</h2>
-        <article class="entry">
-          <p>The electrical package is still WIP. The RaceCapture hardware is here and the initial bench checks are complete, but the four Littelfuse 55505 sensors have not been ordered, battery, protection, and harness decisions are not fully closed, and the system has not been validated on the vehicle. I keep those states explicit rather than presenting the planned architecture as a finished subsystem.</p>
         </article>
       </section>
     </main>
