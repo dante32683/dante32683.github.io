@@ -549,3 +549,72 @@ a:hover .arrow {
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
   section:first-of-type { border-top: none; }
 }
+
+/* --- PROJECT DETAIL PAGES --------------------------------------------- */
+.site-name {
+  display: inline-block;
+  color: var(--ink);
+  font-size: var(--text-name);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-name);
+}
+.site-name:hover { color: var(--accent); }
+
+.project-back {
+  margin-top: 1.5rem;
+  font-size: var(--text-supporting);
+}
+.project-back a {
+  position: relative;
+  padding-bottom: 2px;
+}
+.project-back a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent);
+  transition: width 0.15s ease, left 0.15s ease;
+}
+.project-back a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.project-header { margin-bottom: 3rem; }
+.project-eyebrow {
+  color: var(--muted);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.project-title {
+  margin-top: 0.35rem;
+  font-size: var(--text-name);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-name);
+}
+.project-header .meta { margin-top: 0.4rem; font-size: var(--text-meta); color: var(--muted); }
+.project-header .entry-details { margin-top: 1rem; margin-bottom: 0; }
+.project-lede {
+  margin-top: 1rem;
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.project-content section:first-of-type {
+  border-top: 1px solid var(--faint);
+  margin-top: 0;
+  padding-top: 3rem;
+}
+
+@media (max-width: 50rem) {
+  .project-back { margin-top: 1rem; }
+  .project-header { margin-bottom: 2.5rem; }
+}

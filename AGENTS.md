@@ -9,9 +9,9 @@ It tells you which file to edit, how to add content, and - most importantly - ho
 
 ## The 30-second version
 
-- All public content lives directly in semantic **`index.html`**. Do not reintroduce a client-side content renderer or a second content source.
-- To add something, copy the matching semantic HTML block, place it in the correct section, and edit the visible text/links. Newest entries stay first.
-- Styling is in `styles.css` (re-skin via the `:root` variables at the top). `index.html` is the normal content/structure file.
+- All public content lives directly in semantic HTML. The homepage is **`index.html`**; justified detail pages live under **`projects/<slug>/index.html`**. Do not reintroduce a client-side content renderer or a second content source.
+- To add homepage content, copy the matching semantic HTML block, place it in the correct section, and edit the visible text/links. Add a project-detail route only when the project has enough real evidence that the homepage cannot represent it cleanly.
+- Styling is shared in `styles.css` (re-skin via the `:root` variables at the top). Keep every page static, semantic, and usable without JavaScript.
 - No build step. No frameworks, CDNs, fonts, or extra trackers. Static HTML first; JavaScript is progressive enhancement only.
 
 ## Writing rules (the part agents get wrong)
@@ -32,5 +32,5 @@ paragraph per entry.
 
 ## Before you finish
 
-Open `index.html` in a browser. Confirm it renders in light and dark mode with
-no blank labels and no console errors. Then commit using Conventional Commits and push.
+Open each changed HTML page in a browser. Confirm it renders in light and dark mode with
+no blank labels and no console errors. Then commit using Conventional Commits. Push only when the user asks.

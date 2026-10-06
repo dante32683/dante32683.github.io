@@ -2,21 +2,23 @@
 
 Read this whole file before you change anything. It is short on purpose.
 
-This site is a single static page deployed from this GitHub repository to
-Cloudflare Pages and served at `dante-martin.com`. The public content is written
-directly as semantic HTML in `index.html`; JavaScript only adds optional theme,
-scroll-spy, and image-preview behavior. There is no framework, templating system,
-or build step. If JavaScript fails or is disabled, the portfolio content,
+This site is a small static portfolio deployed from this GitHub repository to
+Cloudflare Pages and served at `dante-martin.com`. The homepage remains the main
+portfolio document, with project-detail pages added only when a project has enough
+real evidence to justify a separate route. Public content is written directly as
+semantic HTML; JavaScript only adds optional theme, scroll-spy, and image-preview
+behavior. There is no framework, templating system, or build step. If JavaScript fails or is disabled, the portfolio content,
 navigation, links, and project images still work.
 
 ---
 
 ## The one rule that matters most
 
-**The HTML is the product. Keep the complete portfolio readable without JavaScript.**
+**The HTML is the product. Keep every public page readable without JavaScript.**
 
-To change what the site says, edit the corresponding semantic HTML in `index.html`.
-Do not move public copy back into JavaScript or create a second content source.
+To change what the site says, edit the corresponding semantic HTML in `index.html`
+or the relevant `projects/<slug>/index.html`. Do not move public copy back into
+JavaScript or create a second content source.
 Newest entries stay first within their section. Delete markup that does not apply
 rather than leaving empty labels or placeholder elements.
 
@@ -27,7 +29,8 @@ rather than leaving empty labels or placeholder elements.
 | File | What it is | Touch it when... |
 |------|------------|----------------|
 | `styles.css` | All styling. | You want to change colours, spacing, fonts. |
-| `index.html` | Complete semantic page content + small progressive-enhancement script. | You change public copy, links, entries, or page structure. **This is the normal one.** |
+| `index.html` | Complete semantic homepage content + small progressive-enhancement script. | You change homepage copy, links, entries, or structure. **This remains the normal one.** |
+| `projects/<slug>/index.html` | Static project-detail page. | A project has enough technical evidence that the homepage cannot represent it cleanly. |
 | `STANDARDS.md` | General project rules & standards. | The rules change. |
 | `README.md` | Public repository documentation. | You want to update repo guidelines or project overview. |
 | `.gitignore` | Git file exclusions. | You need to exclude new temp or IDE files. |
@@ -40,6 +43,10 @@ rather than leaving empty labels or placeholder elements.
 - GitHub Pages is intentionally unpublished. Do not republish it or attach `dante-martin.com` to GitHub Pages.
 - Do not add a repository `CNAME` file or GitHub Pages A/AAAA records for the production domain.
 - Do not change Cloudflare DNS, the Pages custom-domain association, or production hosting unless the user explicitly asks for a hosting change.
+
+### Project-detail route rule
+
+Do not create a detail page merely because a project exists. Add one only when the project has enough real decisions, artifacts, results, or limitations that the homepage would become too long or too shallow. The homepage remains the primary portfolio and should still summarize the project clearly. Detail pages reuse the same stylesheet, identity rail, writing style, attribution rules, and progressive-enhancement patterns as the homepage.
 
 Do not move public content into JavaScript. Do not add a second stylesheet, a
 framework, a CDN link, a font import, or a build tool. The whole point is that
@@ -55,6 +62,8 @@ class="entry">` block, keep it in the Projects section, and edit the visible tex
 Preserve the existing hierarchy: title/descriptor, organization/date metadata,
 `My work`, project tools/status/method where applicable, one concise paragraph,
 a descriptive link, and at most one homepage evidence image.
+
+**Add a project-detail page** - create `projects/<slug>/index.html`, reuse `styles.css`, and keep all visible copy in semantic HTML. Start with team/project context, then move quickly to personal contribution, evidence, current status, and limitations. Use real project images or artifacts; do not pad the page with resume copy. Keep a clear route back to the homepage.
 
 **Add a compact project (Other Work)** - copy an existing `<article class="entry
 compact-entry">` block under `Other Work`. Keep metadata and prose shorter than a
@@ -123,18 +132,16 @@ make it concrete.
 - Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
 - Homepage featured projects use one meaningful evidence image. That image may open the shared native `<dialog>` preview for larger inspection. Compact Other Work entries normally stay text-first without image galleries.
 - External web links (`http://` / `https://`) open in a new tab with `target="_blank"` and `rel="noopener noreferrer"` so visitors can inspect evidence without losing the portfolio. The visible `↗` marker means an external/new-tab destination. In-page anchors and `mailto:` links stay in the current context.
-- Test before you push: confirm raw `index.html` contains the complete portfolio,
-  then open it in a browser and verify light/dark mode, keyboard navigation, image
-  preview behavior, narrow-screen reflow, and no console errors.
+- Test before you push: confirm raw HTML contains the complete visible content for every changed page, then open the changed pages in a browser and verify light/dark mode, keyboard navigation, image preview behavior, narrow-screen reflow, and no console errors.
 
 ---
 
 ## Code conventions
 
-When editing `index.html` or `styles.css`, match the existing structure and conventions.
+When editing `index.html`, a project-detail HTML page, or `styles.css`, match the existing structure and conventions.
 These rules describe how the current code is written.
 
-**JavaScript (progressive enhancement in `index.html`)**
+**JavaScript (progressive enhancement in HTML pages)**
 
 - Do not generate public portfolio content with JavaScript. The HTML must stand alone.
 - Use native controls and enhance existing links/buttons instead of replacing them.
