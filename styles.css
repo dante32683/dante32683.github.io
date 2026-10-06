@@ -49,6 +49,21 @@
   --leading-title: 1.35;
   --leading-meta: 1.55;
   --leading-caption: 1.4;
+
+  /* Shape, motion, and layout rhythm. See DESIGN.md before adding values. */
+  --radius-control: 4px;   /* buttons, controls, nav capsules */
+  --radius-media: 6px;     /* evidence images */
+  --radius-dialog: 8px;    /* image preview dialog */
+  --line: 1px;             /* every border and rule */
+  --motion: 0.15s;         /* hover and focus transitions */
+  --motion-theme: 0.3s;    /* light/dark colour fade */
+  --space-rail: 3.5rem;    /* top padding of sidebar and content */
+  --space-section: 3rem;   /* between sections (above and below the rule) */
+  --space-entry: 2.5rem;   /* between entries in a section */
+  --space-group: 1.75rem;  /* after section headings; between capability groups */
+  --space-block: 1.5rem;   /* between sidebar blocks */
+  --shadow-dialog: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+  --backdrop: rgba(0, 0, 0, 0.72);
 }
 
 /* Dark palette. Applied when the OS is in dark mode (unless the visitor has
@@ -78,7 +93,7 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color var(--motion-theme) ease, color var(--motion-theme) ease;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -103,8 +118,8 @@ a:focus-visible, button:focus-visible {
   left: 0.75rem;
   z-index: 1000;
   padding: 0.55rem 0.8rem;
-  border: 1px solid var(--accent);
-  border-radius: 4px;
+  border: var(--line) solid var(--accent);
+  border-radius: var(--radius-control);
   color: var(--ink);
   background: var(--bg);
   transform: translateY(calc(-100% - 1rem));
@@ -124,30 +139,35 @@ a:focus-visible, button:focus-visible {
 }
 
 /* --- SIDEBAR (sticky) -------------------------------------------------- */
-.sidebar { position: sticky; top: 0; padding: 3.5rem 0; }
+.sidebar { position: sticky; top: 0; padding: var(--space-rail) 0; }
 .sidebar h1 { font-size: var(--text-name); font-weight: 700; letter-spacing: -0.02em; line-height: var(--leading-name); }
 .sidebar .tagline { color: var(--muted); font-size: var(--text-supporting); margin-top: 0.5rem; }
-.sidebar .location { font-size: var(--text-label); letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--muted); margin-top: 0.75rem; }
+.sidebar .location { margin-top: 0.75rem; }
 
 /* In-page nav */
-.nav { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.1rem; }
+.nav { margin-top: var(--space-block); display: flex; flex-direction: column; gap: 0.1rem; }
 .nav a {
   color: var(--muted); font-size: var(--text-supporting); font-weight: 500;
   padding: 0.3rem 0.75rem; border-left: 2px solid transparent;
-  margin-left: -0.75rem; transition: color 0.15s, border-color 0.15s, background-color 0.15s;
-  border-radius: 4px;
+  margin-left: -0.75rem; transition: color var(--motion), border-color var(--motion), background-color var(--motion);
+  border-radius: var(--radius-control);
 }
 .nav a:hover { color: var(--accent); background-color: transparent; }
 .nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
 /* Contact */
-.contact { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem;
+.contact { margin-top: var(--space-block); display: flex; flex-direction: column; gap: 0.35rem;
   font-size: var(--text-supporting); }
-.contact a { position: relative; width: fit-content; padding-bottom: 2px;
+/* Text link: accent text with an underline that grows from the centre on
+   hover. Shared by contact links, entry links, and the back link. */
+.contact a,
+.entry .more a:not(.button),
+.project-back a { position: relative; width: fit-content; padding-bottom: 2px;
   display: inline-flex; align-items: center;
-  transition: color 0.15s; }
-.contact a::after {
+  transition: color var(--motion); }
+.contact a::after,
+.entry .more a:not(.button)::after,
+.project-back a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -155,9 +175,11 @@ a:focus-visible, button:focus-visible {
   width: 0;
   height: 1.5px;
   background-color: var(--accent);
-  transition: width 0.15s ease, left 0.15s ease;
+  transition: width var(--motion) ease, left var(--motion) ease;
 }
-.contact a:hover::after {
+.contact a:hover::after,
+.entry .more a:not(.button):hover::after,
+.project-back a:hover::after {
   width: 100%;
   left: 0;
 }
@@ -171,8 +193,8 @@ a:focus-visible, button:focus-visible {
   z-index: 100;
   margin: 0;
   background: var(--bg);
-  border: 1px solid var(--faint);
-  border-radius: 4px;
+  border: var(--line) solid var(--faint);
+  border-radius: var(--radius-control);
   width: 2.75rem;
   height: 2.75rem;
   cursor: pointer;
@@ -181,20 +203,21 @@ a:focus-visible, button:focus-visible {
   justify-content: center;
   font-size: var(--text-icon);
   color: var(--muted);
-  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+  transition: color var(--motion), border-color var(--motion);
 }
-.theme-toggle:hover {
+.theme-toggle:hover,
+.image-preview-close:hover,
+.button:hover {
   color: var(--accent);
   border-color: var(--accent);
-  background-color: var(--faint);
 }
 .theme-toggle[hidden] { display: none; }
 
 /* --- CONTENT ----------------------------------------------------------- */
-.content { padding: 3.5rem 0; max-width: 42rem; min-width: 0; }
+.content { padding: var(--space-rail) 0; max-width: 42rem; min-width: 0; }
 .content .intro { font-size: var(--text-lead); line-height: var(--leading-body); color: var(--ink); margin-bottom: 2.75rem; }
 
-section { padding: 0; padding-top: 3rem; border-top: 1px solid var(--faint); margin-top: 3rem; transition: border-color 0.3s ease; }
+section { padding: 0; padding-top: var(--space-section); border-top: var(--line) solid var(--faint); margin-top: var(--space-section); transition: border-color var(--motion-theme) ease; }
 section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
 
 h2 {
@@ -204,13 +227,13 @@ h2 {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--space-group);
 }
 
 /* --- ENTRIES (projects, experience) ------------------------------------ */
 .entry,
 .edu-block {
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-entry);
 }
 .entry:last-child,
 .entry:last-of-type,
@@ -261,23 +284,6 @@ h3 .subtitle::before,
 
 .entry p { margin-top: 0.65rem; font-size: var(--text-body); line-height: var(--leading-body); color: var(--ink); }
 .entry .more { font-size: var(--text-link-small); margin-top: 0.55rem; }
-.entry .more a { position: relative; padding-bottom: 2px;
-  display: inline-flex; align-items: center;
-  transition: color 0.15s; }
-.entry .more a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  background-color: var(--accent);
-  transition: width 0.15s ease, left 0.15s ease;
-}
-.entry .more a:hover::after {
-  width: 100%;
-  left: 0;
-}
 
 /* --- EDUCATION --------------------------------------------------------- */
 .edu .edu-block { margin-bottom: 2.75rem; }
@@ -314,14 +320,14 @@ h3 .subtitle::before,
   text-decoration-color: transparent;
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1.5px;
-  transition: color 0.15s, text-decoration-color 0.15s;
+  transition: color var(--motion), text-decoration-color var(--motion);
 }
 .honor-link:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);
 }
 
-.capability-group { margin-bottom: 1.75rem; }
+.capability-group { margin-bottom: var(--space-group); }
 .capability-group:last-of-type { margin-bottom: 0; }
 .capability-heading {
   font-size: var(--text-subsection);
@@ -354,15 +360,15 @@ h3 .subtitle::before,
 .project-image-button {
   width: 100%;
   padding: 0;
-  border: 1px solid var(--faint);
-  border-radius: 6px;
+  border: var(--line) solid var(--faint);
+  border-radius: var(--radius-media);
   overflow: hidden;
   background: var(--faint);
   cursor: zoom-in;
   display: block;
   text-align: left;
   appearance: none;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--motion) ease;
 }
 .project-image-button:hover { border-color: var(--accent); }
 .project-image-button img {
@@ -382,13 +388,13 @@ h3 .subtitle::before,
   max-height: 92vh;
   max-height: 92dvh;
   padding: 0;
-  border: 1px solid var(--faint);
-  border-radius: 8px;
+  border: var(--line) solid var(--faint);
+  border-radius: var(--radius-dialog);
   background: var(--bg);
   color: var(--ink);
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-dialog);
 }
-.image-preview-dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
+.image-preview-dialog::backdrop { background: var(--backdrop); }
 .image-preview-content {
   position: relative;
   padding: 3.5rem 1rem 1rem;
@@ -399,15 +405,15 @@ h3 .subtitle::before,
   right: 0.5rem;
   width: 2.75rem;
   height: 2.75rem;
-  border: 1px solid var(--faint);
-  border-radius: 4px;
+  border: var(--line) solid var(--faint);
+  border-radius: var(--radius-control);
   background: var(--bg);
   color: var(--ink);
   cursor: pointer;
+  transition: color var(--motion), border-color var(--motion);
   font-size: 1.5rem;
   line-height: 1;
 }
-.image-preview-close:hover { border-color: var(--accent); color: var(--accent); }
 .image-preview-image {
   display: block;
   max-width: 100%;
@@ -436,7 +442,7 @@ h3 .subtitle::before,
 .capabilities-note {
   margin-top: 2rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--faint);
+  border-top: var(--line) solid var(--faint);
   color: var(--muted);
   font-size: var(--text-supporting);
   line-height: var(--leading-body);
@@ -444,8 +450,8 @@ h3 .subtitle::before,
 .capabilities-note strong { color: var(--ink); }
 
 /* --- FOOTER ------------------------------------------------------------ */
-footer { grid-column: 1 / -1; border-top: 1px solid var(--faint);
-  padding: 1.5rem 0 2.5rem; font-size: var(--text-meta); color: var(--muted); transition: border-color 0.3s ease; }
+footer { grid-column: 1 / -1; border-top: var(--line) solid var(--faint);
+  padding: 1.5rem 0 2.5rem; font-size: var(--text-meta); color: var(--muted); transition: border-color var(--motion-theme) ease; }
 footer .colophon { margin: 0; line-height: var(--leading-meta); }
 
 /* Keep the fixed theme control out of the opening copy when the desktop
@@ -464,7 +470,7 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
   .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
   .sidebar { position: static; padding: 3rem 0 0; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
-  .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: 4px; }
+  .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: var(--radius-control); }
   .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }
   .contact { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .content { padding-top: 2.5rem; max-width: none; }
@@ -487,7 +493,7 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
   margin-bottom: 0;
 }
 .compact-entry + .compact-entry {
-  margin-top: 2.5rem;
+  margin-top: var(--space-entry);
 }
 .compact-entry h4 {
   font-size: var(--text-title-compact);
@@ -510,10 +516,13 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
 /* Arrow micro-interaction */
 a .arrow {
   display: inline-block;
-  transition: transform 0.15s ease;
+  transition: transform var(--motion) ease;
 }
 a:hover .arrow {
   transform: translate(2px, -2px);
+}
+a:hover .arrow-forward {
+  transform: translateX(2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -562,36 +571,12 @@ a:hover .arrow {
 .site-name:hover { color: var(--accent); }
 
 .project-back {
-  margin-top: 1.5rem;
+  margin-top: var(--space-block);
   font-size: var(--text-supporting);
 }
-.project-back a {
-  position: relative;
-  padding-bottom: 2px;
-}
-.project-back a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  background-color: var(--accent);
-  transition: width 0.15s ease, left 0.15s ease;
-}
-.project-back a:hover::after {
-  width: 100%;
-  left: 0;
-}
 
-.project-header { margin-bottom: 3rem; }
-.project-eyebrow {
-  color: var(--muted);
-  font-size: var(--text-label);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
+.project-header { margin-bottom: var(--space-section); }
+.project-eyebrow { font-weight: 600; }
 .project-title {
   margin-top: 0.35rem;
   font-size: var(--text-name);
@@ -609,9 +594,9 @@ a:hover .arrow {
 }
 
 .project-content section:first-of-type {
-  border-top: 1px solid var(--faint);
+  border-top: var(--line) solid var(--faint);
   margin-top: 0;
-  padding-top: 3rem;
+  padding-top: var(--space-section);
 }
 
 @media (max-width: 50rem) {
@@ -619,25 +604,35 @@ a:hover .arrow {
   .project-header { margin-bottom: 2.5rem; }
 }
 
-/* Links to project-detail pages */
-.entry .more a.project-link {
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--accent);
-  border-radius: 4px;
+/* --- SHARED COMPONENTS (see DESIGN.md) -------------------------------- */
+/* Label: small uppercase muted text for locations, eyebrows, nav groups. */
+.sidebar .location,
+.project-eyebrow,
+.nav-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Button: the control look applied to a link. Use only for the one link per
+   entry that opens a project-detail page. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border: var(--line) solid var(--faint);
+  border-radius: var(--radius-control);
+  color: var(--accent);
+  font-size: var(--text-supporting);
   font-weight: 600;
-  gap: 0.15rem;
-  transition: background-color 0.15s;
+  transition: color var(--motion), border-color var(--motion);
 }
-.entry .more a.project-link::after { display: none; }
-.entry .more a.project-link:hover { background-color: var(--accent-tint); }
-.nav-pages { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.1rem; }
-.nav-pages-label {
-  font-size: var(--text-label); letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 0.2rem;
+.entry .more:has(.button) { margin-top: 0.85rem; }
+
+/* Nav group label (for example "Project pages" above the detail-page list). */
+.nav-label { margin-bottom: 0.2rem; }
+@media (max-width: 50rem) {
+  .nav-label { flex-basis: 100%; margin-bottom: 0; }
 }
-.nav-pages a {
-  font-size: var(--text-supporting); font-weight: 500;
-  padding: 0.3rem 0.75rem; margin-left: -0.75rem; border-radius: 4px;
-  transition: background-color 0.15s;
-}
-.nav-pages a:hover { background-color: var(--accent-tint); }

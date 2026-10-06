@@ -26,7 +26,8 @@ rather than leaving empty labels or placeholder elements.
 
 | File | What it is | Touch it when... |
 |------|------------|----------------|
-| `styles.css` | All styling. | You want to change colours, spacing, fonts. |
+| `styles.css` | All styling, built from the tokens and components in `DESIGN.md`. | You want to change colours, spacing, fonts. Update `DESIGN.md` in the same commit. |
+| `DESIGN.md` | The visual standard: tokens and components. | You add or change any visual element. |
 | `index.html` | Complete semantic page content + small progressive-enhancement script. | You change public copy, links, entries, or page structure. **This is the normal one.** |
 | `projects/<slug>/index.html` | Project detail page (currently only Baja). Reuses `styles.css` and follows every rule in this file. | A featured project has more real evidence than its homepage entry can hold. |
 | `STANDARDS.md` | General project rules & standards. | The rules change. |
