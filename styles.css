@@ -618,3 +618,26 @@ a:hover .arrow {
   .project-back { margin-top: 1rem; }
   .project-header { margin-bottom: 2.5rem; }
 }
+
+/* Links to project-detail pages */
+.entry .more a.project-link {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+  gap: 0.15rem;
+  transition: background-color 0.15s;
+}
+.entry .more a.project-link::after { display: none; }
+.entry .more a.project-link:hover { background-color: var(--accent-tint); }
+.nav-pages { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.1rem; }
+.nav-pages-label {
+  font-size: var(--text-label); letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.2rem;
+}
+.nav-pages a {
+  font-size: var(--text-supporting); font-weight: 500;
+  padding: 0.3rem 0.75rem; margin-left: -0.75rem; border-radius: 4px;
+  transition: background-color 0.15s;
+}
+.nav-pages a:hover { background-color: var(--accent-tint); }
