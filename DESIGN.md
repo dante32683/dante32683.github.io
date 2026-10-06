@@ -156,7 +156,9 @@ normally have no image.
 `.project-image-card`: an image in a `--line` border with `--radius-media`,
 `cursor: zoom-in`, and a caption in `--text-caption` muted. On hover the
 border turns accent. Clicking opens the shared preview dialog. One per
-homepage entry.
+homepage entry. A project page may stack several in one
+`.project-images-grid`, 1.5rem apart. Crop an image to the part that matters
+and let the preview open the full source.
 
 ### Section heading
 

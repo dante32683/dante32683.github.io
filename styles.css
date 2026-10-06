@@ -348,6 +348,7 @@ h3 .subtitle::before,
 .project-images-grid {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 

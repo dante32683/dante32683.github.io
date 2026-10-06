@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baja SAE | Dante Martin</title>
   <meta name="description" content="Dante Martin's work on electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
-  <link rel="stylesheet" href="../../styles.css?v=1.11">
+  <link rel="stylesheet" href="../../styles.css?v=1.12">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
 
   <link rel="canonical" href="https://dante-martin.com/projects/baja/">
@@ -13,8 +13,8 @@
   <meta property="og:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://dante-martin.com/projects/baja/">
-  <meta property="og:image" content="https://dante-martin.com/images/baja-daq-schematic-crop.webp">
-  <meta property="og:image:alt" content="Part of the draft Baja SAE DAQ schematic">
+  <meta property="og:image" content="https://dante-martin.com/images/baja-safety-schematic-crop.webp">
+  <meta property="og:image:alt" content="Draft Baja SAE safety schematic">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Baja SAE | Dante Martin">
   <meta name="twitter:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
@@ -89,10 +89,22 @@
           <p>I drew the overview, power, and safety sheets of the car's electrical schematics in KiCad, and share the data-acquisition sheet with a teammate. The schematics cover the car's 12 V power, the kill switch, brake light, and reverse warning required by the rules, and the data logger. The logger is a RaceCapture unit with four speed inputs, planned for the rear wheel, front wheel, engine, and CVT. The required safety circuits are kept separate from the logger.</p>
           <div class="project-images-grid">
             <figure class="project-image-card">
-              <a class="project-image-button" href="../../images/baja-project/daq-schematic.png" data-preview-src="../../images/baja-project/daq-schematic.png" data-preview-alt="Full draft DAQ schematic sheet for the SRJC Baja SAE car" data-preview-caption="Draft DAQ schematic: four planned speed sensors wired to the data logger's RPM inputs." aria-label="Enlarge image: draft Baja SAE DAQ schematic">
-                <img src="../../images/baja-daq-schematic-crop.webp" alt="" width="1340" height="992" loading="lazy" decoding="async">
+              <a class="project-image-button" href="../../images/baja-project/safety-schematic.webp" data-preview-src="../../images/baja-project/safety-schematic.webp" data-preview-alt="Full draft safety schematic sheet for the SRJC Baja SAE car, drawn by Dante Martin" data-preview-caption="Safety sheet: two kill switches in parallel to the ignition, both brake switches driving the brake light through a relay, and the reverse light and alarm." aria-label="Enlarge image: draft Baja SAE safety schematic">
+                <img src="../../images/baja-safety-schematic-crop.webp" alt="" width="1600" height="887" loading="lazy" decoding="async">
               </a>
-              <figcaption class="project-image-caption">Part of the draft DAQ schematic: four planned speed sensors wired to the data logger. Select to see the full sheet.</figcaption>
+              <figcaption class="project-image-caption">Safety sheet: two kill switches in parallel to the ignition, both brake switches driving the brake light through a relay, and the reverse light and alarm. Select to see the full sheet.</figcaption>
+            </figure>
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/power-schematic.webp" data-preview-src="../../images/baja-project/power-schematic.webp" data-preview-alt="Full draft power schematic sheet for the SRJC Baja SAE car, drawn by Dante Martin" data-preview-caption="Power sheet: the 12 V battery through a main fuse, split into fused branches for the data logger, brake light, and reverse warning." aria-label="Enlarge image: draft Baja SAE power schematic">
+                <img src="../../images/baja-power-schematic-crop.webp" alt="" width="1600" height="1073" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Power sheet: the 12 V battery through a main fuse, split into fused branches for the data logger, brake light, and reverse warning. Select to see the full sheet.</figcaption>
+            </figure>
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/daq-sensors.webp" data-preview-src="../../images/baja-project/daq-sensors.webp" data-preview-alt="Draft DAQ schematic detail: four speed sensors wired to the data logger's RPM inputs" data-preview-caption="Part of the shared DAQ sheet: four planned speed sensors wired to the data logger's RPM inputs." aria-label="Enlarge image: part of the draft Baja SAE DAQ schematic">
+                <img src="../../images/baja-daq-schematic-crop.webp" alt="" width="1340" height="975" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Part of the shared DAQ sheet: four planned speed sensors wired to the data logger's RPM inputs.</figcaption>
             </figure>
           </div>
         </article>
