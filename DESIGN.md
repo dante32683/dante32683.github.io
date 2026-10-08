@@ -173,6 +173,10 @@ homepage entry. A project page may stack several in one
 `.project-images-grid`, 1.5rem apart. Crop an image to the part that matters
 and let the preview open the full source.
 
+Print hides the image-preview dialog and its backdrop, including when a
+preview is open. It also removes the preview's page scroll lock so the
+portfolio remains available in the printed document.
+
 ### Section heading
 
 `h2`: `--text-section`, weight 700, uppercase, 0.06em letter-spacing,

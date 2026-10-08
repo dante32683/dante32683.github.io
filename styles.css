@@ -571,7 +571,8 @@ a:hover .arrow-forward {
   a { color: #000 !important; text-decoration: underline; }
   .layout { display: block; padding: 0; position: static; }
   .sidebar { position: static; padding: 0 0 2rem; margin: 0; max-height: none; overflow: visible; border-bottom: 1px solid var(--faint); }
-  .nav, .theme-toggle, .skip-link { display: none; }
+  .nav, .theme-toggle, .skip-link, .image-preview-dialog, .image-preview-dialog::backdrop { display: none; }
+  body.image-preview-open { overflow: visible; }
   .content { padding: 2rem 0 0; max-width: none; }
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }
   section:first-of-type { border-top: none; }
