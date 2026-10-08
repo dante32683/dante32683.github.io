@@ -43,6 +43,7 @@
   --text-caption: 0.8rem;
   --text-label: 0.78rem;
   --text-icon: 1.15rem;
+  --text-icon-close: 1.5rem;
   --text-print: 11pt;
   --leading-name: 1.15;
   --leading-body: 1.6;
@@ -139,7 +140,15 @@ a:focus-visible, button:focus-visible {
 }
 
 /* --- SIDEBAR (sticky) -------------------------------------------------- */
-.sidebar { position: sticky; top: 0; padding: var(--space-rail) 0; }
+.sidebar {
+  position: sticky;
+  top: 0;
+  padding: var(--space-rail) 1.25rem;
+  margin: 0 -1.25rem;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow-y: auto;
+}
 .sidebar h1 { font-size: var(--text-name); font-weight: 700; letter-spacing: -0.02em; line-height: var(--leading-name); }
 .sidebar .tagline { color: var(--muted); font-size: var(--text-supporting); margin-top: 0.5rem; }
 .sidebar .location { margin-top: 0.75rem; }
@@ -159,14 +168,16 @@ a:focus-visible, button:focus-visible {
 .contact { margin-top: var(--space-block); display: flex; flex-direction: column; gap: 0.35rem;
   font-size: var(--text-supporting); }
 /* Text link: accent text with an underline that grows from the centre on
-   hover. Shared by contact links, entry links, and the back link. */
+   hover. Shared by contact links, entry and project-header links, and the back link. */
 .contact a,
 .entry .more a:not(.button),
+.project-header .more a,
 .project-back a { position: relative; width: fit-content; padding-bottom: 2px;
   display: inline-flex; align-items: center;
   transition: color var(--motion); }
 .contact a::after,
 .entry .more a:not(.button)::after,
+.project-header .more a::after,
 .project-back a::after {
   content: "";
   position: absolute;
@@ -179,6 +190,7 @@ a:focus-visible, button:focus-visible {
 }
 .contact a:hover::after,
 .entry .more a:not(.button):hover::after,
+.project-header .more a:hover::after,
 .project-back a:hover::after {
   width: 100%;
   left: 0;
@@ -283,7 +295,8 @@ h3 .subtitle::before,
 }
 
 .entry p { margin-top: 0.65rem; font-size: var(--text-body); line-height: var(--leading-body); color: var(--ink); }
-.entry .more { font-size: var(--text-link-small); margin-top: 0.55rem; }
+.entry .more,
+.project-header .more { font-size: var(--text-link-small); margin-top: 0.55rem; }
 
 /* --- EDUCATION --------------------------------------------------------- */
 .edu .edu-block { margin-bottom: 2.75rem; }
@@ -412,7 +425,7 @@ h3 .subtitle::before,
   color: var(--ink);
   cursor: pointer;
   transition: color var(--motion), border-color var(--motion);
-  font-size: 1.5rem;
+  font-size: var(--text-icon-close);
   line-height: 1;
 }
 .image-preview-image {
@@ -463,13 +476,13 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
 
 /* A sticky rail taller than the viewport can make its lower links unreachable. */
 @media (min-width: 50.0625rem) and (max-height: 36rem) {
-  .sidebar { position: static; }
+  .sidebar { position: static; max-height: none; overflow: visible; }
 }
 
 /* --- SMALL SCREENS: collapse to one column, nav goes horizontal -------- */
 @media (max-width: 50rem) {
   .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
-  .sidebar { position: static; padding: 3rem 0 0; }
+  .sidebar { position: static; padding: 3rem 0 0; margin: 0; max-height: none; overflow: visible; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: var(--radius-control); }
   .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }
@@ -553,7 +566,7 @@ a:hover .arrow-forward {
   body { background: #fff !important; color: #000 !important; font-size: var(--text-print); transition: none; }
   a { color: #000 !important; text-decoration: underline; }
   .layout { display: block; padding: 0; position: static; }
-  .sidebar { position: static; padding: 0 0 2rem; border-bottom: 1px solid var(--faint); }
+  .sidebar { position: static; padding: 0 0 2rem; margin: 0; max-height: none; overflow: visible; border-bottom: 1px solid var(--faint); }
   .nav, .theme-toggle, .skip-link { display: none; }
   .content { padding: 2rem 0 0; max-width: none; }
   section { page-break-inside: avoid; border-top: 1px solid var(--faint); padding: 1.5rem 0; margin-top: 1.5rem; }

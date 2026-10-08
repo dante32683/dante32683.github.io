@@ -57,6 +57,8 @@ places in `styles.css`, and both lists must stay identical.
 | `--text-meta` | 0.82rem | Org/date lines, detail rows, footer |
 | `--text-caption` | 0.8rem | Image captions |
 | `--text-label` | 0.78rem | Uppercase labels |
+| `--text-icon` | 1.15rem | Theme control icon |
+| `--text-icon-close` | 1.5rem | Image-dialog close icon |
 
 Weights: 700 for the name, titles, and section headings; 600 for entry titles,
 labels in detail rows, the active nav item, and buttons; 500 for nav; 400
@@ -94,7 +96,8 @@ its rule. Copy the component; don't invent new gaps.
 ### Text link
 
 Accent text with an underline that grows from the centre on hover. Used for
-contact links, the link under an entry (`.entry .more a`), and the back link
+contact links, the link under an entry (`.entry .more a`), the project header's
+`.more` link, and the back link
 on project pages. Destinations are marked by an arrow:
 
 - `↗` (`<span class="arrow">`): external site, opens in a new tab. The arrow
@@ -131,6 +134,12 @@ The sidebar has two nav groups:
 2. **Project pages**: a `.nav-label` heading, then one link per detail page.
    On a detail page, its own link is marked `class="active"
    aria-current="page"`.
+
+The desktop sidebar stays within the viewport height and scrolls when enlarged
+text makes it taller. A 1.25rem horizontal padding gutter, offset by matching
+negative margins, leaves room for link focus rings without changing the rail's
+normal content alignment. On mobile, short desktop viewports, and print, the
+sidebar uses the normal page flow without a height limit.
 
 ### Label
 
