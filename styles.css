@@ -486,7 +486,7 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
 /* --- SMALL SCREENS: collapse to one column, nav goes horizontal -------- */
 @media (max-width: 50rem) {
   .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
-  .sidebar { position: static; padding: 3rem 0 0; margin: 0; max-height: none; overflow: visible; }
+  .sidebar { position: static; padding: calc(var(--space-section) + var(--space-block)) 0 0; margin: 0; max-height: none; overflow: visible; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: var(--radius-control); }
   .nav a.active { border-left: none; background-color: var(--accent-tint); color: var(--accent); font-weight: 600; }

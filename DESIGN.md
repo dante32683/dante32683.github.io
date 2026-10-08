@@ -126,6 +126,10 @@ Icon buttons: the theme toggle and the image-dialog close. They are
 `--bg` fill. On hover the border and icon turn accent. A button is the same
 look in text form.
 
+On mobile, the sidebar's top padding is `--space-section` plus
+`--space-block` (4.5rem). This places identity text below the theme control,
+including when the visitor enlarges the browser's preferred font size.
+
 ### Nav
 
 The sidebar nav is a vertical list of `--text-supporting` links in `--muted`.
