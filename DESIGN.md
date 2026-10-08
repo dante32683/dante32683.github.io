@@ -104,6 +104,10 @@ on project pages. Destinations are marked by an arrow:
   nudges up and right on hover.
 - No arrow: in-page anchor, `mailto:`, or the back link.
 
+Evidence references within `.capabilities-inline` use accent text and a
+persistent underline with a 0.18em offset so they remain identifiable within
+body text. Their visible wording stays the same as the existing reference.
+
 ### Button
 
 `.button`: the control look applied to a link. It has a `--line` border in

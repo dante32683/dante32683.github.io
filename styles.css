@@ -355,6 +355,10 @@ h3 .subtitle::before,
   line-height: var(--leading-body);
   color: var(--ink);
 }
+.capabilities-inline a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
 
 
 /* --- PROJECT EVIDENCE IMAGE ------------------------------------------- */
